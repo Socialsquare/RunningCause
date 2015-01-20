@@ -1,0 +1,70 @@
+{% extends "masanga_base.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+{% load widget_tweaks %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block body %}
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% if socialaccount.providers  %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.error %}
+            <div class="alert alert-error">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-error">
+                <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+<form class="login form-horizontal" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {% for field in form %}
+    <div class="form-group">
+    <label for={{ field.name }} class="col-sm-2 control-label">{{ field.label }}</label>
+    <div class="col-sm-10">
+      {% if field.name != "remember" %}
+      {% render_field field class+="form-control" %}
+      {% else %}
+      {{ field }}
+      {% endif %}
+    </div>
+    </div>
+  {% endfor %}
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></br></br>
+      <button type="submit" class="btn btn-default">{% trans "Sign In" %}</button>
+    </div>
+  </div></form>
+{% endblock %}

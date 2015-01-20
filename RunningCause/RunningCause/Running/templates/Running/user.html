@@ -1,0 +1,55 @@
+{% extends "masanga_base.html" %}
+
+{% block title %}
+{{ user.username }}
+{% endblock %}
+
+{% block head %}
+Runner: {{ user.username }}
+{% endblock %}
+
+{% block body %}
+Sponsorships: </br>
+<table class="table table-hover">
+    <tr>
+        <th>Sponsor</th>
+        <th>Rate(kr/km)</th>
+        <th>Amount Earned (kr)</th>
+        <th>Continues Until</th>
+    </tr>
+
+{% for sponsorship in sponsorships %}
+    <tr> 
+        <td>{{ sponsorship.sponsor }}</td>
+        <td>{{ sponsorship.rate }}</td>
+        {% for payment in payments %}
+            {% if payment.sponsorship.sponsor == sponsorship.sponsor %}
+                <td>{{ payment.amount }}</td>
+            {% endif %}
+        {% endfor %}
+        <td>{{ sponsorship.end_date }}</td>
+    </tr>
+{% endfor %}
+</table>
+<h4><a href="/runners/{{ user.id }}/sponsor" class="btn btn-default"> Sponsor me! </a></h4>
+</br>
+
+Runs:</br>
+
+<table class="table table-hover">
+    <tr>
+        <th>Distance (km)</th>
+        <th>Date</th>
+    </tr>
+{% for run in runs %}
+    <tr> 
+        <td>Distance: {{ run.distance }}</td>
+        <td>Date: {{ run.date }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% if own_page %}
+<h4><a href="/runners/{{ user.id }}/input_run" class="btn btn-default"> Input a run! </a></h4>
+{% endif %}
+{% endblock %}

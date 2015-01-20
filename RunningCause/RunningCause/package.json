@@ -1,0 +1,25 @@
+{
+  "name": "RunningCause",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitblueprint/RunningCause"
+  },
+  "author": "Niles Christensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bitblueprint/RunningCause/issues"
+  },
+  "homepage": "https://github.com/bitblueprint/RunningCause",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.1"
+  }
+}

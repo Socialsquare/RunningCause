@@ -1,0 +1,30 @@
+{% extends "masanga_base.html" %}
+
+
+{% block head %}
+
+{% if user %}
+Hello, {{ user.username }}!</br>
+<small>Not {{ user.username }}? Log out <a href="{% url 'account_logout' %}"> here.</a></small>
+
+
+{% else %}
+Log in <a href="{% url 'account_login' %}">here</a>, or create an account <a href="{% url 'account_signup' %}">here.</a>
+{% endif %}
+
+{% endblock %}
+
+{% block body %}
+{% if user_list %}
+    <h3>Users:</h3>
+    <table class="table table-hover">
+    {% for user in user_list %}
+        <tr>
+            <td><a href="{% url 'Running.views.user' user.id %}">{{ user.username }}</a></td>
+        </tr>   
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Huh, that's weird. We can't find any users. Check back later.</p>
+{% endif %}
+{% endblock %}
