@@ -1,1 +1,1 @@
-web: gunicorn RunningCause:app --log-file -
+web: gunicorn RunningCause.wsgi:application --log-file -
