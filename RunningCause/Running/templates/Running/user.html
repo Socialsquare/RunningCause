@@ -92,14 +92,15 @@ Runs:</br>
 
 {% else %}
 
-<h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor me! </a></h4>
-
-
 {% if own_page %}
 
 <h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> Input a run! </a></h4>
 
 <h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> Register with runkeeper! </a></h4>
+
+{% else %}
+
+<h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor me! </a></h4>
 
 {% endif %}
 

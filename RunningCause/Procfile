@@ -1,1 +1,1 @@
-web: waitress-serve —-port=$PORT RunningCause.wsgi:application
+web: gunicorn RunningCause.wsgi --log-file -

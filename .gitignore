@@ -65,6 +65,10 @@ migrations/
 # Node stuff
 node_modules/
 
+# Secrets
+secrets.py
 
+# .env
+.env
 # Ds Store
 *.DS_Store
