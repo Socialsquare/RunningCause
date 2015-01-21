@@ -19,7 +19,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = secrets.SECRET_KEY
+import secrets
+SECRET_KEY = secrets.SECRET_KEY
 # RUNKEEPER_CLIENT_ID = secrets.RUNKEEPER_CLIENT_ID
 # RUNKEEPER_CLIENT_SECRET = secrets.RUNKEEPER_CLIENT_SECRET
 
@@ -145,8 +146,8 @@ STATICFILES_FINDERS = (
 )
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
