@@ -65,7 +65,7 @@ def register_runkeeper(request, runner_id):
         code = request.GET['code']
         rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
                                         settings.RUNKEEPER_CLIENT_SECRET, 
-                                        APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
+                                        settings.APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
         user = get_object_or_404(User, pk=runner_id)
         access_token = rk_auth_mgr.get_access_token(code)
         user.access_token = access_token
@@ -99,7 +99,7 @@ def register_runkeeper(request, runner_id):
     else:
         rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
                                                 settings.RUNKEEPER_CLIENT_SECRET, 
-                                                APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
+                                                settings.APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
         rk_auth_uri = rk_auth_mgr.get_login_url()
         print "Getting code..."
         return HttpResponseRedirect(rk_auth_uri)
