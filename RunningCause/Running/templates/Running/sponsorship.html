@@ -24,7 +24,7 @@ Create a new Sponsorship
 {% if form.errors %}
 <p>Hmm, that doesn't seem quite right. Please try again.</p>
 {% endif %}
-<form class="form-horizontal" method="post" action="{% url 'Running.views.sponsor' runner.id %}">
+<form class="form-horizontal" method="post" action="/runners/sponsor/{{ runner.id }}/">
     {% csrf_token %}
     {% for field in form %}
     <div class="form-group">

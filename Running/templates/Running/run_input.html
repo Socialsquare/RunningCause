@@ -22,7 +22,7 @@ Input a Run
 <p>Hmm, that doesn't seem quite right. Please try again.</p>
 {% endif %}
 </br>
-<form class="form-horizontal" method="post" action="/runners/{{ runner.id }}/input_run/">
+<form class="form-horizontal" method="post" action="{% url 'Running.views.input_run' runner.id %}">
     {% csrf_token %}
     {% for field in form %}
     <div class="form-group">

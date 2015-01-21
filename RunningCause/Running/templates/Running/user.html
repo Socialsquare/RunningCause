@@ -9,15 +9,12 @@ Runner: {{ user.username }}
 {% endblock %}
 
 {% block body %}
-{% if is_runner %}
-
 Sponsorships: </br>
 <table class="table table-hover">
     <tr>
         <th>Sponsor</th>
         <th>Rate(kr/km)</th>
         <th>Amount Earned (kr)</th>
-        <th>Maximum Possible Amount (kr)</th>
         <th>Continues Until</th>
     </tr>
 
@@ -30,18 +27,12 @@ Sponsorships: </br>
                 <td>{{ payment.amount }}</td>
             {% endif %}
         {% endfor %}
-        <td>{{ sponsorship.max_amount }}</td>
         <td>{{ sponsorship.end_date }}</td>
     </tr>
 {% endfor %}
 </table>
-
-{% if own_page %}
-{% else %}
-<h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor me! </a></h4>
+<h4><a href="/runners/{{ user.id }}/sponsor" class="btn btn-default"> Sponsor me! </a></h4>
 </br>
-{% endif %}
-
 
 Runs:</br>
 
@@ -59,51 +50,6 @@ Runs:</br>
 </table>
 
 {% if own_page %}
-<h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> Input a run! </a></h4>
-
-<h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> Register with runkeeper! </a></h4>
-
+<h4><a href="/runners/{{ user.id }}/input_run" class="btn btn-default"> Input a run! </a></h4>
 {% endif %}
-
-{% elif is_sponsor %}
-
-{% for sponsorship in sponsorships_given %}
-    Sponsoring: </br>
-    <table class="table table-hover">
-    <tr>
-        <th>Runner</th>
-        <th>Rate(kr/km)</th>
-        <th>Amount Earned (kr)</th>
-        <th>Maximum Possible Amount (kr)</th>
-        <th>Continues Until</th>
-    </tr>
-    <tr> 
-        <td>{{ sponsorship.runner }}</td>
-        <td>{{ sponsorship.rate }}</td>
-        {% for payment in payments %}
-            {% if payment.sponsorship.sponsor == sponsorship.sponsor %}
-                <td>{{ payment.amount }}</td>
-            {% endif %}
-        {% endfor %}
-        <td>{{ sponsorship.max_amount }}</td>
-        <td>{{ sponsorship.end_date }}</td>
-    </tr>
-{% endfor %}
-
-{% else %}
-
-{% if own_page %}
-
-<h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> Input a run! </a></h4>
-
-<h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> Register with runkeeper! </a></h4>
-
-{% else %}
-
-<h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor me! </a></h4>
-
-{% endif %}
-
-{% endif %}
-
 {% endblock %}

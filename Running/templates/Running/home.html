@@ -5,11 +5,11 @@
 
 {% if user %}
 Hello, {{ user.username }}!</br>
-<small>Not {{ user.username }}? Log out <a href="/runners/account/logout/"> here.</a></small>
+<small>Not {{ user.username }}? Log out <a href="{% url 'account_logout' %}"> here.</a></small>
 
 
 {% else %}
-Log in <a href='/runners/account/login/'>here</a>, or create an account <a href='/runners/account/signup'>here.</a>
+Log in <a href="{% url 'account_login' %}">here</a>, or create an account <a href="{% url 'account_signup' %}">here.</a>
 {% endif %}
 
 {% endblock %}
@@ -20,7 +20,7 @@ Log in <a href='/runners/account/login/'>here</a>, or create an account <a href=
     <table class="table table-hover">
     {% for user in user_list %}
         <tr>
-            <td><a href="/runners/{{ user.id }}/profile/">{{ user.username }}</a></td>
+            <td><a href="{% url 'Running.views.user' user.id %}">{{ user.username }}</a></td>
         </tr>   
     {% endfor %}
     </ul>
