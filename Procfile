@@ -1,1 +1,1 @@
-web: gunicorn RunningCause.wsgi:application --log-file -
+web: grunt less && gunicorn RunningCause.wsgi:application --log-file -
