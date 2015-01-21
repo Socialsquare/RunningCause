@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     less: {
       runningCause: {
         files: {
-          'static/stylesheets/style.css': 'static/less/style.less',
+          'RunningCause/static/stylesheets/style.css': 'static/less/style.less',
         }
       }
     },
