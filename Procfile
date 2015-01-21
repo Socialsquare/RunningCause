@@ -1,1 +1,1 @@
-web: cd RunningCause gunicorn RunningCause.wsgi --log-file -
+web: gunicorn RunningCause.wsgi --log-file -
