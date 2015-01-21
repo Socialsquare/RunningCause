@@ -11,6 +11,20 @@ module.exports = function(grunt) {
           'static/stylesheets/style.css': 'static/less/style.less',
         }
       }
+    },
+
+    copy: {
+      runningCause: {
+        files:[
+        {
+          cwd: 'node_modules/bootstrap/fonts',
+          src:'**/*',
+          dest: 'RunningCause/static/fonts',
+          expand:true
+
+        }
+      ]  
+      }
     }
   });
 
@@ -22,8 +36,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Register tasks here.
-  grunt.registerTask('default', ['less']);
+  grunt.registerTask('default', ['less', 'copy']);
 
 };
