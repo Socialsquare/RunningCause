@@ -1,1 +1,1 @@
-web: grunt less && gunicorn RunningCause.wsgi:application --log-file -
+web: npm install && grunt less && gunicorn RunningCause.wsgi:application --log-file -
