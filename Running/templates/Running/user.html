@@ -11,7 +11,7 @@ Runner: {{ user.username }}
 {% block body %}
 {% if is_runner %}
 
-Sponsorships: </br>
+Sponsorships Recieved: </br>
 <table class="table table-hover">
     <tr>
         <th>Sponsor</th>
@@ -32,6 +32,7 @@ Sponsorships: </br>
         {% endfor %}
         <td>{{ sponsorship.max_amount }}</td>
         <td>{{ sponsorship.end_date }}</td>
+        <td><a href="{% url 'Running.views.delete_sponsorship' sponsorship.id user.id %}" class="btn btn-default">Delete</a></td>
     </tr>
 {% endfor %}
 </table>
@@ -87,6 +88,8 @@ Runs:</br>
         {% endfor %}
         <td>{{ sponsorship.max_amount }}</td>
         <td>{{ sponsorship.end_date }}</td>
+        <td><a href="{% url 'Running.views.delete_sponsorship' sponsorship.id user.id %}" class="btn btn-default">Delete</a></td>
+
     </tr>
 {% endfor %}
 

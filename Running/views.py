@@ -60,6 +60,16 @@ def user(request, runner_id):
                 }
     return render(request, 'Running/user.html', context)
 
+def delete_sponsorship(request, sponsorship_id, runner_id):
+    if request.user.is_authenticated():
+        user_id = request.user.id
+        user = get_object_or_404(User, pk=user_id)
+        sponsorship = get_object_or_404(Sponsorship, pk=sponsorship_id)
+        if user == sponsorship.sponsor or user == sponsorship.runner:
+            sponsorship.delete()
+            url = reverse('Running.views.user', kwargs={'runner_id': runner_id})
+            return HttpResponseRedirect(url)
+
 def register_runkeeper(request, runner_id):
     if request.GET.has_key('code'):
         code = request.GET['code']
