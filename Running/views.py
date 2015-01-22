@@ -12,7 +12,9 @@ from Running import forms
 import time
 import healthgraph
 import json
-from RunningCause import settings
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 
 # @login_required(login_url='/runners/account/login')
@@ -75,7 +77,11 @@ def register_runkeeper(request, runner_id):
         code = request.GET['code']
         rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
                                         settings.RUNKEEPER_CLIENT_SECRET, 
+                                        # request.build_absolute_uri(request.get_full_path()))
+                                        # '127.0.0.1/register/runkeeper/')
                                         settings.APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
+
+
         user = get_object_or_404(User, pk=runner_id)
         access_token = rk_auth_mgr.get_access_token(code)
         user.access_token = access_token
@@ -94,6 +100,7 @@ def register_runkeeper(request, runner_id):
                 date = datetime.datetime(*date[:6]).date()
                 new_run = Run(runner=user, distance=item['total_distance']/1000, date=date, source="runkeeper", source_id=item['uri'])
                 new_run.save()
+                send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
             else:
                 run = get_object_or_404(Run, pk=runner_id)
                 run.save()
@@ -107,9 +114,13 @@ def register_runkeeper(request, runner_id):
         url = reverse('Running.views.user', kwargs={'runner_id': runner_id})
         return HttpResponseRedirect(url)
     else:
+        print request.build_absolute_uri(request.get_full_path())
         rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
                                                 settings.RUNKEEPER_CLIENT_SECRET, 
+                                                # request.build_absolute_uri(request.get_full_path()))
+                                                # '127.0.0.1/register/runkeeper/')
                                                 settings.APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
+
         rk_auth_uri = rk_auth_mgr.get_login_url()
         print "Getting code..."
         return HttpResponseRedirect(rk_auth_uri)

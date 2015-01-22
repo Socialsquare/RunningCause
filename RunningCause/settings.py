@@ -15,10 +15,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-if os.getenv('APP_URL'):
-    APP_URL = 'https://vast-waters-4465.herokuapp.com/'
-else:
-    APP_URL = 'http://127.0.0.1:8000/'
+APP_URL = os.getenv('APP_URL')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
