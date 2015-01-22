@@ -140,7 +140,7 @@ def sponsor(request, sponsee_id):
                 rate = form.cleaned_data['rate']
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
-                sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, email=email, end_date=end_date, max_amount=max_amount)
+                sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
                 sponsorship.save()
 
                 payment = Payment(sponsorship=sponsorship, amount=0)
