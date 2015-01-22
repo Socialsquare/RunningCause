@@ -1,7 +1,7 @@
 from django.test import TestCase
 from datetime import timedelta, date
 from dateutil.relativedelta import relativedelta
-from Running.models import User, Sponsorship, Run, Payment
+from Running.models import User, Sponsorship, Run
 
 
 class PaymentTestCase(TestCase):
@@ -40,23 +40,12 @@ class PaymentTestCase(TestCase):
                             date=date.today())
         run.save()
 
-        just_right_payments = just_right.payments.all()
-        just_right_total = 0
-        for payment in just_right_payments:
-            just_right_total = just_right_total + payment.amount
-        self.assertEqual(just_right_total, 100)
+        
+        self.assertEqual(just_right.total_amount, 100)
 
-        too_early_payments = too_early.payments.all()
-        too_early_total = 0
-        for payment in too_early_payments:
-            too_early_total = too_early_total + payment.amount
-        self.assertEqual(too_early_total, 0)
+        self.assertEqual(too_early.total_amount, 0)
 
-        too_late_payments = too_late.payments.all()
-        too_late_total = 0
-        for payment in too_late_payments:
-            too_late_total = too_late_total + payment.amount
-        self.assertEqual(too_late_total, 0)
+        self.assertEqual(too_late.total_amount, 0)
 
     def test_total(self):
 
@@ -75,11 +64,8 @@ class PaymentTestCase(TestCase):
                             date=date.today())
         first_run.save()
 
-        just_right_payments = just_right.payments.all()
-        just_right_total = 0
-        for payment in just_right_payments:
-            just_right_total = just_right_total + payment.amount
-        self.assertEqual(just_right_total, 100)
+        
+        self.assertEqual(just_right.total_amount, 100)
 
 
         first_run = Run.objects.create(runner=User.objects.get(username='runner'),
@@ -87,10 +73,7 @@ class PaymentTestCase(TestCase):
                             date=date.today())
         first_run.save()
 
-        just_right_payments = just_right.payments.all()
-        just_right_total = 0
-        for payment in just_right_payments:
-            just_right_total = just_right_total + payment.amount
-        self.assertEqual(just_right_total, 150)
+        
+        self.assertEqual(just_right.total_amount, 150)
 
         

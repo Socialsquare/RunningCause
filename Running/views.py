@@ -35,6 +35,7 @@ def home(request):
 
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, runner_id):
+    send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
 
     runner = get_object_or_404(User, pk=runner_id)
     sponsorships = runner.sponsorships_recieved.all()

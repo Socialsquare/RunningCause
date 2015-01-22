@@ -1,9 +1,7 @@
 from django.contrib import admin
-from Running.models import User, Sponsorship, Run, Payment
-
+from Running.models import User, Sponsorship, Run
 
 admin.site.register(Run)
-admin.site.register(Payment)
 
 @admin.register(Sponsorship)
 class SponsorshipAdmin(admin.ModelAdmin):
