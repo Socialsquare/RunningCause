@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from Running.models import Sponsorship, Run, Payment, User
+from Running.models import Sponsorship, Run, User
 # from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -34,33 +34,37 @@ def home(request):
     return render(request, 'Running/home.html', context)
 
 # Shows a page for a specific user, displaying their username and all their sponsorships.
-def user(request, runner_id):
+def user(request, user_id):
     send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
 
-    runner = get_object_or_404(User, pk=runner_id)
-    sponsorships = runner.sponsorships_recieved.all()
-    given_sponsorships = runner.sponsorships_given.all()
-    runs = Run.objects.filter(runner__pk=runner_id)
-    payments = Payment.objects.filter(sponsorship__runner__pk=runner_id)
+    user = get_object_or_404(User, pk=user_id)
+    sponsorships = user.sponsorships_recieved.all()
+    sponsorships_given = user.sponsorships_given.all()
+    runs = user.runs.all()
     own_page = False
     runkeeper = True
 
     if request.user.is_authenticated():
+        print "GOT HERE"
         print "User is authenticated"
-        user_id = request.user.id
-        own_page = (str(runner_id) == str(user_id))
+        auth_user_id = request.user.id
+        print user_id
+        own_page = (str(auth_user_id) == str(user_id))
+        print own_page
         runkeeper = request.session.has_key('rk_access_token')
             
-    context = {'user': runner,
+    print own_page
+    context = {'user': user,
                 'sponsorships': sponsorships,
-                'given_sponsorships': given_sponsorships,
+                'sponsorships_given': sponsorships_given,
                 'runs': runs,
-                'payments': payments,
                 'own_page': own_page,
                 'runkeeper': runkeeper,
-                'is_runner': runner.determine_is_runner,
-                'is_sponsor': runner.determine_is_sponsor
+                'is_runner': user.is_runner,
+                'is_sponsor': user.is_sponsor
                 }
+
+    print context['own_page']
     return render(request, 'Running/user.html', context)
 
 def delete_sponsorship(request, sponsorship_id, runner_id):
@@ -142,20 +146,6 @@ def sponsor(request, sponsee_id):
                 max_amount = form.cleaned_data['max_amount']
                 sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
                 sponsorship.save()
-
-                payment = Payment(sponsorship=sponsorship, amount=0)
-                payment.save()
-                sponsorship.payment = payment
-                sponsorship.save()
-                sponsee.update_sponsorships()
-                # runs = Run.objects.filter(runner__pk=sponsee.id)
-                # amount = 0
-                # for run in runs:
-                #     print "run.date: %s" % type(run.date)
-                #     print "sponsorship.end_date: %s" % type(sponsorship.end_date)
-
-                #     if run.date <= sponsorship.end_date and run.date >= sponsorship.start_date:
-                #         amount += run.distance * sponsorship.rate
 
                 url = reverse('Running.views.user', kwargs={'runner_id': sponsee_id})
                 return HttpResponseRedirect(url)

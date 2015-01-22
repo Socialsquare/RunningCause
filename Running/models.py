@@ -7,8 +7,6 @@ import sys
 
 class User(auth.models.AbstractUser):
     USERNAME_FIELD = 'username'
-    is_runner = models.BooleanField('Is Runner', default=False)
-    is_sponsor = models.BooleanField('Is Sponsor?', default=False)
     is_public = models.BooleanField('Info public?', default=False)
 
     # def update_sponsorships(self):
@@ -16,20 +14,14 @@ class User(auth.models.AbstractUser):
     #         sponsorship.update_active_payment()
 
     @property
-    def determine_is_runner(self):
+    def is_runner(self):
         num_runs = len(self.runs.all())
-        answer = num_runs > 0
-        self.is_runner = answer
-        self.save()
-        return answer
+        return num_runs > 0
 
     @property
-    def determine_is_sponsor(self):
+    def is_sponsor(self):
         num_sponsorships = len(self.sponsorships_given.all())
-        answer = num_sponsorships > 0
-        self.is_sponsor = answer
-        self.save()
-        return answer
+        return num_sponsorships > 0
 
 class Sponsorship(models.Model):
     runner = models.ForeignKey(User, related_name='sponsorships_recieved')
@@ -62,7 +54,7 @@ class Sponsorship(models.Model):
         amount = 0
         for run in self.runner.runs.all():
             if run.date > self.start_date and run.date < self.end_date:
-                amount = amount + self.rate * run.distance
+                amount = amount + (self.rate * run.distance)
         amount = min(amount, self.max_amount)
         return amount
 
