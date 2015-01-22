@@ -1,6 +1,7 @@
 from django.db import models
 import django.contrib.auth as auth
-from datetime import timedelta, datetime
+from datetime import date
+from dateutil.relativedelta import relativedelta
 import calendar
 import sys
 
@@ -35,38 +36,58 @@ class Sponsorship(models.Model):
     sponsor = models.ForeignKey(User, related_name='sponsorships_given')
     rate = models.FloatField('Rate', default=0)
     # email = models.EmailField('Email', default='masanga@mailinator.com')
-    start_date = models.DateField('Start Date', default = datetime.today().date(), editable=False)
-    end_date = models.DateField('End Date', default=(datetime.today()+timedelta(weeks=4)).date())
+    start_date = models.DateField('Start Date', default = date.today(), editable=False)
+    end_date = models.DateField('End Date', default=date.today()+relativedelta(months=1))
     max_amount = models.IntegerField('Max Amount', default=sys.maxint)
     access_token = models.CharField('Access Token', max_length = 200, default = "")
-    active = models.BooleanField('Active', default=True)
+    # active = models.BooleanField('Active', default=True)
 
     @property
-    def is_past_end_date(self):
-        if datetime.today().date() > self.end_date:
-            active = False
+    def is_active(self):
+        print ""
+        print "Today: %s" % date.today()
+        print "Starts: %s" % self.start_date
+        print "Ends : %s" % self.end_date
+        print ""
+        if date.today() < self.end_date and date.today() > self.start_date:
+            # self.active = False
+            self.save()
+            print "Is active"
+            print ""
             return True
         return False
-
+        
     @property
     def active_payment(self):
         active_payment = self.payments.filter(active=True).first()
-        if active_payment == None:
-            new_payment = Payment(sponsorship=self)
+        if not self.is_active:
+            if active_payment:
+                active_payment.active = False
+            return None
+        if active_payment == None or active_payment.has_ended:
+            payment_end_date = min(self.end_date, date.today()+relativedelta(months=1))
+            new_payment = Payment(sponsorship=self, end_date=payment_end_date)
             new_payment.save()
+            print "New payment created!"
+            print ""
             return new_payment
         return active_payment
+
+    
+
 
 
     def pay(self):
         for payment in Payment.objects.filter(sponsorship__pk=self.id):
             payment.active = False
             payment.save()
-        if (not self.is_past_end_date):
+        if (not self.is_active):
             new_payment = Payment.create(sponsorship=self)
 
     def update_active_payment(self):
-        self.active_payment.update_amount()
+        current_payment = self.active_payment
+        if current_payment != None:
+            current_payment.update_amount()
 
     def __unicode__(self):
         return '%s' % self.sponsor
@@ -74,7 +95,7 @@ class Sponsorship(models.Model):
 class Run(models.Model):
     runner = models.ForeignKey(User, related_name='runs')
     distance = models.FloatField('Distance', default=1)
-    date = models.DateField('Date', default=datetime.today().date())
+    date = models.DateField('Date', default=date.today())
     source = models.CharField('Source', default="", max_length=200)
     source_id = models.CharField('Source ID', default="", max_length=200)
 
@@ -85,22 +106,27 @@ class Run(models.Model):
         self.runner.update_sponsorships()
         super(Run, self).save(*args, **kwargs)
 
+
 class Payment(models.Model):
     sponsorship = models.ForeignKey(Sponsorship, related_name='payments')
     amount = models.FloatField('Amount', default=0)
     active = models.BooleanField('Active', default=True)
-    start_date = models.DateField('Start Date', default = datetime.today().date(), editable=False)
-    end_date = models.DateField('End date', default=datetime(datetime.today().year, datetime.today().month+1, 1).date())
+    start_date = models.DateField('Start Date', default = date.today(), editable=False)
+    end_date = models.DateField('End date', default=date.today()+relativedelta(months=1))
 
     @property
     def has_ended(self):
-        return datetime.today().date() >= end_date
+        result = (date.today() >= self.end_date)
+        active = not result
+        return result
 
     def __unicode__(self):
         return '%s' % self.sponsorship.sponsor
 
     def calculate_amount(self):
         rate = self.sponsorship.rate
+        print "Payment start date: %s" % self.start_date
+        print "Payment end date: %s" % self.end_date
         relevant_runs = self.sponsorship.runner.runs.filter(date__gte=self.start_date,  date__lt=self.end_date)
         print "Num relevant runs: %s" % len(relevant_runs)
         amount = 0
@@ -111,10 +137,12 @@ class Payment(models.Model):
         return amount
 
     def update_amount(self):
+        print "Updating amount..."
         other_payments = self.sponsorship.payments.exclude(pk=self.id)
         previous_amount = 0
         for payment in other_payments:
             previous_amount = previous_amount + payment.amount
+        print "Previous amount: %s" % previous_amount
         current_amount = self.calculate_amount()
         print current_amount
         self.amount = min(self.sponsorship.max_amount - previous_amount, current_amount)

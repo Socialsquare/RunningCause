@@ -9,7 +9,7 @@ Runner: {{ user.username }}
 {% endblock %}
 
 {% block body %}
-{% if user.is_public %}
+{% if user.is_public or own_page%}
 {% if is_runner %}
 
 Sponsorships Recieved: </br>
