@@ -8,7 +8,7 @@ class User(auth.models.AbstractUser):
     USERNAME_FIELD = 'username'
     is_runner = models.BooleanField('Is Runner', default=False)
     is_sponsor = models.BooleanField('Is Sponsor?', default=False)
-    public_information = models.BooleanField('Info public?', default=False)
+    is_public = models.BooleanField('Info public?', default=False)
 
     def update_sponsorships(self):
         for sponsorship in self.sponsorships_recieved.all():

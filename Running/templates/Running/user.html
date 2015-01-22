@@ -9,6 +9,7 @@ Runner: {{ user.username }}
 {% endblock %}
 
 {% block body %}
+{% if user.is_public %}
 {% if is_runner %}
 
 Sponsorships Recieved: </br>
@@ -109,4 +110,9 @@ Runs:</br>
 
 {% endif %}
 
+{% else %}
+
+<h4>Sorry, this user has chose to make their information private.</h4>
+
+{% endif %}
 {% endblock %}

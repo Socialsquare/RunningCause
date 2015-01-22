@@ -17,7 +17,7 @@ class SignupForm(forms.Form):
     # email = forms.EmailField(label="Your email")
 
     def signup(self, request, user):
-        user.public_information = self.cleaned_data['public_info']
+        user.is_public = self.cleaned_data['public_info']
         # user.last_name = self.cleaned_data['last_name']
         user.save()
 
