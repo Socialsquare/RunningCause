@@ -8,6 +8,7 @@ class User(auth.models.AbstractUser):
     USERNAME_FIELD = 'username'
     is_runner = models.BooleanField('Is Runner', default=False)
     is_sponsor = models.BooleanField('Is Sponsor?', default=False)
+    public_information = models.BooleanField('Info public?', default=False)
 
     def update_sponsorships(self):
         for sponsorship in self.sponsorships_recieved.all():
@@ -33,7 +34,7 @@ class Sponsorship(models.Model):
     runner = models.ForeignKey(User, related_name='sponsorships_recieved')
     sponsor = models.ForeignKey(User, related_name='sponsorships_given')
     rate = models.FloatField('Rate')
-    email = models.EmailField('Email', default='masanga@mailinator.com')
+    # email = models.EmailField('Email', default='masanga@mailinator.com')
     start_date = models.DateField('Start Date', default = datetime.today().date(), editable=False)
     end_date = models.DateField('End Date', default=(datetime.today()+timedelta(weeks=4)).date())
     max_amount = models.IntegerField('Max Amount', default=sys.maxint)
