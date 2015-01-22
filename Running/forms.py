@@ -13,7 +13,9 @@ class SponsorForm(forms.Form):
     max_amount = forms.IntegerField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class SignupForm(forms.Form):
-    public_info = forms.BooleanField(label="Do you want your sponsorships to be publicly visible?", widget=forms.CheckboxInput())
+    public_info = forms.BooleanField(label="Do you want your sponsorships to be publicly visible?", 
+                                        widget=forms.CheckboxInput(),
+                                        required=False)
     # email = forms.EmailField(label="Your email")
 
     def signup(self, request, user):
