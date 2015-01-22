@@ -62,7 +62,7 @@ class Sponsorship(models.Model):
         for payment in Payment.objects.filter(sponsorship__pk=self.id):
             payment.active = False
             payment.save()
-        if(not self.is_past_end_date):
+        if (not self.is_past_end_date):
             new_payment = Payment.create(sponsorship=self)
 
     def update_active_payment(self):

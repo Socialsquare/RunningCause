@@ -63,7 +63,7 @@ target/
 node_modules/
 
 # Secrets
-secrets.py
+secret_settings.py
 
 # .env
 .env
