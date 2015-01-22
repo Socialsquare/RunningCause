@@ -116,7 +116,7 @@ def register_runkeeper(request, runner_id):
         # # activities = [act_iter.next() for _ in xrange(act_iter.count()]
         # # print activities
 
-        url = reverse('Running.views.user', kwargs={'runner_id': runner_id})
+        url = reverse('Running.views.user', kwargs={'user_id': runner_id})
         return HttpResponseRedirect(url)
     else:
         print request.build_absolute_uri(request.get_full_path())
