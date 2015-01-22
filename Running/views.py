@@ -138,7 +138,6 @@ def sponsor(request, sponsee_id):
             if form.is_valid():
                 # sponsor = form.cleaned_data['sponsor_name']
                 rate = form.cleaned_data['rate']
-                email = form.cleaned_data['sponsor_email']
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
                 sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, email=email, end_date=end_date, max_amount=max_amount)
