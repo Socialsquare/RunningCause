@@ -33,7 +33,7 @@ class User(auth.models.AbstractUser):
 class Sponsorship(models.Model):
     runner = models.ForeignKey(User, related_name='sponsorships_recieved')
     sponsor = models.ForeignKey(User, related_name='sponsorships_given')
-    rate = models.FloatField('Rate')
+    rate = models.FloatField('Rate', default=0)
     # email = models.EmailField('Email', default='masanga@mailinator.com')
     start_date = models.DateField('Start Date', default = datetime.today().date(), editable=False)
     end_date = models.DateField('End Date', default=(datetime.today()+timedelta(weeks=4)).date())

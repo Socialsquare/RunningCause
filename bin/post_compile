@@ -4,5 +4,4 @@
 ./manage.py initdb
 
 # Django migrations
-./manage.py makemigrations
 ./manage.py migrate
