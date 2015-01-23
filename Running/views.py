@@ -102,10 +102,10 @@ def register_runkeeper(request, runner_id):
                 date = datetime.datetime(*date[:6]).date()
                 new_run = Run(runner=user, distance=item['total_distance']/1000, date=date, source="runkeeper", source_id=item['uri'])
                 new_run.save()
-                send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
-            else:
-                run = get_object_or_404(Run, pk=runner_id)
-                run.save()
+                # send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
+            # else:
+            #     run = get_object_or_404(Run, pk=runner_id)
+            #     run.save()
         # runkeeper_user = healthgraph.User(session=healthgraph.Session(user.access_token))
         # profile = runkeeper_user.get_profile()
         # # records = runkeeper_user.get_records()
