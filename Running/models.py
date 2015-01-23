@@ -15,8 +15,8 @@ class User(auth.models.AbstractUser):
 
     @property
     def is_runner(self):
-        num_runs = len(self.runs.all())
-        return num_runs > 0
+        any_runs_or_sponsorships = max(len(self.runs.all()), len(self.sponsorships_recieved.all()))
+        return any_runs_or_sponsorships > 0
 
     @property
     def is_sponsor(self):
