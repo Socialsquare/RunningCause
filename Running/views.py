@@ -140,14 +140,13 @@ def sponsor(request, sponsee_id):
             sponsor = get_object_or_404(User, pk=user_id)
             form = forms.SponsorForm(request.POST)
             if form.is_valid():
-                # sponsor = form.cleaned_data['sponsor_name']
                 rate = form.cleaned_data['rate']
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
                 sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
                 sponsorship.save()
 
-                url = reverse('Running.views.user', kwargs={'runner_id': sponsee_id})
+                url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
                 return HttpResponseRedirect(url)
             else:
                 return HttpResponse("Hmm, something's wrong with that form.")
