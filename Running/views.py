@@ -192,7 +192,7 @@ def input_run(request, runner_id):
                     #     else:
                     #         sponsorship.active = False
                     #         sponsorship.save()
-                    url = reverse('Running.views.user', kwargs={'runner_id': runner_id})
+                    url = reverse('Running.views.user', kwargs={'user_id': runner_id})
                     return HttpResponseRedirect(url)
         return HttpResponse("Hmm, something went very wrong. Please try again.")
     else:
