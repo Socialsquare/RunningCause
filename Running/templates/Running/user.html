@@ -25,15 +25,26 @@ Runner: {{ user.username }}
             </tr>
 
             {% for sponsorship in sponsorships %}
-                <tr> 
-                    <td>{{ sponsorship.sponsor }}</td>
-                    <td>{{ sponsorship.rate }}</td>
-                    <td>{{ sponsorship.total_amount }}</td>
-                    <td>{{ sponsorship.max_amount }}</td>
-                    <td>{{ sponsorship.start_date }}</td>
-                    <td>{{ sponsorship.end_date }}</td>
-                    <td><a href="{% url 'Running.views.delete_sponsorship' sponsorship.id user.id %}" class="btn btn-default">Delete</a></td>
-                </tr>
+                {% if sponsorship.sponsor.is_public or own_page %}
+                    <tr> 
+                        <td>{{ sponsorship.sponsor }}</td>
+                        <td>{{ sponsorship.rate }}</td>
+                        <td>{{ sponsorship.total_amount }}</td>
+                        <td>{{ sponsorship.max_amount }}</td>
+                        <td>{{ sponsorship.start_date }}</td>
+                        <td>{{ sponsorship.end_date }}</td>
+                        <td><a href="{% url 'Running.views.delete_sponsorship' sponsorship.id user.id %}" class="btn btn-default">Delete</a></td>
+                {% else %}
+                    <tr>
+                        <td>Anonymous Sponsor</td>
+                        <td>{{ sponsorship.rate }}</td>
+                        <td>{{ sponsorship.total_amount }}</td>
+                        <td>{{ sponsorship.max_amount }}</td>
+                        <td>{{ sponsorship.start_date }}</td>
+                        <td>{{ sponsorship.end_date }}</td>
+                    </tr>
+                {% endif %}
+                    </tr>
             {% endfor %}
         </table>
 

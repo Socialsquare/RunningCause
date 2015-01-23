@@ -45,15 +45,11 @@ def user(request, user_id):
     runkeeper = True
 
     if request.user.is_authenticated():
-        print "GOT HERE"
         print "User is authenticated"
         auth_user_id = request.user.id
-        print user_id
         own_page = (str(auth_user_id) == str(user_id))
-        print own_page
         runkeeper = request.session.has_key('rk_access_token')
             
-    print own_page
     context = {'user': user,
                 'sponsorships': sponsorships,
                 'sponsorships_given': sponsorships_given,
@@ -64,7 +60,8 @@ def user(request, user_id):
                 'is_sponsor': user.is_sponsor
                 }
 
-    print context['own_page']
+    print "Own page: %s" % context['own_page']
+
     return render(request, 'Running/user.html', context)
 
 def delete_sponsorship(request, sponsorship_id, runner_id):
