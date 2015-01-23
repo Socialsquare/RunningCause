@@ -71,7 +71,7 @@ def delete_sponsorship(request, sponsorship_id, runner_id):
         sponsorship = get_object_or_404(Sponsorship, pk=sponsorship_id)
         if user == sponsorship.sponsor or user == sponsorship.runner:
             sponsorship.delete()
-            url = reverse('Running.views.user', kwargs={'runner_id': runner_id})
+            url = reverse('Running.views.user', kwargs={'user_id': runner_id})
             return HttpResponseRedirect(url)
 
 def register_runkeeper(request, runner_id):
