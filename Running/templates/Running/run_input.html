@@ -1,19 +1,25 @@
 {% extends "masanga_base.html" %}
+{% load staticfiles %}
+
+
 
 {% block title %}
 Input a Run
 {% endblock %}
 
-
-{% block head %}
-    <h1>Input a new Run</h1>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+{% block imports %}
+ <script src="{% static 'js/jquery.js' %}"></script>
     <script src="/static/js/bootstrap-datepicker.js"></script>
     <script type=text/javascript>
     $(document).ready(function() {
         $('#datepicker').datepicker();
     });
     </script>
+{% endblock %}
+
+
+{% block head %}
+    <h1>Input a new Run</h1>
 {% endblock %}
 
 {% block body %}
