@@ -26,29 +26,51 @@ Runner: {{ user.username }}
 
             {% for sponsorship in sponsorships %}
                 {% if sponsorship.sponsor.is_public or own_page or sponsorship.sponsor == accessor %}
-                    <tr> 
-                        <td>{{ sponsorship.sponsor }}</td>
-                        <td>{{ sponsorship.rate }}</td>
-                        <td>{{ sponsorship.total_amount }}</td>
-                        <td>{{ sponsorship.max_amount }}</td>
-                        <td>{{ sponsorship.start_date }}</td>
-                        <td>{{ sponsorship.end_date }}</td>
                     {% if sponsorship.is_active %}
-                        {% if own_page or sponsorship.sponsor == accessor %}
-                            <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
-                        {% endif %}
+                        <tr> 
+                            <td>{{ sponsorship.sponsor }}</td>
+                            <td>{{ sponsorship.rate }}</td>
+                            <td>{{ sponsorship.total_amount }}</td>
+                            <td>{{ sponsorship.max_amount }}</td>
+                            <td>{{ sponsorship.start_date }}</td>
+                            <td>{{ sponsorship.end_date }}</td>
+                            {% if own_page or sponsorship.sponsor == accessor %}
+                                <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
+                            {% endif %}
+                        </tr>
+
+                    {% else %}
+                        <tr class='info text-muted'> 
+                            <td>{{ sponsorship.sponsor }}</td>
+                            <td>{{ sponsorship.rate }}</td>
+                            <td>{{ sponsorship.total_amount }}</td>
+                            <td>{{ sponsorship.max_amount }}</td>
+                            <td>{{ sponsorship.start_date }}</td>
+                            <td>{{ sponsorship.end_date }}</td>
+                        </tr>
                     {% endif %}
-                    </tr>
 
                 {% else %}
-                    <tr>
-                        <td>Anonymous Sponsor</td>
-                        <td>{{ sponsorship.rate }}</td>
-                        <td>{{ sponsorship.total_amount }}</td>
-                        <td>{{ sponsorship.max_amount }}</td>
-                        <td>{{ sponsorship.start_date }}</td>
-                        <td>{{ sponsorship.end_date }}</td>
-                    </tr>
+                    {% if sponsorship.is_active %}
+
+                        <tr>
+                            <td>Anonymous Sponsor</td>
+                            <td>{{ sponsorship.rate }}</td>
+                            <td>{{ sponsorship.total_amount }}</td>
+                            <td>{{ sponsorship.max_amount }}</td>
+                            <td>{{ sponsorship.start_date }}</td>
+                            <td>{{ sponsorship.end_date }}</td>
+                        </tr>
+                    {% else %}
+                        <tr class='info text-muted'> 
+                                <td>{{ sponsorship.sponsor }}</td>
+                                <td>{{ sponsorship.rate }}</td>
+                                <td>{{ sponsorship.total_amount }}</td>
+                                <td>{{ sponsorship.max_amount }}</td>
+                                <td>{{ sponsorship.start_date }}</td>
+                                <td>{{ sponsorship.end_date }}</td>
+                        </tr>
+                    {% endif %}
                 {% endif %}
             {% empty %}
                 <tr><td>Hmm, there don't seem to be any sponsorships here.</td></tr>
@@ -98,18 +120,26 @@ Runner: {{ user.username }}
                 <th>Continues Until</th>
             </thead>
             {% for sponsorship in sponsorships_given %}
-                <tr> 
-                    <td>{{ sponsorship.runner }}</td>
-                    <td>{{ sponsorship.rate }}</td>
-                    <td>{{ sponsorship.total_amount }}</td>
-                    <td>{{ sponsorship.max_amount }}</td>
-                    <td>{{ sponsorship.end_date }}</td>
-                    {% if sponsorship.is_active %}
+                {% if sponsorship.is_active %}
+                    <tr> 
+                        <td>{{ sponsorship.runner }}</td>
+                        <td>{{ sponsorship.rate }}</td>
+                        <td>{{ sponsorship.total_amount }}</td>
+                        <td>{{ sponsorship.max_amount }}</td>
+                        <td>{{ sponsorship.end_date }}</td>
                         {% if own_page or sponsorship.sponsor == user %}
                             <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
                         {% endif %}
-                    {% endif %}
-                </tr>
+                    </tr>
+                {% else %}
+                    <tr class='info text-muted'> 
+                        <td>{{ sponsorship.runner }}</td>
+                        <td>{{ sponsorship.rate }}</td>
+                        <td>{{ sponsorship.total_amount }}</td>
+                        <td>{{ sponsorship.max_amount }}</td>
+                        <td>{{ sponsorship.end_date }}</td>
+                    </tr>
+                {% endif %}
             {% endfor %}
 
     {% endif %}
