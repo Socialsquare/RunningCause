@@ -94,7 +94,7 @@ def register_runkeeper(request, runner_id):
         print data['items']
         for item in data['items']:
             print item['total_distance']
-        runkeeper_runs = Run.objects.filter(source="runkeeper")
+        runkeeper_runs = user.runs.filter(source="runkeeper")
         registered_ids = [run.source_id for run in runkeeper_runs]
         for item in data['items']:
             if item['uri'] not in registered_ids:
