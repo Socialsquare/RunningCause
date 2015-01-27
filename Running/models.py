@@ -36,14 +36,7 @@ class Sponsorship(models.Model):
 
     @property
     def is_active(self):
-        print ""
-        print "Today: %s" % date.today()
-        print "Starts: %s" % self.start_date
-        print "Ends : %s" % self.end_date
-        print ""
         if date.today() < self.end_date and date.today() >= self.start_date:
-            print "Is active"
-            print ""
             return True
         return False
 
