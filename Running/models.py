@@ -8,6 +8,7 @@ import sys
 class User(auth.models.AbstractUser):
     USERNAME_FIELD = 'username'
     is_public = models.BooleanField('Info public?', default=False)
+    access_token = models.CharField('Access token', max_length=200, default="")
 
     # def update_sponsorships(self):
     #     for sponsorship in self.sponsorships_recieved.all():
@@ -31,7 +32,6 @@ class Sponsorship(models.Model):
     start_date = models.DateField('Start Date', default = date.today(), editable=False)
     end_date = models.DateField('End Date', default=date.today()+relativedelta(months=1))
     max_amount = models.IntegerField('Max Amount', default=sys.maxint)
-    access_token = models.CharField('Access Token', max_length = 200, default = "")
     # active = models.BooleanField('Active', default=True)
 
     @property

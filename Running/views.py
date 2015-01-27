@@ -80,7 +80,10 @@ def end_sponsorship(request, sponsorship_id, runner_id):
             return HttpResponseRedirect(url)
 
 def register_runkeeper(request, runner_id):
+    user = get_object_or_404(User, pk=runner_id)
+
     if request.GET.has_key('code'):
+        print "Found Code"
         code = request.GET['code']
         rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
                                         settings.RUNKEEPER_CLIENT_SECRET, 
@@ -89,7 +92,6 @@ def register_runkeeper(request, runner_id):
                                         settings.APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
 
 
-        user = get_object_or_404(User, pk=runner_id)
         access_token = rk_auth_mgr.get_access_token(code)
         user.access_token = access_token
         user.save()
@@ -107,20 +109,33 @@ def register_runkeeper(request, runner_id):
                 date = datetime.datetime(*date[:6]).date()
                 new_run = Run(runner=user, distance=item['total_distance']/1000, date=date, source="runkeeper", source_id=item['uri'])
                 new_run.save()
-                # send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
-            # else:
-            #     run = get_object_or_404(Run, pk=runner_id)
-            #     run.save()
-        # runkeeper_user = healthgraph.User(session=healthgraph.Session(user.access_token))
-        # profile = runkeeper_user.get_profile()
-        # # records = runkeeper_user.get_records()
-        # act_iter = runkeeper_user.get_fitness_activity_iter()
-        # # activities = [act_iter.next() for _ in xrange(act_iter.count()]
-        # # print activities
+
 
         url = reverse('Running.views.user', kwargs={'user_id': runner_id})
         return HttpResponseRedirect(url)
+
+    elif user.access_token != "":
+        print "Found Token"
+
+        r = requests.get('https://api.runkeeper.com/fitnessActivities', headers={'Authorization': 'Bearer %s' % user.access_token})
+        data = r.json()
+        print data['items']
+        for item in data['items']:
+            print item['total_distance']
+        runkeeper_runs = user.runs.filter(source="runkeeper")
+        registered_ids = [run.source_id for run in runkeeper_runs]
+        for item in data['items']:
+            if item['uri'] not in registered_ids:
+                date = time.strptime(item['start_time'][5:16], "%d %b %Y")
+                date = datetime.datetime(*date[:6]).date()
+                new_run = Run(runner=user, distance=item['total_distance']/1000, date=date, source="runkeeper", source_id=item['uri'])
+                new_run.save()
+
+        url = reverse('Running.views.user', kwargs={'user_id': runner_id})
+        return HttpResponseRedirect(url)
+
     else:
+        print "Nothing Found, Getting Code"
         print request.build_absolute_uri(request.get_full_path())
         rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
                                                 settings.RUNKEEPER_CLIENT_SECRET, 
