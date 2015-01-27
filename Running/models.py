@@ -41,9 +41,7 @@ class Sponsorship(models.Model):
         print "Starts: %s" % self.start_date
         print "Ends : %s" % self.end_date
         print ""
-        if date.today() < self.end_date and date.today() > self.start_date:
-            # self.active = False
-            self.save()
+        if date.today() < self.end_date and date.today() >= self.start_date:
             print "Is active"
             print ""
             return True

@@ -43,16 +43,20 @@ def user(request, user_id):
     runs = user.runs.all()
     own_page = False
     runkeeper = True
+    accessor = None
 
     if request.user.is_authenticated():
         print "User is authenticated"
         auth_user_id = request.user.id
+        accessor = get_object_or_404(User, pk=auth_user_id)
+        print accessor
         own_page = (str(auth_user_id) == str(user_id))
         runkeeper = request.session.has_key('rk_access_token')
             
     context = {'user': user,
                 'sponsorships': sponsorships,
                 'sponsorships_given': sponsorships_given,
+                'accessor': accessor,
                 'runs': runs,
                 'own_page': own_page,
                 'runkeeper': runkeeper,
@@ -64,13 +68,14 @@ def user(request, user_id):
 
     return render(request, 'Running/user.html', context)
 
-def delete_sponsorship(request, sponsorship_id, runner_id):
+def end_sponsorship(request, sponsorship_id, runner_id):
     if request.user.is_authenticated():
         user_id = request.user.id
         user = get_object_or_404(User, pk=user_id)
         sponsorship = get_object_or_404(Sponsorship, pk=sponsorship_id)
         if user == sponsorship.sponsor or user == sponsorship.runner:
-            sponsorship.delete()
+            sponsorship.end_date = datetime.date.today()
+            sponsorship.save()
             url = reverse('Running.views.user', kwargs={'user_id': runner_id})
             return HttpResponseRedirect(url)
 
