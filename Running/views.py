@@ -115,7 +115,7 @@ def register_runkeeper(request, runner_id):
             if item['uri'] not in registered_ids:
                 date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                 date = datetime.datetime(*date[:6]).date()
-                new_run = Run(runner=user, distance=item['total_distance']/1000, date=date, source="runkeeper", source_id=item['uri'])
+                new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
                 new_run.save()
 
 
@@ -136,7 +136,7 @@ def register_runkeeper(request, runner_id):
             if item['uri'] not in registered_ids:
                 date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                 date = datetime.datetime(*date[:6]).date()
-                new_run = Run(runner=user, distance=item['total_distance']/1000, date=date, source="runkeeper", source_id=item['uri'])
+                new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
                 new_run.save()
 
         url = reverse('Running.views.user', kwargs={'user_id': runner_id})
@@ -193,8 +193,13 @@ def input_run(request, runner_id):
                 if form.is_valid():
                     runner = user
                     distance = form.cleaned_data['distance']
-                    date = form.cleaned_data['date']
-                    run = Run(runner=runner, distance=distance, date=date)
+                    start_date = form.cleaned_data['date']
+                    end_date = form.cleaned_data['end_date']
+                    if end_date != None:
+                        run = Run(runner=runner, distance=distance, start_date=start_date, end_date=end_date)
+                    else:
+                        run = Run(runner=runner, distance=distance, start_date=start_date, end_date=start_date)
+
                     run.save()
                     # sponsorships = Sponsorship.objects.filter(id=user.id)
                     # for sponsorship in sponsorships:

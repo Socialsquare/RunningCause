@@ -35,7 +35,7 @@
                             <td>{{ sponsorship.max_amount }}</td>
                             <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
-                            <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
                             {% if own_page or sponsorship.sponsor == accessor %}
                                 <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
@@ -49,7 +49,7 @@
                             <td>{{ sponsorship.max_amount }}</td>
                             <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
-                            <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
                         </tr>
                     {% endif %}
@@ -63,7 +63,7 @@
                             <td>{{ sponsorship.max_amount }}</td>
                             <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
-                            <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
                         </tr>
                     {% else %}
@@ -73,7 +73,7 @@
                                 <td>{{ sponsorship.max_amount }}</td>
                                 <td>{{ sponsorship.start_date }}</td>
                                 <td>{{ sponsorship.end_date }}</td>
-                                <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+                                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
                         </tr>
                     {% endif %}
                 {% endif %}
@@ -87,7 +87,7 @@
                     <td></td>
                     <td></td>
                     <td align='right'>Total Amount Earned: </td>
-                    <td>{{ amount_earned|floatformat:"0"|intcomma }}kr</td>
+                    <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
                 </tr>
         </table>
 
@@ -107,8 +107,8 @@
             </tr>
         {% for run in runs %}
                 <tr> 
-                    <td>Distance: {{ run.distance }}</td>
-                    <td>Date: {{ run.date }}</td>
+                    <td>Distance: {{ run.distance|floatformat:-2|intcomma }}</td>
+                    <td>Date: {{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
                 </tr>
         {% endfor %}
         </table>
@@ -140,7 +140,7 @@
                         <td>{{ sponsorship.rate }}</td>
                         <td>{{ sponsorship.max_amount }}</td>
                         <td>{{ sponsorship.end_date }}</td>
-                        <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+                        <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
                         {% if own_page or sponsorship.sponsor == user %}
                             <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
@@ -152,7 +152,7 @@
                         <td>{{ sponsorship.rate }}</td>
                         <td>{{ sponsorship.max_amount }}</td>
                         <td>{{ sponsorship.end_date }}</td>
-                        <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+                        <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
                     </tr>
                 {% endif %}
 
@@ -166,7 +166,7 @@
                     <td></td>
                     <td></td>
                     <td align='right'>Total Amount Donated: </td>
-                    <td>{{ amount_given|floatformat:"0"|intcomma }}kr</td>
+                    <td>{{ amount_given|floatformat:-2|intcomma }}kr</td>
                 </tr>
 
     {% endif %}

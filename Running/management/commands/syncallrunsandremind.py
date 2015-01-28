@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 if item['uri'] not in registered_ids:
                     date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                     date = datetime.datetime(*date[:6]).date()
-                    new_run = Run(runner=user, distance=item['total_distance']/1000, date=date, source="runkeeper", source_id=item['uri'])
+                    new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
                     new_run.save()
 
         self.stdout.write('Successfully updated runs')

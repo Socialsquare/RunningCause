@@ -25,6 +25,12 @@ class SignupForm(forms.Form):
 
 class RunInputForm(forms.Form):
     distance = forms.FloatField(label="Distance in km", widget=forms.TextInput(attrs={'class':'form-control'}))
-    date = forms.DateField(label="Run date", widget=forms.DateInput(attrs={'class':'form-control', 
-                                                                            'id':'datepicker', 
-                                                                            'autocomplete':"off"}))
+    date = forms.DateField(label="Run date", 
+                            widget=forms.DateInput(attrs={'class':'form-control', 
+                                                            'id':'start_datepicker', 
+                                                            'autocomplete':"off"}))
+    end_date = forms.DateField(label="End date", 
+                                widget=forms.DateInput(attrs={'class':'form-control', 
+                                                            'id':'end_datepicker', 
+                                                            'autocomplete':"off"}), 
+                                required=False)

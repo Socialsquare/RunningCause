@@ -44,7 +44,7 @@ class Sponsorship(models.Model):
     def total_amount(self):
         amount = 0
         for run in self.runner.runs.all():
-            if run.date > self.start_date and run.date < self.end_date:
+            if run.start_date > self.start_date and run.end_date < self.end_date:
                 amount = amount + (self.rate * run.distance)
         amount = min(amount, self.max_amount)
         return amount
@@ -87,7 +87,8 @@ class Sponsorship(models.Model):
 class Run(models.Model):
     runner = models.ForeignKey(User, related_name='runs')
     distance = models.FloatField('Distance', default=1)
-    date = models.DateField('Date', default=date.today())
+    start_date = models.DateField('Date', default=date.today())
+    end_date = models.DateField('End Date', default=date.today())
     source = models.CharField('Source', default="", max_length=200)
     source_id = models.CharField('Source ID', default="", max_length=200)
 
