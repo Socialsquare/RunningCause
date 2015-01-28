@@ -40,6 +40,12 @@ def user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     sponsorships = user.sponsorships_recieved.all()
     sponsorships_given = user.sponsorships_given.all()
+    amount_earned = 0
+    for sponsorship in sponsorships:
+        amount_earned = amount_earned + sponsorship.total_amount
+    amount_given = 0
+    for sponsorship in sponsorships_given:
+        amount_given = amount_given + sponsorship.total_amount
     runs = user.runs.all()
     own_page = False
     runkeeper = True
@@ -56,6 +62,8 @@ def user(request, user_id):
     context = {'user': user,
                 'sponsorships': sponsorships,
                 'sponsorships_given': sponsorships_given,
+                'amount_earned':amount_earned,
+                'amount_given':amount_given,
                 'accessor': accessor,
                 'runs': runs,
                 'own_page': own_page,

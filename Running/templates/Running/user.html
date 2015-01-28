@@ -1,11 +1,12 @@
 {% extends "masanga_base.html" %}
+{% load humanize %}
 
 {% block title %}
 {{ user.username }}
 {% endblock %}
 
 {% block head %}
-Runner: {{ user.username }}
+{{ user.username }}
 {% endblock %}
 
 {% block body %}
@@ -18,10 +19,11 @@ Runner: {{ user.username }}
             <thead>
                 <th>Sponsor</th>
                 <th>Rate(kr/km)</th>
-                <th>Amount Earned (kr)</th>
                 <th>Maximum Possible Amount (kr)</th>
                 <th>Started</th>
                 <th>Continues Until</th>
+                <th>Amount Earned (kr)</th>
+
             </thead>
 
             {% for sponsorship in sponsorships %}
@@ -30,23 +32,25 @@ Runner: {{ user.username }}
                         <tr> 
                             <td>{{ sponsorship.sponsor }}</td>
                             <td>{{ sponsorship.rate }}</td>
-                            <td>{{ sponsorship.total_amount }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
                             <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
+                            <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+
                             {% if own_page or sponsorship.sponsor == accessor %}
                                 <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
                             {% endif %}
                         </tr>
 
                     {% else %}
-                        <tr class='info text-muted'> 
+                        <tr style='opacity:0.6'> 
                             <td>{{ sponsorship.sponsor }}</td>
                             <td>{{ sponsorship.rate }}</td>
-                            <td>{{ sponsorship.total_amount }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
                             <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
+                            <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+
                         </tr>
                     {% endif %}
 
@@ -56,30 +60,40 @@ Runner: {{ user.username }}
                         <tr>
                             <td>Anonymous Sponsor</td>
                             <td>{{ sponsorship.rate }}</td>
-                            <td>{{ sponsorship.total_amount }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
                             <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
+                            <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+
                         </tr>
                     {% else %}
-                        <tr class='info text-muted'> 
+                        <tr style='opacity:0.6'> 
                                 <td>{{ sponsorship.sponsor }}</td>
                                 <td>{{ sponsorship.rate }}</td>
-                                <td>{{ sponsorship.total_amount }}</td>
                                 <td>{{ sponsorship.max_amount }}</td>
                                 <td>{{ sponsorship.start_date }}</td>
                                 <td>{{ sponsorship.end_date }}</td>
+                                <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
                         </tr>
                     {% endif %}
                 {% endif %}
+
             {% empty %}
                 <tr><td>Hmm, there don't seem to be any sponsorships here.</td></tr>
             {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td align='right'>Total Amount Earned: </td>
+                    <td>{{ amount_earned|floatformat:"0"|intcomma }}kr</td>
+                </tr>
         </table>
 
         {% if own_page %}
         {% else %}
-            <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor me! </a></h4>
+            <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor {{ user.username }}! </a></h4>
             </br>
         {% endif %}
 
@@ -124,23 +138,36 @@ Runner: {{ user.username }}
                     <tr> 
                         <td>{{ sponsorship.runner }}</td>
                         <td>{{ sponsorship.rate }}</td>
-                        <td>{{ sponsorship.total_amount }}</td>
                         <td>{{ sponsorship.max_amount }}</td>
                         <td>{{ sponsorship.end_date }}</td>
+                        <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
+
                         {% if own_page or sponsorship.sponsor == user %}
                             <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
                         {% endif %}
                     </tr>
                 {% else %}
-                    <tr class='info text-muted'> 
+                    <tr style='opacity:0.6'> 
                         <td>{{ sponsorship.runner }}</td>
                         <td>{{ sponsorship.rate }}</td>
-                        <td>{{ sponsorship.total_amount }}</td>
                         <td>{{ sponsorship.max_amount }}</td>
                         <td>{{ sponsorship.end_date }}</td>
+                        <td>{{ sponsorship.total_amount|floatformat:"0"|intcomma }}</td>
                     </tr>
                 {% endif %}
+
+
+            {% empty %}
+            <tr><td>Hmm, there don't seem to be any sponsorships here.</td></tr>
             {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td align='right'>Total Amount Donated: </td>
+                    <td>{{ amount_given|floatformat:"0"|intcomma }}kr</td>
+                </tr>
 
     {% endif %}
 
@@ -154,7 +181,7 @@ Runner: {{ user.username }}
 
         {% else %}
 
-        <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor me! </a></h4>
+        <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor {{ user.username }}! </a></h4>
 
         {% endif %}
 
