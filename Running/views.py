@@ -76,6 +76,12 @@ def user(request, user_id):
 
     return render(request, 'Running/user.html', context)
 
+def overview(request):
+    sponsorships = Sponsorship.objects.all()
+    context = {'sponsorships':sponsorships,
+                }
+    return render(request, 'Running/overview.html', context)
+
 def end_sponsorship(request, sponsorship_id, runner_id):
     if request.user.is_authenticated():
         user_id = request.user.id

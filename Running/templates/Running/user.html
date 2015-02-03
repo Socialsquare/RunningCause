@@ -81,6 +81,7 @@
             {% empty %}
                 <tr><td>Hmm, there don't seem to be any sponsorships here.</td></tr>
             {% endfor %}
+            {% if sponsorships %}
                 <tr>
                     <td></td>
                     <td></td>
@@ -89,6 +90,7 @@
                     <td align='right'>Total Amount Earned: </td>
                     <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
                 </tr>
+            {% endif %}
         </table>
 
         {% if own_page %}
@@ -129,9 +131,10 @@
             <thead>
                 <th>Runner</th>
                 <th>Rate(kr/km)</th>
-                <th>Amount Earned (kr)</th>
                 <th>Maximum Possible Amount (kr)</th>
                 <th>Continues Until</th>
+                <th>Amount Earned (kr)</th>
+
             </thead>
             {% for sponsorship in sponsorships_given %}
                 {% if sponsorship.is_active %}
@@ -164,10 +167,12 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
                     <td align='right'>Total Amount Donated: </td>
                     <td>{{ amount_given|floatformat:-2|intcomma }}kr</td>
+                    <td></td>
+
                 </tr>
+            </table>
 
     {% endif %}
 

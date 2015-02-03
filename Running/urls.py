@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^(?P<sponsee_id>\S+)/sponsor/$', views.sponsor, name='sponsor'),
     url(r'^(?P<runner_id>\S+)/register/runkeeper/$', views.register_runkeeper, name='register_runkeeper'),
     url(r'^(?P<sponsorship_id>\S+)/endsponsorship/(?P<runner_id>\S+)/$', views.end_sponsorship, name='end_sponsorship'),
+    url(r'^overview/$', views.overview, name='overview'),
     url(r'^$', views.home, name='home'),
 )
