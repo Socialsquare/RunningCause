@@ -169,6 +169,8 @@ def sponsor(request, sponsee_id):
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
                 sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
+                if form.cleaned_data['single_day']:
+                    sponsorship.start_date = sponsorship.end_date
                 sponsorship.save()
 
                 url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})

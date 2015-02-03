@@ -29,14 +29,14 @@ class Sponsorship(models.Model):
     sponsor = models.ForeignKey(User, related_name='sponsorships_given')
     rate = models.FloatField('Rate', default=0)
     # email = models.EmailField('Email', default='masanga@mailinator.com')
-    start_date = models.DateField('Start Date', default = date.today(), editable=False)
+    start_date = models.DateField('Start Date', default = date.today())
     end_date = models.DateField('End Date', default=date.today()+relativedelta(months=1))
     max_amount = models.IntegerField('Max Amount', default=sys.maxint)
     # active = models.BooleanField('Active', default=True)
 
     @property
     def is_active(self):
-        if date.today() < self.end_date and date.today() >= self.start_date and self.total_amount <= self.max_amount:
+        if date.today() <= self.end_date and date.today() >= self.start_date and self.total_amount < self.max_amount:
             return True
         return False
 
