@@ -93,11 +93,6 @@
             {% endif %}
         </table>
 
-        {% if own_page %}
-        {% else %}
-            <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor {{ user.username }}! </a></h4>
-            </br>
-        {% endif %}
 
 
         Runs:</br>
@@ -115,12 +110,6 @@
         {% endfor %}
         </table>
 
-        {% if own_page %}
-            <h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> Input a run! </a></h4>
-
-            <h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> Register with runkeeper! </a></h4>
-
-        {% endif %}
 
     {% endif %}
 
@@ -176,21 +165,19 @@
 
     {% endif %}
 
-    {% if not is_sponsor and not is_runner %}
 
-        {% if own_page %}
+    {% if own_page %}
 
-        <h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> Input a run! </a></h4>
+    <h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> Input a run! </a></h4>
 
-        <h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> Register with runkeeper! </a></h4>
+    <h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> Register with runkeeper! </a></h4>
 
-        {% else %}
+    {% else %}
 
-        <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor {{ user.username }}! </a></h4>
-
-        {% endif %}
+    <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor {{ user.username }}! </a></h4>
 
     {% endif %}
+
 
 
 {% else %}
@@ -199,5 +186,19 @@
 
 {% endif %}
 
+{% if own_page and user.is_public %}
+
+    <span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_reddit_large' displayText='Reddit'></span>
+    <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
+    <span class='st_email_large' displayText='Email'></span>
+
+{% elif own_page and not user.is_public %}
+
+    You have to make your page public before you can share it.
+
+{% endif %}
 
 {% endblock %}
