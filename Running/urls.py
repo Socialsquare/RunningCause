@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^(?P<sponsee_id>\S+)/sponsor/$', views.sponsor, name='sponsor'),
     url(r'^(?P<runner_id>\S+)/register/runkeeper/$', views.register_runkeeper, name='register_runkeeper'),
     url(r'^(?P<sponsorship_id>\S+)/endsponsorship/(?P<runner_id>\S+)/$', views.end_sponsorship, name='end_sponsorship'),
+    url(r'^(?P<user_id>\S+)/makeuserpublic/$', views.make_user_public, name='make_user_public'),
+    url(r'^(?P<user_id>\S+)/makeuserprivate/$', views.make_user_private, name='make_user_private'),
     url(r'^overview/$', views.overview, name='overview'),
     url(r'^$', views.home, name='home'),
 )

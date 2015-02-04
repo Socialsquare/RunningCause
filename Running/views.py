@@ -74,7 +74,27 @@ def user(request, user_id):
 
     print "Own page: %s" % context['own_page']
 
+    print "Public: %s" % context['user'].is_public
+
     return render(request, 'Running/user.html', context)
+
+def make_user_public(request, user_id):
+    if request.user.is_authenticated():
+        if int(request.user.id) == int(user_id):
+            user = get_object_or_404(User, pk=user_id)
+            user.is_public = True
+            user.save()
+    url = reverse('Running.views.user', kwargs={'user_id': user_id})
+    return HttpResponseRedirect(url)
+
+def make_user_private(request, user_id):
+    if request.user.is_authenticated():
+        if int(request.user.id) == int(user_id):
+            user = get_object_or_404(User, pk=user_id)
+            user.is_public = False
+            user.save()
+    url = reverse('Running.views.user', kwargs={'user_id': user_id})
+    return HttpResponseRedirect(url)
 
 def overview(request):
     sponsorships = Sponsorship.objects.all()
