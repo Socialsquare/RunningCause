@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import patterns, url
 from django.utils import timezone
+from allauth.account.forms import LoginForm, SignupForm
 import datetime
 import requests
 from Running import forms
@@ -86,6 +87,11 @@ def make_user_public(request, user_id):
             user.save()
     url = reverse('Running.views.user', kwargs={'user_id': user_id})
     return HttpResponseRedirect(url)
+
+def signup_or_login(request):
+    context = {'form':LoginForm,
+                'signup_form':SignupForm}
+    return render(request, 'Running/signup_or_login.html', context)
 
 def make_user_private(request, user_id):
     if request.user.is_authenticated():
@@ -193,7 +199,6 @@ def register_runkeeper(request, runner_id):
         rk_auth_uri = rk_auth_mgr.get_login_url()
         print "Getting code..."
         return HttpResponseRedirect(rk_auth_uri)
-
 
 def sponsor(request, sponsee_id):
     if request.method == "POST":

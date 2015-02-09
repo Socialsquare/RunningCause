@@ -9,7 +9,7 @@ Hello, {{ user.username }}!</br>
 
 
 {% else %}
-Log in <a href="{% url 'account_login' %}">here</a>, or create an account <a href="{% url 'account_signup' %}">here.</a>
+Log in or create an account <a href="{% url 'signup_or_login' %}">here.</a>
 {% endif %}
 
 {% endblock %}

@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^(?P<user_id>\S+)/makeuserpublic/$', views.make_user_public, name='make_user_public'),
     url(r'^(?P<user_id>\S+)/makeuserprivate/$', views.make_user_private, name='make_user_private'),
     url(r'^overview/$', views.overview, name='overview'),
+    url(r'^signuporlogin/$', views.signup_or_login, name='signup_or_login'),
     url(r'^$', views.home, name='home'),
 )
