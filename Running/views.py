@@ -22,6 +22,9 @@ from django.core.mail import send_mail
 
 # The main homepage. Displays a list of all users.
 def home(request):
+    if 'form' in request.session:
+        url = reverse('Running.views.sponsor', kwargs={'sponsee_id':request.session['sponsee']})
+        return HttpResponseRedirect(url)
     user_list = User.objects.order_by('-username')
     if request.user.is_authenticated():
         context = {'user_list': user_list,
@@ -221,7 +224,36 @@ def sponsor(request, sponsee_id):
                 return HttpResponseRedirect(url)
             else:
                 return HttpResponse("Hmm, something's wrong with that form.")
-        return HttpResponse("You need to be logged in to do that")
+        else:
+            request.session['form'] = request.POST
+            request.session['sponsee'] = sponsee_id
+            url = reverse('Running.views.signup_or_login')
+            return HttpResponseRedirect(url)
+
+    if 'form' in request.session:
+        print "IT LIVES"
+        if request.user.is_authenticated:
+            user_id = request.user.id
+            sponsee=get_object_or_404(User, pk=sponsee_id)
+            sponsor = get_object_or_404(User, pk=user_id)
+            form = forms.SponsorForm(request.session.pop('form'))
+            request.session.pop('sponsee')
+            if form.is_valid():
+                rate = form.cleaned_data['rate']
+                end_date = form.cleaned_data['end_date']
+                max_amount = form.cleaned_data['max_amount']
+                sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
+                if form.cleaned_data['single_day']:
+                    sponsorship.start_date = sponsorship.end_date
+                sponsorship.save()
+                url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
+                return HttpResponseRedirect(url)
+            else:
+                return HttpResponse("Hmm, something's wrong with that form.")
+        else:
+            url = reverse('Running.views.signup_or_login')
+            return HttpResponseRedirect(url)
+
     else:
         runner = get_object_or_404(User, pk=sponsee_id)
         context = {'runner': runner,
@@ -269,7 +301,8 @@ def input_run(request, runner_id):
                     #         sponsorship.save()
                     url = reverse('Running.views.user', kwargs={'user_id': runner_id})
                     return HttpResponseRedirect(url)
-        return HttpResponse("Hmm, something went very wrong. Please try again.")
+
+            return HttpResponse("Hmm, something went very wrong. Please try again.")
     else:
         runner = get_object_or_404(User, pk=runner_id)
         if request.user.is_authenticated():
