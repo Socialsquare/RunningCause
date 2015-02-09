@@ -52,7 +52,7 @@ class Sponsorship(models.Model):
     def total_amount(self):
         amount = 0
         for run in self.runner.runs.all():
-            if run.start_date > self.start_date and run.end_date < self.end_date:
+            if run.start_date >= self.start_date and run.end_date < self.end_date:
                 amount = amount + (self.rate * run.distance)
         amount = min(amount, self.max_amount)
         return amount
