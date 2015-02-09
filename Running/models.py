@@ -44,7 +44,7 @@ class Sponsorship(models.Model):
 
     @property
     def is_active(self):
-        if date.today() <= self.end_date and date.today() >= self.start_date and self.total_amount < self.max_amount:
+        if date.today() < self.end_date and date.today() >= self.start_date and self.total_amount < self.max_amount:
             return True
         return False
 
