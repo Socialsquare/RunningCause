@@ -4,13 +4,31 @@ from functools import partial
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
 class SponsorForm(forms.Form):
-    # sponsor_name = forms.CharField(label="Sponsor name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
-    rate = forms.FloatField(label="Rate", widget=forms.TextInput(attrs={'class':'form-control'}))
-    # sponsor_email = forms.EmailField(label="Your email", max_length = 100, widget=forms.TextInput(attrs={'class':'form-control'}))
-    end_date = forms.DateField(label="Sponsorship end date", widget=forms.DateInput(attrs={'class':'form-control', 
-                                                                                            'id':'datepicker', 
-                                                                                            'autocomplete':"off"}))
+    rate = forms.FloatField(label="Rate", 
+                            widget=forms.TextInput(attrs={'class':'form-control'}))
+    end_date = forms.DateField(label="Sponsorship end date", 
+                                widget=forms.DateInput(attrs={'class':'form-control', 
+                                                                        'id':'datepicker', 
+                                                                        'autocomplete':"off"}),
+                                required=False)
     max_amount = forms.IntegerField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}))
+    single_day = forms.BooleanField(label="Should this sponsorship be for a single day? (The end date will also be the start date)",
+                                    widget=forms.CheckboxInput(),
+                                    required=False)
+
+class InviteForm(forms.Form):
+    rate = forms.FloatField(label="Rate", 
+                            widget=forms.TextInput(attrs={'class':'form-control'}),
+                            required=False)
+    end_date = forms.DateField(label="Sponsorship end date", 
+                                widget=forms.DateInput(attrs={'class':'form-control', 
+                                                                'id':'datepicker', 
+                                                                'autocomplete':"off"}),
+                                required=False)
+
+    max_amount = forms.IntegerField(label="Maximum total amount", 
+                                    widget=forms.TextInput(attrs={'class':'form-control'}),
+                                    required=False)
 
 class SignupForm(forms.Form):
     public_info = forms.BooleanField(label="Do you want your sponsorships to be publicly visible?", 
