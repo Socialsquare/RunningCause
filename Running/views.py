@@ -139,7 +139,14 @@ def register_runkeeper(request, runner_id):
         registered_ids = [run.source_id for run in runkeeper_runs]
         for item in data['items']:
             if item['uri'] not in registered_ids:
-                date = time.strptime(item['start_time'][5:16], "%d %b %Y")
+                print "Full time: %s" % item['start_time']
+                print "Length: %s" % len(item['start_time'])
+                print "Stripped time: %s" % item['start_time'][5:16]
+
+                if len(item['start_time']) == 24:
+                    date = time.strptime(item['start_time'][5:15], "%d %b %Y")
+                else:
+                    date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                 date = datetime.datetime(*date[:6]).date()
                 new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
                 new_run.save()
@@ -160,7 +167,13 @@ def register_runkeeper(request, runner_id):
         registered_ids = [run.source_id for run in runkeeper_runs]
         for item in data['items']:
             if item['uri'] not in registered_ids:
-                date = time.strptime(item['start_time'][5:16], "%d %b %Y")
+                print "Full time: %s" % item['start_time']
+                print "Length: %s" % len(item['start_time'])
+                print "Stripped time: %s" % item['start_time'][5:16]
+                if len(item['start_time']) == 24:
+                    date = time.strptime(item['start_time'][5:15], "%d %b %Y")
+                else:
+                    date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                 date = datetime.datetime(*date[:6]).date()
                 new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
                 new_run.save()
