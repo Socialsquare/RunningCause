@@ -16,7 +16,7 @@ models.Model.get_admin_url = get_admin_url
 class User(auth.models.AbstractUser):
     USERNAME_FIELD = 'username'
     is_public = models.BooleanField('Info public?', default=False)
-    access_token = models.CharField('Access token', max_length=200, default="")
+    access_token = models.CharField('Access token', max_length=200, default="", blank=True)
 
     # def update_sponsorships(self):
     #     for sponsorship in self.sponsorships_recieved.all():
