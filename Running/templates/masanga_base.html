@@ -1,64 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style type="text/css">
-        .bg-white{
-            background: #ffffff;
-        }
-    </style>
-    {% load staticfiles %}
-    {% load less %}
-    {% load widget_tweaks %}
+    <head>
+        <style type="text/css">
+            .bg-white{
+                background: #ffffff;
+            }
+        </style>
+        {% load staticfiles %}
+        {% load less %}
+        {% load widget_tweaks %}
 
-    {% block imports %}
-    {% endblock %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block imports %}
+        {% endblock %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}" />
-    
-    <title>
-    {% block title %}
-    Masanga Runners
-    {% endblock %}
-    </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}" />
+        
+        <title>
+        {% block title %}
+        Masanga Runners
+        {% endblock %}
+        </title>
 
-    <div class="row bg-primary">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="page-header">
-                <h1 ><a href="{% url 'Running.views.home' %}" style="color:white; text-decoration:none">Masanga Runners</a></h1>
+        <nav class="navbar navbar-default navbar-fixed-top" >
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="{% url 'Running.views.home' %}" style="text-decoration:none margin-top:0; padding-top:0;"><h1 style="color:white;">Masanga Runners</h1></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="/static/js/share-button.js"></script>
+        <script type="text/javascript">stLight.options({publisher: "e033e79e-cab3-4986-8e88-8a8043ef80a5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+    </head>
+
+    <body style="padding-top: 70px;">
+        <div class="container-fluid">
+            <div class = "row">
+
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                <h2>{% block head %}{% endblock %}</h2>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class = "row">
+
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+
+                {% block body %}{% endblock %}
+                </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
-        <div class="col-md-1"></div>
-    </div>
-    
-    <script type="text/javascript">var switchTo5x=true;</script>
-    <script type="text/javascript" src="/static/js/share-button.js"></script>
-    <script type="text/javascript">stLight.options({publisher: "e033e79e-cab3-4986-8e88-8a8043ef80a5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
-
-</head>
-
-<body>
-    <div class = "row"></div>
-    <div class = "row">
-
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-        <h2>{% block head %}{% endblock %}</h2>
-        </div>
-        <div class="col-md-1"></div>
-    </div>
-    <div class = "row">
-
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-
-        {% block body %}{% endblock %}
-        </div>
-        <div class="col-md-1"></div>
-    </div>
-
-</body>
+    </body>
 </html>
