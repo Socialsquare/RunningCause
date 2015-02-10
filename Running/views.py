@@ -8,6 +8,7 @@ from django.conf.urls import patterns, url
 from django.utils import timezone
 from allauth.account.forms import LoginForm, SignupForm
 import datetime
+from dateutil.relativedelta import relativedelta
 import requests
 from Running import forms
 import time
@@ -218,6 +219,7 @@ def sponsor(request, sponsee_id):
                 sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
                 if form.cleaned_data['single_day']:
                     sponsorship.start_date = sponsorship.end_date
+                    sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
                 sponsorship.save()
 
                 url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
@@ -245,6 +247,7 @@ def sponsor(request, sponsee_id):
                 sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
                 if form.cleaned_data['single_day']:
                     sponsorship.start_date = sponsorship.end_date
+                    sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
                 sponsorship.save()
                 url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
                 return HttpResponseRedirect(url)
