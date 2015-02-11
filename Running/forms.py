@@ -1,9 +1,11 @@
 from django import forms
+from Running.models import Sponsorship
 from django.contrib.admin import widgets
 from functools import partial
+
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
-class SponsorForm(forms.Form):
+class SponsorForm(forms.ModelForm):
     rate = forms.FloatField(label="Rate", 
                             widget=forms.TextInput(attrs={'class':'form-control'}))
     end_date = forms.DateField(label="Sponsorship end date", 
@@ -15,6 +17,9 @@ class SponsorForm(forms.Form):
     single_day = forms.BooleanField(label="Should this sponsorship be for a single day? (The end date will also be the start date)",
                                     widget=forms.CheckboxInput(),
                                     required=False)
+    class Meta:
+        model = Sponsorship
+        fields = ['rate', 'end_date', 'max_amount', 'single_day']
 
 class InviteForm(forms.Form):
     rate = forms.FloatField(label="Rate", 
@@ -22,12 +27,14 @@ class InviteForm(forms.Form):
                             required=False)
     end_date = forms.DateField(label="Sponsorship end date", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
-                                                                'id':'datepicker', 
-                                                                'autocomplete':"off"}),
+                                                                        'id':'datepicker', 
+                                                                        'autocomplete':"off"}),
                                 required=False)
-
     max_amount = forms.IntegerField(label="Maximum total amount", 
                                     widget=forms.TextInput(attrs={'class':'form-control'}),
+                                    required=False)
+    single_day = forms.BooleanField(label="Should this sponsorship be for a single day? (The end date will also be the start date)",
+                                    widget=forms.CheckboxInput(),
                                     required=False)
 
 class SignupForm(forms.Form):

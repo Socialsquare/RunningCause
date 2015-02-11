@@ -16,20 +16,18 @@ Sponsor a Runner
 {% endblock %}
 
 {% block head %}
-Create a new Sponsorship
+Invite {{ sponsor.username }} to sponsor you!
 {% endblock %}
 
 {% block body %}
+Fill out this form with the values you'd like to suggest to {{ sponsor.username }}. You can leave
+anything that you want blank.
 </br>
-{% if invite %}
-Here are the values that were recommended for the sponsorship. Feel free to change whatever you'd like.
 </br>
-{% endif %}
-
 {% if form.errors %}
 <p>Hmm, that doesn't seem quite right. Please try again.</p>
 {% endif %}
-<form class="form-horizontal" method="post" action="{% url 'Running.views.sponsor' runner.id %}">
+<form class="form-horizontal" method="post" action="{% url 'Running.views.invite_sponsor' sponsor_id=sponsor.id %}">
     {% csrf_token %}
     {% for field in form %}
     <div class="form-group">

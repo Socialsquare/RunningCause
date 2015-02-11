@@ -184,6 +184,8 @@
 
     <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor {{ user.username }}! </a></h4>
 
+    <h4><a href="{% url 'Running.views.invite_sponsor' sponsor_id=user.id %}" class="btn btn-default"> Invite {{ user.username }} to sponsor you! </a></h4>
+
     {% endif %}
 
 

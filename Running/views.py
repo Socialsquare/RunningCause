@@ -23,9 +23,8 @@ from django.core.mail import send_mail
 
 # The main homepage. Displays a list of all users.
 def home(request):
-    if 'form' in request.session:
-        url = reverse('Running.views.sponsor', kwargs={'sponsee_id':request.session['sponsee']})
-        return HttpResponseRedirect(url)
+    if 'form' in request.session and 'redirect' in request.session:
+        return HttpResponseRedirect(request.session.pop('redirect'))
     user_list = User.objects.order_by('-username')
     if request.user.is_authenticated():
         context = {'user_list': user_list,
@@ -43,8 +42,8 @@ def user(request, user_id):
     send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
 
     user = get_object_or_404(User, pk=user_id)
-    sponsorships = user.sponsorships_recieved.all()
-    sponsorships_given = user.sponsorships_given.all()
+    sponsorships = user.sponsorships_recieved.exclude(sponsor=None)
+    sponsorships_given = user.sponsorships_given.exclude(sponsor=None)
     amount_earned = 0
     for sponsorship in sponsorships:
         amount_earned = amount_earned + sponsorship.total_amount
@@ -137,7 +136,9 @@ def register_runkeeper(request, runner_id):
                                         settings.RUNKEEPER_CLIENT_SECRET, 
                                         # request.build_absolute_uri(request.get_full_path()))
                                         # '127.0.0.1/register/runkeeper/')
-                                        settings.APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
+                                        settings.APP_URL + reverse('Running.views.register_runkeeper', 
+                                                                    kwargs={'runner_id': runner_id})
+                                        )
 
 
         access_token = rk_auth_mgr.get_access_token(code)
@@ -162,7 +163,12 @@ def register_runkeeper(request, runner_id):
                 else:
                     date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                 date = datetime.datetime(*date[:6]).date()
-                new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
+                new_run = Run(runner=user, 
+                                distance=item['total_distance']/1000, 
+                                start_date=date, 
+                                end_date=date, 
+                                source="runkeeper", 
+                                source_id=item['uri'])
                 new_run.save()
 
 
@@ -172,7 +178,8 @@ def register_runkeeper(request, runner_id):
     elif user.access_token != "":
         print "Found Token"
 
-        r = requests.get('https://api.runkeeper.com/fitnessActivities', headers={'Authorization': 'Bearer %s' % user.access_token})
+        r = requests.get('https://api.runkeeper.com/fitnessActivities', 
+                            headers={'Authorization': 'Bearer %s' % user.access_token})
         data = r.json()
         print data['items']
         for item in data['items']:
@@ -189,7 +196,12 @@ def register_runkeeper(request, runner_id):
                 else:
                     date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                 date = datetime.datetime(*date[:6]).date()
-                new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
+                new_run = Run(runner=user, 
+                                distance=item['total_distance']/1000, 
+                                start_date=date, 
+                                end_date=date, 
+                                source="runkeeper", 
+                                source_id=item['uri'])
                 new_run.save()
 
         url = reverse('Running.views.user', kwargs={'user_id': runner_id})
@@ -202,13 +214,15 @@ def register_runkeeper(request, runner_id):
                                                 settings.RUNKEEPER_CLIENT_SECRET, 
                                                 # request.build_absolute_uri(request.get_full_path()))
                                                 # '127.0.0.1/register/runkeeper/')
-                                                settings.APP_URL + reverse('Running.views.register_runkeeper', kwargs={'runner_id': runner_id}))
+                                                settings.APP_URL + reverse('Running.views.register_runkeeper', 
+                                                    kwargs={'runner_id': runner_id}))
 
         rk_auth_uri = rk_auth_mgr.get_login_url()
         print "Getting code..."
         return HttpResponseRedirect(rk_auth_uri)
 
-def sponsor(request, sponsee_id):
+def sponsor(request, sponsee_id, sponsorship_id=None):
+    print "sponsorship_id: %s" % sponsorship_id
     if request.method == "POST":
         user_id = None
         if request.user.is_authenticated():
@@ -220,7 +234,11 @@ def sponsor(request, sponsee_id):
                 rate = form.cleaned_data['rate']
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
-                sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
+                sponsorship = Sponsorship(runner=sponsee, 
+                                            sponsor=sponsor, 
+                                            rate=rate, 
+                                            end_date=end_date, 
+                                            max_amount=max_amount)
                 if form.cleaned_data['single_day']:
                     sponsorship.start_date = sponsorship.end_date
                     sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
@@ -232,23 +250,27 @@ def sponsor(request, sponsee_id):
                 return HttpResponse("Hmm, something's wrong with that form.")
         else:
             request.session['form'] = request.POST
-            request.session['sponsee'] = sponsee_id
+            request.session['redirect'] = reverse('Running.views.sponsor', kwargs={'sponsee_id':sponsee_id})
+
             url = reverse('Running.views.signup_or_login')
             return HttpResponseRedirect(url)
 
-    if 'form' in request.session:
+    elif 'form' in request.session:
         print "IT LIVES"
-        if request.user.is_authenticated:
+        if request.user.is_authenticated():
             user_id = request.user.id
             sponsee=get_object_or_404(User, pk=sponsee_id)
             sponsor = get_object_or_404(User, pk=user_id)
             form = forms.SponsorForm(request.session.pop('form'))
-            request.session.pop('sponsee')
             if form.is_valid():
                 rate = form.cleaned_data['rate']
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
-                sponsorship = Sponsorship(runner=sponsee, sponsor=sponsor, rate=rate, end_date=end_date, max_amount=max_amount)
+                sponsorship = Sponsorship(runner=sponsee, 
+                                            sponsor=sponsor, 
+                                            rate=rate, 
+                                            end_date=end_date, 
+                                            max_amount=max_amount)
                 if form.cleaned_data['single_day']:
                     sponsorship.start_date = sponsorship.end_date
                     sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
@@ -262,11 +284,96 @@ def sponsor(request, sponsee_id):
             return HttpResponseRedirect(url)
 
     else:
+        invite = None
+        form = forms.SponsorForm
+        if sponsorship_id:
+            print "GOT HERE"
+            invite = get_object_or_404(Sponsorship, pk=sponsorship_id)
+            form = forms.SponsorForm(instance=invite)
+
         runner = get_object_or_404(User, pk=sponsee_id)
         context = {'runner': runner,
-                'form': forms.SponsorForm,
-        }
+                    'form': form,
+                    'invite': invite,
+                    }
         return render(request, 'Running/sponsorship.html', context)
+
+def invite_sponsor(request, sponsor_id):
+    if request.method == "POST":
+        if request.user.is_authenticated():
+            user_id = request.user.id
+            sponsee = get_object_or_404(User, pk=user_id)
+            sponsor = get_object_or_404(User, pk=sponsor_id)
+            form = forms.InviteForm(request.POST)
+            if form.is_valid():
+                rate = form.cleaned_data['rate']
+                end_date = form.cleaned_data['end_date']
+                max_amount = form.cleaned_data['max_amount']
+                sponsorship = Sponsorship(runner=sponsee, 
+                                            sponsor=None, 
+                                            rate=rate, 
+                                            end_date=end_date,
+                                            max_amount=max_amount)
+                if form.cleaned_data['single_day']:
+                    sponsorship.start_date = sponsorship.end_date
+                    sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
+                sponsorship.save()
+
+                email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
+                                                                    'sponsorship_id':sponsorship.id})
+
+                send_mail('HELLO!', "click this!: " + email_url, 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
+                url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
+                return HttpResponseRedirect(url)
+            else:
+                return HttpResponse("Hmm, something's wrong with that form.")
+        else:
+            request.session['form'] = request.POST
+            request.session['redirect'] = reverse('Running.views.invite_sponsor', kwargs={'sponsor_id':sponsor_id})
+            url = reverse('Running.views.signup_or_login')
+            return HttpResponseRedirect(url)
+
+    elif 'form' in request.session:
+        if request.user.is_authenticated():
+            user_id = request.user.id
+            sponsee = get_object_or_404(User, pk=user_id)
+            sponsor = get_object_or_404(User, pk=sponsor_id)
+            form = forms.InviteForm(request.POST)
+            if form.is_valid():
+                rate = form.cleaned_data['rate']
+                end_date = form.cleaned_data['end_date']
+                max_amount = form.cleaned_data['max_amount']
+                sponsorship = Sponsorship(runner=sponsee, 
+                                            sponsor=None, 
+                                            rate=rate, 
+                                            end_date=end_date, 
+                                            max_amount=max_amount)
+                if form.cleaned_data['single_day']:
+                    sponsorship.start_date = sponsorship.end_date
+                    sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
+                sponsorship.save()
+
+                email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
+                                                                    'sponsorship_id':sponsorship.id})
+
+                send_mail('HELLO!', "click this!: " + email_url, 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
+
+                url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
+                return HttpResponseRedirect(url)
+            else:
+                return HttpResponse("Hmm, something's wrong with that form.")
+        else:
+            request.session['form'] = request.POST
+            request.session['redirect'] = reverse('Running.views.invite_sponsor', kwargs={'sponsor_id':sponsor_id})
+            url = reverse('Running.views.signup_or_login')
+            return HttpResponseRedirect(url)
+
+    else:
+        sponsor = get_object_or_404(User, pk=sponsor_id)
+        context = {'sponsor': sponsor,
+                    'form': forms.InviteForm
+                    }
+        return render(request, 'Running/invite.html', context)
 
 def input_run(request, runner_id):
     if request.method == "POST":

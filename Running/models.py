@@ -34,13 +34,11 @@ class User(auth.models.AbstractUser):
 
 class Sponsorship(models.Model):
     runner = models.ForeignKey(User, related_name='sponsorships_recieved')
-    sponsor = models.ForeignKey(User, related_name='sponsorships_given')
-    rate = models.FloatField('Rate', default=0)
-    # email = models.EmailField('Email', default='masanga@mailinator.com')
-    start_date = models.DateField('Start Date', default = date.today())
-    end_date = models.DateField('End Date', default=date.today()+relativedelta(months=1))
-    max_amount = models.IntegerField('Max Amount', default=sys.maxint)
-    # active = models.BooleanField('Active', default=True)
+    sponsor = models.ForeignKey(User, related_name='sponsorships_given', null=True)
+    rate = models.FloatField('Rate', default=0, null=True)
+    start_date = models.DateField('Start Date', default = date.today(), null=True)
+    end_date = models.DateField('End Date', default=date.today()+relativedelta(months=1), null=True)
+    max_amount = models.IntegerField('Max Amount', default=sys.maxint, null=True)
 
     @property
     def is_active(self):
@@ -56,6 +54,12 @@ class Sponsorship(models.Model):
                 amount = amount + (self.rate * run.distance)
         amount = min(amount, self.max_amount)
         return amount
+
+    def save(self, *args, **kwargs):
+        if self.sponsor != None:
+            if self.rate is None or self.start_date is None or self.end_date is None or self.max_amount is None:
+                print "SOMETHING HAS GONE VERY WRONG PANIC SPONSORSHIP FIELDS WRONG"
+        super(Sponsorship, self).save(*args, **kwargs)
 
     # @property
     # def active_payment(self):
