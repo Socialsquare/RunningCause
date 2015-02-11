@@ -12,13 +12,7 @@
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-{% for field in form %}
-  {% for error in field.errors %}
-    <div class="alert alert-error">
-      <strong>{{ error }}</strong>
-    </div>
-  {% endfor %}
-{% endfor %}
+
 {% if form.non_field_errors %}
   {% for error in form.non_field_errors %}
       <div class="alert alert-error">
@@ -31,7 +25,13 @@
   {% csrf_token %}
   {% for field in form %}
     {% if field.name != "confirmation_key" and field.name != "public_info" %}
+    
     <div class="form-group">
+      {% for error in field.errors %}
+        <div class="alert alert-error">
+          <strong>-{{ error }}</strong>
+        </div>
+      {% endfor %}
     <label for={{ field.name }} class="col-sm-2 control-label">{{ field.label }}</label>
     <div class="col-sm-10">
       {% if field.name != "confirmation_key"%}
