@@ -68,12 +68,12 @@
                         </tr>
                     {% else %}
                         <tr style='opacity:0.6'> 
-                                <td>{{ sponsorship.sponsor }}</td>
-                                <td>{{ sponsorship.rate }}</td>
-                                <td>{{ sponsorship.max_amount }}</td>
-                                <td>{{ sponsorship.start_date }}</td>
-                                <td>{{ sponsorship.end_date }}</td>
-                                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                            <td>{{ sponsorship.sponsor }}</td>
+                            <td>{{ sponsorship.rate }}</td>
+                            <td>{{ sponsorship.max_amount }}</td>
+                            <td>{{ sponsorship.start_date }}</td>
+                            <td>{{ sponsorship.end_date }}</td>
+                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
                         </tr>
                     {% endif %}
                 {% endif %}
@@ -99,14 +99,16 @@
 
         <table class="table table-hover">
             <tr>
-                <th>Distance (km)</th>
                 <th>Date</th>
+                <th>Distance (km)</th>
             </tr>
         {% for run in runs %}
                 <tr> 
-                    <td>Distance: {{ run.distance|floatformat:-2|intcomma }}</td>
-                    <td>Date: {{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
+                    <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
+                    <td>{{ run.distance|floatformat:-2|intcomma }}</td>
                 </tr>
+        {% empty %}
+        <tr><td>Hmm, there don't seem to be any runs here.</td></tr>
         {% endfor %}
         </table>
 
