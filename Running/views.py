@@ -52,6 +52,9 @@ def user(request, user_id):
     for sponsorship in sponsorships_given:
         amount_given = amount_given + sponsorship.total_amount
     runs = user.runs.all()
+    total_distance = 0
+    for run in runs:
+        total_distance = total_distance + run.distance
     own_page = False
     runkeeper = True
     accessor = None
@@ -69,6 +72,7 @@ def user(request, user_id):
                 'sponsorships_given': sponsorships_given,
                 'amount_earned':amount_earned,
                 'amount_given':amount_given,
+                'total_distance':total_distance,
                 'accessor': accessor,
                 'runs': runs,
                 'own_page': own_page,

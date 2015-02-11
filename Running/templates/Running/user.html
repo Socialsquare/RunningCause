@@ -110,6 +110,12 @@
         {% empty %}
         <tr><td>Hmm, there don't seem to be any runs here.</td></tr>
         {% endfor %}
+        {% if runs %}
+        <tr>
+            <td align='right'>Total Distance Run: </td>
+            <td>{{ total_distance|floatformat:-2|intcomma }}</td>
+        <tr>
+        {% endif %}
         </table>
 
 
