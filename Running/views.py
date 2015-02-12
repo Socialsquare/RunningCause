@@ -39,7 +39,11 @@ def home(request):
 
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, user_id):
-    send_mail('HELLO!', 'TEST EMAIL.', 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
+    send_mail('HELLO!', 
+                'TEST EMAIL.', 
+                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                ['niles_christensen@yahoo.com'], 
+                fail_silently=False)
 
     user = get_object_or_404(User, pk=user_id)
     sponsorships = user.sponsorships_recieved.exclude(sponsor=None)
@@ -322,7 +326,10 @@ def invite_sponsor(request, sponsor_id):
                 email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                     'sponsorship_id':sponsorship.id})
 
-                send_mail('HELLO!', "click this!: " + email_url, 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
+                send_mail('HELLO!', 
+                            "click this!: " + email_url, 
+                            'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                            ['niles_christensen@yahoo.com'], fail_silently=False)
                 url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
                 return HttpResponseRedirect(url)
             else:
@@ -356,7 +363,11 @@ def invite_sponsor(request, sponsor_id):
                 email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                     'sponsorship_id':sponsorship.id})
 
-                send_mail('HELLO!', "click this!: " + email_url, 'from@example.com', ['niles_christensen@yahoo.com'], fail_silently=False)
+                send_mail('HELLO!', 
+                            "click this!: " + email_url, 
+                            'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org', 
+                            ['niles_christensen@yahoo.com'], 
+                            fail_silently=False)
 
                 url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
                 return HttpResponseRedirect(url)
