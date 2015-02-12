@@ -99,8 +99,11 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'Running.forms.SignupForm'
 
 
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-API_KEY = ENV['MAILGUN_API_KEY']
-API_URL = "https://api:" + API_KEY + "@api.mailgun.net/v2/<your-mailgun-domain>"
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')
+EMAIL_HOST_USER = os.getenv('MAILGUN_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = os.getenv('MAILGUN_SMTP_PASSWORD')
+EMAIL_PORT = os.getenv('MAILGUN_SMTP_PORT')
 
 SOCIALACCOUNT_QUERY_EMAIL = False
 
