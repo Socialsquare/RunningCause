@@ -98,7 +98,8 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'Running.forms.SignupForm'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+
 
 SOCIALACCOUNT_QUERY_EMAIL = False
 
