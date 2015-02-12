@@ -3,6 +3,7 @@ from Running.models import User, Run
 import requests
 import datetime
 import json
+import time
 
 class Command(BaseCommand):
     help = 'Updates the runs of all users that have registered with runkeeper'
@@ -22,7 +23,11 @@ class Command(BaseCommand):
             registered_ids = [run.source_id for run in runkeeper_runs]
             for item in data['items']:
                 if item['uri'] not in registered_ids:
-                    date = time.strptime(item['start_time'][5:16], "%d %b %Y")
+                    # date = time.strptime(item['start_time'][5:16], "%d %b %Y")
+                    if len(item['start_time']) == 24:
+                        date = time.strptime(item['start_time'][5:15], "%d %b %Y")
+                    else:
+                        date = time.strptime(item['start_time'][5:16], "%d %b %Y")
                     date = datetime.datetime(*date[:6]).date()
                     new_run = Run(runner=user, distance=item['total_distance']/1000, start_date=date, end_date=date, source="runkeeper", source_id=item['uri'])
                     new_run.save()
