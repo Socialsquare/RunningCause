@@ -4,6 +4,7 @@ from Running.models import User, Run
 import requests
 import datetime
 import json
+import time
 
 class Command(BaseCommand):
     help = 'Updates the runs of all users that have registered with runkeeper'
@@ -36,6 +37,10 @@ class Command(BaseCommand):
         for user in everyone_else:
             if user.email != None:
                 all_addresses += [user.email]
-        send_mail('Reminder', 'You should probably update your runs or summat', 'from@example.com', all_addresses[1:], fail_silently=False)
+        send_mail('Reminder', 
+                    'Hello! Since you\'re not using runkeeper to automatically keep your runs updated, you should probably enter your runs on Masanga Runners!' , 
+                    'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org', 
+                    all_addresses[1:], 
+                    fail_silently=False)
 
         self.stdout.write('Sent reminder mail')
