@@ -228,8 +228,6 @@ def register_runkeeper(request, runner_id):
         return HttpResponseRedirect(rk_auth_uri)
 
 def sponsor(request, sponsee_id, sponsorship_id=None):
-    if 'form' in request.session:
-        request.session.pop('form')
     print "sponsorship_id: %s" % sponsorship_id
     if request.method == "POST" or 'form' in request.session:
         if request.method == "POST":
@@ -266,35 +264,6 @@ def sponsor(request, sponsee_id, sponsorship_id=None):
 
             url = reverse('Running.views.signup_or_login')
             return HttpResponseRedirect(url)
-
-    # elif 'form' in request.session:
-    #     print "IT LIVES"
-    #     if request.user.is_authenticated():
-    #         user_id = request.user.id
-    #         sponsee=get_object_or_404(User, pk=sponsee_id)
-    #         sponsor = get_object_or_404(User, pk=user_id)
-    #         form = forms.SponsorForm(request.session.pop('form'))
-    #         if form.is_valid():
-    #             rate = form.cleaned_data['rate']
-    #             end_date = form.cleaned_data['end_date']
-    #             max_amount = form.cleaned_data['max_amount']
-    #             sponsorship = Sponsorship(runner=sponsee, 
-    #                                         sponsor=sponsor, 
-    #                                         rate=rate, 
-    #                                         end_date=end_date, 
-    #                                         max_amount=max_amount)
-    #             if form.cleaned_data['single_day']:
-    #                 sponsorship.start_date = sponsorship.end_date
-    #                 sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
-    #             sponsorship.save()
-    #             url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
-    #             return HttpResponseRedirect(url)
-    #         else:
-    #             return HttpResponse("Hmm, something's wrong with that form.")
-    #     else:
-    #         url = reverse('Running.views.signup_or_login')
-    #         return HttpResponseRedirect(url)
-
     else:
         invite = None
         form = forms.SponsorForm
@@ -350,46 +319,6 @@ def invite_sponsor(request, sponsor_id):
             request.session['redirect'] = reverse('Running.views.invite_sponsor', kwargs={'sponsor_id':sponsor_id})
             url = reverse('Running.views.signup_or_login')
             return HttpResponseRedirect(url)
-
-    # elif 'form' in request.session:
-    #     if request.user.is_authenticated():
-    #         user_id = request.user.id
-    #         sponsee = get_object_or_404(User, pk=user_id)
-    #         sponsor = get_object_or_404(User, pk=sponsor_id)
-    #         form = forms.InviteForm(request.POST)
-    #         if form.is_valid():
-    #             rate = form.cleaned_data['rate']
-    #             end_date = form.cleaned_data['end_date']
-    #             max_amount = form.cleaned_data['max_amount']
-    #             sponsorship = Sponsorship(runner=sponsee, 
-    #                                         sponsor=None, 
-    #                                         rate=rate, 
-    #                                         end_date=end_date, 
-    #                                         max_amount=max_amount)
-    #             if form.cleaned_data['single_day']:
-    #                 sponsorship.start_date = sponsorship.end_date
-    #                 sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
-    #             sponsorship.save()
-
-    #             email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
-    #                                                                 'sponsorship_id':sponsorship.id})
-
-    #             send_mail('HELLO!', 
-    #                         "click this!: " + email_url, 
-    #                         'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org', 
-    #                         ['niles_christensen@yahoo.com'], 
-    #                         fail_silently=False)
-
-    #             url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
-    #             return HttpResponseRedirect(url)
-    #         else:
-    #             return HttpResponse("Hmm, something's wrong with that form.")
-    #     else:
-    #         request.session['form'] = request.POST
-    #         request.session['redirect'] = reverse('Running.views.invite_sponsor', kwargs={'sponsor_id':sponsor_id})
-    #         url = reverse('Running.views.signup_or_login')
-    #         return HttpResponseRedirect(url)
-
     else:
         sponsor = get_object_or_404(User, pk=sponsor_id)
         context = {'sponsor': sponsor,
