@@ -331,7 +331,7 @@ def invite_sponsor(request, sponsor_id):
                                                                     'sponsorship_id':sponsorship.id})
 
                 send_mail('HELLO!', 
-                            "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1}".format(request.user.username, request.build_absolute_uri(email_url)), 
+                            "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, request.build_absolute_uri(email_url)), 
                             'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
                             ['niles_christensen@yahoo.com'], fail_silently=False)
                 url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
