@@ -109,8 +109,15 @@ def make_user_private(request, user_id):
     return HttpResponseRedirect(url)
 
 def overview(request):
+    if request.method == "POST":
+        form = forms.PaidForm(request.POST)
+        if form.is_valid():
+            relevant_sponsorship = get_object_or_404(Sponsorship, pk=form.cleaned_data['sponsorship_id'])
+            relevant_sponsorship.amount_paid = form.cleaned_data['amount']
+            relevant_sponsorship.save()
     sponsorships = Sponsorship.objects.all()
     context = {'sponsorships':sponsorships,
+                'form': forms.PaidForm,
                 }
     return render(request, 'Running/overview.html', context)
 

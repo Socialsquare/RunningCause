@@ -39,6 +39,7 @@ class Sponsorship(models.Model):
     start_date = models.DateField('Start Date', default = date.today(), null=True)
     end_date = models.DateField('End Date', default=date.today()+relativedelta(months=1), null=True)
     max_amount = models.IntegerField('Max Amount', default=sys.maxint, null=True)
+    amount_paid = models.IntegerField('Amount Paid', default=0)
 
     @property
     def is_active(self):
@@ -54,6 +55,10 @@ class Sponsorship(models.Model):
                 amount = amount + (self.rate * run.distance)
         amount = min(amount, self.max_amount)
         return amount
+
+    @property
+    def left_to_pay(self):
+        return self.total_amount - self.amount_paid
 
     def save(self, *args, **kwargs):
         if self.sponsor != None:

@@ -21,6 +21,11 @@ class SponsorForm(forms.ModelForm):
         model = Sponsorship
         fields = ['rate', 'end_date', 'max_amount', 'single_day']
 
+class PaidForm(forms.Form):
+    amount = forms.FloatField(label="Amount",
+                                widget=forms.TextInput(attrs={'class':'form-control'}))
+    sponsorship_id = forms.IntegerField(widget=forms.HiddenInput())
+
 class InviteForm(forms.Form):
     rate = forms.FloatField(label="Rate", 
                             widget=forms.TextInput(attrs={'class':'form-control'}),
