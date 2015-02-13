@@ -98,7 +98,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'Running.forms.SignupForm'
 
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')
 EMAIL_HOST_USER = os.getenv('MAILGUN_SMTP_LOGIN')
