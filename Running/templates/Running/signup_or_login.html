@@ -41,13 +41,6 @@ for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
   <div class="col-sm-6" style="padding-right:20px; border-right: 1px solid #ccc;">
 {% endif %}
 {% if form.errors %}
-    {% for field in form %}
-        {% for error in field.error %}
-            <div class="alert alert-error">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
     {% for error in form.non_field_errors %}
         <div class="alert alert-error">
                 <strong>{{ error|escape }}</strong>
@@ -57,6 +50,11 @@ for a {{site_name}} account and sign in below:{% endblocktrans %}</p>
 <form class="login form-horizontal" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
   {% for field in form %}
+    {% for error in field.error %}
+      <div class="alert alert-error">
+          <strong>{{ error|escape }}</strong>
+      </div>
+    {% endfor %}
     <div class="form-group">
     <label for={{ field.name }} class="col-sm-4 control-label">{{ field.label }}</label>
     <div class="col-sm-8">

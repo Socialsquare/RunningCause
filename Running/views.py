@@ -256,28 +256,27 @@ def sponsor(request, sponsee_id, sponsorship_id=None):
 
                 url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
                 return HttpResponseRedirect(url)
-            else:
-                return HttpResponse("Hmm, something's wrong with that form.")
         else:
             request.session['form'] = request.POST
             request.session['redirect'] = reverse('Running.views.sponsor', kwargs={'sponsee_id':sponsee_id})
 
             url = reverse('Running.views.signup_or_login')
             return HttpResponseRedirect(url)
-    else:
-        invite = None
-        form = forms.SponsorForm
-        if sponsorship_id:
-            print "GOT HERE"
-            invite = get_object_or_404(Sponsorship, pk=sponsorship_id)
-            form = forms.SponsorForm(instance=invite)
 
-        runner = get_object_or_404(User, pk=sponsee_id)
-        context = {'runner': runner,
-                    'form': form,
-                    'invite': invite,
-                    }
-        return render(request, 'Running/sponsorship.html', context)
+    invite = None
+    if not 'form' in locals():
+        form = forms.SponsorForm
+    if sponsorship_id:
+        print "GOT HERE"
+        invite = get_object_or_404(Sponsorship, pk=sponsorship_id)
+        form = forms.SponsorForm(instance=invite)
+
+    runner = get_object_or_404(User, pk=sponsee_id)
+    context = {'runner': runner,
+                'form': form,
+                'invite': invite,
+                }
+    return render(request, 'Running/sponsorship.html', context)
 
 def invite_sponsor(request, sponsor_id):
     if request.method == "POST" or 'form' in request.session:
@@ -312,19 +311,19 @@ def invite_sponsor(request, sponsor_id):
                             ['niles_christensen@yahoo.com'], fail_silently=False)
                 url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
                 return HttpResponseRedirect(url)
-            else:
-                return HttpResponse("Hmm, something's wrong with that form.")
+
         else:
             request.session['form'] = request.POST
             request.session['redirect'] = reverse('Running.views.invite_sponsor', kwargs={'sponsor_id':sponsor_id})
             url = reverse('Running.views.signup_or_login')
             return HttpResponseRedirect(url)
-    else:
-        sponsor = get_object_or_404(User, pk=sponsor_id)
-        context = {'sponsor': sponsor,
-                    'form': forms.InviteForm
-                    }
-        return render(request, 'Running/invite.html', context)
+    sponsor = get_object_or_404(User, pk=sponsor_id)
+    if 'form' not in locals():
+        form = forms.InviteForm
+    context = {'sponsor': sponsor,
+                'form': form
+                }
+    return render(request, 'Running/invite.html', context)
 
 def input_run(request, runner_id):
     if request.method == "POST":
@@ -344,38 +343,19 @@ def input_run(request, runner_id):
                         run = Run(runner=runner, distance=distance, start_date=start_date, end_date=start_date)
 
                     run.save()
-                    # sponsorships = Sponsorship.objects.filter(id=user.id)
-                    # for sponsorship in sponsorships:
-                    #     if not sponsorship.past_end_date:
-                    #         payments = Payment.objects.filter(sponsorship=sponsorship)
-                    #         amount_owed = 0
-                    #         for payment in payments:
-                    #             if not payment.active:
-                    #                 amount_owed = amount_owed + payment.amount
-                    #         for payment in payments:
-                    #             if payment.active:
-                    #                 payment.amount = payment.amount + run.distance * payment.sponsorship.rate
-                    #                 if payment.amount + amount_owed > payment.sponsorship.max_amount:
-                    #                     payment.amount = payment.sponsorship.max_amount - amount_owed
-                    #                     payment.sponsorship.active = False
-                    #                     payment.sponsorship.save()
-                    #                     payment.active = False
-                    #                 payment.save()
-                    #     else:
-                    #         sponsorship.active = False
-                    #         sponsorship.save()
                     url = reverse('Running.views.user', kwargs={'user_id': runner_id})
                     return HttpResponseRedirect(url)
 
-            return HttpResponse("Hmm, something went very wrong. Please try again.")
-    else:
-        runner = get_object_or_404(User, pk=runner_id)
-        if request.user.is_authenticated():
-            user = request.user
-            if int(user.id) == int(runner_id):
-                context = {'runner': runner,
-                    'form': forms.RunInputForm
-                }
-                return render(request, 'Running/run_input.html', context)
-        return HttpResponse("You are not the runner you're trying to input a run for! Please go to your own page and try again.")
+    if not 'form' in locals():
+        form = forms.RunInputForm
+
+    runner = get_object_or_404(User, pk=runner_id)
+    if request.user.is_authenticated():
+        user = request.user
+        if int(user.id) == int(runner_id):
+            context = {'runner': runner,
+                'form': form
+            }
+            return render(request, 'Running/run_input.html', context)
+    return HttpResponse("You are not the runner you're trying to input a run for! Please go to your own page and try again.")
 

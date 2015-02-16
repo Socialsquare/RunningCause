@@ -1,5 +1,8 @@
 {% extends "masanga_base.html" %}
 {% load staticfiles %}
+{% load account %}
+{% load url from future %}
+{% load widget_tweaks %}
 
 {% block title %}
 Sponsor a Runner
@@ -27,15 +30,25 @@ Here are the values that were recommended for the sponsorship. Feel free to chan
 {% endif %}
 
 {% if form.errors %}
-<p>Hmm, that doesn't seem quite right. Please try again.</p>
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-error col-sm-offset-2">
+                <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+
 {% endif %}
 <form class="form-horizontal" method="post" action="{% url 'Running.views.sponsor' runner.id %}">
     {% csrf_token %}
     {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-error col-sm-offset-2">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
     <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">{{ field.label }}</label>
     <div class="col-sm-10">
-      {{ field }}
+        {{ field }}
     </div>
     </div>
     {% endfor %}

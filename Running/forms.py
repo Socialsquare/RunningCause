@@ -21,6 +21,23 @@ class SponsorForm(forms.ModelForm):
         model = Sponsorship
         fields = ['rate', 'end_date', 'max_amount', 'single_day']
 
+    def is_valid(self):
+ 
+        valid = super(SponsorForm, self).is_valid()
+
+        if not valid:
+            return valid
+
+        if self.cleaned_data['rate'] < 0:
+            self.add_error('rate', 'Rate cannot be negative')
+            valid = False
+            
+        if self.cleaned_data['max_amount'] < 0:
+            self.add_error('max_amount', 'Max amount cannot be negative')
+            valid = False
+
+        return valid
+
 class PaidForm(forms.Form):
     amount = forms.FloatField(label="Amount",
                                 widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -42,11 +59,29 @@ class InviteForm(forms.Form):
                                     widget=forms.CheckboxInput(),
                                     required=False)
 
+    def is_valid(self):
+ 
+        valid = super(InviteForm, self).is_valid()
+ 
+        if not valid:
+            return valid
+ 
+        if self.cleaned_data['rate'] < 0 and self.cleaned_data['rate'] != None:
+            self.add_error('rate', 'Rate cannot be negative')
+            valid = False
+            
+        print "Max_amount: %s" % self.cleaned_data['max_amount']
+        if self.cleaned_data['max_amount'] < 0 and self.cleaned_data['max_amount'] != None:
+            print "got to max_amount"
+            self.add_error('max_amount', 'Max amount cannot be negative')
+            valid = False
+
+        return valid
+
 class SignupForm(forms.Form):
     public_info = forms.BooleanField(label="Do you want your sponsorships to be publicly visible?", 
                                         widget=forms.CheckboxInput(),
                                         required=False)
-    # email = forms.EmailField(label="Your email")
 
     def signup(self, request, user):
         user.is_public = self.cleaned_data['public_info']
@@ -64,3 +99,16 @@ class RunInputForm(forms.Form):
                                                             'id':'end_datepicker', 
                                                             'autocomplete':"off"}), 
                                 required=False)
+
+    def is_valid(self):
+ 
+        valid = super(RunInputForm, self).is_valid()
+ 
+        if not valid:
+            return valid
+ 
+        if self.cleaned_data['distance'] < 0:
+            self.add_error('distance', 'Distance cannot be negative')
+            valid = False
+
+        return valid
