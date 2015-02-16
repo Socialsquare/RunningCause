@@ -2,9 +2,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail
 from Running.models import User, Run
 import requests
-import datetime
 import json
-from datetime import date
+import datetime
 import time
 
 class Command(BaseCommand):
@@ -14,7 +13,7 @@ class Command(BaseCommand):
     #     parser.add_argument('poll_id', nargs='+', type=int)
 
     def handle(self, *args, **options):
-        if date.today.wday() == 0:
+        if datetime.datetime.today().weekday() == 0:
             users_with_tokens = User.objects.exclude(access_token="")
             for user in users_with_tokens:
                 r = requests.get('https://api.runkeeper.com/fitnessActivities', headers={'Authorization': 'Bearer %s' % user.access_token})
@@ -39,6 +38,8 @@ class Command(BaseCommand):
             for user in everyone_else:
                 if user.email != None:
                     all_addresses += [user.email]
+            all_addresses = [i for i in all_addresses if i != '']
+            print all_addresses
             send_mail('Reminder', 
                         'Hello! Since you\'re not using runkeeper to automatically keep your runs updated, you should probably enter your runs on Masanga Runners!' , 
                         'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org', 
