@@ -10,7 +10,7 @@ Sponsor a Runner
     <script src="/static/js/bootstrap-datepicker.js"></script>
     <script type=text/javascript>
     $(document).ready(function() {
-        $('#datepicker').datepicker();
+        $('#datepicker').datepicker('setStartDate', new Date());
     });
     </script>
 {% endblock %}
