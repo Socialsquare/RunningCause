@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from Running.models import Sponsorship, Run, User
 # from django.contrib.auth.models import User
@@ -16,6 +16,8 @@ import healthgraph
 import json
 from django.conf import settings
 from django.core.mail import send_mail
+from django.template import RequestContext, loader, Context, Template
+
 
 
 
@@ -305,10 +307,16 @@ def invite_sponsor(request, sponsor_id):
                 email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                     'sponsorship_id':sponsorship.id})
 
-                send_mail('HELLO!', 
-                            "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, request.build_absolute_uri(email_url)), 
+                message_text = "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, request.build_absolute_uri(email_url))
+
+                print loader.get_template('Running/email.html').render(Context({'message': message_text}))
+
+                send_mail('Sponsorship Invitation', 
+                            message_text, 
                             'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
-                            ['niles_christensen@yahoo.com'], fail_silently=False)
+                            [sponsor.email], 
+                            fail_silently=False,
+                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text})))
                 url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
                 return HttpResponseRedirect(url)
 
