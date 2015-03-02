@@ -181,8 +181,13 @@ def overview(request):
     # Get all the sponsorships in the system.
     sponsorships = Sponsorship.objects.all()
 
+    # Get all users, and use this to get a list of all email addresses.
+    all_users = User.objects.all()
+    all_emails = [user.email for user in all_users]
+
     # Build a context from the sponsorships, and the PaidForm
-    context = {'sponsorships':sponsorships,
+    context = {'sponsorships': sponsorships,
+                'all_emails': all_emails,
                 'form': forms.PaidForm,
                 }
 

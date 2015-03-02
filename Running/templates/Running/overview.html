@@ -56,6 +56,18 @@
         {% endfor %}
         </table>
 
+    <table class="table table-hover">
+        <thead>
+            <th>All email addresses</th>
+        </thead>
+        {% for email in all_emails %}
+            {% if email %}
+                <tr>
+                    <td>{{ email }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+
     {% else %}
     Sorry, you need to be an admin to access this page.
     {% endif %}
