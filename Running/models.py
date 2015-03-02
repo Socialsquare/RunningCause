@@ -8,7 +8,7 @@ import sys
 
 #   Add admin Url to every content object
 def get_admin_url(self):
-    return reverse('admin:%s_%s_change' % (self._meta.app_label,  self._meta.module_name),  args=[self.pk])
+    return reverse('admin:%s_%s_change' % (self._meta.app_label,  self._meta.model_name),  args=[self.pk])
 
 models.Model.get_admin_url = get_admin_url
 
@@ -34,6 +34,24 @@ class User(auth.models.AbstractUser):
     def is_sponsor(self):
         num_sponsorships = len(self.sponsorships_given.all())
         return num_sponsorships > 0
+
+    #   This figures out how much the user has raised for Masanga.
+    @property
+    def amount_earned(self):
+        total_amount = 0
+        for sponsorship in self.sponsorships_recieved.all():
+            if sponsorship.sponsor != None:
+                total_amount = total_amount + sponsorship.total_amount
+        return total_amount
+
+    #   This figures out how much the user has donated to Masanga through sponsorships.
+    @property
+    def amount_donated(self):
+        total_amount = 0
+        for sponsorship in self.sponsorships_given.all():
+            total_amount = total_amount + sponsorship.total_amount
+        return total_amount
+
 
 #   The model for every sponsorship.
 class Sponsorship(models.Model):

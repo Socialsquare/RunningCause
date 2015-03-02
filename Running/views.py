@@ -185,8 +185,9 @@ def overview(request):
     all_users = User.objects.all()
     all_emails = [user.email for user in all_users]
 
-    # Build a context from the sponsorships, and the PaidForm
+    # Build a context from the sponsorships, users, emails and the PaidForm
     context = {'sponsorships': sponsorships,
+                'all_users': all_users,
                 'all_emails': all_emails,
                 'form': forms.PaidForm,
                 }

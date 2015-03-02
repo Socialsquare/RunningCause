@@ -8,6 +8,7 @@
 
 {% block body %}
     {% if request.user.is_staff %}
+    <h4>All sponsorships</h4>
         <table class="table table-hover">
         <thead>
             <th>Sponsor</th>
@@ -53,6 +54,26 @@
                     </td>
                 </tr>
             {% endif %}
+        {% endfor %}
+        </table>
+
+        <h4>All Users</h4>
+        <table class="table table-hover">
+        <thead>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Is public</th>
+            <th>Amount Earned</th>
+            <th>Amount Donated</th>
+        </thead>
+        {% for user in all_users %}
+                <tr>
+                    <td><a href="{{ user.get_admin_url }}">{{ user.username }}</a></td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.is_public }}</td>
+                    <td>{{ user.amount_earned }}</td>
+                    <td>{{ user.amount_donated }}</td>
+                </tr>
         {% endfor %}
         </table>
 
