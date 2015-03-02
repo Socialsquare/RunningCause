@@ -67,5 +67,9 @@ secret_settings.py
 
 # .env
 .env
+
 # Ds Store
 *.DS_Store
+
+# Docx
+.docx
