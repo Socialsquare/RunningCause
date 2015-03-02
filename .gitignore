@@ -72,4 +72,4 @@ secret_settings.py
 *.DS_Store
 
 # Docx
-.docx
+*.docx
