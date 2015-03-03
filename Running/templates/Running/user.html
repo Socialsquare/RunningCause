@@ -106,6 +106,10 @@
                 <tr> 
                     <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
                     <td>{{ run.distance|floatformat:-2|intcomma }}</td>
+                    {% if own_page %}
+                        <td><a href="{% url 'Running.views.edit_run' run.id %}" class="btn btn-default">Edit Run Details</a></td>
+                    {% endif %}
+
                 </tr>
         {% empty %}
         <tr><td>Hmm, there don't seem to be any runs here.</td></tr>

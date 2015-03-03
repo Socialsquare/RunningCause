@@ -1,5 +1,5 @@
 from django import forms
-from Running.models import Sponsorship
+from Running.models import Sponsorship, Run
 from django.contrib.admin import widgets
 from functools import partial
 
@@ -100,9 +100,9 @@ class SignupForm(forms.Form):
         # user.last_name = self.cleaned_data['last_name']
         user.save()
 
-class RunInputForm(forms.Form):
+class RunInputForm(forms.ModelForm):
     distance = forms.FloatField(label="Distance in km", widget=forms.TextInput(attrs={'class':'form-control'}))
-    date = forms.DateField(label="Run date", 
+    start_date = forms.DateField(label="Run date", 
                             widget=forms.DateInput(attrs={'class':'form-control', 
                                                             'id':'start_datepicker', 
                                                             'autocomplete':"off"}))
@@ -111,6 +111,11 @@ class RunInputForm(forms.Form):
                                                             'id':'end_datepicker', 
                                                             'autocomplete':"off"}), 
                                 required=False)
+
+
+    class Meta:
+        model = Run
+        fields = ['distance', 'start_date', 'end_date']
 
     def is_valid(self):
  

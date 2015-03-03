@@ -560,18 +560,18 @@ def input_run(request, runner_id):
                     # Get the various variables for the run.
                     runner = user
                     distance = form.cleaned_data['distance']
-                    start_date = form.cleaned_data['date']
-                    end_date = form.cleaned_data['end_date']
+                    start_date = form.cleaned_data['start_date']
 
                     # If there was an end date, this was a collection of runs. Set the end date appropriately,
                     # and make a run object from our data.
-                    if end_date != None:
-                        run = Run(runner=runner, distance=distance, start_date=start_date, end_date=end_date)
+                    if form.cleaned_data['end_date'] != None:
+                        end_date = form.cleaned_data['end_date']
                     
                     # Otherwise, it was a single run. Set the end data appropriately, and make a run object from
                     # our data.
                     else:
-                        run = Run(runner=runner, distance=distance, start_date=start_date, end_date=start_date)
+                        end_date = form.cleaned_data['start_date']
+                    run = Run(runner=runner, distance=distance, start_date=start_date, end_date=end_date)
 
                     # Save our run, and then redirect to the profile of the user with id runner_id.
                     run.save()
@@ -609,9 +609,10 @@ def input_run(request, runner_id):
         if int(user.id) == int(runner_id):
 
             # If they are, make a context from our variables.
-            context = {'runner': runner,
+            context = {
+                'runner': runner,
                 'form': form
-            }
+                }
 
             # Render the page with the context and return it.
             return render(request, 'Running/run_input.html', context)
@@ -620,3 +621,38 @@ def input_run(request, runner_id):
     # activity, or the user breaking the website in some unexpected way.
     return HttpResponse("You are not the runner you're trying to input a run for! Please go to your own page and try again.")
 
+
+def edit_run(request, run_id):
+    run = get_object_or_404(Run, pk=run_id)
+    runner = run.runner
+    if request.method == 'POST':
+        if request.user.is_authenticated():
+            user = request.user
+            if int(user.id) == int(runner.id):
+                form = forms.RunInputForm(request.POST, instance=run)
+                if form.is_valid():
+
+                    # Edit the run with the new variables.
+                    run.distance = form.cleaned_data['distance']
+                    run.start_date = form.cleaned_data['start_date']
+                    if form.cleaned_data['end_date'] and form.cleaned_data['end_date'] > form.cleaned_data['start_date']:
+                        run.end_date = form.cleaned_data['end_date']
+                    else:
+                        run.end_date = form.cleaned_data['start_date']
+
+                    run.save()
+
+                    url = reverse('Running.views.user', kwargs={'user_id': user.id})
+                    return HttpResponseRedirect(url)
+    
+    if not request.user.is_authenticated() or int(runner.id) != int(request.user.id):
+        return HttpResponse("You are not logged in as the correct runner! Please go back and log in as the correct runner.")
+
+    run_to_edit = get_object_or_404(Run, pk=run_id)
+    form = forms.RunInputForm(instance=run_to_edit)
+    context = {
+                'run': run,
+                'form': form
+                }
+
+    return render(request, 'Running/run_edit.html', context)

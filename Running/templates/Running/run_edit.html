@@ -12,8 +12,8 @@ Input a Run
     <script src="/static/js/bootstrap-datepicker.js"></script>
     <script type=text/javascript>
     $(document).ready(function() {
-        $('#start_datepicker').datepicker();
-        $('#end_datepicker').datepicker();
+        $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
+        $('#end_datepicker').datepicker({format:'yyyy-mm-dd'});
 
         $('#reveal-button').click(function () {
             $('#hidden-fields').fadeIn('slow');
@@ -48,7 +48,7 @@ Input a Run
 
 {% endif %}
 </br>
-<form class="form-horizontal" method="post" action="{% url 'Running.views.input_run' runner.id %}">
+<form class="form-horizontal" method="post" action="{% url 'Running.views.edit_run' run.id %}">
     {% csrf_token %}
     {% for field in form %}
         {% if field.field.required %}
