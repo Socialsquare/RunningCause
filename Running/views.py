@@ -390,20 +390,15 @@ def sponsor(request, sponsee_id, sponsorship_id=None):
             # object from that data.
             if form.is_valid():
                 rate = form.cleaned_data['rate']
+                start_date = form.cleaned_data['start_date']
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
                 sponsorship = Sponsorship(runner=sponsee, 
                                             sponsor=sponsor, 
-                                            rate=rate, 
+                                            rate=rate,
+                                            start_date=start_date, 
                                             end_date=end_date, 
                                             max_amount=max_amount)
-
-                # If the sponsorship is to be for a single day, then make it so that
-                # the sponsorship starts on what was originally end_date, and ends
-                # the next day.
-                if form.cleaned_data['single_day']:
-                    sponsorship.start_date = sponsorship.end_date
-                    sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
 
                 # Save the sponsorship.
                 sponsorship.save()
@@ -478,11 +473,13 @@ def invite_sponsor(request, sponsor_id):
             # listing them as the sponsor.
             if form.is_valid():
                 rate = form.cleaned_data['rate']
+                start_date = form.cleaned_data['start_date']
                 end_date = form.cleaned_data['end_date']
                 max_amount = form.cleaned_data['max_amount']
                 sponsorship = Sponsorship(runner=sponsee, 
                                             sponsor=None, 
                                             rate=rate, 
+                                            start_date=start_date,
                                             end_date=end_date,
                                             max_amount=max_amount)
 

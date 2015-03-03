@@ -8,18 +8,21 @@ DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 class SponsorForm(forms.ModelForm):
     rate = forms.FloatField(label="Rate", 
                             widget=forms.TextInput(attrs={'class':'form-control'}))
+    start_date = forms.DateField(label="Sponsorship start date", 
+                                widget=forms.DateInput(attrs={'class':'form-control', 
+                                                                        'id':'start_datepicker', 
+                                                                        'autocomplete':"off"}),
+                                required=True)
     end_date = forms.DateField(label="Sponsorship end date", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
-                                                                        'id':'datepicker', 
+                                                                        'id':'end_datepicker', 
                                                                         'autocomplete':"off"}),
-                                required=False)
-    max_amount = forms.FloatField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}))
-    single_day = forms.BooleanField(label="Should this sponsorship be for a single day? (The end date will also be the start date)",
-                                    widget=forms.CheckboxInput(),
-                                    required=False)
+                                required=True)
+    max_amount = forms.FloatField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}), localize=True)
+
     class Meta:
         model = Sponsorship
-        fields = ['rate', 'end_date', 'max_amount', 'single_day']
+        fields = ['rate', 'start_date', 'end_date', 'max_amount']
 
     def is_valid(self):
  
@@ -36,6 +39,10 @@ class SponsorForm(forms.ModelForm):
             self.add_error('max_amount', 'Max amount cannot be negative')
             valid = False
 
+        if self.cleaned_data['start_date'] > self.cleaned_data['end_date']:
+            self.add_error('end_date', 'End date cannot be before start date.')
+            valid = False
+
         return valid
 
 class PaidForm(forms.Form):
@@ -47,16 +54,18 @@ class InviteForm(forms.Form):
     rate = forms.FloatField(label="Rate", 
                             widget=forms.TextInput(attrs={'class':'form-control'}),
                             required=False)
+    start_date = forms.DateField(label="Sponsorship start date", 
+                                widget=forms.DateInput(attrs={'class':'form-control', 
+                                                                        'id':'start_datepicker', 
+                                                                        'autocomplete':"off"}),
+                                required=False)
     end_date = forms.DateField(label="Sponsorship end date", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
-                                                                        'id':'datepicker', 
+                                                                        'id':'end_datepicker', 
                                                                         'autocomplete':"off"}),
                                 required=False)
     max_amount = forms.IntegerField(label="Maximum total amount", 
                                     widget=forms.TextInput(attrs={'class':'form-control'}),
-                                    required=False)
-    single_day = forms.BooleanField(label="Should this sponsorship be for a single day? (The end date will also be the start date)",
-                                    widget=forms.CheckboxInput(),
                                     required=False)
 
     def is_valid(self):
@@ -70,10 +79,13 @@ class InviteForm(forms.Form):
             self.add_error('rate', 'Rate cannot be negative')
             valid = False
             
-        print "Max_amount: %s" % self.cleaned_data['max_amount']
         if self.cleaned_data['max_amount'] < 0 and self.cleaned_data['max_amount'] != None:
-            print "got to max_amount"
             self.add_error('max_amount', 'Max amount cannot be negative')
+            valid = False
+
+
+        if self.cleaned_data['start_date'] != None and self.cleaned_data['end_date'] != None and self.cleaned_data['start_date'] > self.cleaned_data['end_date']:
+            self.add_error('end_date', 'End date cannot be before start date.')
             valid = False
 
         return valid
