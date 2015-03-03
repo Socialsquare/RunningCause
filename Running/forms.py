@@ -13,7 +13,7 @@ class SponsorForm(forms.ModelForm):
                                                                         'id':'datepicker', 
                                                                         'autocomplete':"off"}),
                                 required=False)
-    max_amount = forms.IntegerField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}))
+    max_amount = forms.FloatField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}))
     single_day = forms.BooleanField(label="Should this sponsorship be for a single day? (The end date will also be the start date)",
                                     widget=forms.CheckboxInput(),
                                     required=False)

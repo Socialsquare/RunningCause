@@ -72,7 +72,7 @@ class Sponsorship(models.Model):
 
     #   The maximum possible amount of money for the sponsorship. No more runs are counted once this
     #   amount is reached.
-    max_amount = models.IntegerField('Max Amount', default=sys.maxint, null=True)
+    max_amount = models.FloatField('Max Amount', default=sys.maxint, null=True)
 
     #   The amount of money on the sponsorship that has already been paid. Used for manually keeping
     #   track of how much has been paid and how much is left to pay.
