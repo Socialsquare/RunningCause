@@ -30,7 +30,7 @@ def home(request):
         return HttpResponseRedirect(request.session.pop('redirect'))
 
     # Otherwise, get a list of all users, sorted by their username.
-    user_list = User.objects.order_by('-username')
+    user_list = User.objects.order_by('username')
 
     # Create the context, using the user if authenticated.
     if request.user.is_authenticated():
@@ -179,10 +179,10 @@ def overview(request):
             relevant_sponsorship.save()
 
     # Get all the sponsorships in the system.
-    sponsorships = Sponsorship.objects.all()
+    sponsorships = Sponsorship.objects.order_by('sponsor__username')
 
     # Get all users, and use this to get a list of all email addresses.
-    all_users = User.objects.all()
+    all_users = User.objects.order_by('username')
     all_emails = [user.email for user in all_users]
 
     # Build a context from the sponsorships, users, emails and the PaidForm
@@ -489,9 +489,9 @@ def invite_sponsor(request, sponsor_id):
                 # If the sponsorship is to be for a single day, then make it so that
                 # the sponsorship starts on what was originally end_date, and ends
                 # the next day.                
-                if form.cleaned_data['single_day']:
-                    sponsorship.start_date = sponsorship.end_date
-                    sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
+                # if form.cleaned_data['single_day']:
+                #     sponsorship.start_date = sponsorship.end_date
+                #     sponsorship.end_date = sponsorship.end_date + relativedelta(days=1)
 
                 # Save the sponsorship.
                 sponsorship.save()
