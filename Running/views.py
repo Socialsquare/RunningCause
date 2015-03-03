@@ -504,7 +504,8 @@ def invite_sponsor(request, sponsor_id):
                                                                     'sponsorship_id':sponsorship.id})
 
                 # Create the message of the text.
-                message_text = "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, request.build_absolute_uri(email_url))
+                message_text = "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, 
+                                                                                                                                                                                            request.build_absolute_uri(email_url))
 
                 # Send the email, attaching an HTML version as well.
                 send_mail('Sponsorship Invitation', 
@@ -577,6 +578,26 @@ def input_run(request, runner_id):
 
                     # Save our run, and then redirect to the profile of the user with id runner_id.
                     run.save()
+
+                    # Get a list of all sponsorships the user has recieved that were active when the run
+                    # happened, then get a list of all relevant sponsors and their emails from that.
+                    relevant_sponsorships = user.sponsorships_recieved.filter(end_date__gte=end_date, 
+                                                                            start_date__lt=start_date)
+                    relevant_sponsors = list(set([sponsorship.sponsor for sponsorship in relevant_sponsorships]))
+                    relevant_emails = [sponsor.email for sponsor in relevant_sponsors]
+
+                    # Generate a message from the information of the run, and send it out to all the relevant
+                    # sponsors.
+                    message_text = "{0} has run a distance of {1}km!".format(user.username, 
+                                                                                distance)
+                    send_mail('Run Update', 
+                                message_text, 
+                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                relevant_emails, 
+                                fail_silently=False,
+                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text})))
+
+                    # Redirect to the user's page.
                     url = reverse('Running.views.user', kwargs={'user_id': runner_id})
                     return HttpResponseRedirect(url)
 
