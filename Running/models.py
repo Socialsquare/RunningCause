@@ -83,7 +83,7 @@ class Sponsorship(models.Model):
     #   sponsorship is currently less that max_amount.
     @property
     def is_active(self):
-        if date.today() < self.end_date and date.today() >= self.start_date and self.total_amount < self.max_amount:
+        if date.today() <= self.end_date and date.today() >= self.start_date and self.total_amount < self.max_amount:
             return True
         return False
 
@@ -93,7 +93,7 @@ class Sponsorship(models.Model):
     def total_amount(self):
         amount = 0
         for run in self.runner.runs.all():
-            if run.start_date >= self.start_date and run.end_date < self.end_date:
+            if run.start_date >= self.start_date and run.end_date <= self.end_date:
                 amount = amount + (self.rate * run.distance)
         amount = min(amount, self.max_amount)
         return amount

@@ -579,7 +579,7 @@ def input_run(request, runner_id):
                     # Get a list of all sponsorships the user has recieved that were active when the run
                     # happened, then get a list of all relevant sponsors and their emails from that.
                     relevant_sponsorships = user.sponsorships_recieved.filter(end_date__gte=end_date, 
-                                                                            start_date__lt=start_date)
+                                                                            start_date__lte=start_date)
                     relevant_sponsors = list(set([sponsorship.sponsor for sponsorship in relevant_sponsorships]))
                     relevant_emails = [sponsor.email for sponsor in relevant_sponsors]
 
