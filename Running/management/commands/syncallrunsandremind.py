@@ -39,11 +39,12 @@ class Command(BaseCommand):
                 if user.email != None:
                     all_addresses += [user.email]
             all_addresses = [i for i in all_addresses if i != '']
-            print all_addresses
-            send_mail('Reminder', 
-                        'Hello! Since you\'re not using runkeeper to automatically keep your runs updated, you should probably enter your runs on Masanga Runners!' , 
-                        'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org', 
-                        all_addresses[1:], 
-                        fail_silently=False)
+            for address in all_addresses:
+                if address:
+                    send_mail('Reminder', 
+                                'Hello! Since you\'re not using runkeeper to automatically keep your runs updated, you should probably enter your runs on Masanga Runners!' , 
+                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org', 
+                                [address], 
+                                fail_silently=False)
 
             self.stdout.write('Sent reminder mail')
