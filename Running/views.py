@@ -622,13 +622,26 @@ def input_run(request, runner_id):
     return HttpResponse("You are not the runner you're trying to input a run for! Please go to your own page and try again.")
 
 
+# Allows a user to edit the details of a run they did.
 def edit_run(request, run_id):
+
+    # Get the run and runner objects.
     run = get_object_or_404(Run, pk=run_id)
     runner = run.runner
+
+    # If POST data is included in the request, then the form has been filled out and we're processing it now.
     if request.method == 'POST':
+
+        # Check that the user is authenticated first (If they've managed to access this, they probably are, but
+        # check to make sure that attacks aren't completely trivial)
         if request.user.is_authenticated():
             user = request.user
+
+            # Verify that the user is the same user that the run belongs to. Again, this shouldn't be an issue
+            # in the normal flow of the website, but, without this, attacks are completely trivial.
             if int(user.id) == int(runner.id):
+
+                # Create a form from the POST data, and tie it to our particular run.
                 form = forms.RunInputForm(request.POST, instance=run)
                 if form.is_valid():
 
@@ -640,14 +653,20 @@ def edit_run(request, run_id):
                     else:
                         run.end_date = form.cleaned_data['start_date']
 
+                    # Save the run to save our changes.
                     run.save()
 
+                    # Redirect the user to their profile page.
                     url = reverse('Running.views.user', kwargs={'user_id': user.id})
                     return HttpResponseRedirect(url)
     
+    # If the user is not authenticated, or they are authenticated as a user that doesn't own the run,
+    # redirect them to a page stating that there is an error. This page is ugly, but there should
+    # be no way to access this in the normal flow of things.
     if not request.user.is_authenticated() or int(runner.id) != int(request.user.id):
         return HttpResponse("You are not logged in as the correct runner! Please go back and log in as the correct runner.")
 
+    # Create a form from our specific run, and use this, along with the run, to create a context.
     run_to_edit = get_object_or_404(Run, pk=run_id)
     form = forms.RunInputForm(instance=run_to_edit)
     context = {
@@ -655,4 +674,5 @@ def edit_run(request, run_id):
                 'form': form
                 }
 
+    # Render and return the run_edit template with the context.
     return render(request, 'Running/run_edit.html', context)
