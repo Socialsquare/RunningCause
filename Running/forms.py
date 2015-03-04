@@ -17,7 +17,7 @@ class SponsorForm(forms.ModelForm):
                                 widget=forms.DateInput(attrs={'class':'form-control', 
                                                                         'id':'end_datepicker', 
                                                                         'autocomplete':"off"}),
-                                required=True)
+                                required=False)
     max_amount = forms.FloatField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}), localize=True)
 
     class Meta:

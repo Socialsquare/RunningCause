@@ -391,7 +391,10 @@ def sponsor(request, sponsee_id, sponsorship_id=None):
             if form.is_valid():
                 rate = form.cleaned_data['rate']
                 start_date = form.cleaned_data['start_date']
-                end_date = form.cleaned_data['end_date']
+                if form.cleaned_data['end_date']:
+                    end_date = form.cleaned_data['end_date']
+                else:
+                    end_date = start_date
                 max_amount = form.cleaned_data['max_amount']
                 sponsorship = Sponsorship(runner=sponsee, 
                                             sponsor=sponsor, 
