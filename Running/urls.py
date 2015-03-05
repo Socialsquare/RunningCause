@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url, include
 from Running import views
+from django.conf import settings
 
 urlpatterns = patterns('',
     (r'^account/logout/$', 'django.contrib.auth.views.logout',
@@ -19,3 +20,8 @@ urlpatterns = patterns('',
     url(r'^signuporlogin/$', views.signup_or_login, name='signup_or_login'),
     url(r'^$', views.home, name='home'),
 )
+
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        url(r'^rosetta/', include('rosetta.urls')),
+        )

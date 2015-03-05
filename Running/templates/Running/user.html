@@ -1,5 +1,6 @@
 {% extends "masanga_base.html" %}
 {% load humanize %}
+{% load i18n %}
 
 {% block title %}
 {{ user.username }}
@@ -17,13 +18,12 @@
         Sponsorships Recieved: </br>
         <table class="table table-hover">
             <thead>
-                <th>Sponsor</th>
-                <th>Rate(kr/km)</th>
-                <th>Maximum Possible Amount (kr)</th>
-                <th>Started</th>
-                <th>Continues Until</th>
-                <th>Amount Earned (kr)</th>
-
+                <th>{% trans "Sponsor" %}</th>
+                <th>{% trans "Rate(kr/km)" %}</th>
+                <th>{% trans "Maximum Possible Amount (kr)" %}</th>
+                <th>{% trans "Started" %}</th>
+                <th>{% trans "Continues Until" %}</th>
+                <th>{% trans "Amount Earned (kr)" %}</th>
             </thead>
 
             {% for sponsorship in sponsorships %}
@@ -38,7 +38,7 @@
                             <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
                             {% if own_page or sponsorship.sponsor == accessor %}
-                                <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
+                                <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">{% trans "End Sponsorship" %}</a></td>
                             {% endif %}
                         </tr>
 
@@ -79,7 +79,7 @@
                 {% endif %}
 
             {% empty %}
-                <tr><td>Hmm, there don't seem to be any sponsorships here.</td></tr>
+                <tr><td>{% trans "Hmm, there don't seem to be any sponsorships here." %}</td></tr>
             {% endfor %}
             {% if sponsorships %}
                 <tr>
@@ -87,7 +87,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td align='right'>Total Amount Earned: </td>
+                    <td align='right'>{% trans "Total Amount Earned:" %} </td>
                     <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
                 </tr>
             {% endif %}
@@ -99,24 +99,24 @@
 
         <table class="table table-hover">
             <tr>
-                <th>Date</th>
-                <th>Distance (km)</th>
+                <th>{% trans "Date" %}</th>
+                <th>{% trans "Distance (km)" %}</th>
             </tr>
         {% for run in runs %}
                 <tr> 
                     <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
                     <td>{{ run.distance|floatformat:-2|intcomma }}</td>
                     {% if own_page %}
-                        <td><a href="{% url 'Running.views.edit_run' run.id %}" class="btn btn-default">Edit Run Details</a></td>
+                        <td><a href="{% url 'Running.views.edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
                     {% endif %}
 
                 </tr>
         {% empty %}
-        <tr><td>Hmm, there don't seem to be any runs here.</td></tr>
+        <tr><td>{% trans "Hmm, there don't seem to be any runs here." %}</td></tr>
         {% endfor %}
         {% if runs %}
         <tr>
-            <td align='right'>Total Distance Run: </td>
+            <td align='right'>{% trans "Total Distance Run:" %} </td>
             <td>{{ total_distance|floatformat:-2|intcomma }}km</td>
         <tr>
         {% endif %}
@@ -130,11 +130,11 @@
             Sponsoring: </br>
             <table class="table table-hover">
             <thead>
-                <th>Runner</th>
-                <th>Rate(kr/km)</th>
-                <th>Maximum Possible Amount (kr)</th>
-                <th>Continues Until</th>
-                <th>Amount Earned (kr)</th>
+                <th>{% trans "Runner" %}</th>
+                <th>{% trans "Rate(kr/km)" %}</th>
+                <th>{% trans "Maximum Possible Amount (kr)" %}</th>
+                <th>{% trans "Continues Until" %}</th>
+                <th>{% trans "Amount Earned (kr)" %}</th>
 
             </thead>
             {% for sponsorship in sponsorships_given %}
@@ -147,7 +147,7 @@
                         <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
                         {% if own_page or sponsorship.sponsor == user %}
-                            <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">End Sponsorship</a></td>
+                            <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">{% trans "End Sponsorship" %}</a></td>
                         {% endif %}
                     </tr>
                 {% else %}
@@ -162,13 +162,13 @@
 
 
             {% empty %}
-            <tr><td>Hmm, there don't seem to be any sponsorships here.</td></tr>
+            <tr><td>{% trans "Hmm, there don't seem to be any sponsorships here." %}</td></tr>
             {% endfor %}
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td align='right'>Total Amount Donated: </td>
+                    <td align='right'>{% trans "Total Amount Donated: " %}</td>
                     <td>{{ amount_given|floatformat:-2|intcomma }}kr</td>
                     <td></td>
 
@@ -180,15 +180,21 @@
 
     {% if own_page %}
 
-    <h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> Input a run! </a></h4>
+    <h4><a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> {% trans "Input a run!" %} </a></h4>
 
-    <h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> Register with runkeeper! </a></h4>
+    <h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> {% trans "Register with runkeeper!" %}</a></h4>
 
     {% else %}
 
-    <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> Sponsor {{ user.username }}! </a></h4>
+    <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> 
+        {% blocktrans with username=user.username %}
+        Sponsor {{ username }}!
+        {% endblocktrans %} </a></h4>
 
-    <h4><a href="{% url 'Running.views.invite_sponsor' sponsor_id=user.id %}" class="btn btn-default"> Invite {{ user.username }} to sponsor you! </a></h4>
+    <h4><a href="{% url 'Running.views.invite_sponsor' sponsor_id=user.id %}" class="btn btn-default"> 
+        {% blocktrans with username=user.username %}
+        Invite {{ username }} to sponsor you! 
+        {% endblocktrans %}</a></h4>
 
     {% endif %}
 
@@ -196,7 +202,7 @@
 
 {% else %}
 
-<h4>Sorry, this user has chosen to make their information private.</h4>
+<h4>{% trans "Sorry, this user has chosen to make their information private." %}</h4>
 
 {% endif %}
 
@@ -209,13 +215,13 @@
     <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
     <span class='st_email_large' displayText='Email'></span>
 </br>
-    <td><a href="{% url 'Running.views.make_user_private' user.id %}?next={{ request.path }}" class="btn btn-default">Click here to make your page private.</a></td>
+    <td><a href="{% url 'Running.views.make_user_private' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page private." %}</a></td>
 
 
 {% elif own_page and not user.is_public %}
 
-    You have to make your page public before you can share it. 
-    <td><a href="{% url 'Running.views.make_user_public' user.id %}?next={{ request.path }}" class="btn btn-default">Click here to make your page public.</a></td>
+   {% trans "You have to make your page public before you can share it." %}
+    <td><a href="{% url 'Running.views.make_user_public' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a></td>
 
 
 {% endif %}

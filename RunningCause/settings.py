@@ -67,12 +67,14 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'django_extensions',
     'Running',
-    'jquery'
+    'jquery',
+    'rosetta',
 
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -139,6 +141,13 @@ if os.getenv('DATABASE_URL'):
 
 LANGUAGE_CODE = 'en-us'
 
+ugettext = lambda s: s
+
+LANGUAGES = (
+    ('en', ugettext('English')),
+    ('da_DE', ugettext('Danish')),
+    )
+
 TIME_ZONE = 'Europe/Copenhagen'
 
 USE_I18N = True
@@ -152,6 +161,7 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
+    "django.core.context_processors.i18n",
     "django.contrib.auth.context_processors.auth",
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",

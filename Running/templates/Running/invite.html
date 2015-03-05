@@ -1,8 +1,10 @@
 {% extends "masanga_base.html" %}
 {% load staticfiles %}
+{% load i18n %}
+
 
 {% block title %}
-Sponsor a Runner
+{% trans "Sponsor a Runner" %}
 {% endblock %}
 
 {% block imports %}
@@ -18,12 +20,17 @@ Sponsor a Runner
 {% endblock %}
 
 {% block head %}
-Invite {{ sponsor.username }} to sponsor you!
+{% blocktrans with sponsor_name=sponsor.username %}
+Invite {{ sponsor_name }} to sponsor you!
+{% endblocktrans %}
 {% endblock %}
 
 {% block body %}
-Fill out this form with the values you'd like to suggest to {{ sponsor.username }}. You can leave
-anything that you want blank.
+
+{% blocktrans with sponsor_name=sponsor.username %}
+Fill out this form with the values you'd like to suggest to {{ sponsor_name }}. You can leave anything that you want blank.
+{% endblocktrans %}
+
 </br>
 </br>
 {% if form.errors %}
@@ -51,7 +58,7 @@ anything that you want blank.
     {% endfor %}
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
     </div>
   </div>
 </form>

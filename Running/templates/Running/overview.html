@@ -1,27 +1,27 @@
 {% extends "masanga_base.html" %}
+{% load i18n %}
 
 
+{% block title %}{% blocktrans %}Overview{% endblocktrans %}{% endblock %}
 
-{% block title %}Overview{% endblock %}
-
-{% block head %}Overview{% endblock %}
+{% block head %}{% blocktrans %}Overview{% endblocktrans %}{% endblock %}
 
 {% block body %}
     {% if request.user.is_staff %}
-    <h4>All sponsorships</h4>
+    <h4>{% blocktrans %}All sponsorships{% endblocktrans %}</h4>
         <table class="table table-hover">
         <thead>
-            <th>Sponsor</th>
-            <th>Runner</th>
-            <th>Rate</th>
-            <th>Amount Earned</th>
-            <th>Amount Paid</th>
-            <th>Amount Left to Pay</th>
-            <th>Max Amount</th>
-            <th>Started</th>
-            <th>Continues Until</th>
-            <th>Active</th>
-            <th>Change Total Amount Paid</th>
+            <th>{% trans "Sponsor" %}</th>
+            <th>{% trans "Runner" %}</th>
+            <th>{% trans "Rate" %}</th>
+            <th>{% trans "Amount Earned" %}</th>
+            <th>{% trans "Amount Paid" %}</th>
+            <th>{% trans "Amount Left to Pay" %}</th>
+            <th>{% trans "Max Amount" %}</th>
+            <th>{% trans "Started" %}</th>
+            <th>{% trans "Continues Until" %}</th>
+            <th>{% trans "Active" %}</th>
+            <th>{% trans "Change Total Amount Paid" %}</th>
         </thead>
         {% for sponsorship in sponsorships %}
             {% if sponsorship.sponsor %}
@@ -60,11 +60,11 @@
         <h4>All Users</h4>
         <table class="table table-hover">
         <thead>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Is public</th>
-            <th>Amount Earned</th>
-            <th>Amount Donated</th>
+            <th>{% trans "Username" %}</th>
+            <th>{% trans "Email" %}</th>
+            <th>{% trans "Is public" %}</th>
+            <th>{% trans "Amount Earned" %}</th>
+            <th>{% trans "Amount Donated" %}</th>
         </thead>
         {% for user in all_users %}
                 <tr>
@@ -79,7 +79,7 @@
 
     <table class="table table-hover">
         <thead>
-            <th>All email addresses</th>
+            <th>{% blocktrans %}All email addresses{% endblocktrans %}</th>
         </thead>
         {% for email in all_emails %}
             {% if email %}
@@ -91,6 +91,8 @@
     </table>
 
     {% else %}
+    {% blocktrans %}
     Sorry, you need to be an admin to access this page.
+    {% endblocktrans %}
     {% endif %}
 {% endblock %}

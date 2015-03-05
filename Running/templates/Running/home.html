@@ -1,22 +1,25 @@
 {% extends "masanga_base.html" %}
-
+{% load i18n %}
 
 {% block head %}
 
 {% if user %}
-Hello, {{ user.username }}!</br>
+{% blocktrans with username=user.username %}Hello, {{ username }}!{% endblocktrans %}</br>
 <small>Not {{ user.username }}? Log out <a href="{% url 'account_logout' %}"> here.</a></small>
 
 
 {% else %}
-Log in or create an account <a href="{% url 'signup_or_login' %}">here.</a>
+{% trans "Log in or create an account" %}
+<a href="{% url 'signup_or_login' %}">
+{% trans "here." %}
+</a>
 {% endif %}
 
 {% endblock %}
 
 {% block body %}
 {% if user_list %}
-    <h3>Users:</h3>
+    <h3>{% trans "Users:" %}</h3>
     <table class="table table-hover">
     {% for user in user_list %}
         <tr>
@@ -25,6 +28,8 @@ Log in or create an account <a href="{% url 'signup_or_login' %}">here.</a>
     {% endfor %}
     </ul>
 {% else %}
-    <p>Huh, that's weird. We can't find any users. Check back later.</p>
+    <p>
+    {% trans "Huh, that's weird. We can't find any users. Check back later." %}
+    </p>
 {% endif %}
 {% endblock %}
