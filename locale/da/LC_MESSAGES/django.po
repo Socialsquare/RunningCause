@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-05 14:49+0100\n"
-"PO-Revision-Date: 2015-03-05 15:01+0050\n"
+"POT-Creation-Date: 2015-03-05 15:56+0100\n"
+"PO-Revision-Date: 2015-03-05 15:56+0050\n"
 "Last-Translator:   <niles@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,38 +19,36 @@ msgstr ""
 "X-Translated-Using: django-rosetta 0.7.5\n"
 
 #: Running/templates/Running/home.html:7
-#, fuzzy, python-format
-#| msgid "Hello, %(user.username)s!"
+#, python-format
 msgid "Hello, %(username)s!"
 msgstr "Hej, %(username)s!"
 
-#: Running/templates/Running/home.html:12
-#, fuzzy
-#| msgid " in or create an account"
-msgid "Log in or create an account"
-msgstr "Log ind eller "
+#: Running/templates/Running/home.html:8
+#, python-format
+#| msgid "Not %(username)s? Log out "
+msgid "Not %(username)s? Log out"
+msgstr "Er du ikke %(username)s? Så log ud"
 
+#: Running/templates/Running/home.html:8
 #: Running/templates/Running/home.html:14
-#, fuzzy
-#| msgid "e.</a>\n"
 msgid "here."
 msgstr "her."
+
+#: Running/templates/Running/home.html:12
+msgid "Log in or create an account"
+msgstr "Log ind eller "
 
 #: Running/templates/Running/home.html:22
 msgid "Users:"
 msgstr "Brugere:"
 
 #: Running/templates/Running/home.html:32
-#, fuzzy
-#| msgid "that's weird. We can't find any users. Check back later.</p>\n"
 msgid "Huh, that's weird. We can't find any users. Check back later."
 msgstr ""
 "Hvor mærkelig! Vi kan ikke finde nogen brugere i øjeblikket. Kom tilbage "
 "lidt senere."
 
 #: Running/templates/Running/invite.html:7
-#, fuzzy
-#| msgid "nsor a Runner\n"
 msgid "Sponsor a Runner"
 msgstr "Sponsore en løber."
 
@@ -75,7 +73,7 @@ msgstr ""
 #: Running/templates/Running/invite.html:61
 #: Running/templates/Running/run_edit.html:63
 #: Running/templates/Running/run_input.html:87
-#: Running/templates/Running/sponsorship.html:58
+#: Running/templates/Running/sponsorship.html:60
 msgid "Submit"
 msgstr ""
 
@@ -89,12 +87,12 @@ msgid "All sponsorships"
 msgstr "Alle sponsoreringer"
 
 #: Running/templates/Running/overview.html:14
-#: Running/templates/Running/user.html:20
+#: Running/templates/Running/user.html:21
 msgid "Sponsor"
 msgstr "Sponsor"
 
 #: Running/templates/Running/overview.html:15
-#: Running/templates/Running/user.html:132
+#: Running/templates/Running/user.html:133
 msgid "Runner"
 msgstr "Løber"
 
@@ -120,13 +118,13 @@ msgid "Max Amount"
 msgstr ""
 
 #: Running/templates/Running/overview.html:21
-#: Running/templates/Running/user.html:23
+#: Running/templates/Running/user.html:24
 msgid "Started"
 msgstr "Begyndte"
 
 #: Running/templates/Running/overview.html:22
-#: Running/templates/Running/user.html:24
-#: Running/templates/Running/user.html:135
+#: Running/templates/Running/user.html:25
+#: Running/templates/Running/user.html:136
 msgid "Continues Until"
 msgstr "Slutte"
 
@@ -187,8 +185,6 @@ msgstr ""
 "indtaste kun én løbetur."
 
 #: Running/templates/Running/run_input.html:31
-#, fuzzy
-#| msgid "ut a Run\n"
 msgid "Input a new Run"
 msgstr "Indlæse en løbetur"
 
@@ -216,8 +212,8 @@ msgid ""
 "of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a>\n"
 "for a %(site_name)s account and sign in below:"
 msgstr ""
-"Venlig log ind med en af dine konti. Eller, <a href=\"%signup_url)s\"> sign "
-"up </a> for en %(site_name)s konto og log ind nedenfor:"
+"Venlig log ind med en af dine konti. Eller, <a href=\"%(signup_url)s\"> sign"
+" up </a> for en %(site_name)s konto og log ind nedenfor:"
 
 #: Running/templates/Running/signup_or_login.html:32
 #: RunningCause/templates/account/login.html:25
@@ -230,7 +226,7 @@ msgstr "eller"
 #: RunningCause/templates/account/signup.html:35
 #: templates/account/login.html:64 templates/account/signup.html:57
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Glemt passord?"
 
 #: Running/templates/Running/signup_or_login.html:123
 #: RunningCause/templates/account/signup.html:11
@@ -241,78 +237,90 @@ msgstr ""
 msgid "Sign Up"
 msgstr "Lave en konto"
 
-#: Running/templates/Running/sponsorship.html:23
+#: Running/templates/Running/sponsorship.html:25
 msgid "Create a new Sponsorship"
 msgstr "Lave en nye sponsorering"
 
-#: Running/templates/Running/sponsorship.html:29
+#: Running/templates/Running/sponsorship.html:31
 msgid ""
 "Here are the values that were recommended for the sponsorship. Feel free to "
 "change whatever you'd like."
 msgstr ""
 
-#: Running/templates/Running/user.html:21
-#: Running/templates/Running/user.html:133
-msgid "Rate(kr/km)"
-msgstr ""
+#: Running/templates/Running/user.html:18
+msgid "Sponsorships Recieved"
+msgstr "Slut sponsoreringen"
 
 #: Running/templates/Running/user.html:22
 #: Running/templates/Running/user.html:134
+msgid "Rate(kr/km)"
+msgstr ""
+
+#: Running/templates/Running/user.html:23
+#: Running/templates/Running/user.html:135
 msgid "Maximum Possible Amount (kr)"
 msgstr ""
 
-#: Running/templates/Running/user.html:25
-#: Running/templates/Running/user.html:136
+#: Running/templates/Running/user.html:26
+#: Running/templates/Running/user.html:137
 msgid "Amount Earned (kr)"
 msgstr ""
 
-#: Running/templates/Running/user.html:40
-#: Running/templates/Running/user.html:149
+#: Running/templates/Running/user.html:41
+#: Running/templates/Running/user.html:150
 msgid "End Sponsorship"
+msgstr "Slut sponsoreringen"
+
+#: Running/templates/Running/user.html:61
+msgid "Anonymous Sponsor"
 msgstr ""
 
-#: Running/templates/Running/user.html:81
-#: Running/templates/Running/user.html:164
+#: Running/templates/Running/user.html:82
+#: Running/templates/Running/user.html:165
 msgid "Hmm, there don't seem to be any sponsorships here."
 msgstr "Hvor mærkelig! Vi kan ikke finde nogen sponsoreringer her."
 
-#: Running/templates/Running/user.html:89
+#: Running/templates/Running/user.html:90
 msgid "Total Amount Earned:"
 msgstr ""
 
-#: Running/templates/Running/user.html:101
+#: Running/templates/Running/user.html:98
+msgid "Runs:"
+msgstr "Løbeture:"
+
+#: Running/templates/Running/user.html:102
 msgid "Date"
 msgstr "Dato"
 
-#: Running/templates/Running/user.html:102
+#: Running/templates/Running/user.html:103
 msgid "Distance (km)"
 msgstr "Distance (km)"
 
-#: Running/templates/Running/user.html:109
+#: Running/templates/Running/user.html:110
 msgid "Edit Run Details"
 msgstr ""
 
-#: Running/templates/Running/user.html:114
+#: Running/templates/Running/user.html:115
 msgid "Hmm, there don't seem to be any runs here."
 msgstr "Hvor mærkelig! Vi kan ikke finde nogen løbeture her."
 
-#: Running/templates/Running/user.html:118
+#: Running/templates/Running/user.html:119
 msgid "Total Distance Run:"
 msgstr ""
 
-#: Running/templates/Running/user.html:170
+#: Running/templates/Running/user.html:171
 msgid "Total Amount Donated: "
 msgstr ""
 
-#: Running/templates/Running/user.html:182
+#: Running/templates/Running/user.html:183
 msgid "Input a run!"
 msgstr "Indtaste en løbetur!"
 
-#: Running/templates/Running/user.html:184
+#: Running/templates/Running/user.html:185
 msgid "Register with runkeeper!"
 msgstr "Tilmeld med Runkeeper!"
 
-#: Running/templates/Running/user.html:189
+#: Running/templates/Running/user.html:190
 #, python-format
 msgid ""
 "\n"
@@ -322,7 +330,7 @@ msgstr ""
 "\n"
 "Sponsore %(username)s!"
 
-#: Running/templates/Running/user.html:194
+#: Running/templates/Running/user.html:195
 #, python-format
 msgid ""
 "\n"
@@ -332,19 +340,19 @@ msgstr ""
 "\n"
 "Invite %(username)s til at sponsorere dig!"
 
-#: Running/templates/Running/user.html:204
+#: Running/templates/Running/user.html:205
 msgid "Sorry, this user has chosen to make their information private."
-msgstr "Den bruger har desværre besluttede sig at gør der information privat."
+msgstr "Den bruger har desværre besluttede sig at gør sin information privat."
 
-#: Running/templates/Running/user.html:217
+#: Running/templates/Running/user.html:218
 msgid "Click here to make your page private."
 msgstr "Klik her til at gøre din side privat."
 
-#: Running/templates/Running/user.html:222
+#: Running/templates/Running/user.html:223
 msgid "You have to make your page public before you can share it."
 msgstr "Du må gør din side offentlig før du kan dele den."
 
-#: Running/templates/Running/user.html:223
+#: Running/templates/Running/user.html:224
 msgid "Click here to make your page public."
 msgstr "Klik her til at gøre din side offentlig."
 

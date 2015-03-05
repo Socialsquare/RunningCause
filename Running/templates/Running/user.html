@@ -15,7 +15,7 @@
 
     {% if is_runner %}
 
-        Sponsorships Recieved: </br>
+        {% trans "Sponsorships Recieved" %} </br>
         <table class="table table-hover">
             <thead>
                 <th>{% trans "Sponsor" %}</th>
@@ -58,7 +58,7 @@
                     {% if sponsorship.is_active %}
 
                         <tr>
-                            <td>Anonymous Sponsor</td>
+                            <td>{% trans "Anonymous Sponsor" %}</td>
                             <td>{{ sponsorship.rate }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
                             <td>{{ sponsorship.start_date }}</td>
@@ -95,7 +95,7 @@
 
 
 
-        Runs:</br>
+        {% trans "Runs:" %}</br>
 
         <table class="table table-hover">
             <tr>

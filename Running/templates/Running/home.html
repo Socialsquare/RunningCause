@@ -5,7 +5,7 @@
 
 {% if user %}
 {% blocktrans with username=user.username %}Hello, {{ username }}!{% endblocktrans %}</br>
-<small>Not {{ user.username }}? Log out <a href="{% url 'account_logout' %}"> here.</a></small>
+<small>{% blocktrans with username=user.username %}Not {{ username }}? Log out{% endblocktrans %} <a href="{% url 'account_logout' %}">{% trans "here." %}</a></small>
 
 
 {% else %}
@@ -32,4 +32,19 @@
     {% trans "Huh, that's weird. We can't find any users. Check back later." %}
     </p>
 {% endif %}
+    </table>
+
+<form action="{% url 'set_language' %}" method="post">
+{% csrf_token %}
+<input name="next" type="hidden" value="{{ redirect_to }}" />
+<select name="language">
+{% get_language_info_list for LANGUAGES as languages %}
+{% for language in languages %}
+<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+    {{ language.name_local }} ({{ language.code }})
+</option>
+{% endfor %}
+</select>
+<input type="submit" value="Go" />
+</form>
 {% endblock %}

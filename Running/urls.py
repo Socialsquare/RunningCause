@@ -5,6 +5,8 @@ from django.conf import settings
 urlpatterns = patterns('',
     (r'^account/logout/$', 'django.contrib.auth.views.logout',
                           {'next_page': '/'}),
+    (r'^i18n/', include('django.conf.urls.i18n')),
+
     url(r'^account/', include('allauth.urls')),
     url(r'^(?P<user_id>\S+)/profile/$', views.user, name='user'),
     url(r'^(?P<runner_id>\S+)/input_run/$', views.input_run, name='input'),

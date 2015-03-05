@@ -24,6 +24,7 @@ from django.template import RequestContext, loader, Context, Template
 # The main homepage. Displays a list of all users.
 def home(request):
 
+    print request.LANGUAGE_CODE
     # If a redirect URL has been specificed, that is what we should be showing
     # the user. Redirect there.
     if 'redirect' in request.session:
