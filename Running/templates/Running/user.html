@@ -15,7 +15,9 @@
 
     {% if is_runner %}
 
-        {% trans "Sponsorships Recieved" %} </br>
+        </br>
+        <div class="panel panel-default">
+        <div class="panel-heading">{% trans "Sponsorships Recieved" %}</div>
         <table class="table table-hover">
             <thead>
                 <th>{% trans "Sponsor" %}</th>
@@ -92,16 +94,17 @@
                 </tr>
             {% endif %}
         </table>
+        </div>
 
-
-
-        {% trans "Runs:" %}</br>
-
+        </br>
+        <div class="panel panel-default">
+        <div class="panel-heading">{% trans "Runs:" %}</div>
         <table class="table table-hover">
-            <tr>
+        <table class="table table-hover">
+            <thead>
                 <th>{% trans "Date" %}</th>
                 <th>{% trans "Distance (km)" %}</th>
-            </tr>
+            </thead>
         {% for run in runs %}
                 <tr> 
                     <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
@@ -121,13 +124,16 @@
         <tr>
         {% endif %}
         </table>
+    </div>
 
 
     {% endif %}
 
     {% if is_sponsor %}
-
-            Sponsoring: </br>
+        </br>    
+        <div class="panel panel-default">
+        <div class="panel-heading">{% trans "Sponsoring:" %}</div>
+        <table class="table table-hover">
             <table class="table table-hover">
             <thead>
                 <th>{% trans "Runner" %}</th>
@@ -174,6 +180,7 @@
 
                 </tr>
             </table>
+        </div>
 
     {% endif %}
 

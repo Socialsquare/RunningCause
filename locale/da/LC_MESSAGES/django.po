@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-05 15:56+0100\n"
-"PO-Revision-Date: 2015-03-05 15:56+0050\n"
+"PO-Revision-Date: 2015-03-06 13:41+0050\n"
 "Last-Translator:   <niles@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr ""
 
 #: Running/templates/Running/user.html:18
 msgid "Sponsorships Recieved"
-msgstr "Slut sponsoreringen"
+msgstr "Fået sponsoreringer"
 
 #: Running/templates/Running/user.html:22
 #: Running/templates/Running/user.html:134

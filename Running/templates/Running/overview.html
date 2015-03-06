@@ -8,7 +8,8 @@
 
 {% block body %}
     {% if request.user.is_staff %}
-    <h4>{% blocktrans %}All sponsorships{% endblocktrans %}</h4>
+        <div class="panel panel-default">
+        <div class="panel-heading"><h4>{% trans "All sponsorships" %}</h4></div>
         <table class="table table-hover">
         <thead>
             <th>{% trans "Sponsor" %}</th>
@@ -56,8 +57,10 @@
             {% endif %}
         {% endfor %}
         </table>
+    </div>
 
-        <h4>All Users</h4>
+        <div class="panel panel-default">
+        <div class="panel-heading"><h4>{% trans "All Users" %}</h4></div>
         <table class="table table-hover">
         <thead>
             <th>{% trans "Username" %}</th>
@@ -76,11 +79,11 @@
                 </tr>
         {% endfor %}
         </table>
-
+    </div>
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4>{% trans "All email addresses" %}</h4></div>
     <table class="table table-hover">
-        <thead>
-            <th>{% blocktrans %}All email addresses{% endblocktrans %}</th>
-        </thead>
+
         {% for email in all_emails %}
             {% if email %}
                 <tr>
@@ -89,10 +92,9 @@
             {% endif %}
         {% endfor %}
     </table>
+    </div>
 
     {% else %}
-    {% blocktrans %}
-    Sorry, you need to be an admin to access this page.
-    {% endblocktrans %}
+    {% trans "Sorry, you need to be an admin to access this page." %}
     {% endif %}
 {% endblock %}
