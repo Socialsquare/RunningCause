@@ -527,7 +527,10 @@ def invite_sponsor(request, sponsor_id=None):
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text})))
 
                 # Redirect to the profile or the user with id user_id.
-                url = reverse('Running.views.user', kwargs={'user_id': user_id})
+                if sponsor_id:
+                    url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
+                else:
+                    url = reverse('Running.views.user', kwargs={'user_id': user_id})
                 return HttpResponseRedirect(url)
 
         else:
