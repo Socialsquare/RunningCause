@@ -1,6 +1,16 @@
+{% load staticfiles %}
+{% load less %}
+{% load i18n %}
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/fonts.css' %}" />
+        <link rel='stylesheet' id='google-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700&#038;ver=3.1' type='text/css' media='all' />
+
         <style type="text/css">
             .bg-white{
                 background: #ffffff;
@@ -8,11 +18,10 @@
             *{
                 margin:0;
                 padding:0;
+                font-family:'lato', 'font awesome', 'Helvetica';
             }
         </style>
-        {% load staticfiles %}
-        {% load less %}
-        {% load widget_tweaks %}
+
 
         {% block imports %}
         {% endblock %}
@@ -20,8 +29,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}" />
-        
+
         <title>
         {% block title %}
         Masanga Runners
@@ -40,14 +48,18 @@
                 <div class="container-fluid">
                     <div class = "row" style="background-color:white;">
                         <div class = "col-md-11 col-md-offset-1">
-                            <img src={% static 'img/masanga_logo_header.png' %} alt="Masanga Logo" style="height:80px; width:325px; margin-top:15px; margin-bottom:15px;">
+                            <a href="{% url 'Running.views.home' %}">
+                            <img src={% static 'img/masanga_logo_header.png' %} alt="Masanga Logo" style="height:75px; width:335px; margin-left: -16px; margin-top:15px; margin-bottom:20px;">
+                        </a>
                         </div>
                     </div>
                     <div class="row" style="margin:0; padding:0">
                     <div class="col-md-10 col-md-offset-1" style="padding:0;">
-                    <div class="navbar-header" style="padding:0;">
-                        <a class="navbar-brand" href="{% url 'Running.views.home' %}" style="text-decoration:none;  padding:0; margin:0;"><h4 style="color:white;">Masanga Runners</h4></a>
-                        </div>
+                    <div class="navbar navbar-collapse" style="padding:0; margin:0; border:none;">
+                        <ul class="nav navbar-nav" style="padding:0;">
+                            <li>
+                                <a href="{% url 'Running.views.home' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "ABOUT US" %}</a>
+                            </li>
                         </div>
                     </div>
                 </div>
