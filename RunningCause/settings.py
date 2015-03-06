@@ -193,6 +193,7 @@ ALLOWED_HOSTS = ['*']
 import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
+#from django.contrib.sites.models import Site
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (

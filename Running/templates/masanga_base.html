@@ -5,6 +5,10 @@
             .bg-white{
                 background: #ffffff;
             }
+            *{
+                margin:0;
+                padding:0;
+            }
         </style>
         {% load staticfiles %}
         {% load less %}
@@ -24,27 +28,33 @@
         {% endblock %}
         </title>
 
-        <nav class="navbar navbar-default navbar-fixed-top" >
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <div class="row" style="margin:0; padding:0">
-                    <div class="col-md-10 col-md-offset-1" style="padding:0;">
-                    <div class="navbar-header" style="margin-left:-14px; padding:0;">
-                        <a class="navbar-brand" href="{% url 'Running.views.home' %}" style="text-decoration:none;  padding-top:0;"><h1 style="color:white;">Masanga Runners</h1></a>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
         <script type="text/javascript">var switchTo5x=true;</script>
         <script type="text/javascript" src="/static/js/share-button.js"></script>
         <script type="text/javascript">stLight.options({publisher: "e033e79e-cab3-4986-8e88-8a8043ef80a5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
     </head>
 
-    <body style="padding-top: 70px;">
+    <body>
+        <nav class="navbar navbar-default" >
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <div class = "row" style="background-color:white;">
+                        <div class = "col-md-11 col-md-offset-1">
+                            <img src={% static 'img/masanga_logo_header.png' %} alt="Masanga Logo" style="height:80px; width:325px; margin-top:15px; margin-bottom:15px;">
+                        </div>
+                    </div>
+                    <div class="row" style="margin:0; padding:0">
+                    <div class="col-md-10 col-md-offset-1" style="padding:0;">
+                    <div class="navbar-header" style="padding:0;">
+                        <a class="navbar-brand" href="{% url 'Running.views.home' %}" style="text-decoration:none;  padding:0; margin:0;"><h4 style="color:white;">Masanga Runners</h4></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
         <div class="container-fluid">
+
             <div class = "row">
 
                 <div class="col-md-1"></div>

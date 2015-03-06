@@ -48,6 +48,7 @@ def home(request):
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, user_id):
 
+    print request.META['HTTP_HOST']
     # Get the user, or 404 if you can't find them.
     user = get_object_or_404(User, pk=user_id)
 
@@ -524,7 +525,7 @@ def invite_sponsor(request, sponsor_id=None):
                             'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
                             [email], 
                             fail_silently=False,
-                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text})))
+                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
 
                 # Redirect to the profile or the user with id user_id.
                 if sponsor_id:
