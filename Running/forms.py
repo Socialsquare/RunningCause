@@ -90,6 +90,14 @@ class InviteForm(forms.Form):
 
         return valid
 
+class EmailInviteForm(InviteForm):
+    email = forms.EmailField(label="Potential Sponsor's email account:",
+                                widget=forms.TextInput(attrs={'class':'form-control'}))
+
+    def __init__(self, *args, **kwargs):
+        super(EmailInviteForm, self).__init__(*args, **kwargs)
+        self.fields.keyOrder = ['rate', 'start_date', 'end_date', 'max_amount', 'email']
+
 class SignupForm(forms.Form):
     public_info = forms.BooleanField(label="Do you want your sponsorships to be publicly visible?", 
                                         widget=forms.CheckboxInput(),

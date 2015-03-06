@@ -184,6 +184,8 @@
 
     <h4><a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> {% trans "Register with runkeeper!" %}</a></h4>
 
+    <h4><a href="{% url 'Running.views.invite_sponsor' %}" class="btn btn-default"> {% trans "Invite a sponsor without a Masanga Runners account!" %}</a></h4>
+
     {% else %}
 
     <h4><a href="{% url 'Running.views.sponsor' user.id %}" class="btn btn-default"> 

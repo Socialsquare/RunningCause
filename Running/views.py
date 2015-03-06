@@ -443,7 +443,10 @@ def sponsor(request, sponsee_id, sponsorship_id=None):
     return render(request, 'Running/sponsorship.html', context)
 
 # Invites a the user with id sponsor_id to sponsor the user that's currently logged in.
-def invite_sponsor(request, sponsor_id):
+def invite_sponsor(request, sponsor_id=None):
+
+    print sponsor_id
+
 
     # If this view was called with POST data, or the field 'form' in request.session,
     # then the data has already been filled out.
@@ -455,17 +458,16 @@ def invite_sponsor(request, sponsor_id):
             # If this view was called with POST data, make an instance of SponsorForm from
             # the data.
             if request.method == 'POST':
-                form = forms.InviteForm(request.POST)
+                if sponsor_id:
+                    form = forms.InviteForm(request.POST)
+                else:
+                    form = forms.EmailInviteForm(request.POST)
 
             # If this view was called with 'form' in the session data, make an instance of 
             # SponsorForm from the data.
             else:
                 form = forms.InviteForm(request.session.pop('form'))
 
-            # Get the user objects for the potential sponsor and sponsee.
-            user_id = request.user.id
-            sponsee = get_object_or_404(User, pk=user_id)
-            sponsor = get_object_or_404(User, pk=sponsor_id)
 
             # If the form is valid, get the data from it, and then make a sponsorship
             # object from that data. Notably, make sure that the sponsor is None.
@@ -473,6 +475,17 @@ def invite_sponsor(request, sponsor_id):
             # If the potential sponsor accepts, a new sponsorship will be made,
             # listing them as the sponsor.
             if form.is_valid():
+
+                # Get the user objects for the potential sponsor and sponsee.
+                user_id = request.user.id
+                sponsee = get_object_or_404(User, pk=user_id)
+                if sponsor_id:
+                    sponsor = get_object_or_404(User, pk=sponsor_id)
+                    email = sponsor.email
+                else:
+                    email = form.cleaned_data['email']
+                
+
                 rate = form.cleaned_data['rate']
                 start_date = form.cleaned_data['start_date']
                 end_date = form.cleaned_data['end_date']
@@ -509,12 +522,12 @@ def invite_sponsor(request, sponsor_id):
                 send_mail('Sponsorship Invitation', 
                             message_text, 
                             'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
-                            [sponsor.email], 
+                            [email], 
                             fail_silently=False,
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text})))
 
                 # Redirect to the profile or the user with id user_id.
-                url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
+                url = reverse('Running.views.user', kwargs={'user_id': user_id})
                 return HttpResponseRedirect(url)
 
         else:
@@ -530,9 +543,15 @@ def invite_sponsor(request, sponsor_id):
 
     # Otherwise, prepare the page with the sponsorship form for the user.
     # Get the user object, then create an instance of form if it hasn't already been created.
-    sponsor = get_object_or_404(User, pk=sponsor_id)
+    if sponsor_id:
+        sponsor = get_object_or_404(User, pk=sponsor_id)
+    else:
+        sponsor = None
     if 'form' not in locals():
-        form = forms.InviteForm
+        if sponsor_id:
+            form = forms.InviteForm
+        else:
+            form = forms.EmailInviteForm
 
     # Use our variables to make a context.
     context = {'sponsor': sponsor,
