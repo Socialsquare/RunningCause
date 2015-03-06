@@ -616,7 +616,7 @@ def input_run(request, runner_id):
                                 'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
                                 relevant_emails, 
                                 fail_silently=False,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text})))
+                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request})))
 
                     # Redirect to the user's page.
                     url = reverse('Running.views.user', kwargs={'user_id': runner_id})

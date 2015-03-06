@@ -148,6 +148,8 @@ LANGUAGES = (
     ('da', ugettext('Danish')),
     )
 
+BASE_DOMAIN = 'vast-waters-4465.herokuapp.com/'
+
 TIME_ZONE = 'Europe/Copenhagen'
 
 USE_I18N = True
