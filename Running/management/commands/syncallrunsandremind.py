@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail
+from django.conf import settings
 from Running.models import User, Run
 from django.template import RequestContext, loader, Context, Template
 import requests
@@ -40,7 +41,7 @@ class Command(BaseCommand):
                 if user.email != None:
                     all_addresses += [user.email]
             all_addresses = [i for i in all_addresses if i != '']
-            message = 'Hello! Since you\'re not using runkeeper to automatically keep your runs updated, you should probably enter your runs on Masanga Runners!' , 
+            message = 'Hello! Since you\'re not using runkeeper to automatically keep your runs updated, you should probably enter your runs on Masanga Runners!'
             for address in all_addresses:
                 if address:
                     send_mail('Reminder', 
@@ -49,7 +50,7 @@ class Command(BaseCommand):
                                 [address], 
                                 fail_silently=False,
                                 html_message=loader.get_template('Running/email.html').render(Context({'message': message, 
-                                                                                                        'request': request, 
+                                                                                                        'request': None, 
                                                                                                         'domain': settings.BASE_DOMAIN})))
 
             self.stdout.write('Sent reminder mail')
