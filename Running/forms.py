@@ -7,7 +7,8 @@ DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
 class SponsorForm(forms.ModelForm):
     rate = forms.FloatField(label="Rate", 
-                            widget=forms.TextInput(attrs={'class':'form-control'}))
+                            widget=forms.TextInput(attrs={'class':'form-control'}),
+                            localize=True)
     start_date = forms.DateField(label="Sponsorship start date", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
                                                                         'id':'start_datepicker', 
@@ -18,7 +19,9 @@ class SponsorForm(forms.ModelForm):
                                                                         'id':'end_datepicker', 
                                                                         'autocomplete':"off"}),
                                 required=True)
-    max_amount = forms.FloatField(label="Maximum total amount", widget=forms.TextInput(attrs={'class':'form-control'}), localize=True)
+    max_amount = forms.FloatField(label="Maximum total amount", 
+                                    widget=forms.TextInput(attrs={'class':'form-control'}), 
+                                    localize=True)
 
     class Meta:
         model = Sponsorship
@@ -47,13 +50,15 @@ class SponsorForm(forms.ModelForm):
 
 class PaidForm(forms.Form):
     amount = forms.FloatField(label="Amount",
-                                widget=forms.TextInput(attrs={'class':'form-control'}))
+                                widget=forms.TextInput(attrs={'class':'form-control'}),
+                                localize=True)
     sponsorship_id = forms.IntegerField(widget=forms.HiddenInput())
 
 class InviteForm(forms.Form):
     rate = forms.FloatField(label="Rate", 
                             widget=forms.TextInput(attrs={'class':'form-control'}),
-                            required=False)
+                            required=False,
+                            localize=True)
     start_date = forms.DateField(label="Sponsorship start date", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
                                                                         'id':'start_datepicker', 
@@ -66,7 +71,8 @@ class InviteForm(forms.Form):
                                 required=False)
     max_amount = forms.IntegerField(label="Maximum total amount", 
                                     widget=forms.TextInput(attrs={'class':'form-control'}),
-                                    required=False)
+                                    required=False,
+                                    localize=True)
 
     def is_valid(self):
  
@@ -113,11 +119,13 @@ class SignupForm(forms.Form):
         user.save()
 
 class RunInputForm(forms.ModelForm):
-    distance = forms.FloatField(label="Distance in km", widget=forms.TextInput(attrs={'class':'form-control'}))
+    distance = forms.FloatField(label="Distance in km", 
+                                widget=forms.TextInput(attrs={'class':'form-control'}),
+                                localize=True)
     start_date = forms.DateField(label="Run date", 
-                            widget=forms.DateInput(attrs={'class':'form-control', 
-                                                            'id':'start_datepicker', 
-                                                            'autocomplete':"off"}))
+                                    widget=forms.DateInput(attrs={'class':'form-control', 
+                                                                    'id':'start_datepicker', 
+                                                                    'autocomplete':"off"}))
     end_date = forms.DateField(label="End date", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
                                                             'id':'end_datepicker', 
