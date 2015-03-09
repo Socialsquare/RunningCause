@@ -107,6 +107,13 @@ def user(request, user_id):
     # Render and return the page based on the context.
     return render(request, 'Running/user.html', context)
 
+def my_page(request):
+    if request.user.is_authenticated():
+        url = reverse('Running.views.user', kwargs={'user_id': request.user.id})
+    else:
+        url = reverse('Running.views.signup_or_login')
+    return HttpResponseRedirect(url)
+
 # When called with correct authorization, makes the profile of the user 
 # with user id user_id public.
 def make_user_public(request, user_id):

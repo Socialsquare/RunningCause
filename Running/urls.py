@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     (r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^account/', include('allauth.urls')),
+    url(r'^my_page/$', views.my_page, name='my_page'),
     url(r'^(?P<user_id>\S+)/profile/$', views.user, name='user'),
     url(r'^(?P<runner_id>\S+)/input_run/$', views.input_run, name='input'),
     url(r'^(?P<run_id>\S+)/edit_run/$', views.edit_run, name='edit'),
