@@ -194,10 +194,14 @@ def overview(request):
     all_users = User.objects.order_by('username')
     all_emails = [user.email for user in all_users]
 
+    newsletter_users = User.objects.filter(newsletter=True)
+    newsletter_emails = [user.email for user in newsletter_users]
+
     # Build a context from the sponsorships, users, emails and the PaidForm
     context = {'sponsorships': sponsorships,
                 'all_users': all_users,
                 'all_emails': all_emails,
+                'newsletter_emails': newsletter_emails,
                 'form': forms.PaidForm,
                 }
 

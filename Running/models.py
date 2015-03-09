@@ -23,6 +23,8 @@ class User(auth.models.AbstractUser):
     #   This variable is an access token to be used with RunKeeper, if the user has connected with it yet.
     access_token = models.CharField('Access token', max_length=200, default="", blank=True)
 
+    newsletter = models.BooleanField('Newsletter?', default=False)
+
     #   This determines whether or not our user is a "runner". This is only to affect some UI on their profile.
     @property
     def is_runner(self):

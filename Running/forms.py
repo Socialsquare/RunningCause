@@ -103,9 +103,13 @@ class SignupForm(forms.Form):
                                         widget=forms.CheckboxInput(),
                                         required=False)
 
+    newsletter = forms.BooleanField(label="Would you like to recieve the Masanga newsletter?",
+                                        widget=forms.CheckboxInput(),
+                                        required=False)
+
     def signup(self, request, user):
         user.is_public = self.cleaned_data['public_info']
-        # user.last_name = self.cleaned_data['last_name']
+        user.newsletter = self.cleaned_data['newsletter']
         user.save()
 
 class RunInputForm(forms.ModelForm):

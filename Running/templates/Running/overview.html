@@ -94,6 +94,24 @@
     </table>
     </div>
 
+    <div class="panel panel-default">
+    <div class="panel-heading"><h4>{% trans "Newsletter email addresses" %}</h4></div>
+    <table class="table table-hover">
+
+        {% for email in newsletter_emails %}
+            {% if email %}
+                <tr>
+                    <td>{{ email }}</td>
+                </tr>
+            {% endif %}
+        {% empty %}
+            <tr>
+                <td>No users currently want the newsletter</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+
     {% else %}
     {% trans "Sorry, you need to be an admin to access this page." %}
     {% endif %}
