@@ -19,7 +19,6 @@
 {% endblock %}
 
 {% block body %}
-
 {% blocktrans %}
 <h4>Every step makes the world a little better</h4>
 <p>Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.</p>
@@ -51,18 +50,4 @@
     </p>
 {% endif %}
     </table>
-
-<form action="{% url 'set_language' %}" method="post">
-{% csrf_token %}
-<input name="next" type="hidden" value="{{ redirect_to }}" />
-<select name="language">
-{% get_language_info_list for LANGUAGES as languages %}
-{% for language in languages %}
-<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-    {{ language.name_local }} ({{ language.code }})
-</option>
-{% endfor %}
-</select>
-<input type="submit" value="Go" />
-</form>
 {% endblock %}
