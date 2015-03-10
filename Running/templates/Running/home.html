@@ -3,6 +3,7 @@
 
 {% block head %}
 
+
 {% if user %}
 {% blocktrans with username=user.username %}Hello, {{ username }}!{% endblocktrans %}</br>
 <small>{% blocktrans with username=user.username %}Not {{ username }}? Log out{% endblocktrans %} <a href="{% url 'account_logout' %}">{% trans "here." %}</a></small>

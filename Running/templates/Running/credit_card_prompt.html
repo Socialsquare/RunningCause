@@ -1,0 +1,53 @@
+{% extends "masanga_base.html" %}
+{% load i18n %}
+
+{% block imports %}
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<form id="payment-form" action="{% url 'register_customer' %}" method="POST">
+{% csrf_token %}
+</form>
+{% endblock %}
+
+{% block head %}
+{% trans "Register a Credit Card" %}
+{% endblock %}
+
+{% block body %}
+<h4>{% trans "Either register a credit card, or continue to our homepage " %}
+    <a href={% url 'home' %}>{% trans "here." %}</a></h4>
+</br>
+<button class="btn btn-default" id="registerButton">Register your card with Masanga Runners</button>
+<script>
+  var handler = StripeCheckout.configure({
+    key: '{{ stripe_public_key }}',
+    image: '/img/documentation/checkout/marketplace.png',
+    currency: 'dkk',
+    bitcoin: false,
+    email: '{{ email }}',
+    allowRememberMe: false,
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+      var $form = $("#payment-form");
+      var token = token.id;
+      $form.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+      $form.get(0).submit();
+    }
+  });
+
+  $('#registerButton').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Masanga Runners',
+      description: 'Register with Masanga Runners!',
+      amount: 0
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+</script>
+{% endblock %}

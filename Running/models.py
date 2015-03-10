@@ -29,6 +29,8 @@ class User(auth.models.AbstractUser):
 
     stripe_customer_id = models.CharField('Stripe Customer Id', max_length=200, null=True, default=None)
 
+    greeted = models.BooleanField('Greeted?', default=False)
+
     #   This determines whether or not our user is a "runner". This is only to affect some UI on their profile.
     @property
     def is_runner(self):

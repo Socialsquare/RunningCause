@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from Running.models import Sponsorship, Run, User
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.conf.urls import patterns, url
 from django.utils import timezone
 from allauth.account.forms import LoginForm, SignupForm
@@ -11,12 +12,13 @@ from dateutil.relativedelta import relativedelta
 import requests
 from Running import forms
 import time
+import stripe
 import healthgraph
 import json
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template import RequestContext, loader, Context, Template
-
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 
@@ -24,7 +26,6 @@ from django.template import RequestContext, loader, Context, Template
 # The main homepage. Displays a list of all users.
 def home(request):
 
-    print request.LANGUAGE_CODE
     # If a redirect URL has been specificed, that is what we should be showing
     # the user. Redirect there.
     if 'redirect' in request.session:
@@ -32,6 +33,7 @@ def home(request):
 
     # Otherwise, get a list of all users, sorted by their username.
     user_list = User.objects.order_by('username')
+
 
     # Create the context, using the user if authenticated.
     if request.user.is_authenticated():
@@ -45,6 +47,35 @@ def home(request):
 
     return render(request, 'Running/home.html', context)
 
+
+def sign_in_landing(request):
+    user = get_object_or_404(User, pk=request.user.id)
+    if not user.greeted:
+        user.greeted = True
+        user.save()
+        url = reverse('Running.views.credit_card_prompt')
+        return HttpResponseRedirect(url)
+    url = reverse('Running.views.home')
+    return HttpResponseRedirect(url)
+
+def credit_card_prompt(request):
+    user = get_object_or_404(User, pk=request.user.id)
+    return render(request, 'Running/credit_card_prompt.html', {'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+                                                                'email':user.email})
+
+@csrf_exempt
+def register_customer(request):
+    if request.user.is_authenticated():
+        user = get_object_or_404(User, pk=request.user.id)
+        token = request.POST['stripeToken']
+        customer = stripe.Customer.create(
+            source=token,
+            description=user.username)
+
+        user.stripe_customer_id = customer.id
+        user.save()
+
+        return render(request, 'Running/credit_card_success.html', {})
 
 def unsubscribe(request):
     if request.user.is_authenticated():
