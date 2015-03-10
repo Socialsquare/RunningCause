@@ -34,8 +34,6 @@ def home(request):
     # Otherwise, get a list of all users, sorted by their username.
     user_list = User.objects.order_by('username')
 
-    print settings.STRIPE_PUBLIC_KEY
-
     # Create the context, using the user if authenticated.
     if request.user.is_authenticated():
         context = {'user_list': user_list,
