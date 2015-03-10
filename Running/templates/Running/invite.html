@@ -12,9 +12,17 @@
     <script src="/static/js/bootstrap-datepicker.js"></script>
     <script type=text/javascript>
     $(document).ready(function() {
-        $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
-        $('#end_datepicker').datepicker({format:'yyyy-mm-dd'});
-
+        date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var yearString = year + "-" + month + "-" + day;
+        $('#start_datepicker').datepicker({
+            format:'yyyy-mm-dd'
+        }).val(yearString);
+        $('#end_datepicker').datepicker({
+            format:'yyyy-mm-dd'
+        }).val(yearString);
     });
     </script>
 {% endblock %}
