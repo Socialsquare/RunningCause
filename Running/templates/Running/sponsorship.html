@@ -43,8 +43,8 @@ Sponsor a Runner
 
 {% if form.errors %}
     {% for error in form.non_field_errors %}
-        <div class="alert alert-error col-sm-offset-2">
-                <strong>{{ error|escape }}</strong>
+        <div class="alert alert-danger col-sm-offset-2">
+            {{ error|escape }}
         </div>
     {% endfor %}
 
@@ -53,8 +53,8 @@ Sponsor a Runner
     {% csrf_token %}
     {% for field in form %}
         {% for error in field.errors %}
-            <div class="alert alert-error col-sm-offset-2">
-                <strong>{{ error|escape }}</strong>
+            <div class="alert alert-danger col-sm-offset-2">
+                {{ error|escape }}
             </div>
         {% endfor %}
     <div class="form-group">

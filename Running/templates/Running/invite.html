@@ -49,9 +49,9 @@ Fill out this form with the values you'd like to suggest to {{ sponsor_name }}. 
 </br>
 {% if form.errors %}
     {% for error in form.non_field_errors %}
-        <div class="alert alert-error col-sm-offset-2">
-                <strong>{{ error|escape }}</strong>
-        </div>
+      <div class="alert alert-danger">
+        {{ error }}
+      </div>
     {% endfor %}
 
 {% endif %}
@@ -63,9 +63,9 @@ Fill out this form with the values you'd like to suggest to {{ sponsor_name }}. 
     {% csrf_token %}
     {% for field in form %}
         {% for error in field.errors %}
-            <div class="alert alert-error col-sm-offset-2">
-                <strong>{{ error|escape }}</strong>
-            </div>
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
         {% endfor %}
     <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">{{ field.label }}</label>
