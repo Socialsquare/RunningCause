@@ -25,6 +25,10 @@ class User(auth.models.AbstractUser):
 
     newsletter = models.BooleanField('Newsletter?', default=False)
 
+    subscribed = models.BooleanField('Subscribed to emails?', default=True)
+
+    stripe_customer_id = models.CharField('Stripe Customer Id', max_length=200, null=True, default=None)
+
     #   This determines whether or not our user is a "runner". This is only to affect some UI on their profile.
     @property
     def is_runner(self):

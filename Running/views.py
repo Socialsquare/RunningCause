@@ -45,6 +45,15 @@ def home(request):
 
     return render(request, 'Running/home.html', context)
 
+
+def unsubscribe(request):
+    if request.user.is_authenticated():
+        user = get_object_or_404(User, pk=request.user.id)
+        user.subscribed = False
+        user.save()
+
+        return render(request, 'Running/unsubscribed_success.html', {})
+
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, user_id):
 
@@ -192,7 +201,8 @@ def overview(request):
 
     # Get all users, and use this to get a list of all email addresses.
     all_users = User.objects.order_by('username')
-    all_emails = [user.email for user in all_users]
+    all_subscribed_users = all_users.filter(subscribed=True)
+    all_emails = [user.email for user in all_subscribed_users]
 
     newsletter_users = User.objects.filter(newsletter=True)
     newsletter_emails = [user.email for user in newsletter_users]

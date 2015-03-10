@@ -98,7 +98,7 @@
 
         </br>
         <div class="panel panel-default">
-        <div class="panel-heading">{% trans "Runs:" %}</div>
+        <div class="panel-heading">{% trans "Runs" %}</div>
         <table class="table table-hover">
         <table class="table table-hover">
             <thead>
@@ -132,7 +132,11 @@
     {% if is_sponsor %}
         </br>    
         <div class="panel panel-default">
-        <div class="panel-heading">{% trans "Sponsoring:" %}</div>
+        {% if own_page %}
+        <div class="panel-heading">{% trans "You are sponsoring" %}</div>
+        {% else %}
+        <div class="panel-heading">{% blocktrans with username=user.username %}{{ username }} is sponsoring{% endblocktrans %}</div>
+        {% endif %}
         <table class="table table-hover">
             <table class="table table-hover">
             <thead>
@@ -233,6 +237,10 @@
     <td><a href="{% url 'Running.views.make_user_public' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a></td>
 
 
+{% endif %}
+
+{% if own_page %}
+    <h4><a href="{% url 'Running.views.unsubscribe' %}" class="btn btn-default"> {% trans "Unsubscribe from our emails" %}</a></h4>
 {% endif %}
 
 {% endblock %}
