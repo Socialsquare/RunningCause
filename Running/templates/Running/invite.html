@@ -50,7 +50,7 @@ Fill out this form with the values you'd like to suggest to {{ sponsor_name }}. 
 {% if form.errors %}
     {% for error in form.non_field_errors %}
       <div class="alert alert-danger">
-        {{ error }}
+        {{ error|escape }}
       </div>
     {% endfor %}
 
@@ -64,7 +64,7 @@ Fill out this form with the values you'd like to suggest to {{ sponsor_name }}. 
     {% for field in form %}
         {% for error in field.errors %}
           <div class="alert alert-danger">
-            {{ error }}
+            {{ error|escape }}
           </div>
         {% endfor %}
     <div class="form-group">
