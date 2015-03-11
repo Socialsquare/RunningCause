@@ -15,7 +15,8 @@ class Command(BaseCommand):
     #     parser.add_argument('poll_id', nargs='+', type=int)
 
     def handle(self, *args, **options):
-        if datetime.datetime.today().weekday() == 0:
+        print datetime.datetime.today().day
+        if datetime.datetime.today().day == 1:
             users_with_tokens = User.objects.exclude(access_token="")
             for user in users_with_tokens:
                 r = requests.get('https://api.runkeeper.com/fitnessActivities', headers={'Authorization': 'Bearer %s' % user.access_token})
