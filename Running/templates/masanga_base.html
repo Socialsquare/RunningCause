@@ -66,6 +66,11 @@
                             <li>
                                 <a href="{% url 'Running.views.my_page' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "MY PAGE" %}</a>
                             </li>
+                            <li>
+                                {% if perms.contains.is_staff %}
+                                <a href="{% url 'Running.views.overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
+                                {% endif %}
+                            </li>
                         </div>
                     </div>
                 </div>
