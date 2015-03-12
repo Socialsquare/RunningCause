@@ -18,18 +18,26 @@ class Command(BaseCommand):
         amount_to_pay = 0
         for user in users_with_customers:
             for sponsorship in user.sponsorships_given.all():
-                amount_to_pay = amount_to_pay + sponsorship.left_to_pay
+                if sponsorship.left_to_pay > 0:
+                    amount_to_pay = amount_to_pay + sponsorship.left_to_pay
+                    print amount_to_pay
+            for wager in user.wagers_given.filter(paid=False, fulfilled=True):
+                amount_to_pay = amount_to_pay + wager.amount
+                print amount_to_pay
             print amount_to_pay
             if amount_to_pay!=0:
                 stripe_status = stripe.Charge.create(
-                    amount=amount_to_pay*100,
+                    amount=int(amount_to_pay*100),
                     currency="dkk",
                     customer=user.stripe_customer_id
                 )["status"] 
                 if stripe_status == "succeeded":
                     for sponsorship in user.sponsorships_given.all():
-                        sponsorship.amount_paid = total_amount
+                        sponsorship.amount_paid = sponsorship.total_amount
                         sponsorship.save()
+                    for wager in user.wagers_given.filter(paid=False, fulfilled=True):
+                        wager.paid = True
+                        wager.save()
 
 
                 print "{0} charged {1}".format(user.username, amount_to_pay)

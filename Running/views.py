@@ -576,7 +576,7 @@ def invite_sponsor(request, sponsor_id=None):
                             'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
                             [email], 
                             fail_silently=False,
-                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
+                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
 
                 # Redirect to the profile or the user with id user_id.
                 if sponsor_id:
@@ -802,6 +802,53 @@ def invite_wager(request, sponsor_id):
 
     # Render the page with the context and return it.
     return render(request, 'Running/wager_invite.html', context)
+
+def update_wager(request, wager_id):
+    wager = get_object_or_404(Wager, pk=wager_id)
+
+    if request.method == "POST":
+        if int(request.user.id) == int(wager.runner.id):
+
+            form = forms.WagerUpdateForm(request.POST)
+
+            if form.is_valid():
+                update_text = form.cleaned_data['update_text']
+                wager.update_text = update_text
+                wager.save()
+                return render(request, 'Running/wager_update_success.html', {})
+
+        else:
+            return HttpResponse("You are not the user who recieved the wager! You cannot update this wager.")
+
+
+    if 'form' not in locals():
+        form = forms.WagerUpdateForm
+
+    print wager.id
+
+    context = {
+                'wager': wager,
+                'form': form
+                }
+
+    print context['wager'].id
+
+    return render(request, 'Running/wager_update.html', context)
+
+def confirm_wager(request, wager_id):
+    wager = get_object_or_404(Wager, pk=wager_id)
+    if int(request.user.id) == int(wager.sponsor.id):
+        wager.fulfilled = True
+        wager.save()
+        return render(request, 'Running/wager_confirm_success.html', {})
+    return HttpResponse("You are not the user who gave the wager! You cannot confirm this wager.")
+
+def decline_wager(request, wager_id):
+    wager = get_object_or_404(Wager, pk=wager_id)
+    if int(request.user.id) == int(wager.sponsor.id):
+        wager.delete()
+        return render(request, 'Running/wager_deny_success.html', {})
+    return HttpResponse("You are not the user who gave the wager! You cannot decline this wager.")
 
 # Allows a user with id runner_id to manually input a run they did.
 def input_run(request, runner_id):

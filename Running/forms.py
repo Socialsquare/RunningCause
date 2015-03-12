@@ -83,6 +83,14 @@ class WagerForm(forms.ModelForm):
 
         return valid
 
+class WagerUpdateForm(forms.ModelForm):
+    update_text = forms.CharField(label="What do you want to tell your sponsor?", 
+                                    widget=forms.Textarea(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = Wager
+        fields = ['update_text']
+
 class InviteWagerForm(forms.Form):
     amount = forms.FloatField(label="Amount:", 
                             widget=forms.TextInput(attrs={'class':'form-control'}),

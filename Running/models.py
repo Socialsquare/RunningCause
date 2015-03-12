@@ -75,9 +75,11 @@ class Wager(models.Model):
 
     wager_text = models.CharField('Wager Text', max_length=500, null=True, default=None)
 
+    update_text = models.CharField('Update Text', max_length=500, null=True, default=None, blank=True)
+
 
     def decision_date(self):
-        if remind_date != null:
+        if self.remind_date != None:
             return self.remind_date + relativedelta(days=1)
 
         return None
