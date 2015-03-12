@@ -75,7 +75,7 @@
             <th>{% trans "Update Text" %}</th>
 
         </thead>
-        {% for wager in wagers %}
+        {% for wager in all_wagers %}
             {% if wager.sponsor %}
                 <tr>
                     <td><a href="{{ wager.get_admin_url }}">{{ wager.sponsor }}</td>
