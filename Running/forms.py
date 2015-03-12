@@ -1,7 +1,8 @@
 from django import forms
-from Running.models import Sponsorship, Run
+from Running.models import Sponsorship, Run, Wager
 from django.contrib.admin import widgets
 from functools import partial
+from datetime import date
 
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
@@ -44,6 +45,73 @@ class SponsorForm(forms.ModelForm):
 
         if self.cleaned_data['start_date'] > self.cleaned_data['end_date']:
             self.add_error('end_date', 'End date cannot be before start date.')
+            valid = False
+
+        return valid
+
+class WagerForm(forms.ModelForm):
+    amount = forms.FloatField(label="Amount:", 
+                            widget=forms.TextInput(attrs={'class':'form-control'}),
+                            localize=True)
+    remind_date = forms.DateField(label="End date:", 
+                                widget=forms.DateInput(attrs={'class':'form-control', 
+                                                                        'id':'start_datepicker', 
+                                                                        'autocomplete':"off"}),
+                                required=True)
+
+    wager_text = forms.CharField(label="What is the bet?", 
+                                    widget=forms.Textarea(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = Wager
+        fields = ['amount', 'remind_date', 'wager_text']
+
+    def is_valid(self):
+ 
+        valid = super(WagerForm, self).is_valid()
+
+        if not valid:
+            return valid
+
+        if self.cleaned_data['amount'] < 0:
+            self.add_error('amount', 'Amount cannot be negative')
+            valid = False
+            
+        if self.cleaned_data['remind_date'] < date.today():
+            self.add_error('remind_date', 'End date cannot be in the past')
+            valid = False
+
+        return valid
+
+class InviteWagerForm(forms.Form):
+    amount = forms.FloatField(label="Amount:", 
+                            widget=forms.TextInput(attrs={'class':'form-control'}),
+                            localize=True,
+                            required=False)
+    remind_date = forms.DateField(label="End date:", 
+                                widget=forms.DateInput(attrs={'class':'form-control', 
+                                                                        'id':'start_datepicker', 
+                                                                        'autocomplete':"off"}),
+                                required=False)
+
+    wager_text = forms.CharField(label="What is the bet?", 
+                                    widget=forms.Textarea(attrs={'class':'form-control'}),
+                                    required=False)
+
+
+    def is_valid(self):
+ 
+        valid = super(InviteWagerForm, self).is_valid()
+
+        if not valid:
+            return valid
+
+        if self.cleaned_data['amount'] and self.cleaned_data['amount'] < 0:
+            self.add_error('amount', 'Amount cannot be negative')
+            valid = False
+            
+        if self.cleaned_data['remind_date'] and self.cleaned_data['remind_date'] < date.today():
+            self.add_error('remind_date', 'End date cannot be in the past')
             valid = False
 
         return valid

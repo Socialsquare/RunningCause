@@ -1,0 +1,76 @@
+{% extends "masanga_base.html" %}
+{% load staticfiles %}
+{% load account %}
+{% load url from future %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+
+{% block title %}
+Challenge a Runner
+{% endblock %}
+
+{% block imports %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="/static/js/bootstrap-datepicker.js"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var yearString = year + "-" + month + "-" + day;
+        $('#start_datepicker').datepicker({
+            format:'yyyy-mm-dd',
+            startDate: new Date()
+        }).val(yearString);
+        $('#end_datepicker').datepicker({
+            format:'yyyy-mm-dd',
+            startDate: new Date()
+        }).val(yearString);
+    });
+    </script>
+{% endblock %}
+
+{% block head %}
+{% trans "Create a new Wager" %}
+{% endblock %}
+
+{% block body %}
+</br>
+{% if invite %}
+ {% trans "Here are the values that were recommended for the wager. Feel free to change whatever you'd like." %}
+</br>
+{% endif %}
+
+{% if form.errors %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger col-sm-offset-2">
+            {{ error|escape }}
+        </div>
+    {% endfor %}
+
+{% endif %}
+<form class="form-horizontal" method="post" action="{% url 'Running.views.wager' runner.id %}">
+    {% csrf_token %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger col-sm-offset-2">
+                {{ error|escape }}
+            </div>
+        {% endfor %}
+    <div class="form-group">
+    <label for="{{ field.name }}" class="col-sm-2 control-label">{{ field.label }}</label>
+    <div class="col-sm-10">
+        {{ field }}
+    </div>
+    </div>
+    {% endfor %}
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

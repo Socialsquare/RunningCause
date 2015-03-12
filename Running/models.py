@@ -60,6 +60,35 @@ class User(auth.models.AbstractUser):
             total_amount = total_amount + sponsorship.total_amount
         return total_amount
 
+class Wager(models.Model):
+    runner = models.ForeignKey(User, related_name='wagers_recieved')
+
+    sponsor = models.ForeignKey(User, related_name='wagers_given', null=True)
+
+    amount = models.FloatField('Amount', default=0, null=True)
+
+    fulfilled = models.BooleanField('Fulfilled?', default=False)
+
+    paid = models.BooleanField('Paid?', default=False)
+
+    remind_date = models.DateField('Remind Date', default=date.today() + relativedelta(months=1), null=True)
+
+    wager_text = models.CharField('Wager Text', max_length=500, null=True, default=None)
+
+
+    def decision_date(self):
+        if remind_date != null:
+            return self.remind_date + relativedelta(days=1)
+
+        return None
+
+    def amount_owed(self):
+        if fulfilled and not paid:
+            return amount
+        return 0
+
+    def __unicode__(self):
+        return '%s' % self.runner
 
 #   The model for every sponsorship.
 class Sponsorship(models.Model):

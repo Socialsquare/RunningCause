@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from Running.models import Sponsorship, Run, User
+from Running.models import Sponsorship, Run, User, Wager
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -615,6 +615,193 @@ def invite_sponsor(request, sponsor_id=None):
 
     # Render the page with the context and return it.
     return render(request, 'Running/invite.html', context)
+
+# Create a sponsorship from the person currently logged in, to the user with id sponsee_id.
+def wager(request, sponsee_id, wager_id=None):
+
+    # If this view was called with POST data, or the field 'form' in request.session,
+    # then the data has already been filled out.
+    if request.method == "POST" or 'form' in request.session:
+
+        # Verify that the user is logged in.
+        if request.user.is_authenticated():
+
+
+            # If this view was called with POST data, make an instance of SponsorForm from
+            # the data.
+            if request.method == "POST":
+                form = forms.WagerForm(request.POST)
+            
+            # If this view was called with 'form' in the session data, make an instance of 
+            #   SponsorForm from the data.
+            else:
+                form = forms.WagerForm(request.session.pop('form'))
+
+            # Get the user objects for the potential sponsor and sponsee.
+            user_id = request.user.id
+            sponsee = get_object_or_404(User, pk=sponsee_id)
+            sponsor = get_object_or_404(User, pk=user_id)
+
+            # If the form is valid, get the data from it, and then make a sponsorship
+            # object from that data.
+            if form.is_valid():
+                amount = form.cleaned_data['amount']
+                remind_date = form.cleaned_data['remind_date']
+                wager_text = form.cleaned_data['wager_text']
+                wager = Wager(runner=sponsee, 
+                                sponsor=sponsor, 
+                                amount=amount,
+                                remind_date=remind_date, 
+                                wager_text=wager_text)
+
+                # Save the sponsorship.
+                wager.save()
+
+
+                message_text = "{0} has just challenged you to a wager!".format(sponsor.username)
+
+                # Send the email, attaching an HTML version as well.
+                send_mail('Wager Notification', 
+                            message_text, 
+                            'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                            [sponsee.email], 
+                            fail_silently=False,
+                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
+
+                # Redirect to the profile page of the user with id sponsee_id.
+                url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
+                return HttpResponseRedirect(url)
+        else:
+
+            # If the user is not authenticated, save the data from their form and save
+            # the url of the current view as 'redirect' in session.
+            request.session['form'] = request.POST
+            request.session['redirect'] = reverse('Running.views.wager', kwargs={'sponsee_id':sponsee_id})
+
+            # Redirect to the signup or login view.
+            url = reverse('Running.views.signup_or_login')
+            return HttpResponseRedirect(url)
+
+    # Have invite default to a value that will read as "False".
+    invite = None
+
+    # Create the variable form, if it hasn't already been created up above.
+    if not 'form' in locals():
+        form = forms.WagerForm
+
+    # If this view recieved a sponsorship id, then we are filling out an invitation. If the sponsorship
+    # id is valid, start out the form with the values in that sponsorship, and set invitation to be true.
+    if wager_id:
+        invite = get_object_or_404(Wager, pk=wager_id)
+        form = forms.WagerForm(instance=invite)
+
+    # Get the user object for the sponsee.
+    runner = get_object_or_404(User, pk=sponsee_id)
+
+    # Create a context from all the variables we've collected.
+    context = {'runner': runner,
+                'form': form,
+                'invite': invite,
+                }
+    # Render and return the page with the context.
+    return render(request, 'Running/wager.html', context)
+
+# Invites a the user with id sponsor_id to sponsor the user that's currently logged in.
+def invite_wager(request, sponsor_id):
+
+    # If this view was called with POST data, or the field 'form' in request.session,
+    # then the data has already been filled out.
+    if request.method == "POST" or 'form' in request.session:
+
+        # Verify that the user is logged in.
+        if request.user.is_authenticated():
+
+            # If this view was called with POST data, make an instance of SponsorForm from
+            # the data.
+            if request.method == 'POST':
+                form = forms.InviteWagerForm(request.POST)
+
+            # If this view was called with 'form' in the session data, make an instance of 
+            # SponsorForm from the data.
+            else:
+                form = forms.InviteWagerForm(request.session.pop('form'))
+
+
+            # If the form is valid, get the data from it, and then make a sponsorship
+            # object from that data. Notably, make sure that the sponsor is None.
+            # This will prevent it from being confused with an actual sponsorship.
+            # If the potential sponsor accepts, a new sponsorship will be made,
+            # listing them as the sponsor.
+            if form.is_valid():
+
+                # Get the user objects for the potential sponsor and sponsee.
+                user_id = request.user.id
+                sponsee = get_object_or_404(User, pk=user_id)
+                sponsor = get_object_or_404(User, pk=sponsor_id)
+                email = sponsor.email
+
+                
+
+                amount = form.cleaned_data['amount']
+                remind_date = form.cleaned_data['remind_date']
+                wager_text = form.cleaned_data['wager_text']
+                wager = Wager(runner=sponsee, 
+                                sponsor=sponsor, 
+                                amount=amount,
+                                remind_date=remind_date, 
+                                wager_text=wager_text)
+
+                wager.save()
+
+                # Now begins the process of emailing the potential sponsor!
+
+                # First, get the link that the potential sponsor will be presented with,
+                # and can follow to sponsor the potential sponsee.
+                email_url = reverse('wager_from_invite', kwargs={'sponsee_id': sponsee.id,
+                                                                    'wager_id':wager.id})
+
+                # Create the message of the text.
+                message_text = "{0} has proposed a wager!! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in making a wager with {0}.".format(request.user.username, 
+                                                                                                                                                                                            request.build_absolute_uri(email_url))
+
+                # Send the email, attaching an HTML version as well.
+                send_mail('Wager Invitation', 
+                            message_text, 
+                            'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                            [email], 
+                            fail_silently=False,
+                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
+
+                # Redirect to the profile or the user with id user_id.
+                url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
+                return HttpResponseRedirect(url)
+
+        else:
+
+            # If the user is not authenticated, save the data from their form and save
+            # the url of the current view as 'redirect' in session.
+            request.session['form'] = request.POST
+            request.session['redirect'] = reverse('Running.views.invite_wager', kwargs={'sponsor_id':sponsor_id})
+
+            # Redirect to the signup or login view.
+            url = reverse('Running.views.signup_or_login')
+            return HttpResponseRedirect(url)
+
+    # Otherwise, prepare the page with the sponsorship form for the user.
+    # Get the user object, then create an instance of form if it hasn't already been created.
+    sponsor = get_object_or_404(User, pk=sponsor_id)
+
+    if 'form' not in locals():
+        form = forms.InviteWagerForm
+        
+    # Use our variables to make a context.
+    context = {
+                'sponsor': sponsor,
+                'form': form
+                }
+
+    # Render the page with the context and return it.
+    return render(request, 'Running/wager_invite.html', context)
 
 # Allows a user with id runner_id to manually input a run they did.
 def input_run(request, runner_id):

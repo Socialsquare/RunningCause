@@ -1,8 +1,9 @@
 from django.contrib import admin
-from Running.models import User, Sponsorship, Run
+from Running.models import User, Sponsorship, Run, Wager
 
 admin.site.register(User)
 admin.site.register(Run)
+admin.site.register(Wager)
 
 @admin.register(Sponsorship)
 class SponsorshipAdmin(admin.ModelAdmin):

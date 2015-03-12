@@ -111,6 +111,18 @@
                     Invite {{ username }} to sponsor you! 
                     {% endblocktrans %}</a>
                 </td>
+                <td>
+                    <a href="{% url 'Running.views.wager' user.id %}" class="btn btn-default"> 
+                    {% blocktrans with username=user.username %}
+                    Challenge {{ username }} to a wager! 
+                    {% endblocktrans %}</a>
+                </td>
+                <td>
+                    <a href="{% url 'Running.views.invite_wager' user.id %}" class="btn btn-default"> 
+                    {% blocktrans with username=user.username %}
+                    Invite {{ username }} to challenge you to a wager! 
+                    {% endblocktrans %}</a>
+                </td>
             </tr>
         </table>
     </div>
