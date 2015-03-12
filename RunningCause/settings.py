@@ -150,7 +150,7 @@ LANGUAGES = (
     ('da', ugettext('Danish')),
     )
 
-BASE_DOMAIN = 'http://vast-waters-4465.herokuapp.com/'
+BASE_DOMAIN = 'http://masanga-runners.herokuapp.com/'
 
 TIME_ZONE = 'Europe/Copenhagen'
 

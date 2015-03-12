@@ -11,11 +11,7 @@ import time
 class Command(BaseCommand):
     help = 'Updates the runs of all users that have registered with runkeeper'
 
-    # def add_arguments(self, parser):
-    #     parser.add_argument('poll_id', nargs='+', type=int)
-
     def handle(self, *args, **options):
-        print datetime.datetime.today().day
         if datetime.datetime.today().day == 1:
             users_with_tokens = User.objects.exclude(access_token="")
             for user in users_with_tokens:
@@ -35,14 +31,20 @@ class Command(BaseCommand):
 
             self.stdout.write('Successfully updated runs')
 
-            everyone_else = User.objects.filter(access_token="")
+            subscribed_users = User.objects.filter(subscribed=True)
+
+            runners = []
+
+            for user in subscribed_users.all():
+                if user.is_runner:
+                    runners += [user]
 
             all_addresses = []
-            for user in everyone_else:
+            for user in runners:
                 if user.email != None:
                     all_addresses += [user.email]
             all_addresses = [i for i in all_addresses if i != '']
-            message = 'Hello! Since you\'re not using runkeeper to automatically keep your runs updated, you should probably enter your runs on Masanga Runners!'
+            message = 'Hello! You should probably enter your runs on Masanga Runners!'
             for address in all_addresses:
                 if address:
                     send_mail('Reminder', 
