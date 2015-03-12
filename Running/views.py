@@ -240,6 +240,8 @@ def overview(request):
     all_subscribed_users = all_users.filter(subscribed=True)
     all_emails = [user.email for user in all_subscribed_users]
 
+    all_wagers = Wager.objects.order_by('sponsor')
+
     newsletter_users = User.objects.filter(newsletter=True)
     newsletter_emails = [user.email for user in newsletter_users]
 
@@ -247,6 +249,7 @@ def overview(request):
     context = {'sponsorships': sponsorships,
                 'all_users': all_users,
                 'all_emails': all_emails,
+                'all_wagers': all_wagers,
                 'newsletter_emails': newsletter_emails,
                 'form': forms.PaidForm,
                 }

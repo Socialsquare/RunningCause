@@ -60,6 +60,39 @@
         </table>
     </div>
 
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>{% trans "All Wagers" %}</h4></div>
+        <table class="table table-hover">
+        <thead>
+            <th>{% trans "Sponsor" %}</th>
+            <th>{% trans "Runner" %}</th>
+            <th>{% trans "Amount" %}</th>
+            <th>{% trans "Fulfilled" %}</th>
+            <th>{% trans "Paid" %}</th>
+            <th>{% trans "Remind Date" %}</th>
+            <th>{% trans "Decision Date" %}</th>
+            <th>{% trans "Wager Text" %}</th>
+            <th>{% trans "Update Text" %}</th>
+
+        </thead>
+        {% for wager in wagers %}
+            {% if wager.sponsor %}
+                <tr>
+                    <td><a href="{{ wager.get_admin_url }}">{{ wager.sponsor }}</td>
+                    <td>{{ wager.runner }}</td>
+                    <td>{{ wager.amount }}</td>
+                    <td>{{ wager.fulfilled }}</td>
+                    <td>{{ wager.paid }}</td>
+                    <td>{{ wager.remind_date }}</td>
+                    <td>{{ wager.decision_date }}</td>
+                    <td>{{ wager.wager_text }}</td>
+                    <td>{{ wager.update_text }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+    </div>
+
         <div class="panel panel-default">
         <div class="panel-heading"><h4>{% trans "All Users" %}</h4></div>
         <table class="table table-hover">
