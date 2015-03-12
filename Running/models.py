@@ -27,7 +27,7 @@ class User(auth.models.AbstractUser):
 
     subscribed = models.BooleanField('Subscribed to emails?', default=True)
 
-    stripe_customer_id = models.CharField('Stripe Customer Id', max_length=200, null=True, default=None)
+    stripe_customer_id = models.CharField('Stripe Customer Id', max_length=200, null=True, blank=True, default=None)
 
     greeted = models.BooleanField('Greeted?', default=False)
 
