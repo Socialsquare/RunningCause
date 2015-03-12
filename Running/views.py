@@ -114,6 +114,10 @@ def user(request, user_id):
     for run in runs:
         total_distance = total_distance + run.distance
 
+    wagers_recieved = user.wagers_recieved.all()
+
+    wagers_given = user.wagers_given.all()
+
     # Default to saying that the user is not looking at their own page,
     # and is logged in. (As such, the accessor is "None", meaning they
     # get no special privileges in viewing the page)
@@ -138,6 +142,8 @@ def user(request, user_id):
                 'total_distance':total_distance,
                 'accessor': accessor,
                 'runs': runs,
+                'wagers_recieved': wagers_recieved,
+                'wagers_given': wagers_given,
                 'own_page': own_page,
                 'is_runner': user.is_runner,
                 'is_sponsor': user.is_sponsor

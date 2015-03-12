@@ -34,13 +34,13 @@ class User(auth.models.AbstractUser):
     #   This determines whether or not our user is a "runner". This is only to affect some UI on their profile.
     @property
     def is_runner(self):
-        any_runs_or_sponsorships = max(len(self.runs.all()), len(self.sponsorships_recieved.all()))
+        any_runs_or_sponsorships = len(self.runs.all()) + len(self.sponsorships_recieved.all()) + len(self.wagers_recieved.all())
         return any_runs_or_sponsorships > 0
 
     #   This determines whether or not our user is a "sponsor". This is only to affect some UI on their profile.
     @property
     def is_sponsor(self):
-        num_sponsorships = len(self.sponsorships_given.all())
+        num_sponsorships = len(self.sponsorships_given.all()) + len(self.wagers_given.all())
         return num_sponsorships > 0
 
     #   This figures out how much the user has raised for Masanga.

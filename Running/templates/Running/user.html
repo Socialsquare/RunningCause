@@ -244,6 +244,29 @@
     </div>
 
 
+        <div class="panel panel-default">
+        <div class="panel-heading">{% trans "Wagers Recieved" %}</div>
+        <table class="table table-hover">
+        <table class="table table-hover">
+            <thead>
+                <th>{% trans "Sponsor" %}</th>
+                <th>{% trans "Amount (dkk)" %}</th>
+                <th>{% trans "End Date" %}</th>
+                <th>{% trans "Bet" %}</th>
+            </thead>
+        {% for wager in wagers_recieved %}
+                <tr> 
+                    <td>{{ wager.sponsor }}</td>
+                    <td>{{ wager.amount|floatformat:-2|intcomma }}</td>
+                    <td>{{ wager.decision_date }}</td>
+                    <td>{{ wager.wager_text }}</td>
+                </tr>
+        {% empty %}
+        <tr><td>{% trans "Hmm, there don't seem to be any wagers here." %}</td></tr>
+        {% endfor %}
+        </table>
+        </div>
+
     {% endif %}
 
     {% if is_sponsor %}
@@ -301,6 +324,29 @@
 
                 </tr>
             </table>
+        </div>
+
+        <div class="panel panel-default">
+        <div class="panel-heading">{% trans "Wagers Given" %}</div>
+        <table class="table table-hover">
+        <table class="table table-hover">
+            <thead>
+                <th>{% trans "Runner" %}</th>
+                <th>{% trans "Amount (dkk)" %}</th>
+                <th>{% trans "End Date" %}</th>
+                <th>{% trans "Bet" %}</th>
+            </thead>
+        {% for wager in wagers_given %}
+                <tr> 
+                    <td>{{ wager.sponsor }}</td>
+                    <td>{{ wager.amount|floatformat:-2|intcomma }}</td>
+                    <td>{{ wager.decision_date }}</td>
+                    <td>{{ wager.wager_text }}</td>
+                </tr>
+        {% empty %}
+        <tr><td>{% trans "Hmm, there don't seem to be any wagers here." %}</td></tr>
+        {% endfor %}
+        </table>
         </div>
 
     {% endif %}
