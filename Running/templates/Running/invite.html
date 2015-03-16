@@ -16,13 +16,21 @@
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var day = date.getDate();
+        if (day < 10)
+        {
+            day = "0" + day;
+        }
+        if (month < 10)
+        {
+            month = "0" + month;
+        }
         var yearString = year + "-" + month + "-" + day;
-        $('#start_datepicker').datepicker({
+        $('#start_datepicker').val(yearString).datepicker({
             format:'yyyy-mm-dd'
-        }).val(yearString);
-        $('#end_datepicker').datepicker({
+        });
+        $('#end_datepicker').val(yearString).datepicker({
             format:'yyyy-mm-dd'
-        }).val(yearString);
+        });
     });
     </script>
 {% endblock %}
