@@ -89,7 +89,69 @@ def user(request, user_id):
     url = reverse('Running.views.user_runs', kwargs={'user_id': user_id})
     return HttpResponseRedirect(url)
 
-def user_runs(request, user_id):
+def user_runs(request, user_id, form=None):
+
+    # If there's POST data on the request, then the form is being returned.
+    if request.method == "POST":
+
+        # Get the object for the current user, and verify that the accessor is logged in as them.
+        runner = get_object_or_404(User, pk=user_id)
+        if request.user.is_authenticated():
+            user = request.user
+            if int(user.id) == int(user_id):
+
+                # If they are, convert the POST data into a form, and check that it's valid.
+                form = forms.RunInputForm(request.POST)
+                if form.is_valid():
+
+                    # Get the various variables for the run.
+                    runner = user
+                    distance = form.cleaned_data['distance']
+                    start_date = form.cleaned_data['start_date']
+
+                    # If there was an end date, this was a collection of runs. Set the end date appropriately,
+                    # and make a run object from our data.
+                    if form.cleaned_data['end_date'] != None:
+                        end_date = form.cleaned_data['end_date']
+                    
+                    # Otherwise, it was a single run. Set the end data appropriately, and make a run object from
+                    # our data.
+                    else:
+                        end_date = form.cleaned_data['start_date']
+                    run = Run(runner=runner, distance=distance, start_date=start_date, end_date=end_date)
+
+                    # Save our run, and then redirect to the profile of the user with id runner_id.
+                    run.save()
+
+                    # Get a list of all sponsorships the user has recieved that were active when the run
+                    # happened, then get a list of all relevant sponsors and their emails from that.
+                    relevant_sponsorships = user.sponsorships_recieved.filter(end_date__gte=end_date, 
+                                                                            start_date__lte=start_date)
+                    relevant_sponsors = list(set([sponsorship.sponsor for sponsorship in relevant_sponsorships]))
+                    relevant_emails = [sponsor.email for sponsor in relevant_sponsors]
+
+                    # Generate a message from the information of the run, and send it out to all the relevant
+                    # sponsors.
+                    message_text = "{0} has run a distance of {1}km!".format(user.username, 
+                                                                                distance)
+                    send_mail('Run Update', 
+                                message_text, 
+                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                relevant_emails, 
+                                fail_silently=False,
+                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request})))
+
+                    form = None
+            else:
+                return HttpResponse("You are not the runner you're trying to input a run for! Please go to your own page and try again.")
+
+
+    # If form has not already been created, create it.
+    if not 'form' in locals():
+        form = forms.RunInputForm
+
+    # Otherwise, return an error. Note: this should not be possible, so it would likely indicate malicious
+    # activity, or the user breaking the website in some unexpected way.
 
     # Get the user, or 404 if you can't find them.
     user = get_object_or_404(User, pk=user_id)
@@ -116,7 +178,11 @@ def user_runs(request, user_id):
         auth_user_id = request.user.id
         accessor = get_object_or_404(User, pk=auth_user_id)
         own_page = (str(auth_user_id) == str(user_id))
-            
+    
+    if not form:
+        form = forms.RunInputForm
+
+
     # Build the context from the variables we've just set.
     context = {'user': user,
                 'total_distance':total_distance,
@@ -124,7 +190,8 @@ def user_runs(request, user_id):
                 'runs': runs,
                 'own_page': own_page,
                 'is_runner': user.is_runner,
-                'is_sponsor': user.is_sponsor
+                'is_sponsor': user.is_sponsor,
+                'form': form,
                 }
 
     # Render and return the page based on the context.
@@ -160,6 +227,7 @@ def user_raised(request, user_id):
         auth_user_id = request.user.id
         accessor = get_object_or_404(User, pk=auth_user_id)
         own_page = (str(auth_user_id) == str(user_id))
+
             
     # Build the context from the variables we've just set.
     context = {'user': user,
@@ -169,7 +237,7 @@ def user_raised(request, user_id):
                 'wagers_recieved': wagers_recieved,
                 'own_page': own_page,
                 'is_runner': user.is_runner,
-                'is_sponsor': user.is_sponsor
+                'is_sponsor': user.is_sponsor,
                 }
 
     # Render and return the page based on the context.
