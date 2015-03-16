@@ -19,7 +19,25 @@
 {% endblock %}
 
 {% block body %}
+<div class="row">
+<div class="col-sm-4">
+<div class="panel panel-default">
+    <div class="panel-heading">{% trans "Users:" %}</div>
+    <table class="table table-hover">
+    {% for user in user_list %}
+        <tr>
+            <td><a href="{% url 'Running.views.user' user.id %}">{{ user.username }}</a></td>
+        </tr>   
+    {% empty %}
+    <tr>
+    {% trans "Huh, that's weird. We can't find any users. Check back later." %}
+    </tr>
+    {% endfor %}
+    </table>
+    </div>
+</div>
 {% blocktrans %}
+<div class="col-sm-8">
 <h4>Every step makes the world a little better</h4>
 <p>Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.</p>
 <p>The idea behind Masanga Runners is that many runners and sponsors together can create a huge difference for the hospital in Masanga by running and donating small amounts.</p>
@@ -34,20 +52,6 @@
 <h4>Contact</h4>
 <p>If you have any questions or comments regarding Masanga Runners, you’re welcome to contact Johanne Tofting Schaarup by email at masangarunners@masanga.dk, or by phone at +45 29 80 30 73.</p>
 {% endblocktrans %}
-
-{% if user_list %}
-    <h3>{% trans "Users:" %}</h3>
-    <table class="table table-hover">
-    {% for user in user_list %}
-        <tr>
-            <td><a href="{% url 'Running.views.user' user.id %}">{{ user.username }}</a></td>
-        </tr>   
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>
-    {% trans "Huh, that's weird. We can't find any users. Check back later." %}
-    </p>
-{% endif %}
-    </table>
+</div>
+</div>
 {% endblock %}
