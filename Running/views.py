@@ -86,8 +86,52 @@ def unsubscribe(request):
 
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, user_id):
+    url = reverse('Running.views.user_runs', kwargs={'user_id': user_id})
+    return HttpResponseRedirect(url)
 
-    print request.META['HTTP_HOST']
+def user_runs(request, user_id):
+
+    # Get the user, or 404 if you can't find them.
+    user = get_object_or_404(User, pk=user_id)
+
+    # Get all the user's runs.
+    # Then, calculate the total distance run by adding the distance run for each run.
+    runs = user.runs.all()
+    total_distance = 0
+    for run in runs:
+        total_distance = total_distance + run.distance
+
+
+    # Default to saying that the user is not looking at their own page,
+    # and is logged in. (As such, the accessor is "None", meaning they
+    # get no special privileges in viewing the page)
+    own_page = False
+    accessor = None
+
+    # If the user is authenticated, then set the accessor to be the user,
+    # so that any special viewing priviledges can be figured out.
+    # Then, figure out if the request is the viewer accessing their own page.
+    # If it is, then set "own_page" to true.
+    if request.user.is_authenticated():
+        auth_user_id = request.user.id
+        accessor = get_object_or_404(User, pk=auth_user_id)
+        own_page = (str(auth_user_id) == str(user_id))
+            
+    # Build the context from the variables we've just set.
+    context = {'user': user,
+                'total_distance':total_distance,
+                'accessor': accessor,
+                'runs': runs,
+                'own_page': own_page,
+                'is_runner': user.is_runner,
+                'is_sponsor': user.is_sponsor
+                }
+
+    # Render and return the page based on the context.
+    return render(request, 'Running/user_runs.html', context)
+
+def user_raised(request, user_id):
+
     # Get the user, or 404 if you can't find them.
     user = get_object_or_404(User, pk=user_id)
 
@@ -99,6 +143,43 @@ def user(request, user_id):
     for sponsorship in sponsorships:
         amount_earned = amount_earned + sponsorship.total_amount
 
+
+    wagers_recieved = user.wagers_recieved.all()
+
+    # Default to saying that the user is not looking at their own page,
+    # and is logged in. (As such, the accessor is "None", meaning they
+    # get no special privileges in viewing the page)
+    own_page = False
+    accessor = None
+
+    # If the user is authenticated, then set the accessor to be the user,
+    # so that any special viewing priviledges can be figured out.
+    # Then, figure out if the request is the viewer accessing their own page.
+    # If it is, then set "own_page" to true.
+    if request.user.is_authenticated():
+        auth_user_id = request.user.id
+        accessor = get_object_or_404(User, pk=auth_user_id)
+        own_page = (str(auth_user_id) == str(user_id))
+            
+    # Build the context from the variables we've just set.
+    context = {'user': user,
+                'sponsorships': sponsorships,
+                'amount_earned':amount_earned,
+                'accessor': accessor,
+                'wagers_recieved': wagers_recieved,
+                'own_page': own_page,
+                'is_runner': user.is_runner,
+                'is_sponsor': user.is_sponsor
+                }
+
+    # Render and return the page based on the context.
+    return render(request, 'Running/user_raised.html', context)
+
+def user_donated(request, user_id):
+
+    # Get the user, or 404 if you can't find them.
+    user = get_object_or_404(User, pk=user_id)
+
     # Get all of the user's given sponsorships.
     # Then, calculate the total amount donated by adding the amount donated for each sponsorship
     # given.
@@ -107,14 +188,6 @@ def user(request, user_id):
     for sponsorship in sponsorships_given:
         amount_given = amount_given + sponsorship.total_amount
 
-    # Get all the user's runs.
-    # Then, calculate the total distance run by adding the distance run for each run.
-    runs = user.runs.all()
-    total_distance = 0
-    for run in runs:
-        total_distance = total_distance + run.distance
-
-    wagers_recieved = user.wagers_recieved.all()
 
     wagers_given = user.wagers_given.all()
 
@@ -135,14 +208,9 @@ def user(request, user_id):
             
     # Build the context from the variables we've just set.
     context = {'user': user,
-                'sponsorships': sponsorships,
                 'sponsorships_given': sponsorships_given,
-                'amount_earned':amount_earned,
                 'amount_given':amount_given,
-                'total_distance':total_distance,
                 'accessor': accessor,
-                'runs': runs,
-                'wagers_recieved': wagers_recieved,
                 'wagers_given': wagers_given,
                 'own_page': own_page,
                 'is_runner': user.is_runner,
@@ -150,7 +218,39 @@ def user(request, user_id):
                 }
 
     # Render and return the page based on the context.
-    return render(request, 'Running/user.html', context)
+    return render(request, 'Running/user_donated.html', context)
+
+def user_settings(request, user_id):
+
+    # Get the user, or 404 if you can't find them.
+    user = get_object_or_404(User, pk=user_id)
+
+    # Default to saying that the user is not looking at their own page,
+    # and is logged in. (As such, the accessor is "None", meaning they
+    # get no special privileges in viewing the page)
+    own_page = False
+    accessor = None
+
+    # If the user is authenticated, then set the accessor to be the user,
+    # so that any special viewing priviledges can be figured out.
+    # Then, figure out if the request is the viewer accessing their own page.
+    # If it is, then set "own_page" to true.
+    if request.user.is_authenticated():
+        auth_user_id = request.user.id
+        accessor = get_object_or_404(User, pk=auth_user_id)
+        own_page = (str(auth_user_id) == str(user_id))
+            
+    # Build the context from the variables we've just set.
+    context = {'user': user,
+                'accessor': accessor,
+                'own_page': own_page,
+                'is_runner': user.is_runner,
+                'is_sponsor': user.is_sponsor
+                }
+
+    # Render and return the page based on the context.
+    return render(request, 'Running/user_settings.html', context)
+
 
 def my_page(request):
     if request.user.is_authenticated():

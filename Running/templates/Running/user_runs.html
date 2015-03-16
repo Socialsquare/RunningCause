@@ -1,0 +1,115 @@
+{% extends "masanga_base.html" %}
+{% load humanize %}
+{% load i18n %}
+
+{% block imports %}
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<form id="payment-form" action="{% url 'register_customer' %}" method="POST">
+{% csrf_token %}
+</form>
+{% endblock %}
+
+{% block title %}
+{{ user.username }}
+{% endblock %}
+
+{% block head %}
+<div class=row style="display: inline">
+{{ user.username }}
+<div style="float:right">
+{% if own_page and user.is_public %}
+
+    <span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_reddit_large' displayText='Reddit'></span>
+    <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
+    <span class='st_email_large' displayText='Email'></span>
+</br>
+</div>
+
+{% elif own_page and not user.is_public %}
+
+   <h4>{% trans "You have to make your page public before you can share it." %}</h4>
+
+
+{% endif %}
+</div>
+{% endblock %}
+
+{% block body %}
+
+<div class ="panel panel-default">
+
+<ul class="nav nav-tabs nav-justified">
+<li role="presentation" class="active"><a href="{% url 'Running.views.user_runs' user_id=user.id %}" aria-controls="home" role="tab" data-toggle="tab">Runs</a></li>
+<li role="presentation"><a href="{% url 'Running.views.user_raised' user_id=user.id%}" aria-controls="home" role="tab" data-toggle="tab">Money Raised</a></li>
+<li role="presentation"><a href="{% url 'Running.views.user_donated' user_id=user.id%}" aria-controls="home" role="tab" data-toggle="tab">Money Donated</a></li>
+{% if own_page %}
+<li role="presentation"><a href="{% url 'Running.views.user_settings' user_id=user.id%}" aria-controls="home" role="tab" data-toggle="tab">Settings</a></li>
+{% endif %}
+</ul>
+
+</br>
+
+{% if own_page %}
+
+<div class="panel panel-default">
+<table class="table table">
+<tr>
+
+    <td>
+    <a href="{% url 'Running.views.input_run' user.id %}" class="btn btn-default"> {% trans "Input a run!" %} </a>
+    </td>
+
+    <td>
+    <a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> {% trans "Register with runkeeper!" %}</a>
+    </td>
+
+</tr>
+</table>
+</div>
+{% else %}
+{% endif %}
+
+{% if user.is_public or own_page%}
+
+        <div class="panel panel-default">
+        <div class="panel-heading">{% trans "Runs" %}</div>
+        <table class="table table-hover">
+        <table class="table table-hover">
+            <thead>
+                <th>{% trans "Date" %}</th>
+                <th>{% trans "Distance (km)" %}</th>
+            </thead>
+        {% for run in runs %}
+                <tr> 
+                    <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
+                    <td>{{ run.distance|floatformat:-2|intcomma }}</td>
+                    {% if own_page %}
+                        <td><a href="{% url 'Running.views.edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
+                    {% endif %}
+
+                </tr>
+        {% empty %}
+        <tr><td>{% trans "Hmm, there don't seem to be any runs here." %}</td></tr>
+        {% endfor %}
+        {% if runs %}
+        <tr>
+            <td align='right'>{% trans "Total Distance Run:" %} </td>
+            <td>{{ total_distance|floatformat:-2|intcomma }}km</td>
+        <tr>
+        {% endif %}
+        </table>
+    </div>
+
+{% else %}
+
+<h4>{% trans "Sorry, this user has chosen to make their information private." %}</h4>
+
+{% endif %}
+
+
+
+</div>
+{% endblock %}

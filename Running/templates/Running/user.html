@@ -20,6 +20,15 @@
 {% block body %}
 {% if own_page %}
 
+<div class ="panel panel-default">
+
+<ul class="nav nav-tabs nav-justified">
+<li role="presentation" class="active"><a href="{% url 'Running.views.user_runs' user_id=user.id %}" aria-controls="home" role="tab" data-toggle="tab">Runs</a></li>
+<li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Money Raised</a></li>
+<li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Money Donated</a></li>
+</ul>
+
+</br>
 <div class="panel panel-default">
 <table class="table table-hover">
 <tr>
@@ -380,4 +389,5 @@
 
 
 {% endif %}
+</div>
 {% endblock %}
