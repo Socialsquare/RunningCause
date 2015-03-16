@@ -222,6 +222,9 @@ def user_donated(request, user_id):
 
 def user_settings(request, user_id):
 
+    if int(user_id) != request.user.id:
+        return HttpResponse("You're not allowed to see this page.")
+
     # Get the user, or 404 if you can't find them.
     user = get_object_or_404(User, pk=user_id)
 

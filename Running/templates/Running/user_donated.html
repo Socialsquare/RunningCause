@@ -91,6 +91,7 @@
                 <th>{% trans "Maximum Possible Amount (kr)" %}</th>
                 <th>{% trans "Continues Until" %}</th>
                 <th>{% trans "Amount Earned (kr)" %}</th>
+                <th></th>
 
             </thead>
             {% for sponsorship in sponsorships_given %}
@@ -115,6 +116,7 @@
                         <td>{{ sponsorship.max_amount }}</td>
                         <td>{{ sponsorship.end_date }}</td>
                         <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                        <td></td>
                     </tr>
                 {% endif %}
 

@@ -81,6 +81,9 @@
             <thead>
                 <th>{% trans "Date" %}</th>
                 <th>{% trans "Distance (km)" %}</th>
+                {% if own_page %}
+                <th></th>
+                {% endif %}
             </thead>
         {% for run in runs %}
                 <tr> 
@@ -98,6 +101,7 @@
         <tr>
             <td align='right'>{% trans "Total Distance Run:" %} </td>
             <td>{{ total_distance|floatformat:-2|intcomma }}km</td>
+            <td></td>
         <tr>
         {% endif %}
         </table>
