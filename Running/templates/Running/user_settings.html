@@ -32,7 +32,6 @@
 
    <h4>{% trans "You have to make your page public before you can share it." %}</h4>
 
-
 {% endif %}
 </div>
 {% endblock %}
@@ -109,44 +108,6 @@
 </div>
 {% else %}
 {% endif %}
-
-{% if user.is_public or own_page%}
-
-        <div class="panel panel-default">
-        <div class="panel-heading">{% trans "Runs" %}</div>
-        <table class="table table-hover">
-        <table class="table table-hover">
-            <thead>
-                <th>{% trans "Date" %}</th>
-                <th>{% trans "Distance (km)" %}</th>
-            </thead>
-        {% for run in runs %}
-                <tr> 
-                    <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
-                    <td>{{ run.distance|floatformat:-2|intcomma }}</td>
-                    {% if own_page %}
-                        <td><a href="{% url 'Running.views.edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
-                    {% endif %}
-
-                </tr>
-        {% empty %}
-        <tr><td>{% trans "Hmm, there don't seem to be any runs here." %}</td></tr>
-        {% endfor %}
-        {% if runs %}
-        <tr>
-            <td align='right'>{% trans "Total Distance Run:" %} </td>
-            <td>{{ total_distance|floatformat:-2|intcomma }}km</td>
-        <tr>
-        {% endif %}
-        </table>
-    </div>
-
-{% else %}
-
-<h4>{% trans "Sorry, this user has chosen to make their information private." %}</h4>
-
-{% endif %}
-
 
 
 </div>
