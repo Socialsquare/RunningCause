@@ -41,6 +41,7 @@ RUNKEEPER_CLIENT_SECRET = os.getenv('RUNKEEPER_CLIENT_SECRET')
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
+COURRIERS_MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -72,6 +73,7 @@ INSTALLED_APPS = (
     'Running',
     'jquery',
     'rosetta',
+    'courriers',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,6 +112,9 @@ EMAIL_HOST_PASSWORD = os.getenv('MAILGUN_SMTP_PASSWORD')
 EMAIL_PORT = os.getenv('MAILGUN_SMTP_PORT')
 
 SOCIALACCOUNT_QUERY_EMAIL = False
+
+COURRIERS_BACKEND_CLASS = 'courriers.backends.mailchimp.MailchimpBackend'
+COURRIERS_DEFAULT_FROM_NAME = 'masanga'
 
 SOCIALACCOUNT_PROVIDERS = {
     # 'facebook': {

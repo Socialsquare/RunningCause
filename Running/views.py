@@ -15,10 +15,12 @@ import time
 import stripe
 import healthgraph
 import json
+import mailchimp
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template import RequestContext, loader, Context, Template
 stripe.api_key = settings.STRIPE_SECRET_KEY
+from django.contrib import messages
 
 
 
@@ -49,6 +51,20 @@ def home(request):
 
 def sign_in_landing(request):
     user = get_object_or_404(User, pk=request.user.id)
+    if user.newsletter:
+        try:
+            m = mailchimp.Mailchimp(settings.COURRIERS_MAILCHIMP_API_KEY)
+            m.lists.subscribe('2640511eac', {'email': user.email})
+            user.newsletter = False
+            user.save()
+            messages.success(request,  "The email has been successfully subscribed")
+        except mailchimp.ListAlreadySubscribedError:
+            messages.error(request,  "That email is already subscribed to the list")
+            return redirect('/')
+        except mailchimp.Error, e:
+            messages.error(request,  'An error occurred: %s - %s' % (e.__class__, e))
+            return redirect('/')
+
     if not user.greeted:
         user.greeted = True
         user.save()
