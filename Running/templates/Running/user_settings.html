@@ -93,7 +93,7 @@
             handler.close();
           });
         </script>
-
+        </br>
         {% if user.is_public %}
             <p>
             {% blocktrans %}
@@ -113,6 +113,7 @@
         {% endif %}
 
         {% if user.subscribed %}
+            </br>
             <p>
             {% blocktrans %}
             Click the button below if you want to unsubscribe from all reminder emails from us.
