@@ -55,7 +55,7 @@ class WagerForm(forms.ModelForm):
                             localize=True)
     remind_date = forms.DateField(label="End date:", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
-                                                                        'id':'start_datepicker', 
+                                                                        'id':'wager_datepicker', 
                                                                         'autocomplete':"off"}),
                                 required=True)
 
@@ -98,7 +98,7 @@ class InviteWagerForm(forms.Form):
                             required=False)
     remind_date = forms.DateField(label="End date:", 
                                 widget=forms.DateInput(attrs={'class':'form-control', 
-                                                                        'id':'start_datepicker', 
+                                                                        'id':'wager_datepicker', 
                                                                         'autocomplete':"off"}),
                                 required=False)
 

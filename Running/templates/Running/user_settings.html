@@ -53,13 +53,9 @@
 
 {% if own_page %}
 
-<div class="panel panel-default">
-<table class="table table">
-<tr>
 
-    <td>
+
         <button class="btn btn-default" id="registerButton">Register your card with Masanga Runners</button>
-    </td>
 
         <script>
           var handler = StripeCheckout.configure({
@@ -94,18 +90,13 @@
             handler.close();
           });
         </script>
-        </td>
-
-        <td>
+        
         {% if user.is_public %}
             <a href="{% url 'Running.views.make_user_private' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page private." %}</a>
         {% else %}
             <a href="{% url 'Running.views.make_user_public' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a>
         {% endif %}
-        </td>
-</tr>
-</table>
-</div>
+        
 {% else %}
 {% endif %}
 
