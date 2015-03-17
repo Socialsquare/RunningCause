@@ -102,7 +102,11 @@ def unsubscribe(request):
 
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, user_id):
-    url = reverse('Running.views.user_runs', kwargs={'user_id': user_id})
+    user = get_object_or_404(User, pk=user_id)
+    if int(user.id) == int(request.user.id) or user.is_public:
+        url = reverse('Running.views.user_runs', kwargs={'user_id': user_id})
+    else:
+        url = reverse('Running.views.user_raised', kwargs={'user_id': user_id})
     return HttpResponseRedirect(url)
 
 def user_runs(request, user_id, form=None):

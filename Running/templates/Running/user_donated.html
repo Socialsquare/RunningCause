@@ -64,7 +64,9 @@
 {% block body %}
 
 <ul class="nav nav-tabs nav-justified">
+{% if own_page or user.is_public %}
 <li role="presentation"><a href="{% url 'Running.views.user_runs' user_id=user.id %}" aria-controls="home" role="tab" data-toggle="tab">Runs</a></li>
+{% endif %}
 <li role="presentation"><a href="{% url 'Running.views.user_raised' user_id=user.id %}" aria-controls="home" role="tab" data-toggle="tab">Money Raised</a></li>
 <li role="presentation" class="active"><a href="{% url 'Running.views.user_donated' user_id=user.id %}" aria-controls="home" role="tab" data-toggle="tab">Money Donated</a></li>
 {% if own_page %}
@@ -75,10 +77,10 @@
 </br>
 
     
-
-{% if user.is_public or own_page%}
     <div class = "row">
         <div class = "col-sm-8">
+{% if user.is_public or own_page%}
+
             </br>    
             <div class="panel panel-default">
             {% if own_page %}
@@ -159,6 +161,12 @@
             {% endfor %}
             </table>
             </div>
+
+{% else %}
+
+<h4>{% trans "Sorry, this user has chosen to make their information private." %}</h4>
+
+{% endif %}
             </div>
 
     <div class = "col-sm-4">
@@ -246,11 +254,7 @@
 {% endif %}
 </div>
 </div>
-{% else %}
 
-<h4>{% trans "Sorry, this user has chosen to make their information private." %}</h4>
-
-{% endif %}
 
 </div>
 {% endblock %}
