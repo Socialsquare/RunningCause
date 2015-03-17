@@ -38,7 +38,6 @@
 
 {% block body %}
 
-<div class ="panel panel-default">
 
 <ul class="nav nav-tabs nav-justified">
 <li role="presentation"><a href="{% url 'Running.views.user_runs' user_id=user.id %}" aria-controls="home" role="tab" data-toggle="tab">Runs</a></li>
@@ -53,8 +52,11 @@
 
 {% if own_page %}
 
-
-
+  <p>
+        {% blocktrans %}
+        Click the card below to register a credit card with Masanga Runners. If you do this, you won't be charged anything initially. From then on, whenever you agree to pay out a wager, or a runner you're sponsoring runs, you card will be automatically charged, without having to do anything!
+        {% endblocktrans %}
+      </p>
         <button class="btn btn-default" id="registerButton">Register your card with Masanga Runners</button>
 
         <script>
@@ -90,16 +92,38 @@
             handler.close();
           });
         </script>
-        
+
         {% if user.is_public %}
+            <p>
+            {% blocktrans %}
+            Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and wagers, click the button below to make your page private.
+            {% endblocktrans %}
+            </p>
+
             <a href="{% url 'Running.views.make_user_private' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page private." %}</a>
         {% else %}
+            <p>
+            {% blocktrans %}
+            Right now, no one can see your page. Potential sponsors won't be able to see information on you when they're trying to decide whether or not to sponsor you. If you want people to be able to see your information, click the button below to make your page public.
+            {% endblocktrans %}
+            </p>
+
             <a href="{% url 'Running.views.make_user_public' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a>
         {% endif %}
-        
+
+        {% if user.subscribed %}
+            <p>
+            {% blocktrans %}
+            Click the button below if you want to unsubscribe from all reminder emails from us.
+            {% endblocktrans %}
+            </p>
+
+          <a href="{% url 'Running.views.unsubscribe' %}" class="btn btn-default"> {% trans "Unsubscribe from our emails" %}</a>
+        {% endif %}
+        </br>
+      </br>
 {% else %}
 {% endif %}
 
 
-</div>
 {% endblock %}
