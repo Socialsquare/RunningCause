@@ -134,7 +134,7 @@ def info_widget(request):
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
-    if int(user.id) == int(request.user.id) or user.is_public:
+    if (request.user.is_authenticated() and int(user.id) == int(request.user.id)) or user.is_public:
         url = reverse('Running.views.user_runs', kwargs={'user_id': user_id})
     else:
         url = reverse('Running.views.user_raised', kwargs={'user_id': user_id})
@@ -256,7 +256,7 @@ def user_raised(request, user_id):
     # then the data has already been filled out.
     if request.method == "POST" or 'form' in request.session:
         # Verify that the user is logged in.
-            if request.POST['form_name'] == 'sponsor_form' or ('form' in request.session and request.session['form']['form_name'] == 'sponsor_form'):
+            if (request.method == "POST" and request.POST['form_name'] == 'sponsor_form') or ('form' in request.session and request.session['form']['form_name'] == 'sponsor_form'):
                 # Verify that the user is logged in.
                 if request.user.is_authenticated():
 
@@ -298,13 +298,13 @@ def user_raised(request, user_id):
                     # If the user is not authenticated, save the data from their form and save
                     # the url of the current view as 'redirect' in session.
                     request.session['form'] = request.POST
-                    request.session['redirect'] = reverse('Running.views.sponsor', kwargs={'sponsee_id':sponsee.id})
+                    request.session['redirect'] = reverse('Running.views.sponsor', kwargs={'sponsee_id':user_id})
 
                     # Redirect to the signup or login view.
                     url = reverse('Running.views.signup_or_login')
                     return HttpResponseRedirect(url)
 
-            elif request.POST['form_name'] == 'wager_form' or ('form' in request.session and request.session['form']['form_name'] == 'wager_form'):
+            elif (request.method == "POST" and request.POST['form_name'] == 'wager_form') or ('form' in request.session and request.session['form']['form_name'] == 'wager_form'):
                 if request.user.is_authenticated():
 
                     # If this view was called with POST data, make an instance of SponsorForm from
@@ -359,7 +359,7 @@ def user_raised(request, user_id):
                     url = reverse('Running.views.signup_or_login')
                     return HttpResponseRedirect(url)
 
-            elif request.POST['form_name'] == 'invite_form' or ('form' in request.session and request.session['form']['form_name'] == 'invite_form'):
+            elif (request.method == "POST" and request.POST['form_name']) == 'invite_form' or ('form' in request.session and request.session['form']['form_name'] == 'invite_form'):
     
                 # Verify that the user is logged in.
                 if request.user.is_authenticated():
