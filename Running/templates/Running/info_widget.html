@@ -1,0 +1,90 @@
+{% load staticfiles %}
+{% load less %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}" />
+        <link rel='stylesheet' id='google-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700&#038;ver=3.1' type='text/css' media='all' />
+        <link rel='stylesheet' id='font-awesome-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?ver=4.2.0' type='text/css' media='all' />
+
+
+        <style type="text/css">
+            .bg-white{
+                background: #ffffff;
+            }
+            *{
+                margin:0;
+                padding:0;
+                font-family:'lato', 'font awesome', 'Helvetica';
+            }
+            html, body { 
+                height: 100%; 
+                padding: 0; 
+                margin: 0; 
+            }
+
+            .parent {
+                width: 50%;
+                height: 50%;
+                display: table;
+                text-align: center;
+            }
+            .child {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            div
+            { 
+                width: 50%; 
+                height: 50%; 
+                float: left;
+                border-style: solid;
+            }
+        </style>
+
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>
+        {% block title %}
+        Masanga Runners
+        {% endblock %}
+        </title>
+
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="/static/js/share-button.js"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/eldarion-ajax.min.js' %}"></script>
+
+
+    </head>
+
+    <body>
+        <div class="parent">
+            <span class="child">
+            Number of runners:</br>{{ num_runners }}
+            </span>
+        </div>
+        <div class="parent">
+            <span class="child">
+            Number of sponsors:</br>{{ num_sponsors }}
+            </span>
+        </div>
+        <div class="parent">
+            <span class="child">
+            Total amount donated:</br>{{ amount_donated }}
+            </span>
+        </div>
+        <div class="parent">
+            <span class="child">
+            Total distance run:</br>{{ total_distance }}
+            </span>
+        </div>
+    </body>
+</html>

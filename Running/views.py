@@ -100,6 +100,37 @@ def unsubscribe(request):
 
         return render(request, 'Running/unsubscribed_success.html', {})
 
+def info_widget(request):
+    all_users = User.objects.all()
+
+    all_runners = [current_user for current_user in all_users if current_user.is_runner]
+    num_runners = len(all_runners)
+    all_sponsors = [current_user for current_user in all_users if current_user.is_sponsor]
+    num_sponsors = len(all_sponsors)
+
+    amount_donated = 0
+
+    for sponsorship in Sponsorship.objects.all():
+        amount_donated = amount_donated + sponsorship.amount_paid
+
+    for wager in Wager.objects.filter(paid=True):
+        amount_donated = amount_donated + wager.amount
+
+    total_distance = 0
+    all_runs = Run.objects.all()
+    for run in all_runs:
+        total_distance = total_distance + run.distance
+
+    context = {
+        'num_runners': num_runners,
+        'num_sponsors': num_sponsors,
+        'amount_donated': amount_donated,
+        'total_distance': total_distance,
+    }
+
+    return render(request, 'Running/info_widget.html', context)
+
+
 # Shows a page for a specific user, displaying their username and all their sponsorships.
 def user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
