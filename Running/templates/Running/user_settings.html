@@ -53,7 +53,8 @@
 {% if own_page %}
   <div class="row">
     <div class="col-sm-8">
-  <p>
+      {% if not user.stripe_customer_id %}
+      <p>
         {% blocktrans %}
         Click the card below to register a credit card with Masanga Runners. If you do this, you won't be charged anything initially. From then on, whenever you agree to pay out a wager, or a runner you're sponsoring runs, you card will be automatically charged, without having to do anything!
         {% endblocktrans %}
@@ -93,6 +94,19 @@
             handler.close();
           });
         </script>
+
+        {% else %}
+            </br>
+            </br>
+            <p>
+            {% blocktrans %}
+            Click the button below if you want to have Masanga Runners forget your card.
+            {% endblocktrans %}
+            </p>
+
+          <a href="{% url 'Running.views.unregister_card' %}" class="btn btn-default"> {% trans "Forget your card." %}</a>
+        {% endif %}
+
             </br>
             </br>
         {% if user.is_public %}

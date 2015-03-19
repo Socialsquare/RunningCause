@@ -60,10 +60,10 @@ def sign_in_landing(request):
             messages.success(request,  "The email has been successfully subscribed")
         except mailchimp.ListAlreadySubscribedError:
             messages.error(request,  "That email is already subscribed to the list")
-            return redirect('/')
+            return HttpResponseRedirect('/')
         except mailchimp.Error, e:
             messages.error(request,  'An error occurred: %s - %s' % (e.__class__, e))
-            return redirect('/')
+            return HttpResponseRedirect('/')
 
     if not user.greeted:
         user.greeted = True
@@ -99,6 +99,15 @@ def unsubscribe(request):
         user.save()
 
         return render(request, 'Running/unsubscribed_success.html', {})
+
+def unregister_card(request):
+    if request.user.is_authenticated():
+        user = get_object_or_404(User, pk=request.user.id)
+        user.stripe_customer_id = None
+        user.save()
+        render(request, 'Running/deregister_success.html', {})
+
+    return HttpResponse("You're not logged in! How did you even get here?")
 
 def info_widget(request):
     all_users = User.objects.all()

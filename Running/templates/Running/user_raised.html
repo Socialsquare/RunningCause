@@ -198,6 +198,11 @@
 {% if own_page %}
 
 </br>
+    <p>
+        {% blocktrans %}
+        Fill out these fields below to invite someone who doesn't currently have a Masanga account to sponsor you. They will get an email inviting them to create an account and sponsor you.
+        {% endblocktrans %}
+    </p>
 
 {% if invite_form.errors %}
     {% for error in invite_form.non_field_errors %}
@@ -207,11 +212,8 @@
     {% endfor %}
 
 {% endif %}
-{% if sponsor %}
-<form class="form-horizontal" method="post" action="{% url 'Running.views.invite_sponsor' sponsor_id=sponsor.id %}">
-{% else %}
+
 <form class="form-horizontal" method="post" action="{% url 'Running.views.invite_sponsor' %}">
-{% endif %}
     {% csrf_token %}
     {% for field in invite_form %}
         {% for error in field.errors %}
@@ -220,15 +222,15 @@
           </div>
         {% endfor %}
     <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">{{ field.label }}</label>
-    <div class="col-sm-10">
+    <label for="inputEmail3" class="col-sm-4 control-label">{{ field.label }}</label>
+    <div class="col-sm-8">
       {{ field }}
     </div>
     </div>
     {% endfor %}
 <input name="form_name" value="invite_form" type="hidden"></input>
 <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-offset-4 col-sm-8">
       <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
     </div>
   </div>
@@ -243,7 +245,7 @@
     </p>
     {% if sponsor_form.errors %}
         {% for error in sponsor_form.non_field_errors %}
-            <div class="alert alert-danger col-sm-offset-2">
+            <div class="alert alert-danger col-sm-offset-4">
                 {{ error|escape }}
             </div>
         {% endfor %}
@@ -253,20 +255,20 @@
         {% csrf_token %}
         {% for field in sponsor_form %}
             {% for error in field.errors %}
-                <div class="alert alert-danger col-sm-offset-2">
+                <div class="alert alert-danger col-sm-offset-4">
                     {{ error|escape }}
                 </div>
             {% endfor %}
         <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">{{ field.label }}</label>
-        <div class="col-sm-10">
+        <label for="inputEmail3" class="col-sm-4 control-label">{{ field.label }}</label>
+        <div class="col-sm-8">
             {{ field }}
         </div>
         </div>
         {% endfor %}
         <input name="form_name" value="sponsor_form" type="hidden"></input>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-4 col-sm-8">
           <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
         </div>
       </div>
@@ -283,7 +285,7 @@
     </p>
     {% if wager_form.errors %}
     {% for error in wager_form.non_field_errors %}
-        <div class="alert alert-danger col-sm-offset-2">
+        <div class="alert alert-danger col-sm-offset-4">
             {{ error|escape }}
         </div>
     {% endfor %}
@@ -293,20 +295,20 @@
         {% csrf_token %}
         {% for field in wager_form %}
             {% for error in field.errors %}
-                <div class="alert alert-danger col-sm-offset-2">
+                <div class="alert alert-danger col-sm-offset-4">
                     {{ error|escape }}
                 </div>
             {% endfor %}
         <div class="form-group">
-        <label for="{{ field.name }}" class="col-sm-2 control-label">{{ field.label }}</label>
-        <div class="col-sm-10">
+        <label for="{{ field.name }}" class="col-sm-4 control-label">{{ field.label }}</label>
+        <div class="col-sm-8">
             {{ field }}
         </div>
         </div>
         {% endfor %}
     <input name="form_name" value="wager_form" type="hidden"></input>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-4 col-sm-8">
           <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
         </div>
       </div>
