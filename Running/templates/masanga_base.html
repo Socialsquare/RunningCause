@@ -72,7 +72,7 @@
                                 <a href="{% url 'Running.views.my_page' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "MY PAGE" %}</a>
                             </li>
                             <li>
-                                <a href="http://www.masanga.dk" style="color:white; font-size: 120%; font-weight: 600;">{% trans "ABOUT MASANGA HOSPITAL" %}</a>
+                                <a href="http://www.masanga.dk" style="color:white; font-size: 120%; font-weight: 600;" target="_newtab">{% trans "ABOUT MASANGA HOSPITAL" %}</a>
                             </li>
                             <li>
                                 {% if perms.contains.is_staff %}
