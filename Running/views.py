@@ -100,6 +100,14 @@ def unsubscribe(request):
 
         return render(request, 'Running/unsubscribed_success.html', {})
 
+def subscribe(request):
+    if request.user.is_authenticated():
+        user = get_object_or_404(User, pk=request.user.id)
+        user.subscribed = True
+        user.save()
+
+        return render(request, 'Running/subscribed_success.html', {})
+
 def unregister_card(request):
     if request.user.is_authenticated():
         user = get_object_or_404(User, pk=request.user.id)

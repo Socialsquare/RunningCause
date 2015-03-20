@@ -137,6 +137,16 @@
             </p>
 
           <a href="{% url 'Running.views.unsubscribe' %}" class="btn btn-default"> {% trans "Unsubscribe from our emails" %}</a>
+        {% else %}
+            </br>
+            </br>
+            <p>
+            {% blocktrans %}
+            Click the button below if you want to subscribe to reminder emails.
+            {% endblocktrans %}
+            </p>
+
+          <a href="{% url 'Running.views.subscribe' %}" class="btn btn-default"> {% trans "Subscribe to our emails" %}</a>
         {% endif %}
         </br>
       </br>
