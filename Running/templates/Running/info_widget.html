@@ -2,6 +2,8 @@
 {% load less %}
 {% load i18n %}
 {% load widget_tweaks %}
+{% load humanize %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,12 +80,12 @@
         </div>
         <div class="parent">
             <span class="child">
-            Total amount donated:</br>{{ amount_donated }}
+            Total amount donated:</br>{{ amount_donated|floatformat:-2|intcomma }}kr
             </span>
         </div>
         <div class="parent">
             <span class="child">
-            Total distance run:</br>{{ total_distance }}
+            Total distance run:</br>{{ total_distance|floatformat:-2|intcomma }} km
             </span>
         </div>
     </body>

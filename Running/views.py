@@ -845,7 +845,7 @@ def overview(request):
 
     all_wagers = Wager.objects.order_by('sponsor')
 
-    newsletter_users = User.objects.filter(newsletter=True)
+    newsletter_users = User.objects.filter(subscribed=True)
     newsletter_emails = [user.email for user in newsletter_users]
 
     # Build a context from the sponsorships, users, emails and the PaidForm
