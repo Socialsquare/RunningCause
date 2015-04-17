@@ -49,9 +49,9 @@ class Command(BaseCommand):
                                                                                                                                                                                                                         wager.wager_text,
                                                                                                                                                                                                                         settings.BASE_DOMAIN[:-1] + confirm_url,
                                                                                                                                                                                                                         settings.BASE_DOMAIN[:-1] + decline_url)
-                    send_mail('Wager Update', 
+                    send_mail('Dit væddemål på Masanga Runners er ovre', 
                                 message_text, 
-                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                settings.DEFAULT_FROM_EMAIL,
                                 [wager.sponsor.email], 
                                 fail_silently=False,
                                 html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
