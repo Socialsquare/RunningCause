@@ -358,10 +358,10 @@ def user_raised(request, user_id):
                         wager_form = None
 
 
-                        message_text = "{0} has just challenged you to a wager!".format(sponsor.username)
+                        message_text = "{0} har lige udfordret dig med et væddemål.  Vi går ud fra, at du gerne vil gøre et forsøg, og du skal derfor ikke gøre noget for at acceptere. Du kan se væddemålet ved at følge dette link:\n\n{1}".format(sponsor.username,reverse('Running.views.user_donated', kwargs={'user_id':sponsor.id}))
 
                         # Send the email, attaching an HTML version as well.
-                        send_mail('Wager Notification', 
+                        send_mail('Masanga Runners væddemåls-notifikation', 
                                     message_text, 
                                     settings.DEFAULT_FROM_EMAIL,
                                     [sponsee.email], 
@@ -654,11 +654,11 @@ def user_donated(request, user_id):
                                                                             'wager_id': wager.id})
 
                         # Create the message of the text.
-                        message_text = "{0} has proposed a wager! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in making a wager with {0}.".format(request.user.username, 
+                        message_text = "{0} har inviteret dig til at lave et væddemål på Masanga Runners. Han/hun har foreslået nogle værdier, som du kan acceptere, eller ændre og derefter acceptere. Følg linket for at se det foreslåede væddemål {1}. ".format(request.user.username, 
                                                                                                                                                                                                     request.build_absolute_uri(email_url))
 
                         # Send the email, attaching an HTML version as well.
-                        send_mail('Wager Invitation', 
+                        send_mail('Masanga Runners invitation til væddemål', 
                                     message_text,
                                     settings.DEFAULT_FROM_EMAIL,
                                     [email], 

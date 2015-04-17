@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from django.core.management.base import BaseCommand, CommandError
 from Running.models import User, Run
 import requests
@@ -22,11 +25,11 @@ class Command(BaseCommand):
             for wager in user.wagers_recieved.exclude(sponsor=None):
                 if wager.remind_date == datetime.date.today():
                     update_url = reverse('update_wager', kwargs={'wager_id': wager.id})
-                    message_text = "Your wager with {0} is almost over. Click here to send an update on how it's gone to {0}: {1}. Whether or not you respond, {0} will be asked to decide on the bet tomorrow.".format(wager.sponsor,
+                    message_text = "Dit væddemål med {0} slutter i dag. Klik her for at sende en update om, hvordan det er gået: {1}\n\nUanset om du reagerer, vil {0} i morgen blive bedt om at beslutte, om du vandt væddemålet.".format(wager.sponsor,
                                                                                                                                                                                                                         settings.BASE_DOMAIN[:-1] + update_url)
-                    send_mail('Wager Update', 
+                    send_mail('Masanga Runners update på væddemål ', 
                                 message_text, 
-                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                settings.DEFAULT_FROM_EMAIL,
                                 [wager.runner.email], 
                                 fail_silently=False,
                                 html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
