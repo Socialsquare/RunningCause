@@ -38,7 +38,7 @@
                     <td>{{ sponsorship.end_date }}</td>
                     <td>{{ sponsorship.is_active}}</td>
                     <td>
-                        {% if sponsorship.sponsor.stripe_customer_id and not sponsorship.sponsor.stripe_customer_id == "" %}
+                        {% if sponsorship.sponsor.stripe_customer_id and sponsorship.sponsor.stripe_customer_id != "" %}
                         <form class="form-inline" id="paid_amount_{{ sponsorship.id }}"method="post" action="{% url 'Running.views.overview' %}">
                             {% csrf_token %}
                             <input type="hidden" name="sponsorship_id" value="{{ sponsorship.id }}" />
