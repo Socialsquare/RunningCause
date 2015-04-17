@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-13 13:06+0100\n"
-"PO-Revision-Date: 2015-03-13 13:13+0050\n"
-"Last-Translator:   <niles@socialsquare.dk>\n"
+"POT-Creation-Date: 2015-04-17 13:03+0200\n"
+"PO-Revision-Date: 2015-04-17 13:07+0050\n"
+"Last-Translator:   <niles_christensen@yahoo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,6 +37,13 @@ msgid ""
 "Thank you! Your card has been successfully registered with Masanga Runners."
 msgstr "Tak skal du have! Din kort har vært anbefalet med Masanga Runners"
 
+#: Running/templates/Running/deregister_success.html:14
+#, fuzzy
+#| msgid ""
+#| "you! Your card has been successfully registered with Masanga ners."
+msgid "You have successfully deregistered your card."
+msgstr "Tak skal du have! Din kort har vært anbefalet med Masanga Runners"
+
 #: Running/templates/Running/home.html:8
 #, python-format
 msgid "Hello, %(username)s!"
@@ -51,53 +58,71 @@ msgstr "Er du ikke %(username)s? Så log ud"
 msgid "Log in or create an account"
 msgstr "Log ind eller laver en konto"
 
-#: Running/templates/Running/home.html:22
-msgid ""
-"\n"
-"<h4>Every step makes the world a little better</h4>\n"
-"<p>Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.</p>\n"
-"<p>The idea behind Masanga Runners is that many runners and sponsors together can create a huge difference for the hospital in Masanga by running and donating small amounts.</p>\n"
-"<p>”I am a Masanga Runner because it’s a form of motivation to get outside. As a Masanga Runner I know that it’s not just me getting something out of my runs,” says Søren Bo Steendahl, who has been a Masanga Runner since Fall 2014.</p>\n"
-"<p>On this website, you can create an account by entering only a little information and become a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make bets about your performance on runs – you’re only limited by your imagination! </p>\n"
-"<h4>Tax Credits</h4>\n"
-"<p>Masanga Hospital Rehabilitation Project is approved as a charitable organisation, so you can receive tax credits for your donations – all the way up to 15,000 kr. Masanga Runners sends out an email once a year to everyone who’s donated, asking them if they’re interested in the tax credits. You only need to provide your CPR number or you CVR number. It’s completely safe and secure.</p>\n"
-"<h4>Sponsorship Termination</h4>\n"
-"<p>You can end your sponsorships at any time, both as a runner and as a sponsor. You do this by clicking the ”end sponsorship” button by the relevant sponsorship. Both the runner and the sponsor will recieve an email with a confirmation.</p>\n"
-"<h4>Masanga Runners t-shirt</h4>\n"
-"<p>You can advertise your good work by buying a great Masanga Runners t-shirt here! It costs 250 kr, 50 of which go directly to Masanga. The rest goes to shipping, handling, and the t-shirt itself.</p>\n"
-"<h4>Contact</h4>\n"
-"<p>If you have any questions or comments regarding Masanga Runners, you’re welcome to contact Johanne Tofting Schaarup by email at masangarunners@masanga.dk, or by phone at +45 29 80 30 73.</p>\n"
-msgstr ""
-"\n"
-"<h4>Hvert skridt gør verden lidt bedre</h4>\n"
-"<p>Masanga Runners er ikke bare en nem måde at støtte et godt projekt på. Det er også med til at gøre det lidt sjovere at hoppe i løbeskoene. Med Masanga Runners kan du udfordre dine løbevenner, men også involvere familie og venner i dine løbeture og verdens bedste hospitalsprojekt.</p>\n"
-"<p>Idéen bag Masanga Runners er, at mange løbere og sponsorer sammen kan gøre en kæmpe forskel for hospitalet i Masanga ved at donere og løbe forholdsvis små beløb ind.</p>\n"
-"<p>”Jeg er Masanga Runner, fordi det er en form for motivation til at komme afsted. Som Masanga Runners ved jeg, at det ikke kun er mig, der får noget ud af min løbetur”, siger Søren Bo Steendahl, der har været Masanga Runner siden efteråret 2014.</p>\n"
-"<p>Her på siden kan du med få oplysninger oprette en bruger og blive en del af Masanga Runners fællesskabet. Du kan invitere dine venner til at sponsorere dig, dele din side på diverse sociale medier og lave væddemål om deltagelse i et løb - det er kun fantasien, der sætter grænser!</p>\n"
-"<h4>Skattefradrag</h4>\n"
-"<p>Masanga Hospital Rehabilitation Project er godkendt som en almenvelgørende forening, og du kan derfor opnå skattefradrag for dine donationer – helt op til 15.000 kr. Masanga Runners udsender ved udgangen af året en mail til alle, der har doneret penge og spørger, om de er interesseret i et sådant fradrag. Det eneste du skal oplyse til den tid er dit cpr. nummer eller CVR-nummer. Det er helt enkelt og sikkert.</p>\n"
-"<h4>Opsigelse\t</h4>\n"
-"<p>Du kan til enhver tid afslutte dine sponsorater – både som løber og sponsor.  Det gør du ved at trykke på ”slut sponsoraftale” ud for den givne aftale. Både dig og din sponsor/løber får en mail med en bekræftelse.</p>\n"
-"<h4>Masanga Runners t-shirt</h4>\n"
-"<p>Du kan reklamere for den gode sag ved at købe en lækker Masanga Runners t-shirt her! Den koster 250 kr. og 50 af dem går direkte til Masanga. Resten går til tryk, forsendelse og selve t-shirten.</p>\n"
-"<h4>Kontakt</h4>\n"
-"<p>Har du spørgsmål eller lignende vedrørende Masanga Runners, er du velkommen til at kontakte Johanne Tofting Schaarup på mail: masangarunners@masanga.dk eller på telefon +45 29 80 30 73.</p>\n"
-
-#: Running/templates/Running/home.html:39
+#: Running/templates/Running/home.html:25
 msgid "Users:"
 msgstr "Brugere:"
 
-#: Running/templates/Running/home.html:49
+#: Running/templates/Running/home.html:33
 msgid "Huh, that's weird. We can't find any users. Check back later."
 msgstr ""
 "Mærkeligt! Vi kan ikke finde nogen brugere i øjeblikket. Kom tilbage lidt "
 "senere."
 
+#: Running/templates/Running/home.html:71
+#, fuzzy
+#| msgid ""
+#| "ery step makes the world a little better</h4>\n"
+#| "anga Runners is not just a fun way to support a good project. It’s o a great way to make it easier to get in to your running shoes! With anga Runner, you can sponsor your running friends, but also get family  friends involved in your runs and the world’s best hospital project.</The idea behind Masanga Runners is that many runners and sponsors ether can create a huge difference for the hospital in Masanga by ning and donating small amounts.</p>\n"
+#| "am a Masanga Runner because it’s a form of motivation to get side. As a Masanga Runner I know that it’s not just me getting ething out of my runs,” says Søren Bo Steendahl, who has been a anga Runner since Fall 2014.</p>\n"
+#| "this website, you can create an account by entering only a little ormation and become a part of the Masanga Runners community. You can ite your friends to sponsor you, share your page on social media, and e bets about your performance on runs – you’re only limited by your gination! </p>\n"
+#| "x Credits</h4>\n"
+#| "anga Hospital Rehabilitation Project is approved as a charitable anisation, so you can receive tax credits for your donations – all the  up to 15,000 kr. Masanga Runners sends out an email once a year to ryone who’s donated, asking them if they’re interested in the tax dits. You only need to provide your CPR number or you CVR number. It’s pletely safe and secure.</p>\n"
+#| "onsorship Termination</h4>\n"
+#| " can end your sponsorships at any time, both as a runner and as a nsor. You do this by clicking the ”end sponsorship” button by the evant sponsorship. Both the runner and the sponsor will recieve an il with a confirmation.</p>\n"
+#| "sanga Runners t-shirt</h4>\n"
+#| " can advertise your good work by buying a great Masanga Runners t-rt here! It costs 250 kr, 50 of which go directly to Masanga. The rest s to shipping, handling, and the t-shirt itself.</p>\n"
+#| "ntact</h4>\n"
+#| "you have any questions or comments regarding Masanga Runners, ’re welcome to contact Johanne Tofting Schaarup by email at angarunners@masanga.dk, or by phone at +45 29 80 30 73.</p>\n"
+msgid ""
+"\n"
+"<h3>Every Step Makes a Difference</h3>\n"
+"<p>Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.</p>\n"
+"<p>The idea behind Masanga Runners is that many runners and sponsors together can create a huge difference for the hospital in Masanga by running and donating small amounts.</p>\n"
+"<p>As a runner, you find one or more sponsors, who support Masanga with a small amount for each kilometre you run. Furthermore the sponsor can support Masanga with a bigger amount, for an example by making a wager, in connection to you achieving one of your running goals.</p>\n"
+"<p>It could be to complete a half marathon or a DHL race. Depending on how far you run throughout the year, and if you reach your goals, your sponsor pays x amount of money, which will go to the Masanga Hospital.</p>\n"
+"<p>”I am a Masanga Runner because it’s a form of motivation to get outside. As a Masanga Runner I know that it’s not just me getting something out of my runs,” says Søren Bo Steendahl, who has been a Masanga Runner since Fall 2014.</p>\n"
+"<p>On this website, you can create an account and be a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make bets about your performance on runs – you’re only limited by your imagination! </p>\n"
+"<h4>Tax Credits</h4>\n"
+"<p>Masanga Hospital Rehabilitation Project is approved as a charitable organisation, so you can receive tax credits for your donations – all the way up to DKK 15,000. Masanga Runners sends out an email once a year to everyone who’s donated, asking them if they’re interested in the tax credits. You only need to provide your CPR number or your CVR number.</p>\n"
+"<h4>Sponsorship Termination</h4>\n"
+"<p>You can end your sponsorships at any time, both as a runner and as a sponsor. You do this by clicking the ”end sponsorship” button by the relevant sponsorship.</p>\n"
+"<h4>Masanga Runners t-shirt</h4>\n"
+"<p>You can advertise your good work by buying a nice Masanga Runners t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" style=\"text-decoration:underline;\">here</a>! It costs 250 kr., 50 of which go directly to Masanga. The rest goes to shipping, handling, and the t-shirt itself.</p>\n"
+"<h4>Contact</h4>\n"
+"<p>If you have any questions or comments regarding Masanga Runners, you’re welcome to contact us by email at masangarunners@masanga.dk.</p>\n"
+msgstr ""
+"\n"
+"<h4>Hvert skridt gør en forskel</h4>\n"
+"<p>Masanga Runners er ikke bare en nem måde at støtte et godt projekt på. Det er også med til at gøre det lidt sjovere at hoppe i løbeskoene. Med Masanga Runners kan du udfordre dine løbevenner, men også involvere familie og venner i dine løbeture og verdens bedste hospitalsprojekt. </p>\n"
+"<p>Idéen bag Masanga Runners er, at mange løbere og sponsorer sammen kan gøre en kæmpe forskel for hospitalet i Masanga ved at donere og løbe forholdsvis små beløb ind.</p>\n"
+"<p>Som løber finder du en eller flere sponsorer, der støtter Masanga hospitalet med et øre- eller kronebeløb for hver kilometer du løber – eks. 50 øre eller 1 kr. Herudover kan sponsoren støtte Masanga med et bonusbeløb i forbindelse med, at du opnår en af dine målsætninger – eks. gennemførelse af en halvmaraton eller forbedrer din personlige rekord på en given distance. Afhængig af hvor langt du løber, og om du når dine mål, betaler din sponsor x antal kroner, som går til Masanga Hospitalet.</p>\n"
+"<p>”Jeg er Masanga Runner, fordi det er en form for motivation til at komme afsted. Som Masanga Runners ved jeg, at det ikke kun er mig, der får noget ud af min løbetur”, siger Søren Bo Steendahl, der har været Masanga Runner siden efteråret 2014.</p>\n"
+"<p>Her på siden kan du oprette en bruger og blive en del af Masanga Runners fællesskabet. Du kan invitere dine venner til at sponsorere dig, dele din side på diverse sociale medier og lave væddemål om deltagelse i et løb - det er kun fantasien, der sætter grænser!</p>\n"
+"<h4>Skattefradrag</h4>\n"
+"<p>Masanga Hospital Rehabilitation Project er godkendt som en almenvelgørende forening, og du kan derfor opnå skattefradrag for dine donationer – helt op til 15.000 kr. Masanga Runners udsender ved udgangen af året en mail til alle, der \n"
+"har doneret penge og spørger, om de er interesseret i et sådant fradrag. Det eneste du skal oplyse til den tid, er dit CPR-nummer eller CVR-nummer.</p>\n"
+"<h4>Opsigelse\t</h4>\n"
+"<p>Du kan til enhver tid afslutte dine sponsorater – både som løber og sponsor.  Det gør du ved at trykke på ”slut sponsoraftale” ud for den givne aftale.</p>\n"
+"<h4>Masanga Runners t-shirt</h4>\n"
+"<p>Du kan reklamere for den gode sag ved at købe en lækker Masanga Runners t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" style=\"text-decoration:underline;\">her</a>! Den koster 250 kr. og 50 af dem går direkte til Masanga. Resten går til tryk, forsendelse og selve t-shirten.</p>\n"
+"<h4>Kontakt</h4>\n"
+"<p>Har du spørgsmål eller lignende vedrørende Masanga Runners, er du velkommen til at kontakte os på mail: masangarunners@masanga.dk.</p>\n"
+
 #: Running/templates/Running/invite.html:7
 msgid "Sponsor a Runner"
 msgstr "Sponsorér en løber."
 
-#: Running/templates/Running/invite.html:32
+#: Running/templates/Running/invite.html:40
 #, python-format
 msgid ""
 "\n"
@@ -106,16 +131,14 @@ msgstr ""
 "\n"
 "Inviter %(sponsor_name)s til at sponsorere dig.\n"
 
-#: Running/templates/Running/invite.html:36
+#: Running/templates/Running/invite.html:44
 #, fuzzy
 #| msgid "ite %(sponsor_name)s to sponsor you!\n"
 msgid "Invite someone to sponsor you!"
-msgstr ""
-"\n"
-"Inviter %(sponsor_name)s til at sponsorere dig.\n"
+msgstr "Inviter %(sponsor_name)s til at sponsorere dig."
 
-#: Running/templates/Running/invite.html:42
-#: Running/templates/Running/wager_invite.html:37
+#: Running/templates/Running/invite.html:50
+#: Running/templates/Running/wager_invite.html:42
 #, python-format
 msgid ""
 "\n"
@@ -124,24 +147,31 @@ msgstr ""
 "\n"
 "Udfyld formularen med de værdier og datoer du vil foreslå %(sponsor_name)s. Du kan også undlade at udfylde nogle felter og lade dette være helt op til %(sponsor_name)s.\n"
 
-#: Running/templates/Running/invite.html:46
+#: Running/templates/Running/invite.html:54
 #, fuzzy
 #| msgid ""
-#| "this form with the values you'd like to suggest to ponsor_name)s. You  ve "
-#| "anything that you want blank.\n"
+#| "orm with the values you'd like to suggest to ponsor_name)s. You  ve thingat "
+#| "you want blank.\n"
 msgid ""
 "Fill out this form with the values you'd like to suggest to your potential "
 "sponsor. You can leave anything that you want blank."
 msgstr ""
-"\n"
-"Udfyld formularen med de værdier og datoer du vil foreslå %(sponsor_name)s. Du kan også undlade at udfylde nogle felter og lade dette være helt op til %(sponsor_name)s.\n"
+"Udfyld formularen med de værdier og datoer du vil foreslå %(sponsor_name)s. "
+"Du kan også undlade at udfylde nogle felter og lade dette være helt op til "
+"%(sponsor_name)s."
 
-#: Running/templates/Running/invite.html:79
+#: Running/templates/Running/invite.html:87
 #: Running/templates/Running/run_edit.html:63
 #: Running/templates/Running/run_input.html:87
-#: Running/templates/Running/sponsorship.html:69
-#: Running/templates/Running/wager.html:71
-#: Running/templates/Running/wager_invite.html:67
+#: Running/templates/Running/sponsorship.html:77
+#: Running/templates/Running/user_donated.html:208
+#: Running/templates/Running/user_donated.html:246
+#: Running/templates/Running/user_raised.html:234
+#: Running/templates/Running/user_raised.html:272
+#: Running/templates/Running/user_raised.html:312
+#: Running/templates/Running/user_runs.html:162
+#: Running/templates/Running/wager.html:67
+#: Running/templates/Running/wager_invite.html:72
 #: Running/templates/Running/wager_update.html:46
 msgid "Submit"
 msgstr "Send"
@@ -156,16 +186,20 @@ msgid "All sponsorships"
 msgstr "Alle sponsorater"
 
 #: Running/templates/Running/overview.html:15
-#: Running/templates/Running/overview.html:67
-#: Running/templates/Running/user.html:140
-#: Running/templates/Running/user.html:252
+#: Running/templates/Running/overview.html:71
+#: Running/templates/Running/user.html:149
+#: Running/templates/Running/user.html:261
+#: Running/templates/Running/user_raised.html:84
+#: Running/templates/Running/user_raised.html:172
 msgid "Sponsor"
 msgstr "Sponsor"
 
 #: Running/templates/Running/overview.html:16
-#: Running/templates/Running/overview.html:68
-#: Running/templates/Running/user.html:283
-#: Running/templates/Running/user.html:334
+#: Running/templates/Running/overview.html:72
+#: Running/templates/Running/user.html:292
+#: Running/templates/Running/user.html:343
+#: Running/templates/Running/user_donated.html:91
+#: Running/templates/Running/user_donated.html:145
 msgid "Runner"
 msgstr "Løber"
 
@@ -174,7 +208,7 @@ msgid "Rate"
 msgstr "Sats (kr./øre.)"
 
 #: Running/templates/Running/overview.html:18
-#: Running/templates/Running/overview.html:103
+#: Running/templates/Running/overview.html:107
 msgid "Amount Earned"
 msgstr "Optjent beløb"
 
@@ -191,13 +225,16 @@ msgid "Max Amount"
 msgstr "Maks beløb"
 
 #: Running/templates/Running/overview.html:22
-#: Running/templates/Running/user.html:143
+#: Running/templates/Running/user.html:152
+#: Running/templates/Running/user_raised.html:87
 msgid "Started"
 msgstr "Startede"
 
 #: Running/templates/Running/overview.html:23
-#: Running/templates/Running/user.html:144
-#: Running/templates/Running/user.html:286
+#: Running/templates/Running/user.html:153
+#: Running/templates/Running/user.html:295
+#: Running/templates/Running/user_donated.html:94
+#: Running/templates/Running/user_raised.html:88
 msgid "Continues Until"
 msgstr "Løber indtil"
 
@@ -209,78 +246,81 @@ msgstr "Aktiv"
 msgid "Change Total Amount Paid"
 msgstr "Ændr det totale beløb, der er betalt"
 
-#: Running/templates/Running/overview.html:64
+#: Running/templates/Running/overview.html:58
+msgid "The sponsor is using a card"
+msgstr ""
+
+#: Running/templates/Running/overview.html:68
 msgid "All Wagers"
 msgstr ""
 
-#: Running/templates/Running/overview.html:69
+#: Running/templates/Running/overview.html:73
 #, fuzzy
 #| msgid "Account"
 msgid "Amount"
 msgstr "Konto"
 
-#: Running/templates/Running/overview.html:70
+#: Running/templates/Running/overview.html:74
 msgid "Fulfilled"
 msgstr ""
 
-#: Running/templates/Running/overview.html:71
+#: Running/templates/Running/overview.html:75
 msgid "Paid"
 msgstr ""
 
-#: Running/templates/Running/overview.html:72
+#: Running/templates/Running/overview.html:76
 msgid "Remind Date"
 msgstr ""
 
-#: Running/templates/Running/overview.html:73
+#: Running/templates/Running/overview.html:77
 msgid "Decision Date"
 msgstr ""
 
-#: Running/templates/Running/overview.html:74
+#: Running/templates/Running/overview.html:78
 msgid "Wager Text"
 msgstr ""
 
-#: Running/templates/Running/overview.html:75
+#: Running/templates/Running/overview.html:79
 msgid "Update Text"
 msgstr ""
 
-#: Running/templates/Running/overview.html:97
+#: Running/templates/Running/overview.html:101
 #, fuzzy
 #| msgid "Users:"
 msgid "All Users"
 msgstr "Brugere:"
 
-#: Running/templates/Running/overview.html:100
+#: Running/templates/Running/overview.html:104
 msgid "Username"
 msgstr "Brugernavn"
 
-#: Running/templates/Running/overview.html:101
+#: Running/templates/Running/overview.html:105
 msgid "Email"
 msgstr "Email"
 
-#: Running/templates/Running/overview.html:102
+#: Running/templates/Running/overview.html:106
 msgid "Is public"
 msgstr "Er offentlig"
 
-#: Running/templates/Running/overview.html:104
+#: Running/templates/Running/overview.html:108
 msgid "Amount Donated"
 msgstr "Doneret beløb"
 
-#: Running/templates/Running/overview.html:118
+#: Running/templates/Running/overview.html:122
 msgid "All email addresses"
 msgstr "Alle email-addresser"
 
-#: Running/templates/Running/overview.html:132
+#: Running/templates/Running/overview.html:136
 #, fuzzy
 #| msgid "All email addresses"
 msgid "Newsletter email addresses"
 msgstr "Alle email-addresser"
 
-#: Running/templates/Running/overview.html:150
+#: Running/templates/Running/overview.html:154
 #, fuzzy
 #| msgid "rry, you need to be an admin to access this page.\n"
 msgid "Sorry, you need to be an admin to access this page."
 msgstr ""
-"\n"
 "Beklager, du skal være administrator for at kunne se denne side.\n"
 "    "
 
@@ -308,6 +348,7 @@ msgid "Input a new Run"
 msgstr "Indtast en ny løbetur"
 
 #: Running/templates/Running/run_input.html:69
+#: Running/templates/Running/user_runs.html:145
 msgid "Entering multiple runs?"
 msgstr "Vil du indtaste flere løbeture?"
 
@@ -356,11 +397,11 @@ msgstr "Glemt kodeord?"
 msgid "Sign Up"
 msgstr "Opret en bruger"
 
-#: Running/templates/Running/sponsorship.html:34
+#: Running/templates/Running/sponsorship.html:42
 msgid "Create a new Sponsorship"
 msgstr "Lav et nyt sponsorat"
 
-#: Running/templates/Running/sponsorship.html:40
+#: Running/templates/Running/sponsorship.html:48
 msgid ""
 "Here are the values that were recommended for the sponsorship. Feel free to "
 "change whatever you'd like."
@@ -368,35 +409,45 @@ msgstr ""
 "Her er de værdier vi anbefaler for sponsoratet. Du kan ændre ligeså meget du"
 " vil"
 
+#: Running/templates/Running/subscribed_success.html:14
+#, fuzzy
+#| msgid "Password successfully set."
+msgid "You have successfully subscribed."
+msgstr "Adgangskode er nu indtastet"
+
 #: Running/templates/Running/unsubscribed_success.html:14
 msgid "You have successfully unsubscribed."
 msgstr ""
 
-#: Running/templates/Running/user.html:71
+#: Running/templates/Running/user.html:80
 msgid "Input a run!"
 msgstr "Registrér en løbetur!"
 
-#: Running/templates/Running/user.html:75
+#: Running/templates/Running/user.html:84
+#: Running/templates/Running/user_runs.html:173
 msgid "Register with runkeeper!"
 msgstr "Kobl dig op med Runkeeper!"
 
-#: Running/templates/Running/user.html:79
+#: Running/templates/Running/user.html:88
 msgid "Invite a sponsor without a Masanga Runners account!"
 msgstr ""
 
-#: Running/templates/Running/user.html:84
+#: Running/templates/Running/user.html:93
+#: Running/templates/Running/user_settings.html:119
 msgid "Click here to make your page private."
 msgstr "Klik her for at gøre din side privat."
 
-#: Running/templates/Running/user.html:86
+#: Running/templates/Running/user.html:95
+#: Running/templates/Running/user_settings.html:127
 msgid "Click here to make your page public."
 msgstr "Klik her for at gøre din side offentlig."
 
-#: Running/templates/Running/user.html:91
+#: Running/templates/Running/user.html:100
+#: Running/templates/Running/user_settings.html:139
 msgid "Unsubscribe from our emails"
 msgstr ""
 
-#: Running/templates/Running/user.html:104
+#: Running/templates/Running/user.html:113
 #, fuzzy, python-format
 #| msgid "ponsor %(username)s!\n"
 msgid ""
@@ -407,7 +458,7 @@ msgstr ""
 "\n"
 "Sponsorer %(username)s!"
 
-#: Running/templates/Running/user.html:110
+#: Running/templates/Running/user.html:119
 #, fuzzy, python-format
 #| msgid "nvite %(username)s to sponsor you! \n"
 msgid ""
@@ -418,7 +469,7 @@ msgstr ""
 "\n"
 "Inviter %(username)s til at sponsorere dig!"
 
-#: Running/templates/Running/user.html:116
+#: Running/templates/Running/user.html:125
 #, fuzzy, python-format
 #| msgid "nvite %(username)s to sponsor you! \n"
 msgid ""
@@ -429,7 +480,7 @@ msgstr ""
 "\n"
 "Inviter %(username)s til at sponsorere dig!"
 
-#: Running/templates/Running/user.html:122
+#: Running/templates/Running/user.html:131
 #, fuzzy, python-format
 #| msgid "nvite %(username)s to sponsor you! \n"
 msgid ""
@@ -440,139 +491,288 @@ msgstr ""
 "\n"
 "Inviter %(username)s til at sponsorere dig!"
 
-#: Running/templates/Running/user.html:137
+#: Running/templates/Running/user.html:146
+#: Running/templates/Running/user_raised.html:81
 msgid "Sponsorships Recieved"
 msgstr "Modtagne sponsorater"
 
-#: Running/templates/Running/user.html:141
-#: Running/templates/Running/user.html:284
+#: Running/templates/Running/user.html:150
+#: Running/templates/Running/user.html:293
+#: Running/templates/Running/user_donated.html:92
+#: Running/templates/Running/user_raised.html:85
 msgid "Rate(kr/km)"
 msgstr "Sats (kr./km.)"
 
-#: Running/templates/Running/user.html:142
-#: Running/templates/Running/user.html:285
+#: Running/templates/Running/user.html:151
+#: Running/templates/Running/user.html:294
+#: Running/templates/Running/user_donated.html:93
+#: Running/templates/Running/user_raised.html:86
 msgid "Maximum Possible Amount (kr)"
 msgstr "Hvad vil jeg maks donere"
 
-#: Running/templates/Running/user.html:145
-#: Running/templates/Running/user.html:287
+#: Running/templates/Running/user.html:154
+#: Running/templates/Running/user.html:296
+#: Running/templates/Running/user_donated.html:95
+#: Running/templates/Running/user_raised.html:89
 msgid "Amount Earned (kr)"
 msgstr "Optjent beløb"
 
-#: Running/templates/Running/user.html:160
-#: Running/templates/Running/user.html:300
+#: Running/templates/Running/user.html:169
+#: Running/templates/Running/user.html:309
+#: Running/templates/Running/user_donated.html:109
+#: Running/templates/Running/user_raised.html:105
 msgid "End Sponsorship"
 msgstr "Slut sponsorat"
 
-#: Running/templates/Running/user.html:180
+#: Running/templates/Running/user.html:189
+#: Running/templates/Running/user_raised.html:127
 msgid "Anonymous Sponsor"
 msgstr "Anonym sponsor"
 
-#: Running/templates/Running/user.html:201
-#: Running/templates/Running/user.html:315
+#: Running/templates/Running/user.html:210
+#: Running/templates/Running/user.html:324
+#: Running/templates/Running/user_donated.html:127
+#: Running/templates/Running/user_raised.html:149
 msgid "Hmm, there don't seem to be any sponsorships here."
 msgstr "Mærkeligt! Vi kan ikke finde nogle sponsorater her."
 
-#: Running/templates/Running/user.html:209
+#: Running/templates/Running/user.html:218
+#: Running/templates/Running/user_raised.html:157
 msgid "Total Amount Earned:"
 msgstr "Total optjent beløb"
 
-#: Running/templates/Running/user.html:218
+#: Running/templates/Running/user.html:227
+#: Running/templates/Running/user_runs.html:71
 #, fuzzy
 #| msgid "Runs:"
 msgid "Runs"
 msgstr "Løbeture:"
 
-#: Running/templates/Running/user.html:222
+#: Running/templates/Running/user.html:231
+#: Running/templates/Running/user_runs.html:75
 msgid "Date"
 msgstr "Dato"
 
-#: Running/templates/Running/user.html:223
+#: Running/templates/Running/user.html:232
+#: Running/templates/Running/user_runs.html:76
 msgid "Distance (km)"
 msgstr "Distance (km.)"
 
-#: Running/templates/Running/user.html:230
+#: Running/templates/Running/user.html:239
+#: Running/templates/Running/user_runs.html:86
 msgid "Edit Run Details"
 msgstr "Rediger løbedetaljer"
 
-#: Running/templates/Running/user.html:235
+#: Running/templates/Running/user.html:244
+#: Running/templates/Running/user_runs.html:91
 msgid "Hmm, there don't seem to be any runs here."
 msgstr "Mærkeligt! Vi kan ikke finde nogen løbeture her."
 
-#: Running/templates/Running/user.html:239
+#: Running/templates/Running/user.html:248
+#: Running/templates/Running/user_runs.html:95
 msgid "Total Distance Run:"
 msgstr "Total distance løbet"
 
-#: Running/templates/Running/user.html:248
+#: Running/templates/Running/user.html:257
+#: Running/templates/Running/user_raised.html:168
 #, fuzzy
 #| msgid "Sponsorships Recieved"
 msgid "Wagers Recieved"
 msgstr "Modtagne sponsorater"
 
-#: Running/templates/Running/user.html:253
-#: Running/templates/Running/user.html:335
+#: Running/templates/Running/user.html:262
+#: Running/templates/Running/user.html:344
+#: Running/templates/Running/user_donated.html:146
+#: Running/templates/Running/user_raised.html:173
 #, fuzzy
 #| msgid "Amount Paid"
 msgid "Amount (dkk)"
 msgstr "Betalt beløb"
 
-#: Running/templates/Running/user.html:254
-#: Running/templates/Running/user.html:336
+#: Running/templates/Running/user.html:263
+#: Running/templates/Running/user.html:345
+#: Running/templates/Running/user_donated.html:147
+#: Running/templates/Running/user_raised.html:174
 #, fuzzy
 #| msgid "Date"
 msgid "End Date"
 msgstr "Dato"
 
-#: Running/templates/Running/user.html:255
-#: Running/templates/Running/user.html:337
+#: Running/templates/Running/user.html:264
+#: Running/templates/Running/user.html:346
+#: Running/templates/Running/user_donated.html:148
+#: Running/templates/Running/user_raised.html:175
 msgid "Bet"
 msgstr ""
 
-#: Running/templates/Running/user.html:265
-#: Running/templates/Running/user.html:347
+#: Running/templates/Running/user.html:274
+#: Running/templates/Running/user.html:356
+#: Running/templates/Running/user_donated.html:158
+#: Running/templates/Running/user_raised.html:185
 #, fuzzy
 #| msgid "Hmm, there don't seem to be any runs here."
 msgid "Hmm, there don't seem to be any wagers here."
 msgstr "Mærkeligt! Vi kan ikke finde nogen løbeture her."
 
-#: Running/templates/Running/user.html:276
+#: Running/templates/Running/user.html:285
+#: Running/templates/Running/user_donated.html:85
 msgid "You are sponsoring"
 msgstr ""
 
-#: Running/templates/Running/user.html:278
+#: Running/templates/Running/user.html:287
+#: Running/templates/Running/user_donated.html:87
 #, python-format
 msgid "%(username)s is sponsoring"
 msgstr ""
 
-#: Running/templates/Running/user.html:321
+#: Running/templates/Running/user.html:330
+#: Running/templates/Running/user_donated.html:133
 msgid "Total Amount Donated: "
 msgstr "Total beløb doneret"
 
-#: Running/templates/Running/user.html:330
+#: Running/templates/Running/user.html:339
+#: Running/templates/Running/user_donated.html:142
 msgid "Wagers Given"
 msgstr ""
 
-#: Running/templates/Running/user.html:361
+#: Running/templates/Running/user.html:370
+#: Running/templates/Running/user_donated.html:165
+#: Running/templates/Running/user_raised.html:192
+#: Running/templates/Running/user_runs.html:188
 msgid "Sorry, this user has chosen to make their information private."
 msgstr ""
 "Denne bruger har desværre besluttet sig for at gøre sine informationer om "
 "løbeture og sponsorater private."
 
-#: Running/templates/Running/user.html:379
+#: Running/templates/Running/user.html:388
+#: Running/templates/Running/user_donated.html:56
+#: Running/templates/Running/user_raised.html:56
+#: Running/templates/Running/user_runs.html:43
+#: Running/templates/Running/user_settings.html:31
 msgid "You have to make your page public before you can share it."
 msgstr "Din side skal være offentlig for at du kan \"share\"."
 
-#: Running/templates/Running/wager.html:36
+#: Running/templates/Running/user_donated.html:177
+#, python-format
+msgid ""
+"\n"
+"        You can fill out the form below to invite %(username)s to sponsor you. Feel free to leave whatever you want blank. %(username)s will get an email notifying them that you requested them as a sponsor, and the values you do fill out will be displayed to them. They can then choose to sponsor you immediately, change or add some values and then sponsor you, or decline entirely.\n"
+"        "
+msgstr ""
+
+#: Running/templates/Running/user_donated.html:215
+#, python-format
+msgid ""
+"\n"
+"        Alternatively, fill out these fields to invite %(username)s to challenge you to a wager. Feel free to leave whatever you want blank. %(username)s will get an email notifying them that you requested you to challenge them, and the values you do fill out will be displayed to them. They can then choose to challenge you immediately, change or add some values and then challenge you, or decline entirely.\n"
+"        "
+msgstr ""
+
+#: Running/templates/Running/user_raised.html:202
+msgid ""
+"\n"
+"        Fill out these fields below to invite someone who doesn't currently have a Masanga account to sponsor you. They will get an email inviting them to create an account and sponsor you.\n"
+"        "
+msgstr ""
+
+#: Running/templates/Running/user_raised.html:242
+#, python-format
+msgid ""
+"\n"
+"            Fill out these fields down here to sponsor %(username)s. Between the dates in start date and end date, any time %(username)s runs, you will agree to donate the number of dkk in the \"rate\" field to Masanga Hospital. If you're worried that your runner will run too much, don't worry too much! You won't be charged more than the number you put in the \"max amount\" field, no matter how much they run.\n"
+"        "
+msgstr ""
+
+#: Running/templates/Running/user_raised.html:282
+#, python-format
+msgid ""
+"\n"
+"        Alternatively, fill out these fields to set up a wager with %(username)s. If they complete whatever you specify the bet is, by the time you list in end date, then you agree to pay the amount listed in the amount field, in dkk. Worried they'll cheat? No need to fret! At the end of the time period, you're the only one who gets to make the call about whether or not you pay.\n"
+"        "
+msgstr ""
+
+#: Running/templates/Running/user_runs.html:109
+msgid ""
+"\n"
+"    Here, you can input a run! All your sponsors will have the distance you ran added to tab for their sponsorship, and they'll be billed at the end of the month.\n"
+"    "
+msgstr ""
+
+#: Running/templates/Running/user_runs.html:169
+msgid ""
+"\n"
+"    Alternatively, you can connect your Masanga Runners account to your Runkeeper account! Runkeeper is a mobile app that makes it easy to keep track of your runs. If you connect your accounts, your runs will automatically show up on Masanga Runners every day.\n"
+"    "
+msgstr ""
+
+#: Running/templates/Running/user_runs.html:180
+#, python-format
+msgid ""
+"\n"
+"        These are all of the runs that %(username)s has synced with Masanga Runners. At the end of the quater, anyone who was sponsoring %(username)s for this period will be billed, depending on their rates, wagers etc., and the money will be sent to Masanga Hospital.\n"
+"    "
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:58
+msgid ""
+"\n"
+"        Click the card below to register a credit card with Masanga Runners. If you do this, you won't be charged anything initially. From then on, whenever you agree to pay out a wager, or a runner you're sponsoring runs, you card will be automatically charged, without having to do anything!\n"
+"        "
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:102
+msgid ""
+"\n"
+"            Click the button below if you want to have Masanga Runners forget your card.\n"
+"            "
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:107
+msgid "Forget your card."
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:114
+msgid ""
+"\n"
+"            Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and wagers, click the button below to make your page private.\n"
+"            "
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:122
+msgid ""
+"\n"
+"            Right now, no one can see your page. Potential sponsors won't be able to see information on you when they're trying to decide whether or not to sponsor you. If you want people to be able to see your information, click the button below to make your page public.\n"
+"            "
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:134
+msgid ""
+"\n"
+"            Click the button below if you want to unsubscribe from all reminder emails from us.\n"
+"            "
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:144
+msgid ""
+"\n"
+"            Click the button below if you want to subscribe to reminder emails.\n"
+"            "
+msgstr ""
+
+#: Running/templates/Running/user_settings.html:149
+msgid "Subscribe to our emails"
+msgstr ""
+
+#: Running/templates/Running/wager.html:32
 #, fuzzy
 #| msgid "Create a new Sponsorship"
 msgid "Create a new Wager"
 msgstr "Lav et nyt sponsorat"
 
-#: Running/templates/Running/wager.html:42
+#: Running/templates/Running/wager.html:38
 #, fuzzy
 #| msgid ""
-#| "the values that were recommended for the sponsorship. Feel free ngeatever "
-#| "you'd like."
+#| "lues that were recommended for the sponsorship. Feel free ngeatever 'd e."
 msgid ""
 "Here are the values that were recommended for the wager. Feel free to change"
 " whatever you'd like."
@@ -592,8 +792,7 @@ msgstr ""
 msgid "Make a Wager"
 msgstr ""
 
-#: Running/templates/Running/wager_invite.html:31
-#: Running/templates/Running/wager_update.html:11
+#: Running/templates/Running/wager_invite.html:36
 #, fuzzy, python-format
 #| msgid "ite %(sponsor_name)s to sponsor you!\n"
 msgid ""
@@ -607,11 +806,17 @@ msgstr ""
 msgid "Update a Wager"
 msgstr ""
 
+#: Running/templates/Running/wager_update.html:11
+msgid ""
+"\n"
+"Update your Wager!\n"
+msgstr ""
+
 #: Running/templates/Running/wager_update.html:17
 #, fuzzy, python-format
 #| msgid ""
-#| "this form with the values you'd like to suggest to ponsor_name)s. You  ve "
-#| "anything that you want blank.\n"
+#| "orm with the values you'd like to suggest to ponsor_name)s. You  ve thingat "
+#| "you want blank.\n"
 msgid ""
 "\n"
 "Fill out this form with the values you'd like to suggest to %(wager.sponsor.username)s. You can leave anything that you want blank.\n"
@@ -623,23 +828,27 @@ msgstr ""
 msgid "Thank you! Your update has been saved."
 msgstr ""
 
-#: Running/templates/masanga_base.html:64
+#: Running/templates/masanga_base.html:69
 msgid "ABOUT US"
 msgstr "OM OS"
 
-#: Running/templates/masanga_base.html:67
+#: Running/templates/masanga_base.html:72
 msgid "MY PAGE"
 msgstr ""
 
-#: Running/templates/masanga_base.html:71
+#: Running/templates/masanga_base.html:75
+msgid "ABOUT MASANGA HOSPITAL"
+msgstr ""
+
+#: Running/templates/masanga_base.html:79
 msgid "OVERVIEW"
 msgstr ""
 
-#: RunningCause/settings.py:149
+#: RunningCause/settings.py:154
 msgid "English"
 msgstr "Engelsk"
 
-#: RunningCause/settings.py:150
+#: RunningCause/settings.py:155
 msgid "Danish"
 msgstr "Dansk"
 
