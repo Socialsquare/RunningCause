@@ -96,6 +96,7 @@ AUTHENTICATION_BACKENDS = (
 AUTH_USER_MODEL = "Running.User"
 
 LOGIN_REDIRECT_URL = '/sign_in_landing'
+LOGIN_URL = '/signuporlogin'
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -147,15 +148,15 @@ if os.getenv('DATABASE_URL'):
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-
 ugettext = lambda s: s
 
 LANGUAGES = (
-    ('en', ugettext('English')),
+    # ('en', ugettext('English')),
     ('da', ugettext('Danish')),
     )
 
 LANGUAGE_CODE = 'da-dk'
+
 
 
 BASE_DOMAIN = 'http://runners.masanga.dk/'
