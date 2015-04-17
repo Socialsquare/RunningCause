@@ -110,7 +110,7 @@ EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')
 EMAIL_HOST_USER = os.getenv('MAILGUN_SMTP_LOGIN')
 EMAIL_HOST_PASSWORD = os.getenv('MAILGUN_SMTP_PASSWORD')
 EMAIL_PORT = os.getenv('MAILGUN_SMTP_PORT')
-SENDING_ADDRESS = 'masangarunners@masanga.dk'
+DEFAULT_FROM_EMail = 'masangarunners@masanga.dk'
 
 SOCIALACCOUNT_QUERY_EMAIL = False
 
