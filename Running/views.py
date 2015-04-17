@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from Running.models import Sponsorship, Run, User, Wager
@@ -200,14 +202,14 @@ def user_runs(request, user_id, form=None):
 
                     # Generate a message from the information of the run, and send it out to all the relevant
                     # sponsors.
-                    message_text = "{0} has run a distance of {1}km!".format(user.username, 
+                    message_text = "{0} har løbet {1} kilometer.\nTak fordi du sponsorerer {0} som Masanga Runner. Du er med til at gøre en forskel.".format(runner.username, 
                                                                                 distance)
-                    send_mail('Run Update', 
+                    send_mail('Masanga Runners løbe-update', 
                                 message_text, 
-                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                'masangarunners@masanga.dk',
                                 relevant_emails, 
                                 fail_silently=True,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request})))
+                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request, 'title': "Masanga Runners løbe-update"})))
 
                     form = None
             else:
@@ -361,7 +363,7 @@ def user_raised(request, user_id):
                         # Send the email, attaching an HTML version as well.
                         send_mail('Wager Notification', 
                                     message_text, 
-                                    'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                    'masangarunners@masanga.dk',
                                     [sponsee.email], 
                                     fail_silently=True,
                                     html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -431,16 +433,16 @@ def user_raised(request, user_id):
                                                                             'sponsorship_id':sponsorship.id})
 
                         # Create the message of the text.
-                        message_text = "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, 
+                        message_text = "Hej kommende Masanga Sponsor. {0} har anmodet dig om at sponsorere sig som Masanga Runner. På den måde kan du være med til at motivere {0} og samtidig støtte Masanga Hospitalet som ligger dybt inde i Sierra Leones jungle.\n\nLyder det spændende, så klik her: {1}. Du kan ved at følge linket se, hvor meget {0} har løbet indtil nu, og hvor meget {0} indtil nu har samlet ind.".format(request.user.username, 
                                                                                                                                                                                                     request.build_absolute_uri(email_url))
 
                         # Send the email, attaching an HTML version as well.
-                        send_mail('Sponsorship Invitation', 
+                        send_mail('Masanga Runners sponsorinvitation', 
                                     message_text, 
-                                    'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                    'masangarunners@masanga.dk',
                                     [email], 
                                     fail_silently=True,
-                                    html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
+                                    html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN, 'title': 'Masanga Runners sponsorinvitation'})))
 
                         invite_form = None
 
@@ -581,7 +583,7 @@ def user_donated(request, user_id):
                     # Send the email, attaching an HTML version as well.
                     send_mail('Sponsorship Invitation', 
                                 message_text, 
-                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                'masangarunners@masanga.dk',
                                 [email], 
                                 fail_silently=True,
                                 html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
@@ -652,13 +654,13 @@ def user_donated(request, user_id):
                                                                             'wager_id': wager.id})
 
                         # Create the message of the text.
-                        message_text = "{0} has proposed a wager!! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in making a wager with {0}.".format(request.user.username, 
+                        message_text = "{0} has proposed a wager! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in making a wager with {0}.".format(request.user.username, 
                                                                                                                                                                                                     request.build_absolute_uri(email_url))
 
                         # Send the email, attaching an HTML version as well.
                         send_mail('Wager Invitation', 
-                                    message_text, 
-                                    'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                    message_text,
+                                    'masangarunners@masanga.dk',
                                     [email], 
                                     fail_silently=True,
                                     html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -1193,7 +1195,7 @@ def invite_sponsor(request, sponsor_id=None):
                 # Send the email, attaching an HTML version as well.
                 send_mail('Sponsorship Invitation', 
                             message_text, 
-                            'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                            'masangarunners@masanga.dk',
                             [email], 
                             fail_silently=True,
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
@@ -1288,7 +1290,7 @@ def wager(request, sponsee_id, wager_id=None):
                 # Send the email, attaching an HTML version as well.
                 send_mail('Wager Notification', 
                             message_text, 
-                            'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                            'masangarunners@masanga.dk',
                             [sponsee.email], 
                             fail_silently=True,
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -1392,7 +1394,7 @@ def invite_wager(request, sponsor_id):
                 # Send the email, attaching an HTML version as well.
                 send_mail('Wager Invitation', 
                             message_text, 
-                            'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                            'masangarunners@masanga.dk',
                             [email], 
                             fail_silently=True,
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -1519,14 +1521,14 @@ def input_run(request, runner_id):
 
                     # Generate a message from the information of the run, and send it out to all the relevant
                     # sponsors.
-                    message_text = "{0} has run a distance of {1}km!".format(user.username, 
+                    message_text = "{0} har løbet {1} kilometer.\nTak fordi du sponsorerer {0} som Masanga Runner. Du er med til at gøre en forskel.".format(user.username, 
                                                                                 distance)
-                    send_mail('Run Update', 
+                    send_mail('Masanga Runners løbe-update', 
                                 message_text, 
-                                'postmaster@appa4d174eb9b61497e90a286ddbbc6ef57.mailgun.org',
+                                'masangarunners@masanga.dk',
                                 relevant_emails, 
                                 fail_silently=True,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request})))
+                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request, 'title': "Masanga Runners løbe-update"})))
 
                     # Redirect to the user's page.
                     url = reverse('Running.views.user', kwargs={'user_id': runner_id})
