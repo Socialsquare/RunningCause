@@ -39,13 +39,13 @@ class Command(BaseCommand):
                     decline_url = reverse('decline_wager', kwargs={'wager_id': wager.id})
 
                     if wager.update_text:
-                        message_text = "Your wager with {0} has ended. {0} said: {1}. Just a reminder, the wager said {2}. Click here to confirm that the wager was successfully completed: {3}, or here to say that the wager was failed: {4}".format(wager.runner, 
+                        message_text = "Dit væddemål med {0} er ovre. {0} har skrevet følgende: {1} For huskerens skyld, lød væddemålet sådan: {2} Klik her for at bekræfte at væddemålet blev gennemført: {3}\n\n eller her hvis væddemålet mislykkedes for {0}: {4}".format(wager.runner, 
                                                                                                                                                                                                                         wager.update_text,
                                                                                                                                                                                                                         wager.wager_text,
                                                                                                                                                                                                                         settings.BASE_DOMAIN[:-1] + confirm_url,
                                                                                                                                                                                                                         settings.BASE_DOMAIN[:-1] + decline_url)
                     else:
-                        message_text = "Your wager with {0} has ended. Just a reminder, the wager said {1}. Click here to confirm that the wager was successfully completed: {2}, or here to say that the wager was failed: {3}".format(wager.runner, 
+                        message_text = "Dit væddemål med {0} er ovre. For huskerens skyld, lød væddemålet sådan: {1} Klik her for at bekræfte at væddemålet blev gennemført: {2}\n\n eller her hvis væddemålet mislykkedes for {0}: {3}".format(wager.runner, 
                                                                                                                                                                                                                         wager.wager_text,
                                                                                                                                                                                                                         settings.BASE_DOMAIN[:-1] + confirm_url,
                                                                                                                                                                                                                         settings.BASE_DOMAIN[:-1] + decline_url)
