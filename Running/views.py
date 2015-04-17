@@ -206,7 +206,7 @@ def user_runs(request, user_id, form=None):
                                                                                 distance)
                     send_mail('Masanga Runners løbe-update', 
                                 message_text, 
-                                'masangarunners@masanga.dk',
+                                settings.SENDING_ADDRESS,
                                 relevant_emails, 
                                 fail_silently=True,
                                 html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request, 'title': "Masanga Runners løbe-update"})))
@@ -363,7 +363,7 @@ def user_raised(request, user_id):
                         # Send the email, attaching an HTML version as well.
                         send_mail('Wager Notification', 
                                     message_text, 
-                                    'masangarunners@masanga.dk',
+                                    settings.SENDING_ADDRESS,
                                     [sponsee.email], 
                                     fail_silently=True,
                                     html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -439,7 +439,7 @@ def user_raised(request, user_id):
                         # Send the email, attaching an HTML version as well.
                         send_mail('Masanga Runners sponsorinvitation', 
                                     message_text, 
-                                    'masangarunners@masanga.dk',
+                                    settings.SENDING_ADDRESS,
                                     [email], 
                                     fail_silently=True,
                                     html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN, 'title': 'Masanga Runners sponsorinvitation'})))
@@ -583,7 +583,7 @@ def user_donated(request, user_id):
                     # Send the email, attaching an HTML version as well.
                     send_mail('Sponsorship Invitation', 
                                 message_text, 
-                                'masangarunners@masanga.dk',
+                                settings.SENDING_ADDRESS,
                                 [email], 
                                 fail_silently=True,
                                 html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
@@ -660,7 +660,7 @@ def user_donated(request, user_id):
                         # Send the email, attaching an HTML version as well.
                         send_mail('Wager Invitation', 
                                     message_text,
-                                    'masangarunners@masanga.dk',
+                                    settings.SENDING_ADDRESS,
                                     [email], 
                                     fail_silently=True,
                                     html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -1195,7 +1195,7 @@ def invite_sponsor(request, sponsor_id=None):
                 # Send the email, attaching an HTML version as well.
                 send_mail('Sponsorship Invitation', 
                             message_text, 
-                            'masangarunners@masanga.dk',
+                            settings.SENDING_ADDRESS,
                             [email], 
                             fail_silently=True,
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
@@ -1290,7 +1290,7 @@ def wager(request, sponsee_id, wager_id=None):
                 # Send the email, attaching an HTML version as well.
                 send_mail('Wager Notification', 
                             message_text, 
-                            'masangarunners@masanga.dk',
+                            settings.SENDING_ADDRESS,
                             [sponsee.email], 
                             fail_silently=True,
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -1394,7 +1394,7 @@ def invite_wager(request, sponsor_id):
                 # Send the email, attaching an HTML version as well.
                 send_mail('Wager Invitation', 
                             message_text, 
-                            'masangarunners@masanga.dk',
+                            settings.SENDING_ADDRESS,
                             [email], 
                             fail_silently=True,
                             html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
@@ -1525,7 +1525,7 @@ def input_run(request, runner_id):
                                                                                 distance)
                     send_mail('Masanga Runners løbe-update', 
                                 message_text, 
-                                'masangarunners@masanga.dk',
+                                settings.SENDING_ADDRESS,
                                 relevant_emails, 
                                 fail_silently=True,
                                 html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request, 'title': "Masanga Runners løbe-update"})))
