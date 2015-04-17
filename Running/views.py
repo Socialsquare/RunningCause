@@ -886,6 +886,11 @@ def end_sponsorship(request, sponsorship_id, runner_id):
         if user == sponsorship.sponsor or user == sponsorship.runner:
             sponsorship.end_date = datetime.date.today()
             sponsorship.save()
+        else:
+            return HttpResponse("Sorry, you're not allowed to do that.")
+
+    else:
+        return HttpResponse("Sorry, you need to be logged in for that.")
 
     # Regardless of what happened, redirect to the profile page of the user with id runner_id.
     url = reverse('Running.views.user_raised', kwargs={'user_id': runner_id})
