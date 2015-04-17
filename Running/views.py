@@ -943,8 +943,9 @@ def register_runkeeper(request, runner_id):
 
             # Now that we've associated the token with the user, we're done with authentication.
             # Call this view again to finally deal with the workout data.
-            reverse('Running.views.register_runkeeper', 
+            url = reverse('Running.views.register_runkeeper', 
                         kwargs={'runner_id': runner_id})
+            return HttpResponseRedirect(url)
 
         # This means that the user has registered with runkeeper before, and has an access token.
         # Use this to get the workouts for the user, and create and store new run objects for
