@@ -147,7 +147,6 @@ if os.getenv('DATABASE_URL'):
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
 ugettext = lambda s: s
 
@@ -155,6 +154,9 @@ LANGUAGES = (
     ('en', ugettext('English')),
     ('da', ugettext('Danish')),
     )
+
+LANGUAGE_CODE = 'da-dk'
+
 
 BASE_DOMAIN = 'http://runners.masanga.dk/'
 
