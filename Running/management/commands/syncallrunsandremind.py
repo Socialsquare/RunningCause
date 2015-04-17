@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail
 from django.conf import settings
@@ -44,7 +46,8 @@ class Command(BaseCommand):
                 if user.email != None:
                     all_addresses += [user.email]
             all_addresses = [i for i in all_addresses if i != '']
-            message = 'Hello! You should probably enter your runs on Masanga Runners!'
+            message = 'Hej Masanga Runner\n\nHar du været ude og løbe, og har du ikke registreret dette manuelt på Masanga Runners eller via RunKeeper, så er det måske ved at være tid.\n\nwww.runners.masanga.dk\n\nDu bestemmer selv, hvor ofte du vil registrere dine kilometer, og om du vil koble dig op med RunKeeper, men vi anbefaler at du registrerer dine kilometer mindst en gang om måneden.\n\nTak fordi du løber for Masanga! Rigtig god løbelyst.'
+
             for address in all_addresses:
                 if address:
                     send_mail('Reminder', 
@@ -54,6 +57,7 @@ class Command(BaseCommand):
                                 fail_silently=False,
                                 html_message=loader.get_template('Running/email.html').render(Context({'message': message, 
                                                                                                         'request': None, 
-                                                                                                        'domain': settings.BASE_DOMAIN})))
+                                                                                                        'domain': settings.BASE_DOMAIN,
+                                                                                                        'title': "Masanga Runners Reminder"})))
 
             self.stdout.write('Sent reminder mail')
