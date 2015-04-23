@@ -3,21 +3,21 @@
 <div style="background-color:#C90401; color:white; margin-bottom:15px; padding-left:10px; padding-top:5px; padding-bottom:5px;">
 <h1>{% if title %}{{ title }}{% else %}Masanga Runners{% endif %}</h1>
 </div>
-</br>
+<br/>
 {{ message }}
-</br>
+<br/>
 De bedste løbehilsner
-</br>
+<br/>
 <div style="margin-top:1cm;">
-<img src={% static 'img/masanga_logo123.png' %} alt="Masanga Logo" style="height:109px; width:211px; ">
+<img src="{% if request %}{{ request.META.HTTP_HOST }}{% elif domain %}{{ domain }}{% endif %}{% static 'img/masanga_logo123.png' %}" alt="Masanga Logo" style="height:109px; width:211px; ">
 </div>
 
-_________________</br>
+_________________<br/>
 
-Masanga DK</br>
-Dalbergstrøget 7</br>
-2630 Taastrup</br>
-Danmark</br>
-masangarunners@masanga.dk</br>
-runners.masanga.dk</br>
+Masanga DK<br/>
+Dalbergstrøget 7<br/>
+2630 Taastrup<br/>
+Danmark<br/>
+masangarunners@masanga.dk<br/>
+runners.masanga.dk<br/>
 

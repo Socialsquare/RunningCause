@@ -159,7 +159,7 @@ LANGUAGE_CODE = 'da-dk'
 
 
 
-BASE_DOMAIN = 'http://runners.masanga.dk/'
+BASE_DOMAIN = 'http://runners.masanga.dk'
 
 TIME_ZONE = 'Europe/Copenhagen'
 
