@@ -197,19 +197,21 @@ def user_runs(request, user_id, form=None):
                     # happened, then get a list of all relevant sponsors and their emails from that.
                     relevant_sponsorships = user.sponsorships_recieved.filter(end_date__gte=end_date, 
                                                                             start_date__lte=start_date)
-                    relevant_sponsors = list(set([sponsorship.sponsor for sponsorship in relevant_sponsorships]))
-                    relevant_emails = [sponsor.email for sponsor in relevant_sponsors]
 
-                    # Generate a message from the information of the run, and send it out to all the relevant
-                    # sponsors.
-                    message_text = "{0} har løbet {1} kilometer.\nTak fordi du sponsorerer {0} som Masanga Runner. Du er med til at gøre en forskel.".format(runner.username, 
-                                                                                distance)
-                    send_mail('Masanga Runners løbe-update', 
-                                message_text, 
-                                settings.DEFAULT_FROM_EMAIL,
-                                relevant_emails, 
-                                fail_silently=True,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request, 'title': "Masanga Runners løbe-update"})))
+                    relevant_sponsors = list(set([sponsorship.sponsor for sponsorship in relevant_sponsorships if sponsorship.sponsor != None]))
+
+                    relevant_emails = [sponsor.email for sponsor in relevant_sponsors]
+                    for email in relevant_emails:
+                        print email
+                        send_mail('Masanga Runners løbe-update', 
+                                    "", 
+                                    settings.DEFAULT_FROM_EMAIL,
+                                    [email], 
+                                    fail_silently=False,
+                                    html_message = loader.get_template('Email/run_update.html').render(Context({'username': runner.username, 
+                                                                                                            'kilometers': distance, 
+                                                                                                            'request':request, 
+                                                                                                            'title': "Masanga Runners løbe-update"})))
 
                     form = None
             else:
@@ -358,15 +360,18 @@ def user_raised(request, user_id):
                         wager_form = None
 
 
-                        message_text = "{0} har lige udfordret dig med et væddemål.  Vi går ud fra, at du gerne vil gøre et forsøg, og du skal derfor ikke gøre noget for at acceptere. Du kan se væddemålet ved at følge dette link:\n\n{1}".format(sponsor.username,reverse('Running.views.user_donated', kwargs={'user_id':sponsor.id}))
+                        link = reverse('Running.views.user_donated', kwargs={'user_id':sponsor.id})
+                        full_link = request.build_absolute_uri(link)
 
                         # Send the email, attaching an HTML version as well.
                         send_mail('Masanga Runners væddemåls-notifikation', 
-                                    message_text, 
+                                    '', 
                                     settings.DEFAULT_FROM_EMAIL,
                                     [sponsee.email], 
                                     fail_silently=True,
-                                    html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
+                                    html_message = loader.get_template('Email/wager_challenged.html').render(Context({'sponsor': sponsor.username, 
+                                                                                                            'link': full_link, 
+                                                                                                            'request': request})))
                 else:
 
                     # If the user is not authenticated, save the data from their form and save
@@ -432,17 +437,15 @@ def user_raised(request, user_id):
                         email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                             'sponsorship_id':sponsorship.id})
 
-                        # Create the message of the text.
-                        message_text = "Hej kommende Masanga Sponsor. {0} har anmodet dig om at sponsorere sig som Masanga Runner. På den måde kan du være med til at motivere {0} og samtidig støtte Masanga Hospitalet som ligger dybt inde i Sierra Leones jungle.\n\nLyder det spændende, så klik her: {1}. Du kan ved at følge linket se, hvor meget {0} har løbet indtil nu, og hvor meget {0} indtil nu har samlet ind.".format(request.user.username, 
-                                                                                                                                                                                                    request.build_absolute_uri(email_url))
+                        full_email_url = request.build_absolute_uri(email_url)
 
                         # Send the email, attaching an HTML version as well.
                         send_mail('Masanga Runners sponsorinvitation', 
-                                    message_text, 
+                                    "", 
                                     settings.DEFAULT_FROM_EMAIL,
                                     [email], 
                                     fail_silently=True,
-                                    html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN, 'title': 'Masanga Runners sponsorinvitation'})))
+                                    html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 'link': full_email_url, 'domain': settings.BASE_DOMAIN, 'title': 'Masanga Runners sponsorinvitation'})))
 
                         invite_form = None
 
@@ -576,18 +579,22 @@ def user_donated(request, user_id):
                     email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                         'sponsorship_id':sponsorship.id})
 
-                    # Create the message of the text.
-                    message_text = "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, 
-                                                                                                                                                                                                request.build_absolute_uri(email_url))
+                    email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
+                                                                            'sponsorship_id':sponsorship.id})
+
+                    full_email_url = request.build_absolute_uri(email_url)
 
                     # Send the email, attaching an HTML version as well.
-                    send_mail('Sponsorship Invitation', 
-                                message_text, 
+                    send_mail('Masanga Runners sponsorinvitation', 
+                                "", 
                                 settings.DEFAULT_FROM_EMAIL,
                                 [email], 
                                 fail_silently=True,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
-
+                                html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 
+                                                                                                                'link': full_email_url, 
+                                                                                                                'domain': settings.BASE_DOMAIN, 
+                                                                                                                'title': 'Masanga Runners sponsorinvitation'})))
+                    
                     invite_form = None
 
                     url = reverse('Running.views.user_donated', kwargs={'user_id': user_id})
@@ -652,18 +659,18 @@ def user_donated(request, user_id):
                         # and can follow to sponsor the potential sponsee.
                         email_url = reverse('wager_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                             'wager_id': wager.id})
+                        full_link = request.build_absolute_uri(email_url)
 
-                        # Create the message of the text.
-                        message_text = "{0} har inviteret dig til at lave et væddemål på Masanga Runners. Han/hun har foreslået nogle værdier, som du kan acceptere, eller ændre og derefter acceptere. Følg linket for at se det foreslåede væddemål {1}. ".format(request.user.username, 
-                                                                                                                                                                                                    request.build_absolute_uri(email_url))
 
                         # Send the email, attaching an HTML version as well.
                         send_mail('Masanga Runners invitation til væddemål', 
-                                    message_text,
+                                    '',
                                     settings.DEFAULT_FROM_EMAIL,
                                     [email], 
                                     fail_silently=True,
-                                    html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
+                                    html_message = loader.get_template('Email/wager_request.html').render(Context({'runner': sponsee.username, 
+                                                                                                            'link': full_link,
+                                                                                                            'request': request})))
 
                         wager_form = None
 
@@ -1194,17 +1201,16 @@ def invite_sponsor(request, sponsor_id=None):
                 email_url = reverse('sponsor_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                     'sponsorship_id':sponsorship.id})
 
-                # Create the message of the text.
-                message_text = "{0} has requested you as a sponsor on Masanga Runners! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in sponsoring {0}.".format(request.user.username, 
-                                                                                                                                                                                            request.build_absolute_uri(email_url))
+                full_email_url = request.build_absolute_uri(email_url)
 
                 # Send the email, attaching an HTML version as well.
-                send_mail('Sponsorship Invitation', 
-                            message_text, 
+                send_mail('Masanga Runners sponsorinvitation', 
+                            "", 
                             settings.DEFAULT_FROM_EMAIL,
                             [email], 
                             fail_silently=True,
-                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
+                            html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 'link': full_email_url, 'domain': settings.BASE_DOMAIN, 'title': 'Masanga Runners sponsorinvitation'})))
+
 
                 # Redirect to the profile or the user with id user_id.
                 if sponsor_id:
@@ -1290,16 +1296,18 @@ def wager(request, sponsee_id, wager_id=None):
                 # Save the sponsorship.
                 wager.save()
 
-
-                message_text = "{0} has just challenged you to a wager!".format(sponsor.username)
+                link = reverse('Running.views.user_donated', kwargs={'user_id': sponsor.id})
+                full_link = request.build_absolute_uri(link)
 
                 # Send the email, attaching an HTML version as well.
-                send_mail('Wager Notification', 
-                            message_text, 
+                send_mail('Masanga Runners væddemåls-notifikation', 
+                            '', 
                             settings.DEFAULT_FROM_EMAIL,
                             [sponsee.email], 
                             fail_silently=True,
-                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
+                            html_message = loader.get_template('Email/wager_challenged.html').render(Context({'sponsor': sponsor.username, 
+                                                                                                    'link': full_link, 
+                                                                                                    'request': request})))
 
                 # Redirect to the profile page of the user with id sponsee_id.
                 url = reverse('Running.views.user', kwargs={'user_id': sponsee_id})
@@ -1393,17 +1401,18 @@ def invite_wager(request, sponsor_id):
                 email_url = reverse('wager_from_invite', kwargs={'sponsee_id': sponsee.id,
                                                                     'wager_id': wager.id})
 
-                # Create the message of the text.
-                message_text = "{0} has proposed a wager!! Click this to proceed: {1} \n\nFeel free to ignore this if you're not interested in making a wager with {0}.".format(request.user.username, 
-                                                                                                                                                                                            request.build_absolute_uri(email_url))
+                full_link = request.build_absolute_uri(email_url)
+
 
                 # Send the email, attaching an HTML version as well.
-                send_mail('Wager Invitation', 
-                            message_text, 
+                send_mail('Masanga Runners invitation til væddemål', 
+                            '',
                             settings.DEFAULT_FROM_EMAIL,
                             [email], 
                             fail_silently=True,
-                            html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request': request})))
+                            html_message = loader.get_template('Email/wager_request.html').render(Context({'runner': sponsee.username, 
+                                                                                                    'link': full_link,
+                                                                                                    'request': request})))
 
                 # Redirect to the profile or the user with id user_id.
                 url = reverse('Running.views.user', kwargs={'user_id': sponsor_id})
@@ -1522,20 +1531,21 @@ def input_run(request, runner_id):
                     # happened, then get a list of all relevant sponsors and their emails from that.
                     relevant_sponsorships = user.sponsorships_recieved.filter(end_date__gte=end_date, 
                                                                             start_date__lte=start_date)
-                    relevant_sponsors = list(set([sponsorship.sponsor for sponsorship in relevant_sponsorships]))
+                    
+                    relevant_sponsors = list(set([sponsorship.sponsor for sponsorship in relevant_sponsorships if sponsorship.sponsor != None]))
+
                     relevant_emails = [sponsor.email for sponsor in relevant_sponsors]
-
-                    # Generate a message from the information of the run, and send it out to all the relevant
-                    # sponsors.
-                    message_text = "{0} har løbet {1} kilometer.\nTak fordi du sponsorerer {0} som Masanga Runner. Du er med til at gøre en forskel.".format(user.username, 
-                                                                                distance)
-                    send_mail('Masanga Runners løbe-update', 
-                                message_text, 
-                                settings.DEFAULT_FROM_EMAIL,
-                                relevant_emails, 
-                                fail_silently=True,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'request':request, 'title': "Masanga Runners løbe-update"})))
-
+                    for email in relevant_emails:
+                        print email
+                        send_mail('Masanga Runners løbe-update', 
+                                    "", 
+                                    settings.DEFAULT_FROM_EMAIL,
+                                    [email], 
+                                    fail_silently=False,
+                                    html_message = loader.get_template('Email/run_update.html').render(Context({'username': runner.username, 
+                                                                                                            'kilometers': distance, 
+                                                                                                            'request':request, 
+                                                                                                            'title': "Masanga Runners løbe-update"})))
                     # Redirect to the user's page.
                     url = reverse('Running.views.user', kwargs={'user_id': runner_id})
                     return HttpResponseRedirect(url)

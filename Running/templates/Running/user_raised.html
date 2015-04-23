@@ -213,7 +213,7 @@
 
 {% endif %}
 
-<form class="form-horizontal" method="post" action="{% url 'Running.views.invite_sponsor' %}">
+<form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' user.id %}">
     {% csrf_token %}
     {% for field in invite_form %}
         {% for error in field.errors %}
