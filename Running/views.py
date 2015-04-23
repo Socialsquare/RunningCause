@@ -719,7 +719,7 @@ def user_donated(request, user_id):
     if request.user.is_authenticated():
         auth_user_id = request.user.id
         accessor = get_object_or_404(User, pk=auth_user_id)
-        own_page = (str(auth_user_id) == str(user_id))
+        own_page = (int(auth_user_id) == int(user_id))
             
     # Build the context from the variables we've just set.
     context = {'user': user,
