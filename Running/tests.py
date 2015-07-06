@@ -36,8 +36,7 @@ class PaymentTestCase(TestCase):
                                                 end_date=date.today() + relativedelta(months=2, weeks=2),
                                                 max_amount=150)
         run = Run.objects.create(runner=User.objects.get(username='runner'),
-                            distance=10,
-                            date=date.today())
+                            distance=10)
         run.save()
 
         
@@ -60,8 +59,7 @@ class PaymentTestCase(TestCase):
                                                 max_amount=150)
        
         first_run = Run.objects.create(runner=User.objects.get(username='runner'),
-                            distance=10,
-                            date=date.today())
+                            distance=10)
         first_run.save()
 
         
@@ -69,8 +67,7 @@ class PaymentTestCase(TestCase):
 
 
         first_run = Run.objects.create(runner=User.objects.get(username='runner'),
-                            distance=10,
-                            date=date.today())
+                            distance=10)
         first_run.save()
 
         
