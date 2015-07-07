@@ -2,20 +2,6 @@
 {% load i18n %}
 {% load static %}
 {% block head %}
-
-
-{% if user %}
-{% blocktrans with username=user.username %}Hello, {{ username }}!{% endblocktrans %}</br>
-<small>{% blocktrans with username=user.username %}Not {{ username }}? Log out{% endblocktrans %} <a href="{% url 'account_logout' %}" style="text-decoration: underline;">{% trans "here." %}</a></small>
-
-
-{% else %}
-{% trans "Log in or create an account" %}
-<a href="{% url 'signup_or_login' %}" style="text-decoration: underline;">
-{% trans "here." %}
-</a>
-{% endif %}
-
 {% endblock %}
 
 {% block body %}
