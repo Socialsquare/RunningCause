@@ -445,7 +445,7 @@ def user_raised(request, user_id):
                                     settings.DEFAULT_FROM_EMAIL,
                                     [email], 
                                     fail_silently=True,
-                                    html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 'link': full_email_url, 'domain': settings.BASE_DOMAIN, 'title': 'Masanga Runners sponsorinvitation'})))
+                                    html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 'link': full_email_url, 'domain': settings.BASE_URL, 'title': 'Masanga Runners sponsorinvitation'})))
 
                         invite_form = None
 
@@ -592,7 +592,7 @@ def user_donated(request, user_id):
                                 fail_silently=True,
                                 html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 
                                                                                                                 'link': full_email_url, 
-                                                                                                                'domain': settings.BASE_DOMAIN, 
+                                                                                                                'domain': settings.BASE_URL, 
                                                                                                                 'title': 'Masanga Runners sponsorinvitation'})))
                     
                     invite_form = None
@@ -1209,7 +1209,7 @@ def invite_sponsor(request, sponsor_id=None):
                             settings.DEFAULT_FROM_EMAIL,
                             [email], 
                             fail_silently=True,
-                            html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 'link': full_email_url, 'domain': settings.BASE_DOMAIN, 'title': 'Masanga Runners sponsorinvitation'})))
+                            html_message = loader.get_template('Email/email_invite.html').render(Context({'runner': sponsee.username, 'link': full_email_url, 'domain': settings.BASE_URL, 'title': 'Masanga Runners sponsorinvitation'})))
 
 
                 # Redirect to the profile or the user with id user_id.

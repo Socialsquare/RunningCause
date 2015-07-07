@@ -48,12 +48,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
-
-SITE_ID = 1
 
 INSTALLED_APPS = (
     'django.contrib.humanize',
@@ -84,6 +79,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Running.middleware.RedirectFromCnamesMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -158,8 +154,9 @@ LANGUAGES = (
 LANGUAGE_CODE = 'da-dk'
 
 
-
-BASE_DOMAIN = 'http://runners.masanga.dk'
+SITE_ID = 1
+SITE_DOMAIN = 'runners.masanga.dk'
+BASE_URL = 'http://' + SITE_DOMAIN
 
 TIME_ZONE = 'Europe/Copenhagen'
 
@@ -204,7 +201,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 #from django.contrib.sites.models import Site
