@@ -25,33 +25,46 @@ class Command(BaseCommand):
             for wager in user.wagers_recieved.exclude(sponsor=None):
                 if wager.remind_date == datetime.date.today():
                     update_url = reverse('update_wager', kwargs={'wager_id': wager.id})
-                    message_text = "Dit væddemål med {0} slutter i dag. Klik her for at sende en update om, hvordan det er gået: {1}\n\nUanset om du reagerer, vil {0} i morgen blive bedt om at beslutte, om du vandt væddemålet.".format(wager.sponsor,
-                                                                                                                                                                                                                        settings.BASE_DOMAIN[:-1] + update_url)
+                    message_text = ("Dit væddemål med {0} slutter i dag. Klik"
+                                    " her for at sende en update om, hvordan det er "
+                                    "gået: {1}\n\nUanset om du reagerer, vil {0} "
+                                    "i morgen blive bedt om at beslutte, "
+                                    "om du vandt væddemålet.")\
+                                    .format(wager.sponsor,
+                                            settings.BASE_URL + update_url)
                     send_mail('Masanga Runners update på væddemål ', 
                                 message_text, 
                                 settings.DEFAULT_FROM_EMAIL,
                                 [wager.runner.email], 
                                 fail_silently=False,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
+                                html_message = loader.get_template('Running/email.html')\
+                                .render(Context({'message': message_text,
+                                                 'domain': settings.BASE_URL})))
             for wager in user.wagers_given.all():
                 if wager.decision_date() == datetime.date.today():
                     confirm_url = reverse('confirm_wager', kwargs={'wager_id': wager.id})
                     decline_url = reverse('decline_wager', kwargs={'wager_id': wager.id})
 
                     if wager.update_text:
-                        message_text = "Dit væddemål med {0} er ovre. {0} har skrevet følgende: {1} For huskerens skyld, lød væddemålet sådan: {2} Klik her for at bekræfte at væddemålet blev gennemført: {3}\n\n eller her hvis væddemålet mislykkedes for {0}: {4}".format(wager.runner, 
-                                                                                                                                                                                                                        wager.update_text,
-                                                                                                                                                                                                                        wager.wager_text,
-                                                                                                                                                                                                                        settings.BASE_DOMAIN[:-1] + confirm_url,
-                                                                                                                                                                                                                        settings.BASE_DOMAIN[:-1] + decline_url)
+                        message_text = ("Dit væddemål med {0} er ovre. {0}"
+                                        " har skrevet følgende: {1} For "
+                                        "huskerens skyld, lød væddemålet sådan: {2} "
+                                        "Klik her for at bekræfte at væddemålet"
+                                        " blev gennemført: {3}\n\n eller her"
+                                        " hvis væddemålet mislykkedes "
+                                        "for {0}: {4}"\
+                                        .format(wager.runner,wager.update_text,
+                                                wager.wager_text,
+                                                settings.BASE_URL + confirm_url,
+                                                settings.BASE_URL + decline_url)
                     else:
                         message_text = "Dit væddemål med {0} er ovre. For huskerens skyld, lød væddemålet sådan: {1} Klik her for at bekræfte at væddemålet blev gennemført: {2}\n\n eller her hvis væddemålet mislykkedes for {0}: {3}".format(wager.runner, 
                                                                                                                                                                                                                         wager.wager_text,
-                                                                                                                                                                                                                        settings.BASE_DOMAIN[:-1] + confirm_url,
-                                                                                                                                                                                                                        settings.BASE_DOMAIN[:-1] + decline_url)
+                                                                                                                                                                                                                        settings.BASE_URL + confirm_url,
+                                                                                                                                                                                                                        settings.BASE_URL + decline_url)
                     send_mail('Dit væddemål på Masanga Runners er ovre', 
                                 message_text, 
                                 settings.DEFAULT_FROM_EMAIL,
                                 [wager.sponsor.email], 
                                 fail_silently=False,
-                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_DOMAIN})))
+                                html_message = loader.get_template('Running/email.html').render(Context({'message': message_text, 'domain': settings.BASE_URL})))

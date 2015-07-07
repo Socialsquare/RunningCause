@@ -57,7 +57,7 @@ class Command(BaseCommand):
                                 fail_silently=False,
                                 html_message=loader.get_template('Running/email.html').render(Context({'message': message, 
                                                                                                         'request': None, 
-                                                                                                        'domain': settings.BASE_DOMAIN,
+                                                                                                        'domain': settings.BASE_URL,
                                                                                                         'title': "Masanga Runners Reminder"})))
 
             self.stdout.write('Sent reminder mail')
