@@ -76,7 +76,7 @@ def sign_in_landing(request):
 def credit_card_prompt(request):
     ctx = {
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-        'email': user.email
+        'email': request.user.email
     }
     return render(request, 'Running/credit_card_prompt.html', ctx)
 
@@ -162,7 +162,7 @@ def user_runs(request, user_id, form=None):
     form = forms.RunInputForm
     if request.method == "POST":
         if not request.user.is_authenticated() or \
-                request.user.id != runner.id:
+                request.user.id != person.id:
             msg = _("You are not the runner you're trying to "
                    "input a run for! Please go to your own "
                    "page and try again.")
@@ -178,7 +178,7 @@ def user_runs(request, user_id, form=None):
                       start_date=start_date, end_date=end_date)
             run.save()
 
-            relevant_sponsors = user.sponsorships_recieved\
+            relevant_sponsors = request.user.sponsorships_recieved\
                 .filter(end_date__gte=end_date, start_date__lte=start_date)\
                 .exclude(sponsor_isnull=True)\
                 .distinct('sponsor')
@@ -294,12 +294,12 @@ def user_raised(request, user_id):
                 sponsorship.save()
 
                 email_url = reverse('sponsor_from_invite',
-                                    kwargs={'sponsee_id': sponsee.id,
+                                    kwargs={'sponsee_id': person.id,
                                             'sponsorship_id': sponsorship.id})
 
                 full_email_url = request.build_absolute_uri(email_url)
                 ctx = {
-                    'runner': sponsee,
+                    'runner': person,
                     'link': full_email_url,
                     'BASE_URL': settings.BASE_URL,
                     'title': 'Masanga Runners sponsorinvitation',
@@ -707,7 +707,7 @@ def sponsor(request, sponsee_id, sponsorship_id=None):
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
             max_amount = form.cleaned_data['max_amount']
-            sponsorship = Sponsorship(runner=sponsee, 
+            sponsorship = Sponsorship(runner=sponsee,
                                         sponsor=sponsor, 
                                         rate=rate,
                                         start_date=start_date, 
@@ -1102,7 +1102,7 @@ def edit_run(request, run_id):
                 form.cleaned_data['end_date'] >= form.cleaned_data['start_date']:
             run.end_date = form.cleaned_data['end_date']
         run.save()
-        return redirect('Running.views.user_view', user_id=user.id)
+        return redirect('Running.views.user_view', user_id=request.user.id)
 
     form = forms.RunInputForm(instance=run)
     context = {

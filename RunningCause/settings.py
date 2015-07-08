@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for RunningCause project.
 """
@@ -6,6 +7,13 @@ import os
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as messages_constants
 
+ADMINS = (
+    ('admin', 'pawel+runners-prod@socialsquare.dk'),
+)
+
+MANAGERS = (
+    ('Paweł Bielecki', 'pawel+runners-prod-manager@socialsquare.dk'),
+)
 
 MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
@@ -46,7 +54,7 @@ COURRIERS_MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 # Application definition
 
@@ -58,7 +66,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'static_precompiler',
     'django.contrib.sites',
     'widget_tweaks',
     'allauth',
@@ -182,14 +189,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "allauth.account.context_processors.account",
     #"allauth.socialaccount.context_processors.socialaccount",
-
+    "RunningCause.context_processors.base_url",
 )
 
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'static_precompiler.finders.StaticPrecompilerFinder',
 )
 
 
@@ -199,12 +205,36 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-# Static asset configuration
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-#from django.contrib.sites.models import Site
-STATIC_URL = '/static/'
 
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'),
 )
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
+
