@@ -41,22 +41,7 @@
 {% block head %}
 {{ person.username }}
 <div style="float:right">
-{% if own_page and user.is_public %}
-
-    <span class='st_facebook_large' displayText='Facebook'></span>
-    <span class='st_googleplus_large' displayText='Google +'></span>
-    <span class='st_twitter_large' displayText='Tweet'></span>
-    <span class='st_reddit_large' displayText='Reddit'></span>
-    <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
-    <span class='st_email_large' displayText='Email'></span>
-</br>
-
-{% elif own_page and not user.is_public %}
-
-   <h4>{% trans "You have to make your page public before you can share it." %}</h4>
-
-
-{% endif %}
+{%include "includes/_share_it_buttons.html"%}
 </div>
 {% endblock %}
 {% block body %}
@@ -68,7 +53,7 @@
     
     <div class = "row">
         <div class = "col-sm-8">
-{% if user.is_public or own_page %}
+{% if person.is_public or own_page %}
 
             </br>    
             <div class="panel panel-default">
@@ -166,7 +151,7 @@
     {% else %}
 
     <p>
-        {% blocktrans with username=user.username %}
+        {% blocktrans with username=person.username %}
         You can fill out the form below to invite {{ username }} to sponsor you. Feel free to leave whatever you want blank. {{ username }} will get an email notifying them that you requested them as a sponsor, and the values you do fill out will be displayed to them. They can then choose to sponsor you immediately, change or add some values and then sponsor you, or decline entirely.
         {% endblocktrans %}
     </p>
@@ -204,7 +189,7 @@
 
 
     <p>
-        {% blocktrans with username=user.username %}
+        {% blocktrans with username=person.username %}
         Alternatively, fill out these fields to invite {{ username }} to challenge you to a wager. Feel free to leave whatever you want blank. {{ username }} will get an email notifying them that you requested you to challenge them, and the values you do fill out will be displayed to them. They can then choose to challenge you immediately, change or add some values and then challenge you, or decline entirely.
         {% endblocktrans %}
     </p>

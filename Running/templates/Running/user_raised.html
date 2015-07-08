@@ -41,22 +41,7 @@
 {% block head %}
 {{ person.username }}
 <div style="float:right">
-{% if own_page and person.is_public %}
-
-    <span class='st_facebook_large' displayText='Facebook'></span>
-    <span class='st_googleplus_large' displayText='Google +'></span>
-    <span class='st_twitter_large' displayText='Tweet'></span>
-    <span class='st_reddit_large' displayText='Reddit'></span>
-    <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
-    <span class='st_email_large' displayText='Email'></span>
-</br>
-
-{% elif own_page and not person.is_public %}
-
-   {% trans "You have to make your page public before you can share it." %}
-
-
-{% endif %}
+{%include "includes/_share_it_buttons.html"%}
 </div>
 {% endblock %}
 
@@ -66,7 +51,7 @@
 
 <div class ="row">
 <div class="col-sm-8">
-{% if runner.is_public or own_page%}
+{% if person.is_public or own_page%}
 
         </br>
         <div class="panel panel-default">
