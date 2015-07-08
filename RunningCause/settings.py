@@ -10,6 +10,9 @@ ADMINS = (
     ('admin', 'pawel+runners-prod@socialsquare.dk'),
 )
 
+MANAGERS = (
+    ('Paweł Bielecki', 'pawel+runners-prod-manager@socialsquare.dk'),
+)
 
 MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
