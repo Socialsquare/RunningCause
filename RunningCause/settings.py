@@ -6,6 +6,10 @@ import os
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as messages_constants
 
+ADMINS = (
+    ('admin', 'pawel+runners-prod@socialsquare.dk'),
+)
+
 
 MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
@@ -44,7 +48,7 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 COURRIERS_MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -209,6 +213,29 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-ADMINS = (
-    ('admin', 'pawel@socialsquare.dk'),
-)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
+
