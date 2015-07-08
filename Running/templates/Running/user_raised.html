@@ -35,13 +35,13 @@
 {% endblock %}
 
 {% block title %}
-{{ user.username }}
+{{ person.username }}
 {% endblock %}
 
 {% block head %}
-{{ user.username }}
+{{ person.username }}
 <div style="float:right">
-{% if own_page and user.is_public %}
+{% if own_page and person.is_public %}
 
     <span class='st_facebook_large' displayText='Facebook'></span>
     <span class='st_googleplus_large' displayText='Google +'></span>
@@ -51,7 +51,7 @@
     <span class='st_email_large' displayText='Email'></span>
 </br>
 
-{% elif own_page and not user.is_public %}
+{% elif own_page and not person.is_public %}
 
    {% trans "You have to make your page public before you can share it." %}
 
@@ -61,20 +61,12 @@
 {% endblock %}
 
 {% block body %}
-<ul class="nav nav-tabs nav-justified">
-{% if own_page or user.is_public %}
-<li><a href="{% url 'Running.views.user_runs' user_id=user.id %}">Runs</a></li>
-{% endif %}
-<li class="active"><a href="{% url 'Running.views.user_raised' user_id=user.id %}">Money Raised</a></li>
-<li><a href="{% url 'Running.views.user_donated' user_id=user.id %}">Money Donated</a></li>
-{% if own_page %}
-<li><a href="{% url 'Running.views.user_settings' user_id=user.id%}">Settings</a></li>
-{% endif %}
-</ul>
+
+{% include "includes/_tabs_runs_raised_donated.html" %}
 
 <div class ="row">
 <div class="col-sm-8">
-{% if user.is_public or own_page%}
+{% if runner.is_public or own_page%}
 
         </br>
         <div class="panel panel-default">
@@ -87,7 +79,7 @@
                 <th>{% trans "Started" %}</th>
                 <th>{% trans "Continues Until" %}</th>
                 <th>{% trans "Amount Earned (kr)" %}</th>
-                <th></th>
+                <th>&nbsp;</th>
             </thead>
 
             {% for sponsorship in sponsorships %}
@@ -101,13 +93,10 @@
                             <td>{{ sponsorship.end_date }}</td>
                             <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
-                            {% if own_page or sponsorship.sponsor == accessor %}
-                                <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">{% trans "End Sponsorship" %}</a></td>
-                            {% else %}
-                            <td></td>
-                            {% endif %}
+							<td>
+							{% include "includes/_end_sponsorship_button.html" %}
+                            </td>
                         </tr>
-
                     {% else %}
                         <tr style='opacity:0.6'> 
                             <td>{{ sponsorship.sponsor }}</td>
@@ -213,7 +202,7 @@
 
 {% endif %}
 
-<form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' user.id %}">
+<form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' person.id %}">
     {% csrf_token %}
     {% for field in invite_form %}
         {% for error in field.errors %}
@@ -239,7 +228,7 @@
 {% else %}
     </br>
     <p>
-        {% blocktrans with username=user.username %}
+        {% blocktrans with username=person.username %}
             Fill out these fields down here to sponsor {{ username }}. Between the dates in start date and end date, any time {{ username }} runs, you will agree to donate the number of dkk in the "rate" field to Masanga Hospital. If you're worried that your runner will run too much, don't worry too much! You won't be charged more than the number you put in the "max amount" field, no matter how much they run.
         {% endblocktrans %}
     </p>
@@ -251,7 +240,7 @@
         {% endfor %}
     {% endif %}
 
-    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' user.id %}">
+    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' person.id %}">
         {% csrf_token %}
         {% for field in sponsor_form %}
             {% for error in field.errors %}
@@ -279,7 +268,7 @@
 
 
     <p>
-        {% blocktrans with username=user.username %}
+        {% blocktrans with username=person.username %}
         Alternatively, fill out these fields to set up a wager with {{ username }}. If they complete whatever you specify the bet is, by the time you list in end date, then you agree to pay the amount listed in the amount field, in dkk. Worried they'll cheat? No need to fret! At the end of the time period, you're the only one who gets to make the call about whether or not you pay.
         {% endblocktrans %}
     </p>
@@ -291,7 +280,7 @@
     {% endfor %}
 
     {% endif %}
-    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' user.id %}">
+    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' person.id %}">
         {% csrf_token %}
         {% for field in wager_form %}
             {% for error in field.errors %}

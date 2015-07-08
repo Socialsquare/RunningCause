@@ -35,11 +35,11 @@
 {% endblock %}
 
 {% block title %}
-{{ user.username }}
+{{ person.username }}
 {% endblock %}
 
 {% block head %}
-{{ user.username }}
+{{ person.username }}
 <div style="float:right">
 {% if own_page and user.is_public %}
 
@@ -61,39 +61,31 @@
 {% endblock %}
 {% block body %}
 
-<ul class="nav nav-tabs nav-justified">
-{% if own_page or user.is_public %}
-<li><a href="{% url 'Running.views.user_runs' user_id=user.id %}">Runs</a></li>
-{% endif %}
-<li><a href="{% url 'Running.views.user_raised' user_id=user.id %}">Money Raised</a></li>
-<li class="active"><a href="{% url 'Running.views.user_donated' user_id=user.id %}">Money Donated</a></li>
-{% if own_page %}
-<li><a href="{% url 'Running.views.user_settings' user_id=user.id%}">Settings</a></li>
-{% endif %}
-</ul>
+{% include "includes/_tabs_runs_raised_donated.html" %}
 
 </br>
 
     
     <div class = "row">
         <div class = "col-sm-8">
-{% if user.is_public or own_page%}
+{% if user.is_public or own_page %}
 
             </br>    
             <div class="panel panel-default">
             {% if own_page %}
             <div class="panel-heading">{% trans "You are sponsoring" %}</div>
             {% else %}
-            <div class="panel-heading">{% blocktrans with username=user.username %}{{ username }} is sponsoring{% endblocktrans %}</div>
+            <div class="panel-heading">{% blocktrans with username=person.username %}{{ username }} is sponsoring{% endblocktrans %}</div>
             {% endif %}
                 <table class="table table-hover">
                 <thead>
                     <th>{% trans "Runner" %}</th>
                     <th>{% trans "Rate(kr/km)" %}</th>
                     <th>{% trans "Maximum Possible Amount (kr)" %}</th>
+                    <th>{% trans "Started" %}</th>
                     <th>{% trans "Continues Until" %}</th>
                     <th>{% trans "Amount Earned (kr)" %}</th>
-                    <th></th>
+                    <th>&nbsp;</th>
 
                 </thead>
                 {% for sponsorship in sponsorships_given %}
@@ -102,20 +94,20 @@
                             <td>{{ sponsorship.runner }}</td>
                             <td>{{ sponsorship.rate }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
+                            <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
                             <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
 
-                            {% if own_page or sponsorship.sponsor == user %}
-                                <td><a href="{% url 'Running.views.end_sponsorship' sponsorship.id user.id %}" class="btn btn-default">{% trans "End Sponsorship" %}</a></td>
-                            {% else %}
-                            <td></td>
-                            {% endif %}
+							<td>
+                            {% include "includes/_end_sponsorship_button.html" %}
+                            </td>
                         </tr>
                     {% else %}
                         <tr style='opacity:0.6'> 
                             <td>{{ sponsorship.runner }}</td>
                             <td>{{ sponsorship.rate }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
+                            <td>{{ sponsorship.start_date }}</td>
                             <td>{{ sponsorship.end_date }}</td>
                             <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
                             <td></td>
@@ -187,7 +179,7 @@
         {% endfor %}
 
     {% endif %}
-    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_donated' user.id %}">
+    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_donated' person.id %}">
         {% csrf_token %}
         {% for field in invite_form %}
             {% for error in field.errors %}
@@ -225,7 +217,7 @@
         {% endfor %}
 
     {% endif %}
-    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_donated' user_id=user.id %}">
+    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_donated' user_id=person.id %}">
         {% csrf_token %}
         {% for field in wager_form %}
             {% for error in field.errors %}

@@ -10,9 +10,9 @@
 <div class="panel panel-default">
     <div class="panel-heading">{% trans "Users:" %}</div>
     <table class="table table-hover">
-    {% for user in user_list %}
+    {% for person in user_list %}
         <tr>
-            <td><a href="{% url 'Running.views.user' user.id %}">{{ user.username }}</a></td>
+            <td><a href="{% url 'Running.views.user_view' person.id %}">{{ person.username }}</a></td>
         </tr>   
     {% empty %}
     <tr>

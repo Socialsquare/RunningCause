@@ -10,11 +10,11 @@
 {% endblock %}
 
 {% block title %}
-{{ user.username }}
+Your Settings
 {% endblock %}
 
 {% block head %}
-{{ user.username }}
+Your Settings
 <div style="float:right">
 {% if own_page and user.is_public %}
 
@@ -37,20 +37,8 @@
 {% block body %}
 
 
-<ul class="nav nav-tabs nav-justified" role="tablist">
-{% if own_page or user.is_public %}
-<li><a href="{% url 'Running.views.user_runs' user_id=user.id %}">Runs</a></li>
-{% endif %}
-<li><a href="{% url 'Running.views.user_raised' user_id=user.id%}">Money Raised</a></li>
-<li><a href="{% url 'Running.views.user_donated' user_id=user.id%}">Money Donated</a></li>
-{% if own_page %}
-<li class="active"><a href="{% url 'Running.views.user_settings' user_id=user.id%}">Settings</a></li>
-{% endif %}
-</ul>
-
 </br>
 
-{% if own_page %}
   <div class="row">
     <div class="col-sm-8">
       {% if not user.stripe_customer_id %}
@@ -116,7 +104,7 @@
             {% endblocktrans %}
             </p>
 
-            <a href="{% url 'Running.views.make_user_private' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page private." %}</a>
+            <a href="{% url 'make_profile_private' %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page private." %}</a>
         {% else %}
             <p>
             {% blocktrans %}
@@ -124,7 +112,7 @@
             {% endblocktrans %}
             </p>
 
-            <a href="{% url 'Running.views.make_user_public' user.id %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a>
+            <a href="{% url 'make_profile_public' %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a>
         {% endif %}
 
         {% if user.subscribed %}
@@ -152,8 +140,6 @@
       </br>
     </div>
   </div>
-{% else %}
-{% endif %}
 
 
 {% endblock %}
