@@ -9,6 +9,7 @@ import healthgraph
 import mailchimp
 from dateutil.relativedelta import relativedelta
 
+from django.contrib.auth.decorators import user_passes_test
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template import loader, Context
@@ -180,7 +181,7 @@ def user_runs(request, user_id, form=None):
 
             relevant_sponsors = request.user.sponsorships_recieved\
                 .filter(end_date__gte=end_date, start_date__lte=start_date)\
-                .exclude(sponsor_isnull=True)\
+                .exclude(sponsor__isnull=True)\
                 .distinct('sponsor')
 
             relevant_emails = relevant_sponsors.values_list('sponsor__email',
@@ -203,7 +204,7 @@ def user_runs(request, user_id, form=None):
                           html_message=html_msg)
 
     total_distance = person.runs.all().aggregate(x=Sum('distance'))['x'] or 0
-    own_page = request.user.id == user_id
+    own_page = request.user.id == person.id
 
     context = {
         'person': person,
@@ -434,7 +435,7 @@ def user_donated(request, user_id):
 
     wagers_given = person.wagers_given.exclude(sponsor=None)
     accessor = None
-    own_page = request.user.id == user_id
+    own_page = request.user.id == person.id
 
     context = {
         'sponsorships_given': sponsorships_given,
@@ -485,10 +486,12 @@ def signup_or_login(request):
     return render(request, 'Running/signup_or_login.html', context)
 
 
+@user_passes_test(lambda u: u.is_staff)
+@login_required
 def overview(request):
     # If the method was called with POST data, and the user is an admin,
     # it was called by a PaidForm. Handle that.
-    if request.method == "POST" and request.user.is_staff:
+    if request.method == "POST":
 
         # Make a PaidForm from the POST data.
         form = forms.PaidForm(request.POST)

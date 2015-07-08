@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 import django.contrib.auth as auth
 from django.core.urlresolvers import reverse
@@ -140,7 +141,7 @@ class Sponsorship(models.Model):
         distances = self.runner.runs.filter(start_date__gte=self.start_date,
                                             end_date__lte=self.end_date)\
                                             .values_list('distance', flat=True)
-        amount = sum([self.rate * distance for distance in distances])
+        amount = sum([self.rate * Decimal(distance) for distance in distances])
         return min(amount, self.max_amount)
 
     #   Returns the amount of money left to pay, by subtracting amount_paid from total_amount.
