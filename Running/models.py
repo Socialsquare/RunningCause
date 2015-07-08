@@ -35,31 +35,26 @@ class User(auth.models.AbstractUser):
 
     greeted = models.BooleanField('Greeted?', default=False)
 
-    #   This determines whether or not our user is a "runner". This is only to affect some UI on their profile.
     @property
     def is_runner(self):
         return self.runs.all().exists() or \
             self.sponsorships_recieved.all().exists() or \
             self.wagers_recieved.all().exists()
 
-    #   This determines whether or not our user is a "sponsor". This is only to affect some UI on their profile.
     @property
     def is_sponsor(self):
         return self.sponsorships_given.all().exits() or \
             self.wagers_given.all().exists()
 
-    #   This figures out how much the user has raised for Masanga.
     @property
     def amount_earned(self):
-        return self.sponsorships_recieved.all()\
-            .exclude(sponsor=None)\
-            .aggregate(x=Sum('sponsorship__total_amount'))['x'] or 0
+        rec_spships = self.sponsorships_recieved.all().exclude(sponsor=None)
+        return sum([sp.total_amount for sp in rec_spships])
 
-    #   This figures out how much the user has donated to Masanga through sponsorships.
     @property
     def amount_donated(self):
-        return self.sponsorships_given.all()\
-            .aggregate(x=Sum("sponsorship__total_amount"))['x'] or 0
+        given_spships = self.sponsorships_given.all().exclude(runner=None)
+        return sum([sp.total_amount for sp in given_spships])
 
 
 class Wager(models.Model):
@@ -86,11 +81,6 @@ class Wager(models.Model):
             return self.remind_date + relativedelta(days=1)
 
         return None
-
-    def amount_owed(self):
-        if fulfilled and not paid:
-            return amount
-        return 0
 
     def __unicode__(self):
         return '%s' % self.runner
@@ -147,12 +137,11 @@ class Sponsorship(models.Model):
     #   and returns either the sum of all relevant runs, or max_amount, whichever is less.
     @property
     def total_amount(self):
-        amount = 0
-        for run in self.runner.runs.all():
-            if run.start_date >= self.start_date and run.end_date <= self.end_date:
-                amount = amount + (self.rate * run.distance)
-        amount = min(amount, self.max_amount)
-        return amount
+        distances = self.runner.runs.filter(start_date__gte=self.start_date,
+                                            end_date__lte=self.end_date)\
+                                            .values_list('distance', flat=True)
+        amount = sum([self.rate * distance for distance in distances])
+        return min(amount, self.max_amount)
 
     #   Returns the amount of money left to pay, by subtracting amount_paid from total_amount.
     @property
