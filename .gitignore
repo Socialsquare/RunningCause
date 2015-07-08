@@ -73,3 +73,6 @@ secret_settings.py
 
 # Docx
 *.docx
+
+
+/staticfiles/
