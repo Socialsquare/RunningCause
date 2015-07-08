@@ -8,6 +8,8 @@ admin.site.register(Wager)
 @admin.register(Sponsorship)
 class SponsorshipAdmin(admin.ModelAdmin):
     readonly_fields = ('current_amount', 'is_active')
+    list_display = ('id', 'runner', 'sponsor', 'current_amount', 'end_date',
+                    'is_active')
     fields = ('runner', 
         'sponsor', 
         'rate',

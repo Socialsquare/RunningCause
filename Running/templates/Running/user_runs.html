@@ -22,13 +22,13 @@
 {% endblock %}
 
 {% block title %}
-{{ user.username }}
+{{ person.username }}
 {% endblock %}
 
 {% block head %}
-{{ user.username }}
+{{ person.username }}
 <div style="float:right">
-{% if own_page and user.is_public %}
+{% if own_page and person.is_public %}
 
     <span class='st_facebook_large' displayText='Facebook'></span>
     <span class='st_googleplus_large' displayText='Google +'></span>
@@ -38,7 +38,7 @@
     <span class='st_email_large' displayText='Email'></span>
 </br>
 
-{% elif own_page and not user.is_public %}
+{% elif own_page and not person.is_public %}
 
    <h4>{% trans "You have to make your page public before you can share it." %}</h4>
 
@@ -49,14 +49,7 @@
 
 {% block body %}
 
-<ul class="nav nav-tabs nav-justified">
-<li class="active"><a href="{% url 'Running.views.user_runs' user_id=user.id %}">Runs</a></li>
-<li><a href="{% url 'Running.views.user_raised' user_id=user.id%}">Money Raised</a></li>
-<li><a href="{% url 'Running.views.user_donated' user_id=user.id%}">Money Donated</a></li>
-{% if own_page %}
-<li><a href="{% url 'Running.views.user_settings' user_id=user.id%}">Settings</a></li>
-{% endif %}
-</ul>
+{% include "includes/_tabs_runs_raised_donated.html" %}
 
 </br>
 
@@ -65,7 +58,7 @@
     <div class = "col-sm-8">
 
 
-{% if user.is_public or own_page%}
+{% if person.is_public or own_page%}
 
         <div class="panel panel-default">
         <div class="panel-heading">{% trans "Runs" %}</div>
@@ -167,7 +160,8 @@
 </br>
 <p>
     {% blocktrans %}
-    Alternatively, you can connect your Masanga Runners account to your Runkeeper account! Runkeeper is a mobile app that makes it easy to keep track of your runs. If you connect your accounts, your runs will automatically show up on Masanga Runners every day.
+    Alternatively, you can connect your Masanga Runners account to your Runkeeper account! Runkeeper is a mobile app that makes it easy to keep track of your runs. 
+    If you connect your accounts, your runs will automatically show up on Masanga Runners every day.
     {% endblocktrans %}
 </p>
     <a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> {% trans "Register with runkeeper!" %}</a>
@@ -177,8 +171,11 @@
 {% else %}
 
 <p>
-    {% blocktrans with username=user.username %}
-        These are all of the runs that {{ username }} has synced with Masanga Runners. At the end of the quater, anyone who was sponsoring {{ username }} for this period will be billed, depending on their rates, wagers etc., and the money will be sent to Masanga Hospital.
+    {% blocktrans with runner_username=person.username %}
+        These are all of the runs that {{ runner_username }} has synced with Masanga Runners. 
+        At the end of the quater, anyone who was sponsoring {{ runner_username }} for 
+        this period will be billed, depending on their rates, wagers etc., 
+        and the money will be sent to Masanga Hospital.
     {% endblocktrans %}
 </p>
 {% endif %}

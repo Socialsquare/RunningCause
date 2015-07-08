@@ -10,7 +10,7 @@
 De bedste løbehilsner
 <br/>
 <div style="margin-top:1cm;">
-<img src="{% if request %}{{ request.META.HTTP_HOST }}{% elif domain %}{{ domain }}{% endif %}{% static 'img/masanga_logo123.png' %}" alt="Masanga Logo" style="height:109px; width:211px; ">
+<img src="{{ BASE_URL }}{% static 'img/masanga_logo123.png' %}" alt="Masanga Logo" style="height:109px; width:211px; ">
 </div>
 
 _________________<br/>
@@ -20,5 +20,5 @@ Dalbergstrøget 7<br/>
 2630 Taastrup<br/>
 Danmark<br/>
 masangarunners@masanga.dk<br/>
-runners.masanga.dk<br/>
+{{BASE_URL}}<br/>
 

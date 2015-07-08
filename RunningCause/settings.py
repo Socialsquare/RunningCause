@@ -1,20 +1,20 @@
 """
 Django settings for RunningCause project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-# import secrets
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.messages import constants as messages_constants
+
+
+MESSAGE_TAGS = {
+    messages_constants.ERROR: 'danger',
+}
+
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
 APP_URL = os.getenv('APP_URL')
 
 # Quick-start development settings - unsuitable for production
@@ -63,7 +63,7 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    #'allauth.socialaccount',
     'django_extensions',
     'Running',
     'jquery',
@@ -97,7 +97,12 @@ LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
-
+ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+ACCOUNT_PASSWORD_MIN_LENGTH = 8
+ACCOUNT_SESSION_REMEMBER = None
+USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_FORM_CLASS = 'Running.forms.SignupForm'
 
 
@@ -141,14 +146,10 @@ if os.getenv('DATABASE_URL'):
     DATABASES['default'] =  dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
-
-ugettext = lambda s: s
 
 LANGUAGES = (
-    # ('en', ugettext('English')),
-    ('da', ugettext('Danish')),
+    # ('en', _('English')),
+    ('da', _('Danish')),
     )
 
 LANGUAGE_CODE = 'da-dk'
@@ -176,20 +177,16 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.i18n",
     "django.contrib.auth.context_processors.auth",
+    "django.contrib.messages.context_processors.messages",
     "allauth.account.context_processors.account",
-    "allauth.socialaccount.context_processors.socialaccount",
+    #"allauth.socialaccount.context_processors.socialaccount",
 
 )
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
 
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # other finders..
     'static_precompiler.finders.StaticPrecompilerFinder',
 )
 

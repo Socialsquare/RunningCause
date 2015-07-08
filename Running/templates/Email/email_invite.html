@@ -1,5 +1,10 @@
 {% extends 'email_base.html' %}
 {% block message %}
-<p>Hej kommende Masanga Sponsor. {{runner}} har anmodet dig om at sponsorere sig som Masanga Runner. På den måde kan du være med til at motivere {{runner}} og samtidig støtte Masanga Hospitalet som ligger dybt inde i Sierra Leones jungle.</p>
-<p>Lyder det spændende, så klik her: {{link}}. Du kan ved at følge linket se, hvor meget {{runner}} har løbet indtil nu, og hvor meget {{runner}} indtil nu har samlet ind.</p>
+<p>Hej kommende Masanga Sponsor. {{runner.username}} har anmodet dig om at 
+sponsorere sig som Masanga Runner. På den måde kan du være med til at 
+motivere {{runner.username}} og samtidig støtte Masanga Hospitalet som 
+ligger dybt inde i Sierra Leones jungle.</p>
+<p>Lyder det spændende, så klik her: {{link}}. Du kan ved at følge linket se,
+hvor meget {{runner_username}} har løbet indtil nu, og hvor meget
+ {{runner.username}} indtil nu har samlet ind.</p>
 {% endblock %}
