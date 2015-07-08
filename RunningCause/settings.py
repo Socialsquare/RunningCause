@@ -66,7 +66,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'static_precompiler',
     'django.contrib.sites',
     'widget_tweaks',
     'allauth',
@@ -190,14 +189,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "allauth.account.context_processors.account",
     #"allauth.socialaccount.context_processors.socialaccount",
-
+    "RunningCause.context_processors.base_url",
 )
 
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'static_precompiler.finders.StaticPrecompilerFinder',
 )
 
 
@@ -207,14 +205,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-# Static asset configuration
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-#from django.contrib.sites.models import Site
-STATIC_URL = '/static/'
 
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'),
 )
 
 

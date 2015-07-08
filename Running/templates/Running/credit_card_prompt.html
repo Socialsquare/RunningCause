@@ -1,4 +1,5 @@
 {% extends "masanga_base.html" %}
+{% load staticfiles %}
 {% load i18n %}
 
 {% block imports %}
@@ -20,7 +21,7 @@
 <script>
   var handler = StripeCheckout.configure({
     key: '{{ stripe_public_key }}',
-    image: '/img/documentation/checkout/marketplace.png',
+    image: '{{BASE_URL}}{% static "img/M.png" %}',
     currency: 'dkk',
     bitcoin: false,
     email: '{{ email }}',
