@@ -26,7 +26,7 @@ from django.utils.translation import ugettext as _
 from allauth.account.forms import LoginForm, SignupForm
 
 from Running import forms
-from Running.models import Sponsorship, Run, User, Wager
+from .models import Sponsorship, Run, User, Wager
 
 
 log = logging.getLogger(__name__)
@@ -118,20 +118,16 @@ def unregister_card(request):
 
 
 def info_widget(request):
-    all_users_ids = User.objects.all()
+    all_users = User.objects.all()
 
-    num_runners = len(
-        [current_user for current_user in all_users_ids if current_user.is_runner])
-    num_sponsors = len(
-        [current_user for current_user in all_users_ids if current_user.is_sponsor])
+    num_runners = len([us.id for us in all_users if us.is_runner])
+    num_sponsors = len([us.id for us in all_users if us.is_sponsor])
 
-    amount_donated = 0
+    spships = Sponsorship.objects.all().exclude(sponsor__isnull=True)
+    amount_donated = sum([sp.amount_paid for sp in spships])
 
-    for sponsorship in Sponsorship.objects.all():
-        amount_donated = amount_donated + sponsorship.amount_paid
-
-    for wager in Wager.objects.filter(paid=True):
-        amount_donated = amount_donated + wager.amount
+    wagers = Wager.objects.filter(paid=True)
+    amount_donated += sum([wager.amount for wager in wagers])
 
     total_distance = Run.objects.all().aggregate(x=Sum('distance'))['x'] or 0
 
@@ -141,7 +137,6 @@ def info_widget(request):
         'amount_donated': amount_donated,
         'total_distance': total_distance,
     }
-
     return render(request, 'Running/info_widget.html', context)
 
 

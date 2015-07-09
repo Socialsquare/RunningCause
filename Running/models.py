@@ -44,7 +44,7 @@ class User(auth.models.AbstractUser):
 
     @property
     def is_sponsor(self):
-        return self.sponsorships_given.all().exits() or \
+        return self.sponsorships_given.all().exists() or \
             self.wagers_given.all().exists()
 
     @property
