@@ -61,7 +61,7 @@
                     <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
                     <td>{{ run.distance|floatformat:-2|intcomma }}</td>
                     {% if own_page %}
-                        <td><a href="{% url 'Running.views.edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
+                        <td><a href="{% url 'edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
                     {% endif %}
 
                 </tr>
@@ -82,76 +82,7 @@
 
 {% if own_page %}
 
-
-    <p>
-    {% blocktrans %}
-    Here, you can input a run! All your sponsors will have the distance you ran added to tab for their sponsorship, and they'll be billed at the end of the month.
-    {% endblocktrans %}
-    </p>
-    {% if form.errors %}
-    {% for error in form.non_field_errors %}
-      <div class="alert alert-danger">
-        {{ error|escape }}
-      </div>
-    {% endfor %}
-
-    {% for field in form %}
-        {% for error in field.errors %}
-      <div class="alert alert-danger">
-        {{ error|escape }}
-      </div>
-        {% endfor %}
-    {% endfor %}
-
-    {% endif %}
-    </br>
-    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_runs' user.id %}">
-    {% csrf_token %}
-    {% for field in form %}
-        {% if field.field.required %}
-
-            <div class="form-group">
-            <label for={{ field.name }} class="col-sm-4 control-label">{{ field.label }}</label>
-            <div class="col-sm-8">
-              {{ field }}
-            </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-    <div class="form-group">
-
-                    <button class="btn btn-default col-sm-offset-4" id='reveal-button' type='submit'>{% blocktrans %}Entering multiple runs?{% endblocktrans %}</button>
-    </div>
-
-    <div hidden id='hidden-fields'>
-        {% for field in form %}
-            {% if not field.field.required %}
-                <div class="form-group">
-                <label for={{ field.name }} class="col-sm-4 control-label">{{ field.label }}</label>
-                <div class="col-sm-8">
-                  {{ field }}
-                </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-<div class="form-group">
-    <div class="col-sm-offset-4 col-sm-8">
-      <button type="submit" class="btn btn-default">{% blocktrans %}Submit{% endblocktrans %}</button>
-    </div>
-  </div>
-</form>
-
-</br>
-<p>
-    {% blocktrans %}
-    Alternatively, you can connect your Masanga Runners account to your Runkeeper account! Runkeeper is a mobile app that makes it easy to keep track of your runs. 
-    If you connect your accounts, your runs will automatically show up on Masanga Runners every day.
-    {% endblocktrans %}
-</p>
-    <a href="{% url 'Running.views.register_runkeeper' user.id %}" class="btn btn-default"> {% trans "Register with runkeeper!" %}</a>
-
-</div>
+<p><a class="btn btn-primary" href="{% url 'input_run' %}">add new run here!</a></p>
 
 {% else %}
 

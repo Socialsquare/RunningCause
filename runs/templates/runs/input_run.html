@@ -1,0 +1,62 @@
+{% extends "masanga_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}
+{% blocktrans %}Input a Run{% endblocktrans %}
+{% endblock %}
+
+{% block imports %}
+    <script src="/static/js/bootstrap-datepicker.js"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
+        $('#end_datepicker').datepicker({format:'yyyy-mm-dd'});
+    });
+    </script>
+
+{% endblock %}
+
+
+{% block head %}
+<div class="row">
+<div class="col-md-5 col-md-offset-1">
+   <h1>{% trans "Add your run" %}</h1>
+</div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col-md-5 col-md-offset-1">
+    <p>
+    {% blocktrans %}
+    Here, you can input a run! All your sponsors will have the distance you 
+    ran added to tab for their sponsorship, and they'll be billed at the end of the month.
+    {% endblocktrans %}
+    </p>
+
+<form action="{% url 'input_run' %}" method="post">
+    {% csrf_token %}
+	{% bootstrap_form form layout="form-horizontal" %}
+	{% buttons %}
+	  <button type="submit" class="btn btn-primary">
+	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	  </button>
+	{% endbuttons %}
+</form>
+
+</br>
+<p>
+    {% blocktrans %}
+    Alternatively, you can connect your Masanga Runners account to your Runkeeper account! Runkeeper is a mobile app that makes it easy to keep track of your runs. 
+    If you connect your accounts, your runs will automatically show up on Masanga Runners every day.
+    {% endblocktrans %}
+    <a href="{% url 'Running.views.register_runkeeper' user.id %}" 
+    class="btn btn-default"> {% trans "Register with runkeeper!" %}</a>
+</p>
+</div>
+</div>
+{% endblock %}

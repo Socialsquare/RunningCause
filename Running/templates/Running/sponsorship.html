@@ -7,12 +7,12 @@
 
 
 {% block title %}
-Sponsor a Runner
+Sponsor Runner {{runner}}
 {% endblock %}
 
 {% block imports %}
     <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="/static/js/bootstrap-datepicker.js"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js'%}"></script>
     <script type=text/javascript>
     $(document).ready(function() {
         date = new Date();
@@ -43,21 +43,8 @@ Sponsor a Runner
 {% endblock %}
 
 {% block body %}
-</br>
-{% if invite %}
- {% trans "Here are the values that were recommended for the sponsorship. Feel free to change whatever you'd like." %}
-</br>
-{% endif %}
 
-{% if form.errors %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger col-sm-offset-2">
-            {{ error|escape }}
-        </div>
-    {% endfor %}
-
-{% endif %}
-<form class="form-horizontal" method="post" action="{% url 'Running.views.sponsor' runner.id %}">
+<form class="form-horizontal" method="post" action="{% url 'add_sponsor' runner.id %}">
     {% csrf_token %}
     {% for field in form %}
         {% for error in field.errors %}

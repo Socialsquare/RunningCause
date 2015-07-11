@@ -23,7 +23,6 @@ MESSAGE_TAGS = {
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-APP_URL = os.getenv('APP_URL')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -68,14 +67,21 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'widget_tweaks',
+    'django_redis',
     'allauth',
     'allauth.account',
     #'allauth.socialaccount',
     'django_extensions',
-    'Running',
+    'bootstrap3',
     'jquery',
     'rosetta',
     'courriers',
+
+    'profile',
+    'running',
+    'runs',
+    'sponsorship',
+    'wagers',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -153,11 +159,26 @@ if os.getenv('DATABASE_URL'):
     DATABASES['default'] =  dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 
 
+REDIS_URL = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379')
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_URL,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'SOCKET_CONNECT_TIMEOUT': 5,  # in seconds
+            'SOCKET_TIMEOUT': 5,  # in seconds
+        }
+    }
+}
+
 
 LANGUAGES = (
-    # ('en', _('English')),
+    ('en', _('English')),
     ('da', _('Danish')),
-    )
+)
 
 LANGUAGE_CODE = 'da-dk'
 
@@ -165,6 +186,7 @@ LANGUAGE_CODE = 'da-dk'
 SITE_ID = 1
 SITE_DOMAIN = 'runners.masanga.dk'
 BASE_URL = 'http://' + SITE_DOMAIN
+APP_URL = os.getenv('APP_URL')
 
 TIME_ZONE = 'Europe/Copenhagen'
 

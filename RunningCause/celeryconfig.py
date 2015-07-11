@@ -1,0 +1,12 @@
+from __future__ import absolute_import
+from django.conf import settings
+
+BROKER_URL = settings.REDIS_URL
+CELERY_RESULT_BACKEND = settings.REDIS_URL
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = settings.TIME_ZONE
+CELERY_ENABLE_UTC = True
+CELERY_IGNORE_RESULT = True
+CELERY_STORE_ERRORS_EVEN_IF_IGNORED = True

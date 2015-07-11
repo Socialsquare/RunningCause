@@ -1,0 +1,54 @@
+{% extends "masanga_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}
+{% blocktrans %}
+Edit Run
+{% endblocktrans %}
+{% endblock %}
+
+{% block imports %}
+    <script src="{% static 'js/bootstrap-datepicker.js'%}"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        $('#start_datepicker')\
+        	.val('{{form.instance.start_date|date:"Y-m-d"}}')\
+        	.datepicker({format:'yyyy-mm-dd'});
+        $('#end_datepicker')\
+        	.val('{{form.instance.end_date|date:"Y-m-d"}}')\
+        	.datepicker({format:'yyyy-mm-dd'});
+    });
+    </script>
+
+{% endblock %}
+
+
+{% block head %}
+<div class="row">
+<div class="col-md-5 col-md-offset-1">
+	<h1>{% trans "Edit your run" %}</h1>
+</div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col-md-5 col-md-offset-1">
+<p>{% trans "Make end date the same as start date if it was a single run." %}</p>
+
+</br>
+<form class="form-horizontal" method="post" action="{% url 'edit_run' run.id %}">
+    {% csrf_token %}
+    {% bootstrap_form form layout="form-horizontal" %}
+
+	{% buttons %}
+	  <button type="submit" class="btn btn-primary">
+	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	  </button>
+	{% endbuttons %}
+</form>
+</div>
+</div>
+{% endblock %}
