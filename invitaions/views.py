@@ -3,11 +3,13 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 
+
 from .forms import EmailInviteForm
+from .models import EmailInvitation
 
 
 @login_required
-def add_email_invitation(request):
+def invite_via_email(request):
 
             invite_form = EmailInviteForm(request.POST)
             if invite_form.is_valid():

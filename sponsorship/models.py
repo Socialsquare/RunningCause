@@ -1,3 +1,4 @@
+import uuid
 from decimal import Decimal
 from datetime import date
 
@@ -81,16 +82,19 @@ class Sponsorship(models.Model):
     def left_to_pay(self):
         return self.total_amount - self.amount_paid
 
-    #   Saves the sponsorship. modified to print an error to console if an
-    # invalid configuration of
-    #   vairables is left null. Should eventually throw some sort of error.
-    def save(self, *args, **kwargs):
-        if self.sponsor != None:
-            if self.rate is None or self.start_date is None or \
-                    self.end_date is None or self.max_amount is None:
-                print ("SOMETHING HAS GONE VERY WRONG PANIC SPONSORSHIP"
-                       " FIELDS WRONG")
-        super(Sponsorship, self).save(*args, **kwargs)
+    def __unicode__(self):
+        return '%s -> %s' % (self.sponsor, self.runner)
+
+
+class SponsorRequest(models.Model):
+    runner = models.ForeignKey(get_user_model())
+    sponsor = models.ForeignKey(get_user_model())
+    created_dt = models.DateTimeField(auto_now_add=True)
+    token = models.UUIDField(default=uuid.uuid4,
+                             unique=True, db_index=True, null=False,
+                             editable=False, primary_key=False)
+    sponsorship = models.ForeignKey(Sponsorship, null=True)
+    proposed_sponsorship = models.TextField()
 
     def __unicode__(self):
-        return '%s' % self.sponsor
+        return '%s (->) %s' % (self.sponsor, self.runner)

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import auth
 
 
+# TODO: check Running_user_groups Running_user_user_permissions
 class User(auth.models.AbstractUser):
     USERNAME_FIELD = 'username'
 
@@ -24,9 +25,6 @@ class User(auth.models.AbstractUser):
 
     class Meta:
         db_table = 'Running_user'
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
-        abstract = True
 
     @property
     def is_runner(self):

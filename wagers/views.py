@@ -198,7 +198,7 @@ def update_wager(request, wager_id):
 @login_required
 def confirm_wager(request, wager_id):
     wager = get_object_or_404(Wager, pk=wager_id)
-    if int(request.user.id) == int(wager.sponsor.id):
+    if request.user.id == wager.sponsor.id:
         wager.fulfilled = True
         wager.save()
         return render(request, 'Running/wager_confirm_success.html', {})
@@ -208,7 +208,7 @@ def confirm_wager(request, wager_id):
 @login_required
 def decline_wager(request, wager_id):
     wager = get_object_or_404(Wager, pk=wager_id)
-    if int(request.user.id) == int(wager.sponsor.id):
+    if request.user.id == wager.sponsor.id:
         wager.delete()
         return render(request, 'Running/wager_deny_success.html', {})
     return HttpResponse("You are not the user who gave the wager! You cannot decline this wager.")

@@ -1,7 +1,7 @@
 # coding: utf8
 from django import forms
 
-from .models import Sponsorship
+from .models import Sponsorship, SponsorRequest
 
 
 class PaidForm(forms.Form):
