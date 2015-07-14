@@ -1,6 +1,14 @@
+import datetime
+
 from django.db import models
 from django.conf import settings
 
+
+class RunkeeperToken(models.Model):
+    runner = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                  related_name='runkeeper_token')
+    access_token = models.CharField(max_length=200, blank=True, null=True,
+                                    unique=True, db_index=True)
 
 
 class Run(models.Model):
@@ -8,10 +16,8 @@ class Run(models.Model):
     The model for a specific run, or several runs over a period.
     """
 
-    # The runner that ran the run.
     runner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='runs')
 
-    # The distance over the course of the run.
     distance = models.FloatField('Distance', default=1)
 
     # Either the date of the run, or the start of the period over which
@@ -32,6 +38,9 @@ class Run(models.Model):
     # from Masanga Runners. Used to keep track of which runs have already
     # been entered.
     source_id = models.CharField('Source ID', default="", max_length=200)
+
+    recorded_time = models.TimeField(default=datetime.time,
+                                     null=False)
 
     def __unicode__(self):
         return'%s' % self.distance

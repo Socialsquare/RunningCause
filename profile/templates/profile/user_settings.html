@@ -15,33 +15,17 @@ Your Settings
 {% endblock %}
 
 {% block head %}
-Your Settings
-<div style="float:right">
-{% if own_page and user.is_public %}
-
-    <span class='st_facebook_large' displayText='Facebook'></span>
-    <span class='st_googleplus_large' displayText='Google +'></span>
-    <span class='st_twitter_large' displayText='Tweet'></span>
-    <span class='st_reddit_large' displayText='Reddit'></span>
-    <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
-    <span class='st_email_large' displayText='Email'></span>
-</br>
-
-{% elif own_page and not user.is_public %}
-
-   <h4>{% trans "You have to make your page public before you can share it." %}</h4>
-
-{% endif %}
+<div class="pull-left">
+	Your Settings
 </div>
 {% endblock %}
 
+
 {% block body %}
-
-
-</br>
 
   <div class="row">
     <div class="col-sm-8">
+    	<br />
       {% if not user.stripe_customer_id %}
       <p>
         {% blocktrans %}
@@ -93,11 +77,25 @@ Your Settings
             {% endblocktrans %}
             </p>
 
-          <a href="{% url 'profile:unregister_card' %}" class="btn btn-default"> {% trans "Forget your card." %}</a>
+          <p><a href="{% url 'profile:unregister_card' %}" class="btn btn-default"> {% trans "Forget your card." %}</a>
+          </p>
         {% endif %}
 
             </br>
             </br>
+            
+            <p>
+			    {% blocktrans %}
+			    You can connect your Masanga Runners account to your Runkeeper account!
+			    Runkeeper is a mobile app that makes it easy to keep track of your runs. 
+			    If you connect your accounts, your runs will automatically show up on
+			    Masanga Runners every day.
+			    {% endblocktrans %}
+			</p>
+			    <p><a href="{% url 'runs:register_runkeeper' %}" 
+			    class="btn btn-default"> {% trans "Register with runkeeper!" %}</a></p>
+
+			<br />
         {% if user.is_public %}
             <p>
             {% blocktrans %}
@@ -105,7 +103,7 @@ Your Settings
             {% endblocktrans %}
             </p>
 
-            <a href="{% url 'make_profile_private' %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page private." %}</a>
+            <a href="{% url 'profile:make_profile_private' %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page private." %}</a>
         {% else %}
             <p>
             {% blocktrans %}
@@ -113,7 +111,7 @@ Your Settings
             {% endblocktrans %}
             </p>
 
-            <a href="{% url 'make_profile_public' %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a>
+            <a href="{% url 'profile:make_profile_public' %}?next={{ request.path }}" class="btn btn-default">{% trans "Click here to make your page public." %}</a>
         {% endif %}
 
         {% if user.subscribed %}

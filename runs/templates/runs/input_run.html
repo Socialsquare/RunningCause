@@ -48,15 +48,6 @@
 	{% endbuttons %}
 </form>
 
-</br>
-<p>
-    {% blocktrans %}
-    Alternatively, you can connect your Masanga Runners account to your Runkeeper account! Runkeeper is a mobile app that makes it easy to keep track of your runs. 
-    If you connect your accounts, your runs will automatically show up on Masanga Runners every day.
-    {% endblocktrans %}
-    <a href="{% url 'runs:register_runkeeper' user.id %}" 
-    class="btn btn-default"> {% trans "Register with runkeeper!" %}</a>
-</p>
 </div>
 </div>
 {% endblock %}

@@ -13,11 +13,11 @@ Edit Run
     <script src="{% static 'js/bootstrap-datepicker.js'%}"></script>
     <script type=text/javascript>
     $(document).ready(function() {
-        $('#start_datepicker')\
-        	.val('{{form.instance.start_date|date:"Y-m-d"}}')\
+        $('#start_datepicker')
+        	.val('{{form.instance.start_date|date:"Y-m-d"}}')
         	.datepicker({format:'yyyy-mm-dd'});
-        $('#end_datepicker')\
-        	.val('{{form.instance.end_date|date:"Y-m-d"}}')\
+        $('#end_datepicker')
+        	.val('{{form.instance.end_date|date:"Y-m-d"}}')
         	.datepicker({format:'yyyy-mm-dd'});
     });
     </script>

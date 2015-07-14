@@ -18,10 +18,12 @@ class RunInputForm(forms.ModelForm):
                                    attrs={'id': 'end_datepicker',
                                           'autocomplete': "off"})
                                )
+    recorded_time = forms.TimeField(label="Recorded time HH:MM:SS",
+                                    required=False)
 
     class Meta:
         model = Run
-        fields = ['distance', 'start_date', 'end_date']
+        fields = ['distance', 'start_date', 'end_date', 'recorded_time']
 
     def is_valid(self):
 

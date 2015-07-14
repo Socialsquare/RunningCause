@@ -8,6 +8,6 @@ urlpatterns = [
         name='user_runs'),
     url(r'^add/$', views.input_run, name='input_run'),
     url(r'^edit/(?P<run_id>\d+)/$', views.edit_run, name='edit_run'),
-    url(r'^(?P<runner_id>\d+)/register-runkeeper/$', views.register_runkeeper,
+    url(r'^register-runkeeper/$', views.register_runkeeper,
         name='register_runkeeper'),
 ]
