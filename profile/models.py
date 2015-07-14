@@ -2,7 +2,15 @@ from django.db import models
 from django.contrib import auth
 
 
-# TODO: check Running_user_groups Running_user_user_permissions
+class MasangaUserManager(auth.models.UserManager):
+    def verified_users(self):
+        from allauth.account.models import EmailAddress
+        not_veryfied = EmailAddress.objects.filter(verified=False)\
+            .values_list('user', flat=True)
+        return self.model.objects.filter(is_active=True)\
+            .exclude(id__in=not_veryfied)
+
+
 class User(auth.models.AbstractUser):
     USERNAME_FIELD = 'username'
 
@@ -22,6 +30,9 @@ class User(auth.models.AbstractUser):
                                           db_index=True)
 
     greeted = models.BooleanField('Greeted?', default=False)
+
+    objects = MasangaUserManager()
+
 
     @property
     def is_runner(self):

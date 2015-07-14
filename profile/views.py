@@ -25,7 +25,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def users_list(request):
-    user_list = get_user_model().objects.order_by('username')
+    user_list = get_user_model().objects.verified_users().order_by('username')
     context = {
        'user_list': user_list,
     }
