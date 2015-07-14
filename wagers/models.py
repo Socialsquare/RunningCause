@@ -1,15 +1,15 @@
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
+from django.conf import settings
 from django.db import models
-from django.contrib.auth import get_user_model
 
 
 class Wager(models.Model):
-    runner = models.ForeignKey(get_user_model(),
+    runner = models.ForeignKey(settings.AUTH_USER_MODEL,
                                related_name='wagers_recieved')
 
-    sponsor = models.ForeignKey(get_user_model(), related_name='wagers_given',
+    sponsor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='wagers_given',
                                 null=True)
 
     amount = models.DecimalField('Amount', default=0, max_digits=10,
@@ -29,9 +29,6 @@ class Wager(models.Model):
 
     update_text = models.CharField('Update Text', max_length=500, null=True,
                                    default=None, blank=True)
-
-    class Meta:
-        db_table = 'Running_wager'
 
     def decision_date(self):
         if self.remind_date != None:

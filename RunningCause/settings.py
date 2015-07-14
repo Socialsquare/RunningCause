@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf8
 """
 Django settings for RunningCause project.
 """
@@ -49,6 +49,7 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
 COURRIERS_MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+COURRIERS_MAILCHIMP_LIST = '2640511eac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -78,10 +79,12 @@ INSTALLED_APPS = (
     'courriers',
 
     'profile',
-    'running',
     'runs',
     'sponsorship',
     'wagers',
+    'invitations',
+    'tools',
+    'pages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,7 +95,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'Running.middleware.RedirectFromCnamesMiddleware',
+    'RunningCause.middleware.RedirectFromCnamesMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -102,10 +105,10 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
-AUTH_USER_MODEL = "Running.User"
+AUTH_USER_MODEL = "profile.User"
 
-LOGIN_REDIRECT_URL = '/sign_in_landing'
-LOGIN_URL = '/signuporlogin'
+LOGIN_REDIRECT_URL = '/profile/sign_in_landing'
+LOGIN_URL = '/profile/signuporlogin'
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -116,7 +119,7 @@ ACCOUNT_PASSWORD_MIN_LENGTH = 8
 ACCOUNT_SESSION_REMEMBER = None
 USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_SIGNUP_FORM_CLASS = 'Running.forms.SignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'profile.forms.SignupForm'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

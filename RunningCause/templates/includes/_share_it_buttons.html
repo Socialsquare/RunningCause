@@ -1,5 +1,7 @@
+{% load staticfiles %}
 {% load i18n %}
 {% if own_page or person.is_public %}
+	<script type="text/javascript" src="{% static 'js/share-button.js' %}"></script>
     <span class='st_facebook_large' displayText='Facebook'></span>
     <span class='st_googleplus_large' displayText='Google +'></span>
     <span class='st_twitter_large' displayText='Tweet'></span>

@@ -23,9 +23,6 @@ class User(auth.models.AbstractUser):
 
     greeted = models.BooleanField('Greeted?', default=False)
 
-    class Meta:
-        db_table = 'Running_user'
-
     @property
     def is_runner(self):
         return self.runs.all().exists() or \

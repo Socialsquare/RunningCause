@@ -1387,3 +1387,9 @@ msgstr "Skulle du have glemt det, er dit brugernavn  \"%(username)s\"."
 msgid "Masanga Runners run-update"
 msgstr "Masanga Runners løbe-update"
 
+msgid "Masanga Runners wagering notification"
+msgstr "Masanga Runners væddemåls-notifikation"
+
+msgid "Masanga Runners run-update"
+msgstr "Masanga Runners løbe-update"
+

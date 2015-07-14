@@ -38,9 +38,10 @@ def notify_sponsors_about_run(run_id=None):
             'kilometers': run.distance,
             'title': _("Masanga Runners run-update"),
         }
-        html_msg = loader.get_template('Email/run_update.html')\
+        html_msg = loader.get_template('runs/email/run_update.html')\
             .render(Context(ctx))
-        send_mail('Masanga Runners løbe-update',
+        subject = _('Masanga Runners run-update')
+        send_mail(subject,
                   "",
                   settings.DEFAULT_FROM_EMAIL,
                   [email, ],

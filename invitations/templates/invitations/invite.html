@@ -64,9 +64,9 @@ Fill out this form with the values you'd like to suggest to {{ sponsor_name }}. 
 
 {% endif %}
 {% if sponsor %}
-<form class="form-horizontal" method="post" action="{% url 'Running.views.invite_sponsor' sponsor_id=sponsor.id %}">
+<form class="form-horizontal" method="post" action="{% url 'sponsorship:invite_sponsor' sponsor_id=sponsor.id %}">
 {% else %}
-<form class="form-horizontal" method="post" action="{% url 'Running.views.invite_sponsor' %}">
+<form class="form-horizontal" method="post" action="{% url 'sponsorship:invite_sponsor' %}">
 {% endif %}
     {% csrf_token %}
     {% for field in form %}

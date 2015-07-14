@@ -61,7 +61,7 @@
                     <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
                     <td>{{ run.distance|floatformat:-2|intcomma }}</td>
                     {% if own_page %}
-                        <td><a href="{% url 'edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
+                        <td><a href="{% url 'runs:edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
                     {% endif %}
 
                 </tr>
@@ -82,7 +82,7 @@
 
 {% if own_page %}
 
-<p><a class="btn btn-primary" href="{% url 'input_run' %}">add new run here!</a></p>
+<p><a class="btn btn-primary" href="{% url 'runs:input_run' %}">add new run here!</a></p>
 
 {% else %}
 

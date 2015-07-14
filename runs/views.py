@@ -1,33 +1,24 @@
-# -*- coding: utf-8 -*-
+# coding: utf8
 import time
 import datetime
 import logging
 
 import requests
-import stripe
 import healthgraph
-import mailchimp
-from dateutil.relativedelta import relativedelta
 
 from django.conf import settings
-from django.contrib.auth.decorators import user_passes_test
-from django.core.mail import send_mail
-from django.template import loader, Context
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
 from django.conf.urls import url
 from django.db.models import Sum
 from django.utils.translation import ugettext as _
 
-from allauth.account.forms import LoginForm, SignupForm
-
 from .forms import RunInputForm
-from .models import Sponsorship, Run
+from .models import Run
 from .tasks import notify_sponsors_about_run
 
 
@@ -48,12 +39,12 @@ def input_run(request):
             run.save()
             notify_sponsors_about_run.delay(run_id=run.id)
             messages.success(request, _("Your run has been added"))
-            redirect('user_runs', user_id=request.user.id)
+            redirect('runs:user_runs', user_id=request.user.id)
 
     ctx = {
         'form': form,
     }
-    return render(request, 'Running/runs/input_run.html', ctx)
+    return render(request, 'runs/input_run.html', ctx)
 
 
 @login_required
@@ -65,7 +56,7 @@ def edit_run(request, run_id):
 
     if request.user != run.runner:
         messages.error(_("You are not the owner of this run."))
-        return redirect('user_view')
+        return redirect('home')
 
     if request.method == 'POST':
         form = RunInputForm(request.POST, instance=run)
@@ -77,17 +68,19 @@ def edit_run(request, run_id):
                     form.cleaned_data['start_date']:
                 run.end_date = form.cleaned_data['end_date']
             run.save()
-            return redirect('user_runs', user_id=request.user.id)
+            return redirect('runs:user_runs', user_id=request.user.id)
 
     context = {
         'run': run,
         'form': form
     }
-    return render(request, 'Running/runs/run_edit.html', context)
+    return render(request, 'runs/run_edit.html', context)
 
 
 def user_runs(request, user_id=None):
     if not user_id:
+        if not request.user.is_authenticated():
+            return redirect('profile:signup_or_login')
         person = request.user
     else:
         person = get_object_or_404(get_user_model(), pk=user_id)
@@ -102,7 +95,8 @@ def user_runs(request, user_id=None):
         'own_page': own_page,
         'tab_name': 'runs',
     }
-    return render(request, 'Running/runs/user_runs.html', context)
+    return render(request, 'runs/user_runs.html', context)
+
 
 @login_required
 def register_runkeeper(request):
@@ -128,22 +122,25 @@ def register_runkeeper(request):
     """
 
     # This means the user hasn't previously registered with runkeeper, but is just coming back from getting
-    # a runkeeper access token code. Get that code from the GET data, and use that to get get an 
+    # a runkeeper access token code. Get that code from the GET data, and use that to get get an
     # access token, which you can then use to access all of their workouts.
-    # Then, create a run object for each workout that does not currently have a run object.
+    # Then, create a run object for each workout that does not currently have
+    # a run object.
     if request.GET.has_key('code'):
 
-        # Get the code from the GET data. This will allow us to get an access token.
+        # Get the code from the GET data. This will allow us to get an access
+        # token.
         code = request.GET['code']
 
         # Create an instance of the healthgraph API.
-        rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
-                                        settings.RUNKEEPER_CLIENT_SECRET, 
-                                        settings.APP_URL + reverse('Running.views.register_runkeeper', 
-                                                                    kwargs={'runner_id': request.user.id})
-                                        )
+        rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID,
+                                              settings.RUNKEEPER_CLIENT_SECRET,
+                                              settings.APP_URL + reverse('Running.views.register_runkeeper',
+                                                                         kwargs={'runner_id': request.user.id})
+                                              )
 
-        # Get the access token using the code and the instance of the healthgraph API.
+        # Get the access token using the code and the instance of the
+        # healthgraph API.
         access_token = rk_auth_mgr.get_access_token(code)
 
         # Associate the token with the user, and save.
@@ -153,7 +150,7 @@ def register_runkeeper(request):
         # Now that we've associated the token with the user, we're done with authentication.
         # Call this view again to finally deal with the workout data.
         url = reverse('register_runkeeper',
-                    kwargs={'runner_id': request.user.id})
+                      kwargs={'runner_id': request.user.id})
         return HttpResponseRedirect(url)
 
     # This means that the user has registered with runkeeper before, and has an access token.
@@ -161,10 +158,12 @@ def register_runkeeper(request):
     # every run that has not been previously registered with runkeeper.
     elif request.user.access_token:
 
-        # Request the workout data for the user using our new, shiny access token.
-        r = requests.get('https://api.runkeeper.com/fitnessActivities', 
-                            headers={'Authorization': 'Bearer %s' % request.user.access_token}
-                            )
+        # Request the workout data for the user using our new, shiny access
+        # token.
+        r = requests.get('https://api.runkeeper.com/fitnessActivities',
+                         headers={'Authorization': 'Bearer %s' %
+                                  request.user.access_token}
+                         )
 
         # Convert the workout data from JSON to make it easier to work with.
         data = r.json()
@@ -217,31 +216,30 @@ def register_runkeeper(request):
                 # from the datetime object we just created.
                 date = datetime.datetime(*date[:6]).date()
 
-                # Create a new run object from the information we've assembled about the workout, and save it. 
-                # The distance value is divided by 1000 because runkeeper gives the distance in metres, 
+                # Create a new run object from the information we've assembled about the workout, and save it.
+                # The distance value is divided by 1000 because runkeeper gives the distance in metres,
                 # while our website stores them as kilometers.
-                new_run = Run(runner=request.user, 
-                              distance=item['total_distance']/1000, 
-                              start_date=date, 
-                              end_date=date, 
-                              source="runkeeper", 
+                new_run = Run(runner=request.user,
+                              distance=item['total_distance'] / 1000,
+                              start_date=date,
+                              end_date=date,
+                              source="runkeeper",
                               source_id=item['uri'])
                 new_run.save()
 
-        # Redirect to the profile page of the user with id runner_id.
-        url = reverse('user_view', kwargs={'user_id': request.user.id})
-        return HttpResponseRedirect(url)
+        return redirect('profile:my_page')
 
     # If the user has no code, and no token associated with their account, we need to start the
-    # authentication process from scratch. 
+    # authentication process from scratch.
     else:
 
         # Create an instance of the healthgraph API.
-        rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID, 
+        rk_auth_mgr = healthgraph.AuthManager(settings.RUNKEEPER_CLIENT_ID,
                                               settings.RUNKEEPER_CLIENT_SECRET,
-                                              settings.APP_URL + reverse('register_runkeeper', 
-                                              kwargs={'runner_id': request.user.id}))
+                                              settings.APP_URL + reverse('register_runkeeper',
+                                                                         kwargs={'runner_id': request.user.id}))
 
-        # Get the uri that should be accessed to get the code, and redirect there.
+        # Get the uri that should be accessed to get the code, and redirect
+        # there.
         rk_auth_uri = rk_auth_mgr.get_login_url()
         return HttpResponseRedirect(rk_auth_uri)

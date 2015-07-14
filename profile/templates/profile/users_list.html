@@ -1,0 +1,40 @@
+{% extends "masanga_base.html" %}
+{% load i18n %}
+{% load static %}
+{% load partition_slice %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col-md-9">
+	<div class="panel panel-default">
+	    <div class="panel-heading">{% trans "Our runners:" %}</div>
+	    {% for sublist in user_list|partition:"4" %}
+		    <div class="row">
+	    	{% for person in sublist %}
+	        	<div class="col-sm-3">
+	        		<div class="thumbnail">
+		        		<a href="{% url 'profile:user_page' user_id=person.id %}">
+		        		<img src="{% static 'img/sports_running-4_simple-black-gradient_128x128.png' %}" /></a>
+		            </div>
+		            <div class="caption text-center">
+			            <p>
+			            <a href="{% url 'profile:user_page' user_id=person.id %}">{{ person.name }}</a>
+			            <a href="{% url 'profile:user_page' user_id=person.id %}">{{ person.username }}</a>
+			            </p>
+		            </div>
+            	</div>  
+	    	{% endfor %}
+	    	</div>
+	    {% empty %}
+		    <p>
+		    {% trans "Huh, that's weird. We can't find any runners. Check back later." %}
+		    </p>
+	    {% endfor %}
+	    </div>
+	</div>
+</div>
+</div>
+{% endblock %}

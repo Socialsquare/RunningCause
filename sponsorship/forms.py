@@ -4,14 +4,6 @@ from django import forms
 from .models import Sponsorship, SponsorRequest
 
 
-class PaidForm(forms.Form):
-    amount = forms.FloatField(label="Amount",
-                              widget=forms.TextInput(
-                                  attrs={'class': 'form-control'}),
-                              localize=True)
-    sponsorship_id = forms.IntegerField(widget=forms.HiddenInput())
-
-
 class SponsorForm(forms.ModelForm):
     rate = forms.FloatField(label="Rate",
                             widget=forms.TextInput(

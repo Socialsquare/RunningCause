@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.conf import settings
+
 
 
 class Run(models.Model):
@@ -8,7 +9,7 @@ class Run(models.Model):
     """
 
     # The runner that ran the run.
-    runner = models.ForeignKey(get_user_model(), related_name='runs')
+    runner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='runs')
 
     # The distance over the course of the run.
     distance = models.FloatField('Distance', default=1)
@@ -31,9 +32,6 @@ class Run(models.Model):
     # from Masanga Runners. Used to keep track of which runs have already
     # been entered.
     source_id = models.CharField('Source ID', default="", max_length=200)
-
-    class Meta:
-        db_table = 'Running_run'
 
     def __unicode__(self):
         return'%s' % self.distance

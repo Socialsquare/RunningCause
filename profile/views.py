@@ -1,33 +1,23 @@
-# -*- coding: utf-8 -*-
-import time
-import datetime
+# coding: utf8
 import logging
 
-import requests
 import stripe
-import healthgraph
 import mailchimp
-from dateutil.relativedelta import relativedelta
 
-from django.views.decorators.cache import cache_page
-from django.contrib.auth.decorators import user_passes_test
 from django.conf import settings
-from django.core.mail import send_mail
-from django.template import loader, Context
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.conf.urls import url
-from django.db.models import Sum
 from django.utils.translation import ugettext as _
 from django.contrib.auth import get_user_model
 
 from allauth.account.forms import LoginForm, SignupForm
 
-from .models import Sponsorship, Run, User, Wager
+from .models import User
 
 
 log = logging.getLogger(__name__)
@@ -35,13 +25,11 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def users_list(request):
-    if 'redirect' in request.session:
-        return HttpResponseRedirect(request.session.pop('redirect'))
     user_list = get_user_model().objects.order_by('username')
     context = {
        'user_list': user_list,
     }
-    return render(request, 'Running/home.html', context)
+    return render(request, 'profile/users_list.html', context)
 
 
 def user_raised(request, user_id):
@@ -65,7 +53,7 @@ def user_raised(request, user_id):
         'person': person,
         'tab_name': 'raised',
     }
-    return render(request, 'Running/user_raised.html', context)
+    return render(request, 'profile/user_raised.html', context)
 
 
 def user_donated(request, user_id):
@@ -76,7 +64,6 @@ def user_donated(request, user_id):
         amount_given = amount_given + sponsorship.total_amount
 
     wagers_given = person.wagers_given.exclude(sponsor=None)
-    accessor = None
     own_page = request.user.id == person.id
 
     context = {
@@ -87,7 +74,7 @@ def user_donated(request, user_id):
         'person': person,
         'tab_name': 'donations',
     }
-    return render(request, 'Running/user_donated.html', context)
+    return render(request, 'profile/user_donated.html', context)
 
 
 @login_required
@@ -96,7 +83,8 @@ def sign_in_landing(request):
     if user.newsletter:
         try:
             m = mailchimp.Mailchimp(settings.COURRIERS_MAILCHIMP_API_KEY)
-            m.lists.subscribe('2640511eac', {'email': user.email})
+            m.lists.subscribe(settings.COURRIERS_MAILCHIMP_LIST,
+                              {'email': user.email})
             user.newsletter = False
             user.save()
             messages.success(
@@ -114,9 +102,9 @@ def sign_in_landing(request):
     if not user.greeted:
         user.greeted = True
         user.save()
-        url = reverse('account:credit_card_prompt')
+        url = reverse('profile:credit_card_prompt')
         return HttpResponseRedirect(url)
-    url = reverse('Running.views.home')
+    url = reverse('profile:home')
     return HttpResponseRedirect(url)
 
 
@@ -126,7 +114,7 @@ def credit_card_prompt(request):
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
         'email': request.user.email
     }
-    return render(request, 'Running/credit_card_prompt.html', ctx)
+    return render(request, 'profile/credit_card_prompt.html', ctx)
 
 
 @login_required
@@ -137,7 +125,7 @@ def register_customer(request):
                                       description=request.user.username)
     request.user.stripe_customer_id = customer.id
     request.user.save()
-    return render(request, 'Running/credit_card_success.html', {})
+    return render(request, 'profile/credit_card_success.html', {})
 
 
 @login_required
@@ -145,7 +133,7 @@ def unsubscribe(request):
     user = request.user
     user.subscribed = False
     user.save()
-    return render(request, 'Running/unsubscribed_success.html', {})
+    return render(request, 'profile/unsubscribed_success.html', {})
 
 
 @login_required
@@ -153,7 +141,7 @@ def subscribe(request):
     user = request.user
     user.subscribed = True
     user.save()
-    return render(request, 'Running/subscribed_success.html', {})
+    return render(request, 'profile/subscribed_success.html', {})
 
 
 @login_required
@@ -161,34 +149,10 @@ def unregister_card(request):
     user = request.user
     user.stripe_customer_id = None
     user.save()
-    return render(request, 'Running/deregister_success.html', {})
+    return render(request, 'profile/deregister_success.html', {})
 
 
-@cache_page(60 * 1)  # cache it for 1 minute
-def info_widget(request):
-    all_users = User.objects.all()
-
-    num_runners = len([us.id for us in all_users if us.is_runner])
-    num_sponsors = len([us.id for us in all_users if us.is_sponsor])
-
-    spships = Sponsorship.objects.all().exclude(sponsor__isnull=True)
-    amount_donated = sum([sp.amount_paid for sp in spships])
-
-    wagers = Wager.objects.filter(paid=True)
-    amount_donated += sum([wager.amount for wager in wagers])
-
-    total_distance = Run.objects.all().aggregate(x=Sum('distance'))['x'] or 0
-
-    context = {
-        'num_runners': num_runners,
-        'num_sponsors': num_sponsors,
-        'amount_donated': amount_donated,
-        'total_distance': total_distance,
-    }
-    return render(request, 'Running/info_widget.html', context)
-
-
-def user_view(request, user_id):
+def user_page(request, user_id):
     """
     Redirects to a page for a specific user, displaying their username and all
     their sponsorships.
@@ -197,20 +161,20 @@ def user_view(request, user_id):
     if (request.user.is_authenticated() and
             int(user.id) == int(request.user.id)) or \
             user.is_public:
-        url = reverse('user_runs', kwargs={'user_id': user_id})
+        url = reverse('runs:user_runs', kwargs={'user_id': user_id})
     else:
-        url = reverse('user_raised', kwargs={'user_id': user_id})
+        url = reverse('profile:user_raised', kwargs={'user_id': user_id})
     return HttpResponseRedirect(url)
 
 
 @login_required
 def user_settings(request):
-    return render(request, 'Running/user_settings.html', {})
+    return render(request, 'profile/user_settings.html', {})
 
 
 @login_required
 def my_page(request):
-    url = reverse('Running.views.user_view', kwargs={'user_id': request.user.id})
+    url = reverse('profile:user_page', kwargs={'user_id': request.user.id})
     return HttpResponseRedirect(url)
 
 
@@ -219,7 +183,7 @@ def make_profile_public(request):
     request.user.is_public = True
     request.user.save()
     messages.info(request, _("Your settings has been saved."))
-    return redirect('user_settings')
+    return redirect('profile:user_settings')
 
 
 @login_required
@@ -227,7 +191,7 @@ def make_profile_private(request):
     request.user.is_public = False
     request.user.save()
     messages.info(request, _("Your settings has been saved."))
-    return redirect('user_settings')
+    return redirect('profile:user_settings')
 
 
 def signup_or_login(request):
@@ -235,48 +199,4 @@ def signup_or_login(request):
         'form': LoginForm,
         'signup_form': SignupForm
     }
-    return render(request, 'Running/signup_or_login.html', context)
-
-
-@user_passes_test(lambda u: u.is_staff)
-@login_required
-def overview(request):
-    # If the method was called with POST data, and the user is an admin,
-    # it was called by a PaidForm. Handle that.
-    if request.method == "POST":
-
-        # Make a PaidForm from the POST data.
-        form = forms.PaidForm(request.POST)
-
-        # If the form is valid, get the right sponsorship, and change the amount paid to
-        # whatever was in the form.
-        if form.is_valid():
-            relevant_sponsorship = get_object_or_404(Sponsorship, pk=form.cleaned_data['sponsorship_id'])
-            relevant_sponsorship.amount_paid = form.cleaned_data['amount']
-            relevant_sponsorship.save()
-
-    # Get all the sponsorships in the system.
-    sponsorships = Sponsorship.objects.order_by('sponsor__username')
-
-    # Get all users, and use this to get a list of all email addresses.
-    all_users = User.objects.order_by('username')
-    all_subscribed_users = all_users.filter(subscribed=True)
-    all_emails = [user.email for user in all_subscribed_users]
-
-    all_wagers = Wager.objects.order_by('sponsor')
-
-    newsletter_users = User.objects.filter(subscribed=True)
-    newsletter_emails = [user.email for user in newsletter_users]
-
-    # Build a context from the sponsorships, users, emails and the PaidForm
-    context = {
-        'sponsorships': sponsorships,
-        'all_users': all_users,
-        'all_emails': all_emails,
-        'all_wagers': all_wagers,
-        'newsletter_emails': newsletter_emails,
-        'form': forms.PaidForm,
-    }
-
-    # Render and return the page with the context.
-    return render(request, 'Running/overview.html', context)
+    return render(request, 'profile/signup_or_login.html', context)

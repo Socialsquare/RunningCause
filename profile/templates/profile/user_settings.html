@@ -5,7 +5,7 @@
 
 {% block imports %}
 <script src="https://checkout.stripe.com/checkout.js"></script>
-<form id="payment-form" action="{% url 'register_customer' %}" method="POST">
+<form id="payment-form" action="{% url 'profile:register_customer' %}" method="POST">
 {% csrf_token %}
 </form>
 {% endblock %}
@@ -93,7 +93,7 @@ Your Settings
             {% endblocktrans %}
             </p>
 
-          <a href="{% url 'Running.views.unregister_card' %}" class="btn btn-default"> {% trans "Forget your card." %}</a>
+          <a href="{% url 'profile:unregister_card' %}" class="btn btn-default"> {% trans "Forget your card." %}</a>
         {% endif %}
 
             </br>
@@ -125,7 +125,7 @@ Your Settings
             {% endblocktrans %}
             </p>
 
-          <a href="{% url 'Running.views.unsubscribe' %}" class="btn btn-default"> {% trans "Unsubscribe from our emails" %}</a>
+          <a href="{% url 'profile:unsubscribe' %}" class="btn btn-default"> {% trans "Unsubscribe from our emails" %}</a>
         {% else %}
             </br>
             </br>
@@ -135,7 +135,7 @@ Your Settings
             {% endblocktrans %}
             </p>
 
-          <a href="{% url 'Running.views.subscribe' %}" class="btn btn-default"> {% trans "Subscribe to our emails" %}</a>
+          <a href="{% url 'profile:subscribe' %}" class="btn btn-default"> {% trans "Subscribe to our emails" %}</a>
         {% endif %}
         </br>
       </br>

@@ -39,7 +39,7 @@ Edit Run
 <p>{% trans "Make end date the same as start date if it was a single run." %}</p>
 
 </br>
-<form class="form-horizontal" method="post" action="{% url 'edit_run' run.id %}">
+<form class="form-horizontal" method="post" action="{% url 'runs:edit_run' run.id %}">
     {% csrf_token %}
     {% bootstrap_form form layout="form-horizontal" %}
 

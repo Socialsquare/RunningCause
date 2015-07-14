@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs nav-justified" role="tablist">
+	<li {% if tab_name == 'runs' %}class="active"{% endif %}>
+	<a href="{% url 'runs:user_runs' user_id=person.id %}">Runs</a>
+	</li>
+	<li {% if tab_name == 'raised' %}class="active"{% endif %}>
+	<a href="{% url 'profile:user_raised' user_id=person.id %}">Money Raised</a>
+	</li>
+	<li {% if tab_name == 'donations' %}class="active"{% endif %}>
+	<a href="{% url 'profile:user_donated' user_id=person.id %}">Donations</a>
+	</li>
+</ul>

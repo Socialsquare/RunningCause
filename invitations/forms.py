@@ -1,6 +1,7 @@
 # coding: utf8
 from django import forms
 
+
 class InviteForm(forms.Form):
     rate = forms.FloatField(label="Rate",
                             widget=forms.TextInput(

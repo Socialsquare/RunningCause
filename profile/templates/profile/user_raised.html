@@ -187,7 +187,7 @@
 
 {% endif %}
 
-<form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' person.id %}">
+<form class="form-horizontal" method="post" action="{% url 'profile:user_raised' person.id %}">
     {% csrf_token %}
     {% for field in invite_form %}
         {% for error in field.errors %}
@@ -225,7 +225,7 @@
         {% endfor %}
     {% endif %}
 
-    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' person.id %}">
+    <form class="form-horizontal" method="post" action="{% url 'profile:user_raised' person.id %}">
         {% csrf_token %}
         {% for field in sponsor_form %}
             {% for error in field.errors %}
@@ -265,7 +265,7 @@
     {% endfor %}
 
     {% endif %}
-    <form class="form-horizontal" method="post" action="{% url 'Running.views.user_raised' person.id %}">
+    <form class="form-horizontal" method="post" action="{% url 'profile:user_raised' person.id %}">
         {% csrf_token %}
         {% for field in wager_form %}
             {% for error in field.errors %}

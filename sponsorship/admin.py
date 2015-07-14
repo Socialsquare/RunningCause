@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import Sponsorship
+from .models import Sponsorship, SponsorRequest
+
+admin.register(SponsorRequest)
 
 
 @admin.register(Sponsorship)

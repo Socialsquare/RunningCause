@@ -3,7 +3,7 @@ from decimal import Decimal
 from datetime import date
 
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from dateutil.relativedelta import relativedelta
 
 
@@ -13,14 +13,14 @@ class Sponsorship(models.Model):
     """
 
     #    The user that is recieving this sponsorship.
-    runner = models.ForeignKey(get_user_model(),
+    runner = models.ForeignKey(settings.AUTH_USER_MODEL,
                                related_name='sponsorships_recieved')
 
     #   The user that is giving this sponsorship.
-    sponsor = models.ForeignKey(get_user_model(),
+    sponsor = models.ForeignKey(settings.AUTH_USER_MODEL,
                                 related_name='sponsorships_given', null=True)
 
-    #   The rate, in kroner per kilometer, of the sponsorship. 
+    #   The rate, in kroner per kilometer, of the sponsorship.
     rate = models.DecimalField('Rate', default=0, max_digits=10,
                                decimal_places=2, null=True)
 
@@ -47,9 +47,6 @@ class Sponsorship(models.Model):
     #   track of how much has been paid and how much is left to pay.
     amount_paid = models.DecimalField('Amount Paid', default=0,
                                       max_digits=10, decimal_places=2)
-
-    class Meta:
-        db_table = 'Running_sponsorship'
 
     #   This determines whether or not the sponsorship is currently active.
     # Sponsorships are considered
@@ -87,8 +84,10 @@ class Sponsorship(models.Model):
 
 
 class SponsorRequest(models.Model):
-    runner = models.ForeignKey(get_user_model())
-    sponsor = models.ForeignKey(get_user_model())
+    runner = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               related_name='sponsorships_requested')
+    sponsor = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                related_name='sponsorships_requests')
     created_dt = models.DateTimeField(auto_now_add=True)
     token = models.UUIDField(default=uuid.uuid4,
                              unique=True, db_index=True, null=False,

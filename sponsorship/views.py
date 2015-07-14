@@ -25,11 +25,11 @@ def end_sponsorship(request, sponsorship_id):
         sponsorship.end_date = date.today()
         sponsorship.save()
         messages.success(request, _("Sponsorship has been ended."))
-        return redirect('Running.views.user_donated', user_id=request.user.id)
+        return redirect('profile:user_donated', user_id=request.user.id)
 
     messages.error(request,
                    _("You are not a associated with this sponsorship."))
-    return redirect('my_page')
+    return redirect('profile:my_page')
 
 
 @login_required
