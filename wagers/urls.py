@@ -3,16 +3,18 @@ from wagers import views
 
 
 urlpatterns = [
-    url(r'^(?P<sponsee_id>\d+)/make_wager/$',
-        views.make_wager, name='wager'),
-    url(r'^(?P<wager_id>\d+)/update_wager/$', views.update_wager,
+    url(r'^feedback/(?P<wager_id>\d+)/$', views.feedback_wager,
         name='update_wager'),
-    url(r'^(?P<wager_id>\d+)/confirm_wager/$', views.confirm_wager,
-        name='confirm_wager'),
-    url(r'^(?P<wager_id>\d+)/decline_wager/$', views.decline_wager,
-        name='decline_wager'),
-    url(r'^(?P<sponsee_id>\d+)/make_wager/(?P<wager_id>\d+)/$',
-        views.make_wager, name='wager_from_invite'),
-    url(r'^(?P<sponsor_id>\d+)/invite_wager/$', views.invite_wager,
-        name='invite_wager'),
+
+    url(r'^invite-sponsor-to-wager/(?P<person_id>\d+)$',
+        views.invite_sponsor_to_wager,
+        name='invite_sponsor_to_wager'),
+    url(r'preview-invitation-wager/(?P<token>[a-z0-9]{32})/$',
+        views.preview_invitation_wager, name='preview-invitation-wager'),
+
+    url(r'^challenge-runner/(?P<person_id>\d+)/$',
+        views.challenge_runner,
+        name='challenge_runner'),
+    url(r'preview-challenge/(?P<token>[a-z0-9]{32})/$',
+        views.preview_challenge, name='preview_challenge'),
 ]

@@ -34,12 +34,12 @@ def users_list(request):
 
 def user_raised(request, user_id):
     person = get_object_or_404(get_user_model(), id=user_id)
-    sponsorships = person.sponsorships_recieved.exclude(sponsor=None)
+    sponsorships = person.sponsorships_recieved.all()
     amount_earned = 0
     for sponsorship in sponsorships:
         amount_earned = amount_earned + sponsorship.total_amount
 
-    wagers_recieved = person.wagers_recieved.exclude(sponsor=None)
+    wagers_recieved = person.wagers_recieved.filter(status='a')
 
     own_page = False
     if request.user.is_authenticated():
@@ -169,7 +169,10 @@ def user_page(request, user_id):
 
 @login_required
 def user_settings(request):
-    return render(request, 'profile/user_settings.html', {})
+    ctx = {
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+    }
+    return render(request, 'profile/user_settings.html', ctx)
 
 
 @login_required

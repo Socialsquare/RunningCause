@@ -29,12 +29,12 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # if os.getenv('DJANGO_SECRET_KEY'):
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
 # else:
 #     SECRET_KEY = 'BOGUS SECRET KEY -- CHANGE THIS'
 
 # if os.getenv('RUNKEEPER_CLIENT_ID'):
-RUNKEEPER_CLIENT_ID = os.getenv('RUNKEEPER_CLIENT_ID')
+RUNKEEPER_CLIENT_ID = os.getenv('RUNKEEPER_CLIENT_ID', '')
 # else:
 #     RUNKEEPER_CLIENT_ID = 'BOGUS CLIENT ID -- CHANGE THIS'
 
@@ -45,10 +45,10 @@ RUNKEEPER_CLIENT_SECRET = os.getenv('RUNKEEPER_CLIENT_SECRET')
 # RUNKEEPER_CLIENT_ID = secrets.RUNKEEPER_CLIENT_ID
 # RUNKEEPER_CLIENT_SECRET = secrets.RUNKEEPER_CLIENT_SECRET
 
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 
-COURRIERS_MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+COURRIERS_MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY', '')
 COURRIERS_MAILCHIMP_LIST = '2640511eac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -122,6 +122,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_FORM_CLASS = 'profile.forms.SignupForm'
 
 
+EMAIL_SUBJECT_PREFIX = '[Masanga Runners] '
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')

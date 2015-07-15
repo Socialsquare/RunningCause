@@ -159,7 +159,7 @@ def register_runkeeper(request):
     elif RunkeeperToken.objects.filter(runner_id=request.user.id).count():
         pull_user_runs_from_runkeeper.delay(user_id=request.user.id)
         messages.info(request, _("Your runs from RunKeeper are"
-                                 " being process..."))
+                                 " being processed..."))
         return redirect('profile:my_page')
 
     # If the user has no code, and no token associated with their account, we need to start the

@@ -55,9 +55,9 @@ def add_sponsorship(request, runner_id):
                                       end_date=end_date,
                                       max_amount=max_amount)
             sponsorship.save()
-            messages.success(request, _("Your sponsorship for %s has"
-                                        " been set up.",
-                                        runner.username))
+            messages.success(request, _("Your sponsorship of %()s has "
+                                        "been set up.") % \
+                             dict(username=runner.username))
             return redirect('profile:user_donated', user_id=sponsor.id)
 
     context = {
@@ -68,9 +68,9 @@ def add_sponsorship(request, runner_id):
 
 
 @login_required
-def request_sponsorship(request, user_id):
+def request_sponsorship(request, person_id):
+    sponsor = get_object_or_404(get_user_model(), id=person_id)
     runner = request.user
-    sponsor = get_object_or_404(get_user_model(), id=user_id)
     form = SponsorForm()
     if request.method == "POST":
         form = SponsorForm(request.POST)
@@ -104,7 +104,7 @@ def request_sponsorship(request, user_id):
                       fail_silently=True,
                       html_message=html_msg)
 
-            return redirect('profile:user_donated', user_id=user_id)
+            return redirect('profile:user_donated', user_id=person_id)
 
     ctx = {
         'form': form,

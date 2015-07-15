@@ -1393,3 +1393,6 @@ msgstr "Masanga Runners væddemåls-notifikation"
 msgid "Masanga Runners run-update"
 msgstr "Masanga Runners løbe-update"
 
+msgid "Masanga Runners invitation for wager"
+msgstr "Masanga Runners invitation til væddemål"
+

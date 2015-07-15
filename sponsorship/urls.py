@@ -10,4 +10,6 @@ urlpatterns = [
         name='request_sponsorship'),
     url(r'^(?P<sponsorship_id>\d+)/end/$', views.end_sponsorship,
         name='end_sponsorship'),
+    url(r'^request-sponsorship/(?P<person_id>\d+)$', views.request_sponsorship,
+        name='request_sponsorship'),
 ]

@@ -1,0 +1,51 @@
+{% extends "masanga_base.html" %}
+{% load humanize %}
+{% load i18n %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block title %}
+{% trans "Request wager" %}
+{% endblock %}
+
+{% block head %}
+	<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+		{% blocktrans with username=person.username %}
+		Invite {{username}} to challenge you.
+		{% endblocktrans %}
+	</div>
+	</div>
+{% endblock %}
+
+{% block body %}
+
+	<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+    <p>
+        {% blocktrans with username=person.username %}
+        Fill out these fields to invite {{ username }} to challenge
+         you to a wager. Feel free to leave whatever you want blank. {{ username }}
+          will get an email notifying them that you requested you to challenge them,
+           and the values you do fill out will be displayed to them. They can then 
+           choose to challenge you immediately, change or add some values and then
+            challenge you, or decline entirely.
+        {% endblocktrans %}
+    </p>
+    </div>
+	</div>
+
+	<div class="row">
+	<div class="col-md-7  col-md-offset-1">
+	<form action="{% url 'wagers:request_wager' person_id=person.id %}" method="post">
+	    {% csrf_token %}
+		{% bootstrap_form form layout="form-horizontal" %}
+		{% buttons %}
+		  <button type="submit" class="btn btn-primary pull-right">
+		    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+		  </button>
+		{% endbuttons %}
+	</form>
+	</div>
+	</div>
+{% endblock %}

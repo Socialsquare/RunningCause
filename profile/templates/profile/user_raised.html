@@ -3,37 +3,6 @@
 {% load i18n %}
 {% load static %}
 
-{% block imports %}
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="/static/js/bootstrap-datepicker.js"></script>
-    <script type=text/javascript>
-    $(document).ready(function() {
-        date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        if (day < 10)
-        {
-            day = "0" + day;
-        }
-        if (month < 10)
-        {
-            month = "0" + month;
-        }
-        var yearString = year + "-" + month + "-" + day;
-        $('#start_datepicker').val(yearString).datepicker({
-            format:'yyyy-mm-dd'
-        });
-        $('#end_datepicker').val(yearString).datepicker({
-            format:'yyyy-mm-dd'
-        });
-        $('#wager_datepicker').datepicker({
-            format:'yyyy-mm-dd'
-        });
-    });
-    </script>
-{% endblock %}
-
 {% block title %}
 {{ person.username }}
 {% endblock %}
@@ -171,122 +140,18 @@
 </br>
 {% if own_page %}
 
-</br>
-    <p>
-        {% blocktrans %}
-        Fill out these fields below to invite someone who doesn't currently have a Masanga account to sponsor you. They will get an email inviting them to create an account and sponsor you.
-        {% endblocktrans %}
-    </p>
-
-{% if invite_form.errors %}
-    {% for error in invite_form.non_field_errors %}
-      <div class="alert alert-danger">
-        {{ error|escape }}
-      </div>
-    {% endfor %}
-
-{% endif %}
-
-<form class="form-horizontal" method="post" action="{% url 'profile:user_raised' person.id %}">
-    {% csrf_token %}
-    {% for field in invite_form %}
-        {% for error in field.errors %}
-          <div class="alert alert-danger">
-            {{ error|escape }}
-          </div>
-        {% endfor %}
-    <div class="form-group">
-    <label for="inputEmail3" class="col-sm-4 control-label">{{ field.label }}</label>
-    <div class="col-sm-8">
-      {{ field }}
-    </div>
-    </div>
-    {% endfor %}
-<input name="form_name" value="invite_form" type="hidden"></input>
-<div class="form-group">
-    <div class="col-sm-offset-4 col-sm-8">
-      <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
-    </div>
-  </div>
-</form>
-
 {% else %}
-    </br>
-    <p>
-        {% blocktrans with username=person.username %}
-            Fill out these fields down here to sponsor {{ username }}. Between the dates in start date and end date, any time {{ username }} runs, you will agree to donate the number of dkk in the "rate" field to Masanga Hospital. If you're worried that your runner will run too much, don't worry too much! You won't be charged more than the number you put in the "max amount" field, no matter how much they run.
-        {% endblocktrans %}
-    </p>
-    {% if sponsor_form.errors %}
-        {% for error in sponsor_form.non_field_errors %}
-            <div class="alert alert-danger col-sm-offset-4">
-                {{ error|escape }}
-            </div>
-        {% endfor %}
-    {% endif %}
 
-    <form class="form-horizontal" method="post" action="{% url 'profile:user_raised' person.id %}">
-        {% csrf_token %}
-        {% for field in sponsor_form %}
-            {% for error in field.errors %}
-                <div class="alert alert-danger col-sm-offset-4">
-                    {{ error|escape }}
-                </div>
-            {% endfor %}
-        <div class="form-group">
-        <label for="inputEmail3" class="col-sm-4 control-label">{{ field.label }}</label>
-        <div class="col-sm-8">
-            {{ field }}
-        </div>
-        </div>
-        {% endfor %}
-        <input name="form_name" value="sponsor_form" type="hidden"></input>
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8">
-          <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
-        </div>
-      </div>
-    </form>
+	<div class="btn-group">
+		<p><a class="btn btn-primary btn-block" 
+		href="{% url 'sponsorship:add_sponsorship' person.id %}" />
+			sponsor {{person.username}}</a></p>
+		<p><a class="btn btn-primary btn-block" 
+		href="{% url 'wagers:challenge_runner' person.id %}" />
+			challenge {{person.username}}</a></p>
+	</div>
 
 
-
-
-
-    <p>
-        {% blocktrans with username=person.username %}
-        Alternatively, fill out these fields to set up a wager with {{ username }}. If they complete whatever you specify the bet is, by the time you list in end date, then you agree to pay the amount listed in the amount field, in dkk. Worried they'll cheat? No need to fret! At the end of the time period, you're the only one who gets to make the call about whether or not you pay.
-        {% endblocktrans %}
-    </p>
-    {% if wager_form.errors %}
-    {% for error in wager_form.non_field_errors %}
-        <div class="alert alert-danger col-sm-offset-4">
-            {{ error|escape }}
-        </div>
-    {% endfor %}
-
-    {% endif %}
-    <form class="form-horizontal" method="post" action="{% url 'profile:user_raised' person.id %}">
-        {% csrf_token %}
-        {% for field in wager_form %}
-            {% for error in field.errors %}
-                <div class="alert alert-danger col-sm-offset-4">
-                    {{ error|escape }}
-                </div>
-            {% endfor %}
-        <div class="form-group">
-        <label for="{{ field.name }}" class="col-sm-4 control-label">{{ field.label }}</label>
-        <div class="col-sm-8">
-            {{ field }}
-        </div>
-        </div>
-        {% endfor %}
-    <input name="form_name" value="wager_form" type="hidden"></input>
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8">
-          <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
-        </div>
-      </div>
-    </form>
 
 {% endif %}
 </div>

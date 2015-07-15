@@ -4,89 +4,36 @@
 
 
 {% block title %}
-{% trans "Sponsor a Runner" %}
+{% trans "Invite a new member" %}
 {% endblock %}
 
 {% block imports %}
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="/static/js/bootstrap-datepicker.js"></script>
-    <script type=text/javascript>
-    $(document).ready(function() {
-        date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        if (day < 10)
-        {
-            day = "0" + day;
-        }
-        if (month < 10)
-        {
-            month = "0" + month;
-        }
-        var yearString = year + "-" + month + "-" + day;
-        $('#start_datepicker').val(yearString).datepicker({
-            format:'yyyy-mm-dd'
-        });
-        $('#end_datepicker').val(yearString).datepicker({
-            format:'yyyy-mm-dd'
-        });
-    });
-    </script>
 {% endblock %}
 
 {% block head %}
-{% if sponsor %}
-{% blocktrans with sponsor_name=sponsor.username %}
-Invite {{ sponsor_name }} to sponsor you!
-{% endblocktrans %}
-{% else %}
-{% trans 'Invite someone to sponsor you!' %}
-{% endif %}
+	<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+{% trans 'Invite someone you know!' %}
+	</div>
+	</div>
 {% endblock %}
 
 {% block body %}
-{% if sponsor %}
-{% blocktrans with sponsor_name=sponsor.username %}
-Fill out this form with the values you'd like to suggest to {{ sponsor_name }}. You can leave anything that you want blank.
-{% endblocktrans %}
-{% else %}
-{% trans "Fill out this form with the values you'd like to suggest to your potential sponsor. You can leave anything that you want blank." %}
-{% endif %}
-</br>
-</br>
-{% if form.errors %}
-    {% for error in form.non_field_errors %}
-      <div class="alert alert-danger">
-        {{ error|escape }}
-      </div>
-    {% endfor %}
-
-{% endif %}
-{% if sponsor %}
-<form class="form-horizontal" method="post" action="{% url 'sponsorship:invite_sponsor' sponsor_id=sponsor.id %}">
-{% else %}
-<form class="form-horizontal" method="post" action="{% url 'sponsorship:invite_sponsor' %}">
-{% endif %}
-    {% csrf_token %}
-    {% for field in form %}
-        {% for error in field.errors %}
-          <div class="alert alert-danger">
-            {{ error|escape }}
-          </div>
-        {% endfor %}
-    <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">{{ field.label }}</label>
-    <div class="col-sm-10">
-      {{ field }}
-    </div>
-    </div>
-    {% endfor %}
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">{% trans "Submit" %}</button>
-    </div>
-  </div>
-</form>
-
+	<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+    <p>
+        {% blocktrans %}
+        Fill out these fields below to invite someone who doesn't currently 
+        have a Masanga account. This could be either a runner or a potencial
+        sponsor. They will get an email inviting 
+        them to create an account.
+        {% endblocktrans %}
+    </p>
+    
+    
+    FORM HERE!!!
+    
+    
+	</div>
+	</div>
 {% endblock %}
