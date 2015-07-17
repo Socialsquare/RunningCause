@@ -80,7 +80,7 @@ def user_donated(request, user_id):
 @login_required
 def sign_in_landing(request):
     user = request.user
-    if user.newsletter:
+    if user.newsletter and settings.COURRIERS_MAILCHIMP_API_KEY:
         try:
             m = mailchimp.Mailchimp(settings.COURRIERS_MAILCHIMP_API_KEY)
             m.lists.subscribe(settings.COURRIERS_MAILCHIMP_LIST,
@@ -146,6 +146,7 @@ def subscribe(request):
 
 @login_required
 def unregister_card(request):
+    # TODO: this should also remove the card from Stripe!
     user = request.user
     user.stripe_customer_id = None
     user.save()

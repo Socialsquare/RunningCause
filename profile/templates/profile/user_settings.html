@@ -27,48 +27,18 @@ Your Settings
     <div class="col-sm-8">
     	<br />
       {% if not user.stripe_customer_id %}
-      <p>
+        <p>
         {% blocktrans %}
-        Click the card below to register a credit card with Masanga Runners. If you do this, you won't be charged anything initially. From then on, whenever you agree to pay out a wager, or a runner you're sponsoring runs, you card will be automatically charged, without having to do anything!
+        Click the card below to register a credit card with Masanga Runners. 
+        If you do this, you won't be charged anything initially. From then on,
+        whenever you agree to pay out a wager, or a runner you're sponsoring
+        runs, you card will be automatically charged, without having to
+        do anything!
         {% endblocktrans %}
-      </p>
-        <button class="btn btn-default" id="registerButton">Register your card with Masanga Runners</button>
-
-        <script>
-          var handler = StripeCheckout.configure({
-            key: '{{ stripe_public_key }}',
-            image: '{{BASE_URL}}{% static "img/M.png" %}',
-            currency: 'dkk',
-            bitcoin: false,
-            email: '{{ user.email }}',
-            allowRememberMe: false,
-            token: function(token) {
-              // Use the token to create the charge with a server-side script.
-              // You can access the token ID with `token.id`
-              var $form = $("#payment-form");
-              var token = token.id;
-              $form.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-              $form.get(0).submit();
-            }
-          });
-
-          $('#registerButton').on('click', function(e) {
-            // Open Checkout with further options
-            handler.open({
-              name: 'Masanga Runners',
-              description: 'Register with Masanga Runners!',
-              amount: 0
-            });
-            e.preventDefault();
-          });
-
-          // Close Checkout on page navigation
-          $(window).on('popstate', function() {
-            handler.close();
-          });
-        </script>
-
-        {% else %}
+        </p>
+        <p><a href="{% url 'profile:credit_card_prompt' %}" class="btn btn-default">
+        {% trans "Register your card with Masanga Runners" %}</a></p>
+      {% else %}
             </br>
             </br>
             <p>
@@ -77,9 +47,10 @@ Your Settings
             {% endblocktrans %}
             </p>
 
-          <p><a href="{% url 'profile:unregister_card' %}" class="btn btn-default"> {% trans "Forget your card." %}</a>
+          <p><a href="{% url 'profile:unregister_card' %}" class="btn btn-default">
+          {% trans "Forget your card." %}</a>
           </p>
-        {% endif %}
+      {% endif %}
 
             </br>
             </br>

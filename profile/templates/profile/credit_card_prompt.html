@@ -4,7 +4,7 @@
 
 {% block imports %}
 <script src="https://checkout.stripe.com/checkout.js"></script>
-<form id="payment-form" action="{% url 'register_customer' %}" method="POST">
+<form id="payment-form" action="{% url 'profile:register_customer' %}" method="POST">
 {% csrf_token %}
 </form>
 {% endblock %}
@@ -14,8 +14,8 @@
 {% endblock %}
 
 {% block body %}
-<h4>{% trans "Either register a credit card, or continue to our homepage " %}
-    <a href={% url 'home' %}>{% trans "here." %}</a></h4>
+<h4>{% trans "Either register a credit card, or go to your profile settings " %}
+    <a href={% url 'profile:user_settings' %}>{% trans "here." %}</a></h4>
 </br>
 <button class="btn btn-default" id="registerButton">Register your card with Masanga Runners</button>
 <script>
