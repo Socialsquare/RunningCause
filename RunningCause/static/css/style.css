@@ -1,13 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
-/*!
- * Datepicker for Bootstrap
- *
- * Copyright 2012 Stefan Petre
- * Improvements by Andrew Rowls
- * Licensed under the Apache License v2.0
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- */
+@import url(../css/SourceSansPro.css);
+
 .datepicker {
   padding: 4px;
   border-radius: 4px;

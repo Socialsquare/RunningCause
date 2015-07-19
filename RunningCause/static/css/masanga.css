@@ -1,0 +1,12 @@
+.bg-white{
+    background: #ffffff;
+}
+*{
+    margin:0;
+    padding:0;
+    font-family:'lato', 'font awesome', 'Helvetica';
+}
+.carousel-inner > .item > img 
+{
+    margin: 0 auto;
+}

@@ -4,25 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="{{BASE_URL}}{% static 'stylesheets/style.css' %}" />
-        <link rel='stylesheet' id='google-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700&#038;ver=3.1' type='text/css' media='all' />
-        <link rel='stylesheet' id='font-awesome-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?ver=4.2.0' type='text/css' media='all' />
+        <link rel="stylesheet" type="text/css" href="{{BASE_URL}}{% static 'css/style.css' %}" />
+        <link rel="stylesheet" id="google-fonts-css"  href="{{BASE_URL}}{% static 'css/Lato.css'%}" type="text/css" media="all" />
+        <link rel="stylesheet" id="font-awesome-css"  href="{{BASE_URL}}{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
 
 
-        <style type="text/css">
-            .bg-white{
-                background: #ffffff;
-            }
-            *{
-                margin:0;
-                padding:0;
-                font-family:'lato', 'font awesome', 'Helvetica';
-            }
-            .carousel-inner > .item > img 
-            {
-                margin: 0 auto;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{{BASE_URL}}{% static 'css/masanga.css' %}" />
 
 
         <meta charset="utf-8">
@@ -36,12 +23,13 @@
         {% endblock %}
         </title>
 
-        <script type="text/javascript">var switchTo5x=true;</script>
-        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src="{% static 'js/eldarion-ajax.min.js' %}"></script>
-
-
+		<script type="text/javascript">
+			// use by sharethis(?)
+			var switchTo5x=true;
+		</script>
+        <script type="text/javascript" src="{{BASE_URL}}{% static 'js/jquery-1.9.min.js' %}" ></script>
+   	    <script type="text/javascript" src="{{BASE_URL}}{% static 'js/bootstrap.min.js' %}" async></script>
+        <script type="text/javascript" src="{{BASE_URL}}{% static 'js/eldarion-ajax.min.js' %}" async></script>
         {% block imports %}
         {% endblock %}
 
