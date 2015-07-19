@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+import sys
 from django.conf import settings
 
 BROKER_URL = settings.REDIS_URL
@@ -10,3 +11,8 @@ CELERY_TIMEZONE = settings.TIME_ZONE
 CELERY_ENABLE_UTC = True
 CELERY_IGNORE_RESULT = True
 CELERY_STORE_ERRORS_EVEN_IF_IGNORED = True
+
+if 'test' in sys.argv:
+    CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+    CELERY_ALWAYS_EAGER = True
+    BROKER_BACKEND = 'memory'
