@@ -52,6 +52,7 @@
             <thead>
                 <th>{% trans "Date" %}</th>
                 <th>{% trans "Distance (km)" %}</th>
+                <th>{% trans "Time" %}</th>
                 {% if own_page %}
                 <th></th>
                 {% endif %}
@@ -60,6 +61,7 @@
                 <tr> 
                     <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
                     <td>{{ run.distance|floatformat:-2|intcomma }}</td>
+                    <td>{% if run.recorded_time %}{{ run.recorded_time }}{% else %}unknown{% endif %}</td>
                     {% if own_page %}
                         <td><a href="{% url 'runs:edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
                     {% endif %}

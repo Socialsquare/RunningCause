@@ -39,8 +39,8 @@ class Run(models.Model):
     # been entered.
     source_id = models.CharField('Source ID', default="", max_length=200)
 
-    recorded_time = models.TimeField(default=datetime.time,
-                                     null=False)
+    recorded_time = models.DurationField(default=datetime.timedelta,
+                                         null=False)
 
     def __unicode__(self):
         return'%s' % self.distance
