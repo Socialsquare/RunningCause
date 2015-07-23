@@ -37,10 +37,13 @@ class Run(models.Model):
     # if different
     # from Masanga Runners. Used to keep track of which runs have already
     # been entered.
-    source_id = models.CharField('Source ID', default="", max_length=200)
+    source_id = models.CharField('Source ID', default=None, max_length=200,
+                                 db_index=True, null=True)
 
     recorded_time = models.DurationField(default=datetime.timedelta,
                                          null=False)
+    created_dt = models.DateTimeField(auto_now_add=True, db_index=True,
+                                      null=False)
 
     def __unicode__(self):
         return'%s' % self.distance
