@@ -29,6 +29,40 @@ def format_amount_to_pay(amount_to_pay):
     return amount_to_pay
 
 
+@transaction.atomic()
+def charge_user(user_id=None):
+    user = get_user_model().objects.get(id=user_id)
+    amount_to_pay = 0
+    sponsorships = user.sponsorships_given.all()
+    spltp = [(sp.id, sp.amount_paid, sp.left_to_pay)
+             for sp in sponsorships
+             if sp.left_to_pay > 0]
+    amount_to_pay += sum([spl[2] for spl in spltp])
+    unpaid_wagers = user.wagers_given.filter(paid=False,
+                                             fulfilled=True)
+    amount_to_pay += sum([wager.amount for wager
+                          in unpaid_wagers])
+    amount = format_amount_to_pay(amount_to_pay)
+    print "%s\t%f (%s)..." % (user.username, amount_to_pay, amount)
+    if amount_to_pay != 0:
+        stripe_status = stripe.Charge.create(
+            amount=amount,
+            currency="dkk",
+            customer=user.stripe_customer_id
+        ).get("status")
+        if stripe_status == "succeeded":
+            for sp_id, amount_paid, left_to_pay in spltp:
+                Sponsorship.objects.filter(id=sp_id)\
+                    .update(amount_paid=amount_paid + left_to_pay)
+            unpaid_wagers.update(paid=True)
+
+            print "{0} charged {1}".format(user.username,
+                                           amount)
+        else:
+            emsg = "ERROR: Stripe returned {0}".format(stripe_status)
+            raise Exception(emsg)
+
+
 class Command(BaseCommand):
     help = 'Charges all customers who have registered with stripe'
 
@@ -37,37 +71,12 @@ class Command(BaseCommand):
             print "this runs only first day of the month"
             sys.exit(0)
 
-        users = get_user_model().objects\
-            .exclude(stripe_customer_id=None)
-        for user in users:
-            with transaction.commit_on_success():
-                amount_to_pay = 0
-                sponsorships = user.sponsorships_given.all()
-                spltp = [(sp.id, sp.amount_paid, sp.left_to_pay)
-                         for sp in sponsorships
-                         if sp.left_to_pay > 0]
-                amount_to_pay += sum([sp[2] for sp in spltp])
-                unpaid_wagers = user.wagers_given.filter(paid=False,
-                                                         fulfilled=True)
-                amount_to_pay += sum([wager.amount for wager
-                                      in unpaid_wagers])
-                print "%s\t%s..." % (user.username, amount_to_pay)
-                if amount_to_pay != 0:
-                    amount = format_amount_to_pay(amount_to_pay)
-                    stripe_status = stripe.Charge.create(
-                        amount=amount,
-                        currency="dkk",
-                        customer=user.stripe_customer_id
-                    ).get("status")
-                    if stripe_status == "succeeded":
-                        for sp_id, amount_paid, left_to_pay in spltp:
-                            Sponsorship.objects.filter(id=sp_id)\
-                                .update(amount_paid=amount_paid +
-                                        left_to_pay)
-                        unpaid_wagers.update(paid=True)
+        users_ids = get_user_model().objects\
+            .exclude(stripe_customer_id=None).values_list('id', flat=True)
+        for user_id in users_ids:
+            try:
+                charge_user(user_id=user_id)
+            except Exception as exc:
+                print "ERROR: charging user {} failed".fomat(user_id)
+                print "{}".fomat(exc)
 
-                        print "{0} charged {1}".format(user.username,
-                                                       amount)
-                    else:
-                        print "ERROR: Stripe returned {0}"\
-                            .format(stripe_status)
