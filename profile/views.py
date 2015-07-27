@@ -15,7 +15,6 @@ from django.conf.urls import url
 from django.utils.translation import ugettext as _
 from django.contrib.auth import get_user_model, REDIRECT_FIELD_NAME
 from django.utils.http import is_safe_url
-from django.shortcuts import resolve_url
 
 from allauth.account.forms import LoginForm, SignupForm
 

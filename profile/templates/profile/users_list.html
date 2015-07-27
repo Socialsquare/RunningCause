@@ -8,7 +8,7 @@
 
 {% block body %}
 <div class="row">
-<div class="col-md-9">
+	<div class="col-sm-8">
 	<div class="panel panel-default">
 	    <div class="panel-heading">{% trans "Our runners and sponsors:" %}</div>
 	    {% for sublist in user_list|partition:"4" %}
@@ -25,7 +25,7 @@
 			            <a href="{% url 'profile:user_page' user_id=person.id %}">{{ person.username }}</a>
 			            </p>
 		            </div>
-            	</div>  
+            	</div>
 	    	{% endfor %}
 	    	</div>
 	    {% empty %}
@@ -35,6 +35,14 @@
 	    {% endfor %}
 	    </div>
 	</div>
-</div>
+
+	<div class="col-sm-4">
+		<div class="btn-group">
+			<p><a class="btn btn-primary btn-block" 
+				href="{% url 'invitations:invite_via_email' %}" />
+				invite someone you know</a></p>
+		</div>
+	</div>
+
 </div>
 {% endblock %}

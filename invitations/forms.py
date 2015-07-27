@@ -2,55 +2,5 @@
 from django import forms
 
 
-class InviteForm(forms.Form):
-    rate = forms.FloatField(label="Rate",
-                            widget=forms.TextInput(
-                                attrs={'class': 'form-control'}),
-                            required=False,
-                            localize=True)
-    start_date = forms.DateField(label="Sponsorship start date",
-                                 widget=forms.DateInput(attrs={'class': 'form-control',
-                                                               'id': 'start_datepicker',
-                                                                        'autocomplete': "off"}),
-                                 required=False)
-    end_date = forms.DateField(label="Sponsorship end date",
-                               widget=forms.DateInput(attrs={'class': 'form-control',
-                                                             'id': 'end_datepicker',
-                                                             'autocomplete': "off"}),
-                               required=False)
-    max_amount = forms.IntegerField(label="Maximum total amount",
-                                    widget=forms.TextInput(
-                                        attrs={'class': 'form-control'}),
-                                    required=False,
-                                    localize=True)
-
-    def is_valid(self):
-
-        valid = super(InviteForm, self).is_valid()
-
-        if not valid:
-            return valid
-
-        if self.cleaned_data['rate'] < 0 and self.cleaned_data['rate'] != None:
-            self.add_error('rate', 'Rate cannot be negative')
-            valid = False
-
-        if self.cleaned_data['max_amount'] < 0 and self.cleaned_data['max_amount'] != None:
-            self.add_error('max_amount', 'Max amount cannot be negative')
-            valid = False
-
-        if self.cleaned_data['start_date'] != None and self.cleaned_data['end_date'] != None and self.cleaned_data['start_date'] > self.cleaned_data['end_date']:
-            self.add_error('end_date', 'End date cannot be before start date.')
-            valid = False
-
-        return valid
-
-
-class EmailInviteForm(InviteForm):
-    email = forms.EmailField(label="Potential Sponsor's email account:",
-                             widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    def __init__(self, *args, **kwargs):
-        super(EmailInviteForm, self).__init__(*args, **kwargs)
-        self.fields.keyOrder = [
-            'rate', 'start_date', 'end_date', 'max_amount', 'email']
+class EmailInviteForm(forms.Form):
+    email = forms.EmailField(label="Friend's email address")
