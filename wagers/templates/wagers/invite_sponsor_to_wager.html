@@ -8,6 +8,23 @@
 {% trans "Request wager" %}
 {% endblock %}
 
+{% block imports %}
+    <script src="/static/js/bootstrap-datepicker.js"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var yearString = year + "-" + month + "-" + day;
+        $('#wager_datepicker').datepicker({
+            format:'yyyy-mm-dd',
+            startDate: new Date()
+        }).val(yearString);
+    });
+    </script>
+{% endblock %}
+
 {% block head %}
 	<div class="row">
 	<div class="col-md-7 col-md-offset-1">
@@ -37,7 +54,7 @@
 
 	<div class="row">
 	<div class="col-md-7  col-md-offset-1">
-	<form action="{% url 'wagers:request_wager' person_id=person.id %}" method="post">
+	<form action="{% url 'wagers:invite_sponsor_to_wager' person_id=person.id %}" method="post">
 	    {% csrf_token %}
 		{% bootstrap_form form layout="form-horizontal" %}
 		{% buttons %}

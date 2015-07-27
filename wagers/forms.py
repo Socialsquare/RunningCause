@@ -57,12 +57,12 @@ class WagerFeedbackForm(forms.ModelForm):
 class WagerChallengePreviewForm(forms.ModelForm):
     class Meta:
         model = Wager
-        fields = ['amount', 'wager_text']
+        fields = ['amount', 'end_date', 'wager_text']
 
     def __init__(self, *args, **kwargs):
         super(WagerChallengePreviewForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance and instance.pk:
-            for fname, fval in self.fields:
+            for fname in self.fields:
                 self.fields[fname].widget.attrs['readonly'] = True
 

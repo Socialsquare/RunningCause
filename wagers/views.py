@@ -22,7 +22,7 @@ from django.utils.translation import ugettext as _
 
 from .models import Wager
 from .forms import WagerForm, WagerFeedbackForm, WagerChallengePreviewForm
-from django.http.response import HttpResponseForbidden
+from django.http.response import HttpResponseForbidden, HttpResponseNotFound
 
 
 log = logging.getLogger(__name__)
@@ -88,7 +88,7 @@ def challenge_runner(request, person_id):
 @login_required
 def invite_sponsor_to_wager(request, person_id=None):
     """
-    Invites a the user with person_id to sponsor a challenge for the user
+    Invites a user with person_id to sponsor a challenge for the user
     currently logged in.
     """
     runner = request.user
@@ -110,7 +110,7 @@ def invite_sponsor_to_wager(request, person_id=None):
                           wager_text=wager_text)
 
             wager.save()
-            email_url = reverse('wagers:wager_from_invitation',
+            email_url = reverse('wagers:preview_invitation_wager',
                                 kwargs={'token': wager.token.hex})
             full_link = request.build_absolute_uri(email_url)
             ctx = {
@@ -127,6 +127,9 @@ def invite_sponsor_to_wager(request, person_id=None):
                       fail_silently=False,
                       html_message=html_msg)
 
+            messages.info(request, _("You have send invitation"
+                                     " to %(username)s to challenge you.") %\
+                          dict(username=wager.sponsor.username))
             return redirect('profile:user_page', user_id=sponsor.id)
     context = {
         'person': sponsor,
@@ -168,24 +171,26 @@ def preview_challenge(request, token=None):
     Runner can either accept or reject the challenge.
     """
     wager = Wager.objects.get(token=token)
-    if wager.runner != request.user:
+    if wager.runner != request.user or wager.status != wager.NEW:
         return HttpResponseForbidden()
 
     form = WagerChallengePreviewForm(instance=wager)
     if request.method == 'POST':
-        if request.POST.get('submit') == 'accepted':
+        if request.POST.get('submit') == 'accept':
             wager.status = wager.ACCEPTED
             email_msg = _("Runner %(username)s has accepted your challenge") %\
                 dict(username=wager.runner.username)
             msg = _("You have accepted a challenge.")
-        else:
+        elif request.POST.get('submit') == 'reject':
             wager.status = wager.REJECTED
             email_msg = _("Runner %(username)s has rejected your challenge") %\
                 dict(username=wager.runner.username)
             msg = _("You have rejected a challenge.")
+        else:
+            return HttpResponseNotFound()
         wager.save()
         messages.info(request, msg)
-        send_mail(email_msg, email_msg, settings.DEFAULT_EMAIL_FROM,
+        send_mail(email_msg, email_msg, settings.DEFAULT_FROM_EMAIL,
                   [wager.sponsor.email, ])
         return redirect('profile:my_page')
 
@@ -199,27 +204,34 @@ def preview_challenge(request, token=None):
 @login_required
 def preview_invitation_wager(request, token=None):
     """
-    Sponsor can edit wager, accept or reject invitation.
+    Sponsor can edit wager, accept or reject wager invitation.
     """
     wager = Wager.objects.get(token=token)
-    if wager.sponsor != request.user:
+    if wager.sponsor != request.user or wager.status != Wager.NEW:
         return HttpResponseForbidden()
 
     form = WagerForm(instance=wager)
     if request.method == 'POST':
-        if request.POST.get('submit') == 'accepted':
+        if request.POST.get('submit') == 'create':
             wager.status = wager.ACCEPTED
-            email_msg = _("Runner %(username)s has accepted your challenge") %\
-                              dict(username=wager.runner.username)
-            msg = _("You have accepted a challenge.")
-        else:
+            email_msg = _("Sponsor %(username)s has challenge you!") %\
+                          dict(username=wager.sponsor.username)
+            msg = _("You have successfully created a challenge "
+                    "for %(username)s.") %\
+                    dict(username=wager.runner.username)
+        elif request.POST.get('submit') == 'reject':
             wager.status = wager.REJECTED
-            email_msg = _("Runner %(username)s has rejected your challenge") %\
-                              dict(username=wager.runner.username)
-            msg = _("You have rejected a challenge.")
+            email_msg = _("Sponsor %(username)s has rejected your "
+                          "challenge invitation.") %\
+                          dict(username=wager.sponsor.username)
+            msg = _("You have rejected a challenge invitation "
+                    "from %(username)s.") %\
+                dict(username=wager.runner.username)
+        else:
+            return HttpResponseNotFound()
         wager.save()
         messages.info(request, msg)
-        send_mail(email_msg, email_msg, settings.DEFAULT_EMAIL_FROM,
+        send_mail(email_msg, email_msg, settings.DEFAULT_FROM_EMAIL,
                   [wager.sponsor.email, ])
         return redirect('profile:my_page')
 
@@ -227,4 +239,5 @@ def preview_invitation_wager(request, token=None):
         'wager': wager,
         'form': form
     }
-    return render(request, 'wagers/preview_challenge.html', context)
+
+    return render(request, 'wagers/preview_invitation_wager.html', context)

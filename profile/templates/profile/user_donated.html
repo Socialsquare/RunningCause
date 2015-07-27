@@ -95,7 +95,7 @@
                 </thead>
             {% for wager in wagers_given %}
                     <tr> 
-                        <td>{{ wager.sponsor }}</td>
+                        <td>{{ wager.runner }}</td>
                         <td>{{ wager.amount|floatformat:-2|intcomma }}</td>
                         <td>{{ wager.remind_date }}</td>
                         <td>{{ wager.wager_text }}</td>
