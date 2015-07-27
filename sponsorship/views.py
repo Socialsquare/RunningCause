@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 from django.template import loader, Context
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
+from django.utils.translation import ugettext as _
+from django.core.serializers.json import DjangoJSONEncoder
 
 from .models import Sponsorship, SponsorRequest
 from .forms import SponsorForm
@@ -33,7 +35,7 @@ def end_sponsorship(request, sponsorship_id):
 
 
 @login_required
-def add_sponsorship(request, runner_id):
+def add_sponsorship(request, runner_id=None):
     """
     Create a sponsorship from a person currently logged in (sponsor),
     to a runner with given runner_id (user id).
@@ -55,7 +57,8 @@ def add_sponsorship(request, runner_id):
                                       end_date=end_date,
                                       max_amount=max_amount)
             sponsorship.save()
-            messages.success(request, _("Your sponsorship of %()s has "
+            messages.success(request,
+                             _("Your sponsorship of %(username)s has "
                                         "been set up.") % \
                              dict(username=runner.username))
             return redirect('profile:user_donated', user_id=sponsor.id)
@@ -80,12 +83,13 @@ def request_sponsorship(request, person_id):
                 'start_date': form.cleaned_data['start_date'],
                 'end_date': form.cleaned_data['end_date'],
                 'max_amount': form.cleaned_data['max_amount'],
-            })
+            }, cls=DjangoJSONEncoder)
 
             sponsor_req = SponsorRequest.objects\
-                .create(runner=runner, sponsor=sponsor,
+                .create(runner=runner,
+                        sponsor=sponsor,
                         proposed_sponsorship=proposed)
-            email_url = reverse('sponsorship:requested_sponsorship',
+            email_url = reverse('sponsorship:add_sponsorship_from_request',
                                 kwargs={'token': sponsor_req.token})
             full_email_url = request.build_absolute_uri(email_url)
             title = _('Masanga Runners sponsorship request')
@@ -108,18 +112,21 @@ def request_sponsorship(request, person_id):
 
     ctx = {
         'form': form,
+        'runner': runner,
+        'sponsor': sponsor,
     }
     return render(request, 'sponsorship/request_sponsorship.html', ctx)
 
 
 @login_required
-def requested_sponsorship(request, token):
+def add_sponsorship_from_request(request, token=None):
     sponsor = request.user
-    sponsor_req = get_object_or_404(SponsorRequest, token=token)
-    if sponsor != sponsor_req.sponsor:
+    sp_req = get_object_or_404(SponsorRequest, token=token)
+    runner = sp_req.runner
+    if sponsor != sp_req.sponsor:
         return HttpResponseForbidden()
 
-    form = SponsorForm(json.loads(sponsor_req.proposed_sponsorship))
+    form = SponsorForm(json.loads(sp_req.proposed_sponsorship))
     if request.method == "POST":
         form = SponsorForm(request.POST)
         if form.is_valid():
@@ -127,7 +134,7 @@ def requested_sponsorship(request, token):
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
             max_amount = form.cleaned_data['max_amount']
-            sponsorship = Sponsorship.objects.create(runner=sponsor_req.runner,
+            sponsorship = Sponsorship.objects.create(runner=runner,
                                                      sponsor=sponsor,
                                                      rate=rate,
                                                      start_date=start_date,
@@ -135,7 +142,10 @@ def requested_sponsorship(request, token):
                                                      max_amount=max_amount)
             SponsorRequest.objects.filter(token=token)\
                 .update(sponsorship=sponsorship)
+            return redirect('profile:user_donated', user_id=sponsor.id)
     ctx = {
         'form': form,
+        'sponsor': sponsor,
+        'runner': runner,
     }
-    return render(request, 'sponsorship/requested_sponsorship.html', ctx)
+    return render(request, 'sponsorship/add_sponsorship.html', ctx)

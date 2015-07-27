@@ -13,7 +13,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.conf.urls import url
 from django.utils.translation import ugettext as _
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, REDIRECT_FIELD_NAME
+from django.utils.http import is_safe_url
+from django.shortcuts import resolve_url
 
 from allauth.account.forms import LoginForm, SignupForm
 
@@ -77,9 +79,31 @@ def user_donated(request, user_id):
     return render(request, 'profile/user_donated.html', context)
 
 
+def signup_or_login(request):
+    redirect_to = request.GET.get(REDIRECT_FIELD_NAME,
+                                  request.POST.get(REDIRECT_FIELD_NAME, ''))
+    if redirect_to:
+        if not is_safe_url(url=redirect_to, host=request.get_host()):
+            redirect_to = ''
+
+    if request.user.is_authenticated():
+        if redirect_to:
+            return HttpResponseRedirect(redirect_to)
+        return redirect('profile:my_page')
+
+    context = {
+        'redirect_field_name': REDIRECT_FIELD_NAME,
+        'redirect_field_value': redirect_to,
+        'form': LoginForm,
+        'signup_form': SignupForm
+    }
+    return render(request, 'profile/signup_or_login.html', context)
+
+
 @login_required
 def sign_in_landing(request):
     user = request.user
+
     if user.newsletter and settings.COURRIERS_MAILCHIMP_API_KEY:
         try:
             m = mailchimp.Mailchimp(settings.COURRIERS_MAILCHIMP_API_KEY)
@@ -104,8 +128,12 @@ def sign_in_landing(request):
         user.save()
         url = reverse('profile:credit_card_prompt')
         return HttpResponseRedirect(url)
-    url = reverse('profile:home')
-    return HttpResponseRedirect(url)
+
+    redirect_to = request.GET.get(REDIRECT_FIELD_NAME, '')
+    if redirect_to:
+        if is_safe_url(url=redirect_to, host=request.get_host()):
+            return HttpResponseRedirect(redirect_to)
+    return redirect('profile:my_page')
 
 
 @login_required
@@ -196,11 +224,3 @@ def make_profile_private(request):
     request.user.save()
     messages.info(request, _("Your settings has been saved."))
     return redirect('profile:user_settings')
-
-
-def signup_or_login(request):
-    context = {
-        'form': LoginForm,
-        'signup_form': SignupForm
-    }
-    return render(request, 'profile/signup_or_login.html', context)

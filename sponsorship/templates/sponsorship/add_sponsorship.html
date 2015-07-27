@@ -1,9 +1,7 @@
 {% extends "masanga_base.html" %}
 {% load staticfiles %}
-{% load account %}
-{% load url from future %}
-{% load widget_tweaks %}
 {% load i18n %}
+{% load bootstrap3 %}
 
 
 {% block title %}
@@ -11,7 +9,6 @@ Sponsor Runner {{runner}}
 {% endblock %}
 
 {% block imports %}
-    <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.js'%}"></script>
     <script type=text/javascript>
     $(document).ready(function() {
@@ -44,7 +41,7 @@ Sponsor Runner {{runner}}
 
 {% block body %}
     <p>
-        {% blocktrans with username=person.username %}
+        {% blocktrans with username=runner.username %}
             Fill out these fields down here to sponsor {{ username }}. 
             Between the dates in start date and end date, any 
             time {{ username }} runs, you will agree to donate the
@@ -56,8 +53,15 @@ Sponsor Runner {{runner}}
         {% endblocktrans %}
     </p>
     
-<form class="form-horizontal" method="post" action="{% url 'add_sponsor' runner.id %}">
-
+<form class="form-horizontal" method="post"
+	action="{% url 'sponsorship:add_sponsorship' runner_id=runner.id %}">
+    {% csrf_token %}
+	{% bootstrap_form form layout="form-horizontal" %}
+	{% buttons %}
+	  <button type="submit" class="btn btn-primary">
+	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	  </button>
+	{% endbuttons %}
 </form>
 
 {% endblock %}

@@ -47,11 +47,11 @@
                         </div>
                     </div>
                     <div class="row" style="margin:0; padding:0">
-                        <div class="col-md-5 col-md-offset-2" style="padding:0;">
+                        <div class="col-md-6 col-md-offset-2" style="padding:0;">
                             <div class="navbar navbar-collapse" style="padding:0; margin:0; border:none;">
                                 <ul class="nav navbar-nav" style="padding:0;">
                                     <li>
-                                        <a href="{% url 'profile:users_list' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OUR RUNNERS" %}</a>
+                                        <a href="{% url 'profile:users_list' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "RUNNERS &amp; SPONSORS" %}</a>
                                     </li>
                                     <li>
                                         <a href="{% url 'pages:why_join_us' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "WHY JOIN US?" %}</a>
@@ -69,14 +69,14 @@
                         </div>
                         
                         
-                        <div class="col-md-3 pull-left">
+                        <div class="col-md-2 pull-left">
                         <div id="header-navbar-collapse" class="navbar-collapse collapse navbar-right">
 		                    <ul class="nav navbar-nav">
 		                        
 	                            {% if user.is_authenticated %}
 			                        <li class="dropdown">
 			                            <a style="color:white;" aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
-			                            {% blocktrans with username=user.username %}Hello, {{ username }}!{% endblocktrans %}
+			                            {% blocktrans with username=user.username|truncatechars:10 %}Hello, {{ username }}!{% endblocktrans %}
 			                            <strong></strong> <span class="caret"></span></a>
 			                            <ul class="dropdown-menu">
 			                                 <li><a href="{% url 'profile:my_page' %}">{% trans "MY PAGE" %}</a></li>
