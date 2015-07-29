@@ -45,13 +45,12 @@ class WagerForm(forms.ModelForm):
         return valid
 
 
-class WagerFeedbackForm(forms.ModelForm):
-    update_text = forms.CharField(label="What do you want to tell your sponsor?",
-                                  widget=forms.Textarea(attrs={'class': 'form-control'}))
-
-    class Meta:
-        model = Wager
-        fields = ['update_text']
+class WagerFeedbackForm(forms.Form):
+    feedback_msg = forms.CharField(
+        max_length=500, min_length=2,
+        label="Please write a feedback message",
+        widget=forms.Textarea(attrs={'class': 'form-control'})
+    )
 
 
 class WagerChallengePreviewForm(forms.ModelForm):

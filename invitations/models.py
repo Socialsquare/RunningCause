@@ -4,9 +4,9 @@ from django.conf import settings
 
 
 class EmailInvitation(models.Model):
-    NEW = 'n'
-    ACCEPTED = 'a'
-    REJECTED = 'r'
+    NEW = 'new'
+    ACCEPTED = 'accepted'
+    REJECTED = 'rejected'
     STATUS_CHOICES = (
         (NEW, 'new'),
         (ACCEPTED, 'accepted'),
@@ -20,5 +20,5 @@ class EmailInvitation(models.Model):
     token = models.UUIDField(default=uuid.uuid4,
                              unique=True, db_index=True, null=False,
                              editable=False, primary_key=False)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES,
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES,
                               default=NEW)

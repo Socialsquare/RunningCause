@@ -34,9 +34,11 @@ def input_run(request):
             distance = form.cleaned_data['distance']
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date'] or start_date
-            run = Run(runner=request.user, distance=distance,
-                      start_date=start_date, end_date=end_date)
-            run.save()
+            recorded_time = form.cleaned_data['recorded_time']
+            print recorded_time
+            run = Run.objects.create(runner=request.user, distance=distance,
+                      start_date=start_date, end_date=end_date,
+                      recorded_time=recorded_time)
             notify_sponsors_about_run.delay(run_id=run.id)
             messages.success(request, _("Your run has been added"))
             return redirect('runs:user_runs', user_id=request.user.id)
@@ -61,6 +63,7 @@ def edit_run(request, run_id):
         if form.is_valid():
             run.distance = form.cleaned_data['distance']
             run.start_date = form.cleaned_data['start_date']
+            run.recorded_time = form.cleaned_data['recorded_time']
             if form.cleaned_data['end_date'] and \
                     form.cleaned_data['end_date'] >= \
                     form.cleaned_data['start_date']:

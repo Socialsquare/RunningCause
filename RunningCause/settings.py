@@ -4,6 +4,8 @@ Django settings for RunningCause project.
 """
 
 import os
+from os.path import dirname, abspath
+import dj_database_url
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as messages_constants
 
@@ -19,31 +21,16 @@ MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
 }
 
+PROJECT_DIR = dirname(abspath(__file__))
+BASE_DIR = dirname(PROJECT_DIR)
 
-
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# if os.getenv('DJANGO_SECRET_KEY'):
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
-# else:
-#     SECRET_KEY = 'BOGUS SECRET KEY -- CHANGE THIS'
 
-# if os.getenv('RUNKEEPER_CLIENT_ID'):
+
 RUNKEEPER_CLIENT_ID = os.getenv('RUNKEEPER_CLIENT_ID', '')
-# else:
-#     RUNKEEPER_CLIENT_ID = 'BOGUS CLIENT ID -- CHANGE THIS'
-
-# if os.getenv('RUNKEEPER_CLIENT_SECRET'):
 RUNKEEPER_CLIENT_SECRET = os.getenv('RUNKEEPER_CLIENT_SECRET')
-# else:
-#     RUNKEEPER_CLIENT_SECRET = 'BOGUS CLIENT SECRET -- CHANGE THIS'    
-# RUNKEEPER_CLIENT_ID = secrets.RUNKEEPER_CLIENT_ID
-# RUNKEEPER_CLIENT_SECRET = secrets.RUNKEEPER_CLIENT_SECRET
 
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
@@ -51,7 +38,6 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 COURRIERS_MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY', '')
 COURRIERS_MAILCHIMP_LIST = '2640511eac'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
@@ -74,7 +60,6 @@ INSTALLED_APPS = (
     #'allauth.socialaccount',
     'django_extensions',
     'bootstrap3',
-    'jquery',
     'rosetta',
     'courriers',
 
@@ -85,6 +70,7 @@ INSTALLED_APPS = (
     'invitations',
     'tools',
     'pages',
+    'payments',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -148,19 +134,15 @@ ROOT_URLCONF = 'RunningCause.urls'
 WSGI_APPLICATION = 'RunningCause.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-# Parse database configuration from $DATABASE_URL
+
 if os.getenv('DATABASE_URL'):
-    import dj_database_url
-    DATABASES['default'] =  dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 
 
 REDIS_URL = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379')
@@ -208,29 +190,42 @@ TEMPLATE_DIRS = [
     os.path.join(os.path.dirname(__file__), 'templates'),
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = (
+CTX_PROCESSORS_TUPLE = (
     "django.core.context_processors.request",
     "django.core.context_processors.i18n",
     "django.contrib.auth.context_processors.auth",
     "django.contrib.messages.context_processors.messages",
-    "allauth.account.context_processors.account",
-    #"allauth.socialaccount.context_processors.socialaccount",
+    "django.template.context_processors.static",
+    "django.template.context_processors.media",
     "RunningCause.context_processors.base_url",
 )
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
+        'OPTIONS': {
+            'context_processors': CTX_PROCESSORS_TUPLE,
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
+        },
+    },
+]
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = [SITE_DOMAIN, ]
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
@@ -238,22 +233,37 @@ STATICFILES_DIRS = (
     os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'),
 )
 
-
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+            'format': '%(asctime)s  [%(name)s:%(lineno)s]  %(levelname)s - %(message)s',
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        },
+    },
     'filters': {
         'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
+            '()': 'django.utils.log.RequireDebugFalse',
         }
     },
     'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        },
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
     },
     'loggers': {
         'django.request': {
@@ -261,6 +271,49 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'django.db': {
+            'handlers': ['console', ],
+            'level': 'INFO',
+        },
+        'RunningCause': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'invitations': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'pages': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'payments': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'profile': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'runs': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'sponsorship': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'tools': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'wagers': {
+            'handlers': ['console', ],
+            'level': 'DEBUG',
+        },
+        'celery': {
+            'handlers': ['console', ],
+            'level': 'INFO',
+        },
     }
 }
-

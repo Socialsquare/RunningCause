@@ -4,7 +4,7 @@ from wagers import views
 
 urlpatterns = [
     url(r'^feedback/(?P<wager_id>\d+)/$', views.feedback_wager,
-        name='update_wager'),
+        name='feedback_wager'),
 
     url(r'^invite-sponsor-to-wager/(?P<person_id>\d+)$',
         views.invite_sponsor_to_wager,

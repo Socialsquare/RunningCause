@@ -22,7 +22,6 @@ from .models import User
 
 
 log = logging.getLogger(__name__)
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def users_list(request):
@@ -33,18 +32,18 @@ def users_list(request):
     return render(request, 'profile/users_list.html', context)
 
 
-def user_raised(request, user_id):
+def user_raised(request, user_id=None):
     person = get_object_or_404(get_user_model(), id=user_id)
     sponsorships = person.sponsorships_recieved.all()
     amount_earned = 0
     for sponsorship in sponsorships:
         amount_earned = amount_earned + sponsorship.total_amount
 
-    wagers_recieved = person.wagers_recieved.filter(status='a')
+    wagers_recieved = person.wagers_recieved.all().order_by('end_date')
 
     own_page = False
     if request.user.is_authenticated():
-        own_page = request.user.id == person.id
+        own_page = request.user == person
 
     context = {
         'sponsorships': sponsorships,
@@ -57,14 +56,14 @@ def user_raised(request, user_id):
     return render(request, 'profile/user_raised.html', context)
 
 
-def user_donated(request, user_id):
+def user_donated(request, user_id=None):
     person = get_object_or_404(get_user_model(), pk=user_id)
-    sponsorships_given = person.sponsorships_given.all().exclude(sponsor=None)
+    sponsorships_given = person.sponsorships_given.all()
     amount_given = 0
     for sponsorship in sponsorships_given:
         amount_given = amount_given + sponsorship.total_amount
 
-    wagers_given = person.wagers_given.exclude(sponsor=None)
+    wagers_given = person.wagers_given.all().order_by('end_date')
     own_page = request.user.id == person.id
 
     context = {
@@ -148,6 +147,7 @@ def credit_card_prompt(request):
 @csrf_exempt
 def register_customer(request):
     token = request.POST['stripeToken']
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     customer = stripe.Customer.create(source=token,
                                       description=request.user.username)
     request.user.stripe_customer_id = customer.id

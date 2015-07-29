@@ -15,7 +15,6 @@ from sponsors when running for a good cause.
 	celery -A RunningCause worker --loglevel=debug
 
 
-
 # deployment to heroku
 
 	git push heroku master:master

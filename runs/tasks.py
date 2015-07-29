@@ -1,15 +1,9 @@
 # coding: utf8
 from __future__ import absolute_import
 
-import logging
-import datetime
-from datetime import time, timedelta
-
-from dateutil.parser import parse
-import requests
 from celery import shared_task
+from celery.utils.log import get_task_logger
 
-from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.contrib.auth import get_user_model
 from django.conf import settings
@@ -19,29 +13,21 @@ from django.template import loader, Context
 from .runkeeper import create_runs_from_runkeeper
 
 
-log = logging.getLogger(__name__)
+log = get_task_logger(__name__)
 
 
-@shared_task(name='add')
-def add(x, y):
-    """
-    Test task `add`
-    """
-    return x + y
-
-
-@shared_task(name='pull_user_runs_from_runkeeper', ignore_result=True)
+@shared_task(ignore_result=True)
 def pull_user_runs_from_runkeeper(user_id=None):
     create_runs_from_runkeeper(user_id=user_id)
 
 
-@shared_task(name='notify_sponsors_about_run', ignore_result=True)
+@shared_task(ignore_result=True)
 def notify_sponsors_about_run(run_id=None):
     """
     Notify sponsors about the run
     """
     from runs.models import Run
-    run = Run.objects.get(id=run_id).select_related('runner')
+    run = Run.objects.select_related('runner').get(id=run_id)
     runner = run.runner
     relevant_sponsors = runner.sponsorships_recieved\
         .filter(end_date__gte=run.start_date, start_date__lte=run.start_date)\
@@ -65,3 +51,22 @@ def notify_sponsors_about_run(run_id=None):
                   [email, ],
                   fail_silently=False,
                   html_message=html_msg)
+
+
+@shared_task(ignore_result=True)
+def send_input_runs_reminder():
+    subscribed_users = get_user_model().objects.filter(subscribed=True)
+    all_addresses = [juser.email for juser in subscribed_users
+                     if (juser.is_runner and juser.email)]
+
+    tmplfn = 'runs/email/input_runs_reminder.html'
+    ctx = Context({
+        'title': _('Masanga Runners Reminder'),
+        'BASE_URL': settings.BASE_URL,
+    })
+    subject = _('Reminder')
+    tmpl = loader.get_template(tmplfn)
+    html_msg = tmpl.render(ctx)
+    for address in all_addresses:
+        send_mail(subject, '', settings.DEFAULT_FROM_EMAIL, [address],
+                  fail_silently=False, html_message=html_msg)

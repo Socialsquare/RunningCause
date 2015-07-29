@@ -1,15 +1,14 @@
 {% load staticfiles %}
 {% load i18n %}
-{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="{{BASE_URL}}{% static 'css/style.css' %}" />
-        <link rel="stylesheet" id="google-fonts-css"  href="{{BASE_URL}}{% static 'css/Lato.css'%}" type="text/css" media="all" />
-        <link rel="stylesheet" id="font-awesome-css"  href="{{BASE_URL}}{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" id="google-fonts-css"  href="{% static 'css/Lato.css'%}" type="text/css" media="all" />
+        <link rel="stylesheet" id="font-awesome-css"  href="{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
 
 
-        <link rel="stylesheet" type="text/css" href="{{BASE_URL}}{% static 'css/masanga.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/masanga.css' %}" />
 
 
         <meta charset="utf-8">
@@ -27,9 +26,9 @@
 			// use by sharethis(?)
 			var switchTo5x=true;
 		</script>
-        <script type="text/javascript" src="{{BASE_URL}}{% static 'js/jquery-1.9.min.js' %}" ></script>
-   	    <script type="text/javascript" src="{{BASE_URL}}{% static 'js/bootstrap.min.js' %}" async></script>
-        <script type="text/javascript" src="{{BASE_URL}}{% static 'js/eldarion-ajax.min.js' %}" async></script>
+        <script type="text/javascript" src="{% static 'js/jquery-1.9.min.js' %}" ></script>
+   	    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" async></script>
+        <script type="text/javascript" src="{% static 'js/eldarion-ajax.min.js' %}" async></script>
         {% block imports %}
         {% endblock %}
 

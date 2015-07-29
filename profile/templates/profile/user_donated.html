@@ -92,6 +92,8 @@
                     <th>{% trans "Amount (dkk)" %}</th>
                     <th>{% trans "End Date" %}</th>
                     <th>{% trans "Bet" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>&nbsp;</th>
                 </thead>
             {% for wager in wagers_given %}
                     <tr> 
@@ -99,6 +101,10 @@
                         <td>{{ wager.amount|floatformat:-2|intcomma }}</td>
                         <td>{{ wager.remind_date }}</td>
                         <td>{{ wager.wager_text }}</td>
+                        <td>{{ wager.status }}</td>
+                        <td>
+							{% include 'wagers/_feedback_wager_button.html'%}
+                        </td>
                     </tr>
             {% empty %}
             <tr><td>{% trans "Hmm, there don't seem to be any wagers here." %}</td></tr>

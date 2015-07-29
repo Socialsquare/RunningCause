@@ -1,0 +1,77 @@
+{% extends "masanga_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}
+{% trans "Update your Wager" %}
+{% endblock %}
+
+{% block head %}
+<div class="row">
+<div class="col-md-7 col-md-offset-1">
+	{% blocktrans %}
+	Update your Wager!
+	{% endblocktrans %}
+</div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col-md-7 col-md-offset-1">
+
+{% if user == wager.runner %}
+	{% blocktrans %}
+	Here you can mark your challenge as completed and
+	leave a feedback message to your sponsor.
+	{% endblocktrans %}
+{% endif %}
+
+{% if user == wager.sponsor %}
+	{% blocktrans with runner_username=wager.runner.username %}
+	Here you can confirm or decline the challenge completed 
+	by {{runner_username}}.
+	{% endblocktrans %}
+{% endif %}
+
+{% if wager.runner_msg%}
+<p>Runner has left a message:</p>
+<blockquote>
+	<p>{{wager.runner_msg}}</p>
+</blockquote>
+{% endif %}
+
+{% if user == wager.sponsor %}
+<p>{% blocktrans %}You can leave a feedback message to the runner.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="form-horizontal" method="post"
+		action="{% url 'wagers:feedback_wager' wager_id=wager.id %}">
+    {% csrf_token %}
+	{% bootstrap_form form layout="form-horizontal" %}
+		{% if user == wager.runner %}
+		{% buttons %}
+		  <button type="submit" class="btn btn-primary">
+		    {% bootstrap_icon "star" %}{% blocktrans %}Complete{% endblocktrans %}
+		  </button>
+		{% endbuttons %}
+		{% endif %}
+	
+		{% if user == wager.sponsor %}
+		{% buttons %}
+		  <button type="submit" name="submit" value="confirm" class="btn btn-primary pull-left">
+		    {% bootstrap_icon "star" %}{% blocktrans %}Confirm{% endblocktrans %}
+		  </button>
+		  <button type="submit" name="submit" value="decline" class="btn btn-primary pull-right">
+		    {% bootstrap_icon "star" %}{% blocktrans %}Decline{% endblocktrans %}
+		  </button>
+		{% endbuttons %}
+		{% endif %}
+</form>
+
+</div>
+</div>
+
+{% endblock %}

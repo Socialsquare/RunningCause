@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import auth
+from django.db.models import Sum
 
 
 class MasangaUserManager(auth.models.UserManager):
@@ -33,7 +34,6 @@ class User(auth.models.AbstractUser):
 
     objects = MasangaUserManager()
 
-
     @property
     def is_runner(self):
         return self.runs.all().exists() or \
@@ -47,10 +47,17 @@ class User(auth.models.AbstractUser):
 
     @property
     def amount_earned(self):
-        rec_spships = self.sponsorships_recieved.all().exclude(sponsor=None)
-        return sum([sp.total_amount for sp in rec_spships])
+        spship_amount = self.sponsorships_recieved.all()\
+            .aggregate(a_sum=Sum('amount_paid'))['a_sum'] or 0
+        wagers_amount = self.wagers_recieved.filter(status='paid')\
+            .aggregate(a_sum=Sum('amount'))['a_sum'] or 0
+        return spship_amount + wagers_amount
 
     @property
     def amount_donated(self):
-        given_spships = self.sponsorships_given.all().exclude(runner=None)
-        return sum([sp.total_amount for sp in given_spships])
+        given_spships = self.sponsorships_given.all()
+        spship_amount = sum([sp.total_amount for sp in given_spships])
+        wagers_amount = self.wagers_given.filter(status='paid')\
+            .aggregate(a_sum=Sum('amount'))['a_sum'] or 0
+        return spship_amount + wagers_amount
+

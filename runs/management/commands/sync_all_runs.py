@@ -1,6 +1,5 @@
 
 from django.core.management.base import BaseCommand
-from django.contrib.auth import get_user_model
 
 from runs.runkeeper import pull_all_users_runs_from_runkeeper
 

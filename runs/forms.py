@@ -18,8 +18,8 @@ class RunInputForm(forms.ModelForm):
                                    attrs={'id': 'end_datepicker',
                                           'autocomplete': "off"})
                                )
-    recorded_time = forms.TimeField(label="Recorded time HH:MM:SS",
-                                    required=False)
+    recorded_time = forms.DurationField(label="Recorded time HH:MM:SS",
+                                        required=False)
 
     class Meta:
         model = Run

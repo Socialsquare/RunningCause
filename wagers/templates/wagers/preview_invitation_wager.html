@@ -11,7 +11,7 @@
 {% block head %}
 	<div class="row">
 	<div class="col-md-7 col-md-offset-1">
-		{% blocktrans with username=wager.runner.username %}
+		{% blocktrans with username=wager_request.runner.username %}
 		{{username}} has invited you to challenge him.
 		Do you want to create challenge for {{username}}?
 		{% endblocktrans %}
@@ -23,7 +23,7 @@
 
 	<div class="row">
 	<div class="col-md-7  col-md-offset-1">
-	<form action="{% url 'wagers:preview_invitation_wager' token=wager.token %}" method="post">
+	<form action="{% url 'wagers:preview_invitation_wager' token=wager_request.token %}" method="post">
 	    {% csrf_token %}
 		{% bootstrap_form form layout="form-horizontal" %}
 		{% buttons %}
