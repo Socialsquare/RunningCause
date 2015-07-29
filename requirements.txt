@@ -1,7 +1,7 @@
-Django<1.9
+Django==1.8.3
 Pillow==2.7.0
 dj-database-url==0.3.0
--e git+https://github.com/pennersr/django-allauth@900b10957f7a805800a6153bd526f28666d28be1
+-e git+https://github.com/pennersr/django-allauth@900b10957f7a805800a6153bd526f28666d28be1#egg=django-allauth
 django-courriers==0.5.18
 django-extensions==1.5.5
 django-formwizard==1.0

@@ -119,6 +119,7 @@ def invite_sponsor_to_wager(request, person_id=None):
             ctx = {
                 'runner': runner.username,
                 'link': full_link,
+                'BASE_URL': settings.BASE_URL,
             }
             tmpl = 'wagers/emails/invite_sponsor_to_wager.html'
             html_msg = loader.get_template(tmpl)\

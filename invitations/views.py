@@ -32,6 +32,7 @@ def invite_via_email(request):
         )
 
         ctx = {
+            'BASE_URL': settings.BASE_URL,
             'link': settings.BASE_URL,
             'sender': request.user,
         }

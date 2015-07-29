@@ -1,9 +1,6 @@
 # coding: utf8
-import time
-import datetime
 import logging
 
-import requests
 import healthgraph
 
 from django.conf import settings
