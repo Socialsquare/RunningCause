@@ -136,7 +136,7 @@ def register_runkeeper(request):
             settings.RUNKEEPER_CLIENT_ID,
             settings.RUNKEEPER_CLIENT_SECRET,
             settings.BASE_URL +
-            reverse('runs.register_runkeeper')
+            reverse('runs:register_runkeeper')
         )
 
         # Get the access token using the code and the instance of the
