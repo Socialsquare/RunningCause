@@ -1,0 +1,53 @@
+{% extends "masanga_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}
+{% blocktrans %}Input a Run{% endblocktrans %}
+{% endblock %}
+
+{% block imports %}
+    <script src="/static/js/bootstrap-datepicker.js"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
+        $('#end_datepicker').datepicker({format:'yyyy-mm-dd'});
+    });
+    </script>
+
+{% endblock %}
+
+
+{% block head %}
+<div class="row">
+<div class="col-md-7 col-md-offset-1">
+   <h1>{% trans "Add your run" %}</h1>
+</div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col-md-7 col-md-offset-1">
+    <p>
+    {% blocktrans %}
+    Here, you can input a run! All your sponsors will have the distance you 
+    ran added to tab for their sponsorship, and they'll be billed at the end of the month.
+    {% endblocktrans %}
+    </p>
+
+<form action="{% url 'runs:input_run' %}" method="post">
+    {% csrf_token %}
+	{% bootstrap_form form layout="form-horizontal" %}
+	{% buttons %}
+	  <button type="submit" class="btn btn-primary">
+	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	  </button>
+	{% endbuttons %}
+</form>
+
+</div>
+</div>
+{% endblock %}

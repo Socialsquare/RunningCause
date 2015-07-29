@@ -1,0 +1,21 @@
+{% extends 'email_base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block message %}
+
+{% if given_completed_wagers %}
+<p>The list of completed challenges that need yor input:</p>
+
+{% for wager in given_completed_wagers %}
+	<li><a href="{{wager.get_feedback_url|safe}}">{{wager.wager_text}}</a></li>
+{% endfor %}
+{% endif %}
+
+{% if received_ending_soon_wagers %}
+<p>The list of wagers ending soon:</p>
+{% for wager in received_ending_soon_wagers %}
+	<li><a href="{{wager.get_feedback_url|safe}}">{{wager.wager_text}}</a></li>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

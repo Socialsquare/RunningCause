@@ -1,0 +1,17 @@
+{% extends "masanga_base.html" %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+Deregistered
+{% endblock %}
+
+{% block head %}
+Credit Card Forgotten
+{% endblock %}
+
+{% block body %}
+{% trans 'You have successfully deregistered your card.' %}
+</br>
+<a href="{% url 'home' %}">Return home</a>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "masanga_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}
+Sponsor Runner {{runner}}
+{% endblock %}
+
+{% block imports %}
+    <script src="{% static 'js/bootstrap-datepicker.js'%}"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        if (day < 10)
+        {
+            day = "0" + day;
+        }
+        if (month < 10)
+        {
+            month = "0" + month;
+        }
+        var yearString = year + "-" + month + "-" + day;
+        $('#start_datepicker').val(yearString).datepicker({
+            format:'yyyy-mm-dd'
+        });
+        $('#end_datepicker').val(yearString).datepicker({
+            format:'yyyy-mm-dd'
+        });
+    });
+    </script>
+{% endblock %}
+
+{% block head %}
+{% trans "Create a new Sponsorship" %}
+{% endblock %}
+
+{% block body %}
+    <p>
+        {% blocktrans with username=runner.username %}
+            Fill out these fields down here to sponsor {{ username }}. 
+            Between the dates in start date and end date, any 
+            time {{ username }} runs, you will agree to donate the
+             number of dkk in the "rate" field to Masanga Hospital. 
+             If you're worried that your runner will run too much, 
+             don't worry too much! You won't be charged more than 
+             the number you put in the "max amount" field, no matter 
+             how much they run.
+        {% endblocktrans %}
+    </p>
+    
+<form class="form-horizontal" method="post"
+	action="{% url 'sponsorship:add_sponsorship' runner_id=runner.id %}">
+    {% csrf_token %}
+	{% bootstrap_form form layout="form-horizontal" %}
+	{% buttons %}
+	  <button type="submit" class="btn btn-primary">
+	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	  </button>
+	{% endbuttons %}
+</form>
+
+{% endblock %}

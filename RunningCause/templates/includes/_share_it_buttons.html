@@ -1,0 +1,14 @@
+{% load staticfiles %}
+{% load i18n %}
+{% if own_page or person.is_public %}
+	<script type="text/javascript" src="{% static 'js/share-button.js' %}"></script>
+    <span class='st_facebook_large' displayText='Facebook'></span>
+    <span class='st_googleplus_large' displayText='Google +'></span>
+    <span class='st_twitter_large' displayText='Tweet'></span>
+    <span class='st_reddit_large' displayText='Reddit'></span>
+    <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
+    <span class='st_email_large' displayText='Email'></span>
+</br>
+{% elif own_page and not request.user.is_public %}
+   <h4>{% trans "You have to make your page public before you can share it." %}</h4>
+{% endif %}

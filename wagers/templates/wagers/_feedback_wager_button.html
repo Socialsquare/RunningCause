@@ -1,0 +1,9 @@
+{% if user == wager.runner and wager.status == 'new' %}
+<a class="btn btn-default" 
+href="{% url 'wagers:feedback_wager' wager_id=wager.id %}">
+<i class="fa fa-money fa-2x"></i>complete</a>
+{% elif user == wager.sponsor and wager.status == 'completed' %}
+<a class="btn btn-default" 
+href="{% url 'wagers:feedback_wager' wager_id=wager.id %}">
+<i class="fa fa-money fa-2x"></i></a>
+{% endif %}

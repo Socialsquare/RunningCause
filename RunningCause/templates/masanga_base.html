@@ -1,28 +1,14 @@
 {% load staticfiles %}
 {% load i18n %}
-{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="{{BASE_URL}}{% static 'stylesheets/style.css' %}" />
-        <link rel='stylesheet' id='google-fonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700&#038;ver=3.1' type='text/css' media='all' />
-        <link rel='stylesheet' id='font-awesome-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css?ver=4.2.0' type='text/css' media='all' />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" id="google-fonts-css"  href="{% static 'css/Lato.css'%}" type="text/css" media="all" />
+        <link rel="stylesheet" id="font-awesome-css"  href="{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
 
 
-        <style type="text/css">
-            .bg-white{
-                background: #ffffff;
-            }
-            *{
-                margin:0;
-                padding:0;
-                font-family:'lato', 'font awesome', 'Helvetica';
-            }
-            .carousel-inner > .item > img 
-            {
-                margin: 0 auto;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/masanga.css' %}" />
 
 
         <meta charset="utf-8">
@@ -36,13 +22,13 @@
         {% endblock %}
         </title>
 
-        <script type="text/javascript">var switchTo5x=true;</script>
-        <script type="text/javascript" src="/static/js/share-button.js"></script>
-        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src="{% static 'js/eldarion-ajax.min.js' %}"></script>
-
-
+		<script type="text/javascript">
+			// use by sharethis(?)
+			var switchTo5x=true;
+		</script>
+        <script type="text/javascript" src="{% static 'js/jquery-1.9.min.js' %}" ></script>
+   	    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" async></script>
+        <script type="text/javascript" src="{% static 'js/eldarion-ajax.min.js' %}" async></script>
         {% block imports %}
         {% endblock %}
 
@@ -53,25 +39,28 @@
             <div class="navbar-inner">
                 <div class="container-fluid">
                     <div class = "row" style="background-color:white;">
-                        <div class = "col-md-11 col-md-offset-1">
-                            <a href="{% url 'Running.views.home' %}">
-                            <img src={% static 'img/masanga_logo_header.png' %} alt="Masanga Logo" style="height:75px; width:335px; margin-left: -16px; margin-top:15px; margin-bottom:20px;">
+                        <div class = "col-md-8 col-md-offset-2">
+                            <a href="{% url 'home' %}">
+                            <img src="{% static 'img/masanga_logo_header.png' %}" alt="Masanga Logo" style="height:75px; width:335px; margin-left: -16px; margin-top:15px; margin-bottom:20px;">
                         </a>
                         </div>
                     </div>
                     <div class="row" style="margin:0; padding:0">
-                        <div class="col-md-7 col-md-offset-1" style="padding:0;">
+                        <div class="col-md-6 col-md-offset-2" style="padding:0;">
                             <div class="navbar navbar-collapse" style="padding:0; margin:0; border:none;">
                                 <ul class="nav navbar-nav" style="padding:0;">
                                     <li>
-                                        <a href="{% url 'Running.views.home' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "ABOUT US" %}</a>
+                                        <a href="{% url 'profile:users_list' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "RUNNERS &amp; SPONSORS" %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'pages:why_join_us' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "WHY JOIN US?" %}</a>
                                     </li>
                                     <li>
                                         <a href="http://www.masanga.dk" style="color:white; font-size: 120%; font-weight: 600;" target="_newtab">{% trans "ABOUT MASANGA HOSPITAL" %}</a>
                                     </li>
                                     <li>
                                         {% if perms.contains.is_staff %}
-                                        <a href="{% url 'Running.views.overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
+                                        <a href="{% url 'profile:overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
                                         {% endif %}
                                     </li>
                                 </ul>
@@ -79,24 +68,24 @@
                         </div>
                         
                         
-                        <div class="col-md-3 pull-left">
+                        <div class="col-md-2 pull-left">
                         <div id="header-navbar-collapse" class="navbar-collapse collapse navbar-right">
 		                    <ul class="nav navbar-nav">
 		                        
 	                            {% if user.is_authenticated %}
 			                        <li class="dropdown">
 			                            <a style="color:white;" aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
-			                            {% blocktrans with username=user.username %}Hello, {{ username }}!{% endblocktrans %}
+			                            {% blocktrans with username=user.username|truncatechars:10 %}Hello, {{ username }}!{% endblocktrans %}
 			                            <strong></strong> <span class="caret"></span></a>
 			                            <ul class="dropdown-menu">
-			                                 <li><a href="{% url 'my_page' %}">{% trans "MY PAGE" %}</a></li>
-			                                 <li><a href="{% url 'user_settings' %}">{% trans "Settings" %}</a></li>
+			                                 <li><a href="{% url 'profile:my_page' %}">{% trans "MY PAGE" %}</a></li>
+			                                 <li><a href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a></li>
 			                                 <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
 			                            </ul>
 			                        </li>
 	                            {% else %}
 	                            	<li class="dropdown">
-	                            		<a style="color:white;" href="{% url 'signup_or_login' %}">
+	                            		<a style="color:white;" href="{% url 'profile:signup_or_login' %}">
 	                            		{% trans "Log in or create an account" %}</a>
 	                            	</li>
 	                            {% endif %}
@@ -113,40 +102,22 @@
         </nav>
         <div class="container-fluid">
         
-            <!-- Messages start -->
-		    {% if messages %}
-		    <section id="messages">
-				<div class="row">
-				<div class="col-md-5 col-md-offset-3">
-		        {% for message in messages %}
-		        <!-- {{ message.level }} -->
-		        <div class="alert alert-{{ message.tags }} alert-dismissible"
-		            role="alert">
-		            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		            <span aria-hidden="true">&times;</span></button>
-		            {{ message }}
-		        </div>
-		        {% endfor %}
-		    	</div>
-		    	</div>
-		   </section>
-		    {% endif %}
-		    <!-- Messages end -->
+			{% include "includes/_messages.html" %}
    
-            <div class = "row">
+            <div class="row">
 
                 <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-8 col-md-offset-1">
                 <!-- head start -->
                 <h2>{% block head %}{% endblock %}</h2>
                 <!-- head end -->
                 </div>
                 <div class="col-md-1"></div>
             </div>
-            <div class = "row">
+            <div class="row">
 
                 <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-8 col-md-offset-1">
 
 				<!-- body start -->
                 {% block body %}{% endblock %}
@@ -154,6 +125,15 @@
                 </div>
                 <div class="col-md-1"></div>
             </div>
+            
         </div>
+        <br />
+
+		<footer class="row">
+	      <div class="panel-footer text-center">
+	        <p class="muted credit">Developed by <a href="http://socialsquare.dk">Socialsquare</a></p>
+	      </div>
+		</footer>
+        
     </body>
 </html>

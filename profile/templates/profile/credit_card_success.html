@@ -1,0 +1,17 @@
+{% extends "masanga_base.html" %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+Credit Card Registered
+{% endblock %}
+
+{% block head %}
+Thank you!
+{% endblock %}
+
+{% block body %}
+{% trans 'Thank you! Your card has been successfully registered with Masanga Runners.' %}
+</br>
+<a href="{% url 'home' %}">Return home</a>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "masanga_base.html" %}
+{% load humanize %}
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}
+{% trans "Request sponsorship" %}
+{% endblock %}
+
+{% block imports %}
+    <script src="{% static 'js/bootstrap-datepicker.js'%}"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        if (day < 10)
+        {
+            day = "0" + day;
+        }
+        if (month < 10)
+        {
+            month = "0" + month;
+        }
+        var yearString = year + "-" + month + "-" + day;
+        $('#start_datepicker').val(yearString).datepicker({
+            format:'yyyy-mm-dd'
+        });
+        $('#end_datepicker').val(yearString).datepicker({
+            format:'yyyy-mm-dd'
+        });
+    });
+    </script>
+{% endblock %}
+
+{% block head %}
+	<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+		{% blocktrans with username=sponsor.username %}
+		Invite {{username}} to sponsor you.
+		{% endblocktrans %}
+	</div>
+	</div>
+{% endblock %}
+
+{% block body %}
+    <p>
+        {% blocktrans with username=sponsor.username %}
+        You can fill out the form below to invite {{ username }} to sponsor you.
+        Feel free to leave whatever you want blank. {{ username }} will get 
+        an email notifying them that you requested them as a sponsor, 
+        and the values you do fill out will be displayed to them. 
+        They can then choose to sponsor you immediately, change or add 
+        some values and then sponsor you, or decline entirely.
+        {% endblocktrans %}
+    </p>
+
+    <form class="form-horizontal" method="post"
+    action="{% url 'sponsorship:request_sponsorship' sponsor.id %}">
+
+    {% csrf_token %}
+	{% bootstrap_form form layout="form-horizontal" %}
+	{% buttons %}
+	  <button type="submit" class="btn btn-primary">
+	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	  </button>
+	{% endbuttons %}
+
+    </form>
+{% endblock %}

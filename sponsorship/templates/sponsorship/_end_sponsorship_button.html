@@ -1,0 +1,8 @@
+{% load i18n %}
+{% trans "End Sponsorship" as end_endsponsorship_text %} 
+{% if user.is_authenticated and sponsorship.is_active %}
+{% if user == sponsorship.sponsor or user == sponsorship.runner %}
+    <a href="{% url 'sponsorship:end_sponsorship' sponsorship.id %}" 
+    class="btn btn-default">{{end_endsponsorship_text}}</a>
+{% endif %}
+{% endif %}

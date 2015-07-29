@@ -1382,3 +1382,17 @@ msgstr ""
 #, python-format
 msgid "In case you forgot, your username is \"%(username)s\"."
 msgstr "Skulle du have glemt det, er dit brugernavn  \"%(username)s\"."
+
+# Running.tasks
+msgid "Masanga Runners run-update"
+msgstr "Masanga Runners løbe-update"
+
+msgid "Masanga Runners wagering notification"
+msgstr "Masanga Runners væddemåls-notifikation"
+
+msgid "Masanga Runners run-update"
+msgstr "Masanga Runners løbe-update"
+
+msgid "Masanga Runners invitation for wager"
+msgstr "Masanga Runners invitation til væddemål"
+

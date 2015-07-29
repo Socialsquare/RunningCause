@@ -1,0 +1,17 @@
+{% extends "masanga_base.html" %}
+{% load humanize %}
+{% load i18n %}
+
+{% block title %}
+Unsubscribed
+{% endblock %}
+
+{% block head %}
+Unsubscribed
+{% endblock %}
+
+{% block body %}
+{% trans 'You have successfully unsubscribed.' %}
+</br>
+<a href="{% url 'home' %}">Return home</a>
+{% endblock %}

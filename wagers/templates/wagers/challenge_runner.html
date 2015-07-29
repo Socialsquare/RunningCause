@@ -1,0 +1,83 @@
+{% extends "masanga_base.html" %}
+{% load humanize %}
+{% load i18n %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block imports %}
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script type=text/javascript>
+    $(document).ready(function() {
+        date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1; // january is 0 in this "language"
+        month += 1; // give a runner at least a month
+        var day = date.getDate();
+        if (day < 10)
+        {
+            day = "0" + day;
+        }
+        if (month == 13)
+        {
+        	month == 1;
+        }
+        if (month < 10)
+        {
+        	month = "0" + month;
+        }
+        
+        var yearString = year + "-" + month + "-" + day;
+        $('#wager_datepicker').val(yearString).datepicker({
+            format:'yyyy-mm-dd'
+        });
+    });
+    </script>
+{% endblock %}
+
+{% block title %}
+{% trans "Challenge runner" %}
+{% endblock %}
+
+{% block head %}
+	<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+		{% blocktrans with username=runner.username %}
+		Challenge {{username}}.
+		{% endblocktrans %}
+	</div>
+	</div>
+{% endblock %}
+
+{% block body %}
+
+	<div class="row">
+	<div class="col-md-7 col-md-offset-1">
+    <p>
+        {% blocktrans with username=runner.username %}
+        Fill in these fields to challenge {{ username }}.
+        This works like a bet, if they complete 
+         whatever you specify the by the time and date you specified,
+         then you agree to pay 
+         the amount listed in the amount field, in dkk. Worried they'll cheat? 
+         No need to fret! At the end of the time period, you're the only one 
+         who gets to make the call about whether or not you pay.
+        {% endblocktrans %}
+    </p>
+    </p>
+    </div>
+	</div>
+
+	<div class="row">
+	<div class="col-md-7  col-md-offset-1">
+	<form action="{% url 'wagers:challenge_runner' person_id=runner.id %}" method="post">
+	    {% csrf_token %}
+		{% bootstrap_form form layout="form-horizontal" %}
+		{% buttons %}
+		  <button type="submit" class="btn btn-primary pull-right">
+		    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+		  </button>
+		{% endbuttons %}
+	</form>
+	</div>
+	</div>
+{% endblock %}
