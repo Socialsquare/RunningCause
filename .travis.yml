@@ -1,0 +1,21 @@
+language: python
+python:
+- '2.7'
+install:
+- pip install -r requirements.txt
+- pip install coveralls
+script:
+- python manage.py test
+after_success:
+- coveralls
+deploy:
+  provider: heroku
+  buildpack: python
+  on: production
+  app:
+    production: masanga-runners
+  run:
+  - python manage.py migrate
+  - restart
+  api_key:
+    secure: qBZa7y5a0kI8s4zjDF/yftp+yRXCw2zGamLnia3dk1JKzaYBeVaqugPD5JRwpTtavw/Wwz4A+mkPniHnxhMOVgV7v/e8FAphiBR0H8iMuoHTOMb6Ai5cITA1WVtcyqwnE2UDB8IzSFI/uffbRhW8yZZO8b3o++Od9j7SyvzeFdY=
