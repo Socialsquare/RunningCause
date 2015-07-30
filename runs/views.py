@@ -36,7 +36,7 @@ def input_run(request):
             run = Run.objects.create(runner=request.user, distance=distance,
                       start_date=start_date, end_date=end_date,
                       recorded_time=recorded_time)
-            notify_sponsors_about_run.delay(run_id=run.id)
+            #notify_sponsors_about_run.delay(run_id=run.id)
             messages.success(request, _("Your run has been added"))
             return redirect('runs:user_runs', user_id=request.user.id)
 
@@ -153,7 +153,7 @@ def register_runkeeper(request):
     # Use this to get the workouts for the user, and create and store new run objects for
     # every run that has not been previously registered with runkeeper.
     elif RunkeeperToken.objects.filter(runner_id=request.user.id).count():
-        pull_user_runs_from_runkeeper.delay(user_id=request.user.id)
+        #pull_user_runs_from_runkeeper.delay(user_id=request.user.id)
         messages.info(request, _("Your runs from RunKeeper are"
                                  " being processed..."))
         return redirect('profile:my_page')
