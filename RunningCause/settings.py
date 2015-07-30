@@ -229,10 +229,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = [SITE_DOMAIN, ]
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'),
+    os.path.join(PROJECT_DIR, 'static'),
 )
 
 LOGGING = {
