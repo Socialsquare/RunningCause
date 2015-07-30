@@ -23,10 +23,10 @@ def info_widget(request):
     num_runners = len([us.id for us in all_users if us.is_runner])
     num_sponsors = len([us.id for us in all_users if us.is_sponsor])
 
-    spships = Sponsorship.objects.all().exclude(sponsor__isnull=True)
+    spships = Sponsorship.objects.all()
     amount_donated = sum([sp.amount_paid for sp in spships])
 
-    wagers = Wager.objects.filter(paid=True)
+    wagers = Wager.objects.filter(status='paid')
     amount_donated += sum([wager.amount for wager in wagers])
 
     total_distance = Run.objects.all().aggregate(x=Sum('distance'))['x'] or 0

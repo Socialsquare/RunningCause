@@ -8,6 +8,7 @@ class TestInvitations(test.TestCase):
     def setUp(self):
         self.test_user = get_user_model().objects.create(username='testuser')
         self.test_user.set_password('passpass')
+        self.test_user.is_active = True
         self.test_user.save()
 
     def test_invite_via_email_get_not_logged_in(self):
