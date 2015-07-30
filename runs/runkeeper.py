@@ -7,11 +7,9 @@ from datetime import timedelta
 from dateutil.parser import parse
 import requests
 
-from django.utils import timezone
 from django.contrib.auth import get_user_model
-from django.conf import settings
 
-from .models import Run
+from .models import Run, RunkeeperToken
 
 log = logging.getLogger(__name__)
 
@@ -51,8 +49,9 @@ def rk_items_to_runs(user, items):
 
 def create_runs_from_runkeeper(user_id=None):
     user = get_user_model().objects.get(id=user_id)
+    access_token = RunkeeperToken.objects.get(runner=user)
     headers = {
-        'Authorization': 'Bearer %s' % user.access_token,
+        'Authorization': 'Bearer %s' % access_token,
         'Accept': 'application/vnd.com.runkeeper.FitnessActivitySummary+json'
     }
     r = requests.get(RUNKEEPER_FITNESS_ACTIVITIES, headers=headers)
@@ -62,8 +61,7 @@ def create_runs_from_runkeeper(user_id=None):
 
 
 def pull_all_users_runs_from_runkeeper():
-    usersids_with_tokens = get_user_model().objects\
-        .exclude(access_token="")\
-        .values_list('id', flat=True)
+    usersids_with_tokens = RunkeeperToken.objects\
+        .values_list('runner_id', flat=True)
     for user_id in usersids_with_tokens:
         create_runs_from_runkeeper(user_id=user_id)

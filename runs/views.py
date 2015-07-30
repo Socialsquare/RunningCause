@@ -141,13 +141,9 @@ def register_runkeeper(request):
 
         # Get the access token using the code and the instance of the
         # healthgraph API.
-        access_token = rk_auth_mgr.get_access_token(code)
-
-        # Associate the token with the user, and save.
-        request.user.access_token = access_token
-        request.user.save()
+        runkeeper_token = rk_auth_mgr.get_access_token(code)
         RunkeeperToken.objects.create(runner=request.user,
-                                      access_token=access_token)
+                                      access_token=runkeeper_token)
 
         # Now that we've associated the token with the user, we're done with authentication.
         # Call this view again to finally deal with the workout data.

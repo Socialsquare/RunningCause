@@ -17,11 +17,6 @@ class User(auth.models.AbstractUser):
 
     is_public = models.BooleanField('Info public?', default=False)
 
-    #   This variable is an access token to be used with RunKeeper,
-    # if the user has connected with it yet.
-    access_token = models.CharField('Access token', max_length=200,
-                                    default="", blank=True)
-
     newsletter = models.BooleanField('Newsletter?', default=False)
 
     subscribed = models.BooleanField('Subscribed to emails?', default=True)
