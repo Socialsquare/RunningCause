@@ -14,8 +14,7 @@ from .models import Run, RunkeeperToken
 log = logging.getLogger(__name__)
 
 
-# TODO extract uri from user resource
-RUNKEEPER_FITNESS_ACTIVITIES = 'https://api.runkeeper.com/fitnessActivities'
+RUNKEEPER_BASE_URL = 'https://api.runkeeper.com'
 
 
 def rk_items_to_runs(user, items):
@@ -26,7 +25,7 @@ def rk_items_to_runs(user, items):
     for item in items:
         if item['uri'] in already_registered_sids:
             continue
-        if item['type'].lower() != ' running':
+        if item['type'].lower() != 'running':
             continue
 
         date = parse(item['start_time'])
@@ -49,13 +48,25 @@ def rk_items_to_runs(user, items):
 
 def create_runs_from_runkeeper(user_id=None):
     user = get_user_model().objects.get(id=user_id)
-    access_token = RunkeeperToken.objects.get(runner=user)
+    token = RunkeeperToken.objects.get(runner=user).access_token
+
+    # TODO: create RunkeeperClient class or use some lib github
+    # FIXME: get all items from paginated lists!
     headers = {
-        'Authorization': 'Bearer %s' % access_token,
-        'Accept': 'application/vnd.com.runkeeper.FitnessActivitySummary+json'
+        'Authorization': 'Bearer %s' % (token, ),
+        'Accept': '',
     }
-    r = requests.get(RUNKEEPER_FITNESS_ACTIVITIES, headers=headers)
-    data = r.json()
+    url = RUNKEEPER_BASE_URL + '/user'
+    headers['Accept'] = 'application/vnd.com.runkeeper.User+json'
+    resp = requests.get(url, headers=headers)
+    resp.raise_for_status()
+    user_data = resp.json()
+
+    url = RUNKEEPER_BASE_URL + user_data['fitness_activities']
+    headers['Accept'] = 'application/vnd.com.runkeeper.FitnessActivityFeed+json'
+    resp = requests.get(url, headers=headers)
+    resp.raise_for_status()
+    data = resp.json()
     log.debug("Received %d items", len(data['items']))
     rk_items_to_runs(user, data['items'])
 
