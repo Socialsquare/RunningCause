@@ -8,6 +8,10 @@ from django.conf import settings
 from dateutil.relativedelta import relativedelta
 
 
+def get_default_end_date():
+    return date.today() + relativedelta(months=1)
+
+
 class Sponsorship(models.Model):
     """
     The model for every sponsorship.
@@ -35,8 +39,7 @@ class Sponsorship(models.Model):
     # The end date. No runs after or on this date are added to the sponsorship.
     # (end date is exclusive!)
     end_date = models.DateField('End Date',
-                                default=lambda: date.today() + \
-                                                relativedelta(months=1),
+                                default=get_default_end_date,
                                 null=True, db_index=True)
 
     # The maximum possible amount of money for the sponsorship.
