@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'tools',
     'pages',
     'payments',
+    'common',
 )
 
 MIDDLEWARE_CLASSES = (
