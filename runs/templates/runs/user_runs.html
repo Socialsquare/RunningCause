@@ -59,7 +59,7 @@
         {% for run in runs %}
                 <tr> 
                     <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
-                    <td>{{ run.distance|floatformat:-2|intcomma }}</td>
+                    <td>{{ run.distance|floatformat:-2 }}</td>
                     <td>{% if run.recorded_time %}{{ run.recorded_time }}{% else %}unknown{% endif %}</td>
                     {% if own_page %}
                         <td><a href="{% url 'runs:edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
@@ -72,7 +72,7 @@
         {% if runs %}
         <tr>
             <td align='right'>{% trans "Total Distance Run:" %} </td>
-            <td>{{ total_distance|floatformat:-2|intcomma }}km</td>
+            <td>{{ total_distance|floatformat:-2 }}km</td>
             <td></td>
         <tr>
         {% endif %}
