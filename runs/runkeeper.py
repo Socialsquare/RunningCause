@@ -33,7 +33,7 @@ def rk_items_to_runs(user, items):
         #    date = date.replace(tzinfo=timezone.UTC)
         duration = timedelta(seconds=item['duration'])
         buff.append(Run(runner=user,
-                        distance=item['total_distance'] / 1000,
+                        distance=item['total_distance'] / 1000.0,
                         start_date=date,
                         end_date=date,
                         source="runkeeper",
