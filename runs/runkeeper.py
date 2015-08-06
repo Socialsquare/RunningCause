@@ -28,14 +28,14 @@ def rk_items_to_runs(user, items):
         if item['type'].lower() != 'running':
             continue
 
-        date = parse(item['start_time'])
+        start_date = parse(item['start_time'])
         # if not item['utc_offset']:
         #    date = date.replace(tzinfo=timezone.UTC)
         duration = timedelta(seconds=item['duration'])
         buff.append(Run(runner=user,
                         distance=item['total_distance'] / 1000.0,
-                        start_date=date,
-                        end_date=date,
+                        start_date=start_date,
+                        end_date=start_date,
                         source="runkeeper",
                         source_id=item['uri'],
                         recorded_time=duration))

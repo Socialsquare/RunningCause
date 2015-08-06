@@ -1,5 +1,6 @@
 import datetime
 
+from django.utils import timezone
 from django.db import models
 from django.conf import settings
 
@@ -9,6 +10,13 @@ class RunkeeperToken(models.Model):
                                   related_name='runkeeper_token')
     access_token = models.CharField(max_length=200, blank=True, null=True,
                                     unique=True, db_index=True)
+
+
+class RunManager(models.Manager):
+    def create(self, *args, **kwargs):
+        if not kwargs.get('end_date'):
+            kwargs['end_date'] = kwargs['start_date']
+        return super(RunManager, self).create(*args, **kwargs)
 
 
 class Run(models.Model):
@@ -22,11 +30,13 @@ class Run(models.Model):
 
     # Either the date of the run, or the start of the period over which
     # the runs took place.
-    start_date = models.DateField('Date', auto_now_add=True)
+    start_date = models.DateField('Date', auto_now_add=False,
+                                  default=timezone.now)
 
     # Either the date of the run, or the end of the period over which
     # the runs took place.
-    end_date = models.DateField('End Date', auto_now_add=True)
+    end_date = models.DateField('End Date', auto_now_add=False,
+                                default=timezone.now)
 
     # Where the runs were entered, if different from Masanga Runners.
     # Used to keep track of
@@ -45,5 +55,12 @@ class Run(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True, db_index=True,
                                       null=False)
 
+    objects = RunManager()
+
     def __unicode__(self):
         return'%s' % self.distance
+
+    def save(self, *args, **kwargs):
+        if not self.end_date:
+            self.end_date = self.start_date
+        super(Run, self).save(*args, **kwargs)
