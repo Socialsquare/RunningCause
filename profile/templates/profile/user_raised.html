@@ -25,6 +25,7 @@
         </br>
         <div class="panel panel-default">
         <div class="panel-heading">{% trans "Sponsorships Recieved" %}</div>
+        
         <table class="table table-hover">
             <thead>
                 <th>{% trans "Sponsor" %}</th>
@@ -108,7 +109,14 @@
         </br>
 
         <div class="panel panel-default">
-        <div class="panel-heading">{% trans "Wagers Recieved" %}</div>
+        {% if own_page %}
+        <div class="panel-heading">{% trans "Challenges where you are running" %}</div>
+        {% else %}
+        <div class="panel-heading">{% blocktrans with username=person.username %}Challenges where {{ username }} is running{% endblocktrans %}</div>
+        {% endif %}
+        
+        
+        
         <table class="table table-hover">
         <table class="table table-hover">
             <thead>

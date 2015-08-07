@@ -85,7 +85,14 @@
             </div>
 
             <div class="panel panel-default">
-            <div class="panel-heading">{% trans "Wagers Given" %}</div>
+            {% if own_page %}
+            <div class="panel-heading">{% trans "Challenges where you are sponsoring" %}</div>
+            {% else %}
+            <div class="panel-heading">
+            {% blocktrans with username=person.username %}Challenges where {{ username }} is sponsoring{% endblocktrans %}</div>
+            {% endif %}
+            
+            
             <table class="table table-hover">
                 <thead>
                     <th>{% trans "Runner" %}</th>
