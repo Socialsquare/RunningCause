@@ -1,12 +1,52 @@
 .bg-white{
-    background: #ffffff;
+  background: #ffffff;
 }
-*{
-    margin:0;
-    padding:0;
-    font-family:'lato', 'font awesome', 'Helvetica';
+
+/*
+* {
+  margin: 0;
+  padding: 0;
+  font-family:'lato', 'font awesome', 'Helvetica';
 }
+*/
+
+html {
+  font-family: 'lato', 'font awesome', 'Helvetica';
+}
+
 .carousel-inner > .item > img 
 {
-    margin: 0 auto;
+  margin: 0 auto;
+}
+
+/* masanga_base.html */
+
+.header-logo {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.main-menu {
+	border-width: 0 0 1px;
+  border-radius: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 55px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer .credit {
+  margin: 0;
 }

@@ -2,138 +2,116 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-        <link rel="stylesheet" id="google-fonts-css"  href="{% static 'css/Lato.css'%}" type="text/css" media="all" />
-        <link rel="stylesheet" id="font-awesome-css"  href="{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" id="google-fonts-css"  href="{% static 'css/Lato.css'%}" type="text/css" media="all" />
+    <link rel="stylesheet" id="font-awesome-css"  href="{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
 
 
-        <link rel="stylesheet" type="text/css" href="{% static 'css/masanga.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/masanga.css' %}" />
 
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-        <title>
-        {% block title %}
-        Masanga Runners
-        {% endblock %}
-        </title>
+    <title>
+    {% block title %}
+    Masanga Runners
+    {% endblock %}
+    </title>
 
-		<script type="text/javascript">
-			// use by sharethis(?)
-			var switchTo5x=true;
-		</script>
-        <script type="text/javascript" src="{% static 'js/jquery-1.9.min.js' %}" ></script>
-   	    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" async></script>
-        <script type="text/javascript" src="{% static 'js/eldarion-ajax.min.js' %}" async></script>
-        {% block imports %}
-        {% endblock %}
+    <script type="text/javascript">
+      // use by sharethis(?)
+      var switchTo5x=true;
+    </script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.9.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" async></script>
+    <script type="text/javascript" src="{% static 'js/eldarion-ajax.min.js' %}" async></script>
+    {% block imports %}
+    {% endblock %}
 
-    </head>
+  </head>
 
-    <body>
-        <nav class="navbar navbar-default" >
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <div class = "row" style="background-color:white;">
-                        <div class = "col-md-8 col-md-offset-2">
-                            <a href="{% url 'home' %}">
-                            <img src="{% static 'img/masanga_logo_header.png' %}" alt="Masanga Logo" style="height:75px; width:335px; margin-left: -16px; margin-top:15px; margin-bottom:20px;">
-                        </a>
-                        </div>
-                    </div>
-                    <div class="row" style="margin:0; padding:0">
-                        <div class="col-md-6 col-md-offset-2" style="padding:0;">
-                            <div class="navbar navbar-collapse" style="padding:0; margin:0; border:none;">
-                                <ul class="nav navbar-nav" style="padding:0;">
-                                    <li>
-                                        <a href="{% url 'profile:users_list' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "RUNNERS &amp; SPONSORS" %}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'pages:why_join_us' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "WHY JOIN US?" %}</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.masanga.dk" style="color:white; font-size: 120%; font-weight: 600;" target="_newtab">{% trans "ABOUT MASANGA HOSPITAL" %}</a>
-                                    </li>
-                                    <li>
-                                        {% if perms.contains.is_staff %}
-                                        <a href="{% url 'tools:overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
-                                        {% endif %}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="col-md-2 pull-left">
-                        <div id="header-navbar-collapse" class="navbar-collapse collapse navbar-right">
-		                    <ul class="nav navbar-nav">
-		                        
-	                            {% if user.is_authenticated %}
-			                        <li class="dropdown">
-			                            <a style="color:white;" aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
-			                            {% blocktrans with username=user.username|truncatechars:10 %}Hello, {{ username }}!{% endblocktrans %}
-			                            <strong></strong> <span class="caret"></span></a>
-			                            <ul class="dropdown-menu">
-			                                 <li><a href="{% url 'profile:my_page' %}">{% trans "MY PAGE" %}</a></li>
-			                                 <li><a href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a></li>
-			                                 <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
-			                            </ul>
-			                        </li>
-	                            {% else %}
-	                            	<li class="dropdown">
-	                            		<a style="color:white;" href="{% url 'profile:signup_or_login' %}">
-	                            		{% trans "Log in or create an account" %}</a>
-	                            	</li>
-	                            {% endif %}
-		                        
-		                        <li class="divider-vertical"></li>
-		                    </ul>
-		                </div>
-                		</div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <div class="container-fluid">
-        
-			{% include "includes/_messages.html" %}
-   
-            <div class="row">
+  <body>
+    <div class="container">
+      <a href="{% url 'home' %}">
+        <img
+          src="{% static 'img/masanga_logo_header.png' %}"
+          alt="Masanga Logo"
+          class="header-logo">
+      </a>
+    </div>
+    <nav class="navbar navbar-default main-menu">
+      <div class="navbar-inner">
+        <div class="container">
 
-                <div class="col-md-1"></div>
-                <div class="col-md-8 col-md-offset-1">
-                <!-- head start -->
-                <h2>{% block head %}{% endblock %}</h2>
-                <!-- head end -->
-                </div>
-                <div class="col-md-1"></div>
-            </div>
-            <div class="row">
-
-                <div class="col-md-1"></div>
-                <div class="col-md-8 col-md-offset-1">
-
-				<!-- body start -->
-                {% block body %}{% endblock %}
-                <!-- body end -->
-                </div>
-                <div class="col-md-1"></div>
-            </div>
+          <ul class="nav navbar-nav" style="padding:0;">
+            <li>
+              <a href="{% url 'profile:users_list' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "RUNNERS &amp; SPONSORS" %}</a>
+            </li>
+            <li>
+              <a href="{% url 'pages:why_join_us' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "WHY JOIN US?" %}</a>
+            </li>
+            <li>
+              <a href="http://www.masanga.dk" style="color:white; font-size: 120%; font-weight: 600;" target="_newtab">{% trans "ABOUT MASANGA HOSPITAL" %}</a>
+            </li>
+            <li>
+              {% if perms.contains.is_staff %}
+              <a href="{% url 'tools:overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
+              {% endif %}
+            </li>
+          </ul>
             
+          <div class="pull-right">
+            <div id="header-navbar-collapse" class="navbar-collapse collapse navbar-right">
+              <ul class="nav navbar-nav">
+                
+                {% if user.is_authenticated %}
+                  <li class="dropdown">
+                    <a style="color:white;" aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {% blocktrans with username=user.username|truncatechars:10 %}Hello, {{ username }}!{% endblocktrans %}
+                    <strong></strong> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url 'profile:my_page' %}">{% trans "MY PAGE" %}</a></li>
+                       <li><a href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a></li>
+                       <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
+                    </ul>
+                  </li>
+                {% else %}
+                  <li class="dropdown">
+                    <a style="color:white;" href="{% url 'profile:signup_or_login' %}">
+                    {% trans "Log in or create an account" %}</a>
+                  </li>
+                {% endif %}
+                
+                <li class="divider-vertical"></li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <br />
+      </div>
+    </nav>
 
-		<footer class="row">
-	      <div class="panel-footer text-center">
-	        <p class="muted credit">Developed by <a href="http://socialsquare.dk">Socialsquare</a></p>
-	      </div>
-		</footer>
-        
-    </body>
+    <div class="container">
+      {% include "includes/_messages.html" %}
+      <!-- head start -->
+      <h2>{% block head %}{% endblock %}</h2>
+      <!-- head end -->
+
+      <!-- body start -->
+      {% block body %}{% endblock %}
+      <!-- body end -->
+    </div>
+
+    <footer class="row">
+      <div class="panel-footer text-center">
+      <p class="muted credit">
+        Developed by <a href="http://socialsquare.dk">Socialsquare</a>
+      </p>
+      </div>
+    </footer>
+    
+  </body>
 </html>
