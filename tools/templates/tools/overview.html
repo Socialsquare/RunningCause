@@ -39,7 +39,7 @@
                     <td>{{ sponsorship.is_active}}</td>
                     <td>
                         {% if not sponsorship.sponsor.stripe_customer_id or sponsorship.sponsor.stripe_customer_id == "" %}
-                        <form class="form-inline" id="paid_amount_{{ sponsorship.id }}"method="post" action="{% url 'Running.views.overview' %}">
+                        <form class="form-inline" id="paid_amount_{{ sponsorship.id }}"method="post" action="{% url 'tools:overview' %}">
                             {% csrf_token %}
                             <input type="hidden" name="sponsorship_id" value="{{ sponsorship.id }}" />
                             <div class="input-group" value="{{ sponsorship.amount_paid }}">
