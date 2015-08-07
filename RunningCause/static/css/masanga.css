@@ -50,3 +50,12 @@ footer {
 footer .credit {
   margin: 0;
 }
+
+/* pages/why_join_us.html */
+
+.carousel-why-join-us {
+  display: inline-block;
+  width: 40%;
+  float: right;
+  margin: 1em;
+}
