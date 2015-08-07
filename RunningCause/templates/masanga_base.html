@@ -57,13 +57,14 @@
             <li>
               <a href="http://www.masanga.dk" style="color:white; font-size: 120%; font-weight: 600;" target="_newtab">{% trans "ABOUT MASANGA HOSPITAL" %}</a>
             </li>
-            <li>
-              {% if perms.contains.is_staff %}
-              <a href="{% url 'tools:overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
-              {% endif %}
-            </li>
+            {% if perms.contains.is_staff %}
+              <li>
+                <a href="{% url 'tools:overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
+              </li>
+            {% endif %}
           </ul>
-            
+          
+          <!-- TODO: Make sure that the link is visible on a mobile -->
           <div class="pull-right">
             <div id="header-navbar-collapse" class="navbar-collapse collapse navbar-right">
               <ul class="nav navbar-nav">
@@ -99,7 +100,6 @@
       <!-- head start -->
       <h2>{% block head %}{% endblock %}</h2>
       <!-- head end -->
-
       <!-- body start -->
       {% block body %}{% endblock %}
       <!-- body end -->
