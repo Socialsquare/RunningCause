@@ -54,8 +54,17 @@ footer .credit {
 /* pages/why_join_us.html */
 
 .carousel-why-join-us {
-  display: inline-block;
   width: 40%;
   float: right;
   margin: 1em;
+}
+
+/* profile/signup_or_login.html */
+@media (min-width: 768px) {
+  form.signup {
+    /* The margin, padding moves the border to the left */
+    border-left: 1px solid #ccc;
+    margin-left: -15px;
+    padding-left: 15px;
+  }
 }
