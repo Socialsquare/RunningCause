@@ -73,32 +73,31 @@
           </ul>
           
           <!-- TODO: Make sure that the link is visible on a mobile -->
-          <div class="pull-right">
-            <div id="header-navbar-collapse" class="navbar-collapse collapse navbar-right">
-              <ul class="nav navbar-nav">
-                
-                {% if user.is_authenticated %}
-                  <li class="dropdown">
-                    <a style="color:white;" aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    {% blocktrans with username=user.username|truncatechars:10 %}Hello, {{ username }}!{% endblocktrans %}
-                    <strong></strong> <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                       <li><a href="{% url 'profile:my_page' %}">{% trans "MY PAGE" %}</a></li>
-                       <li><a href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a></li>
-                       <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
-                    </ul>
-                  </li>
-                {% else %}
-                  <li class="dropdown">
-                    <a style="color:white;" href="{% url 'profile:signup_or_login' %}">
-                    {% trans "Log in or create an account" %}</a>
-                  </li>
-                {% endif %}
-                
-                <li class="divider-vertical"></li>
-              </ul>
-            </div>
-          </div>
+          <ul class="nav navbar-nav navbar-right">
+            
+            {% if user.is_authenticated %}
+              <li class="dropdown">
+                <a aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  {% blocktrans with username=user.username %}
+                    Hello, {{ username }}!
+                  {% endblocktrans %}
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                   <li><a href="{% url 'profile:my_page' %}">{% trans "MY PAGE" %}</a></li>
+                   <li><a href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a></li>
+                   <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li class="dropdown">
+                <a href="{% url 'profile:signup_or_login' %}">
+                {% trans "Log in or create an account" %}</a>
+              </li>
+            {% endif %}
+            
+            <li class="divider-vertical"></li>
+          </ul>
         </div>
       </div>
     </nav>
