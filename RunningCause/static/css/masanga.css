@@ -33,6 +33,17 @@ html {
   color: white;
 }
 
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:active,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:visited {
+    color: white;
+  }
+}
+
 .header-logo {
   margin-top: 15px;
   margin-bottom: 20px;
