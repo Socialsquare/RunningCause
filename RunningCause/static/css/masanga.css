@@ -24,6 +24,7 @@ html {
 .header-logo {
   margin-top: 15px;
   margin-bottom: 20px;
+  max-width: 100%;
 }
 
 .main-menu {
