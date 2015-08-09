@@ -53,10 +53,12 @@ footer .credit {
 
 /* pages/why_join_us.html */
 
-.carousel {
-  width: 40%;
-  float: right;
-  margin: 1em;
+@media (min-width: 768px) {
+  .carousel {
+    width: 40%;
+    float: right;
+    margin: 1em;
+  }
 }
 
 /* profile/signup_or_login.html */
