@@ -49,17 +49,25 @@
 
           <ul class="nav navbar-nav" style="padding:0;">
             <li>
-              <a href="{% url 'profile:users_list' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "RUNNERS &amp; SPONSORS" %}</a>
+              <a href="{% url 'profile:users_list' %}" style="font-size: 120%; font-weight: 600;">
+                {% trans "RUNNERS &amp; SPONSORS" %}
+              </a>
             </li>
             <li>
-              <a href="{% url 'pages:why_join_us' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "WHY JOIN US?" %}</a>
+              <a href="{% url 'pages:why_join_us' %}" style="font-size: 120%; font-weight: 600;">
+                {% trans "WHY JOIN US?" %}
+              </a>
             </li>
             <li>
-              <a href="http://www.masanga.dk" style="color:white; font-size: 120%; font-weight: 600;" target="_newtab">{% trans "ABOUT MASANGA HOSPITAL" %}</a>
+              <a href="http://www.masanga.dk" style="font-size: 120%; font-weight: 600;" target="_newtab">
+                {% trans "ABOUT MASANGA HOSPITAL" %}
+              </a>
             </li>
             {% if perms.contains.is_staff %}
               <li>
-                <a href="{% url 'tools:overview' %}" style="color:white; font-size: 120%; font-weight: 600;">{% trans "OVERVIEW" %}</a>
+                <a href="{% url 'tools:overview' %}" style="font-size: 120%; font-weight: 600;">
+                  {% trans "OVERVIEW" %}
+                </a>
               </li>
             {% endif %}
           </ul>

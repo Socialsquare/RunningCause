@@ -20,6 +20,18 @@ html {
 }
 
 /* masanga_base.html */
+.main-menu .navbar-nav > li > a,
+.main-menu .navbar-nav > li > a:hover,
+.main-menu .navbar-nav > li > a:focus,
+.main-menu .navbar-nav > li > a:active,
+.main-menu .navbar-nav > li > a:visited,
+.main-menu .navbar-nav > .open > a,
+.main-menu .navbar-nav > .open > a:hover,
+.main-menu .navbar-nav > .open > a:focus,
+.main-menu .navbar-nav > .open > a:active,
+.main-menu .navbar-nav > .open > a:visited {
+  color: white;
+}
 
 .header-logo {
   margin-top: 15px;
