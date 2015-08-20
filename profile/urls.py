@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^(?P<user_id>\d+)/donated/$', views.user_donated,
         name='user_donated'),
     url(r'^settings/$', views.user_settings, name='user_settings'),
-    url(r'^unregister/$', views.unregister_card, name='unregister'),
+    url(r'^unregister/$', views.unregister_card, name='unregister_card'),
     url(r'^make-public/$', views.make_profile_public,
         name='make_profile_public'),
     url(r'^make-private/$', views.make_profile_private,

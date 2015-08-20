@@ -41,7 +41,8 @@ def charge_user(user_id=None):
     stripe_status = stripe.Charge.create(
         amount=amount,
         currency="dkk",
-        customer=user.stripe_customer_id
+        customer=user.stripe_customer_id,
+        receipt_email=user.email
     ).get("status")
     if stripe_status == "succeeded":
         PaymentLog.objects.create(user=user, amount=amount_to_pay)

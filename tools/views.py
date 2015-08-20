@@ -3,7 +3,7 @@
 from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.utils.translation import ugettext as _
@@ -39,6 +39,14 @@ def info_widget(request):
     }
     return render(request, 'tools/info_widget.html', context)
 
+
+@user_passes_test(lambda u: u.is_staff)
+@login_required
+def charge_users_now(request):
+    from payments.tasks import charge_users
+    charge_users()
+    messages.success(request, "all users have been charged!")
+    return redirect('profile:my_page')
 
 @user_passes_test(lambda u: u.is_staff)
 @login_required

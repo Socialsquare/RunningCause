@@ -149,7 +149,8 @@ def register_customer(request):
     token = request.POST['stripeToken']
     stripe.api_key = settings.STRIPE_SECRET_KEY
     customer = stripe.Customer.create(source=token,
-                                      description=request.user.username)
+                                      description=request.user.username,
+                                      email=request.user.email)
     request.user.stripe_customer_id = customer.id
     request.user.save()
     return render(request, 'profile/credit_card_success.html', {})
@@ -173,10 +174,15 @@ def subscribe(request):
 
 @login_required
 def unregister_card(request):
-    # TODO: this should also remove the card from Stripe!
     user = request.user
-    user.stripe_customer_id = None
-    user.save()
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    try:
+        scu = stripe.Customer.retrieve(user.stripe_customer_id)
+        scu.delete()
+        user.stripe_customer_id = None
+        user.save()
+    except Exception as exc:
+        raise
     return render(request, 'profile/deregister_success.html', {})
 
 
