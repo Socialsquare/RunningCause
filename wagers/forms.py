@@ -7,7 +7,7 @@ from .models import Wager
 
 
 class WagerForm(forms.ModelForm):
-    amount = forms.FloatField(label="Amount:",
+    amount = forms.FloatField(label="Amount (kr)",
                               widget=forms.TextInput(
                                   attrs={'class': 'form-control'}),
                               localize=True, required=True)
