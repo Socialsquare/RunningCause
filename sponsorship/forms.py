@@ -5,7 +5,7 @@ from .models import Sponsorship, SponsorRequest
 
 
 class SponsorForm(forms.ModelForm):
-    rate = forms.FloatField(label="Rate",
+    rate = forms.FloatField(label="Rate (kr. pr. km)",
                             widget=forms.TextInput(
                                 attrs={'class': 'form-control'}),
                             localize=True)
