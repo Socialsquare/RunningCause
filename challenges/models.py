@@ -103,9 +103,9 @@ class ChallengeRequest(models.Model):
         (REJECTED, 'rejected'),
     )
     runner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               related_name='challenges_requested')
+                               related_name='ingoing_challenge_requests')
     sponsor = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                related_name='challenges_requests')
+                                related_name='outgoing_challenge_requests')
     created_dt = models.DateTimeField(auto_now_add=True)
     token = models.UUIDField(default=uuid.uuid4,
                              unique=True, db_index=True, null=False,
