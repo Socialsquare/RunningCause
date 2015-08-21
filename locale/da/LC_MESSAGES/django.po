@@ -84,7 +84,7 @@ msgid ""
 "<h3>Every Step Makes a Difference</h3>\n"
 "<p>Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.</p>\n"
 "<p>The idea behind Masanga Runners is that many runners and sponsors together can create a huge difference for the hospital in Masanga by running and donating small amounts.</p>\n"
-"<p>As a runner, you find one or more sponsors, who support Masanga with a small amount for each kilometre you run. Furthermore the sponsor can support Masanga with a bigger amount, for an example by making a wager, in connection to you achieving one of your running goals.</p>\n"
+"<p>As a runner, you find one or more sponsors, who support Masanga with a small amount for each kilometre you run. Furthermore the sponsor can support Masanga with a bigger amount, for an example by making a challenge, in connection to you achieving one of your running goals.</p>\n"
 "<p>It could be to complete a half marathon or a DHL race. Depending on how far you run throughout the year, and if you reach your goals, your sponsor pays x amount of money, which will go to the Masanga Hospital.</p>\n"
 "<p>”I am a Masanga Runner because it’s a form of motivation to get outside. As a Masanga Runner I know that it’s not just me getting something out of my runs,” says Søren Bo Steendahl, who has been a Masanga Runner since Fall 2014.</p>\n"
 "<p>On this website, you can create an account and be a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make bets about your performance on runs – you’re only limited by your imagination! </p>\n"
@@ -134,7 +134,7 @@ msgid "Invite someone to sponsor you!"
 msgstr "Inviter %(sponsor_name)s til at sponsorere dig."
 
 #: Running/templates/Running/invite.html:50
-#: Running/templates/Running/wager_invite.html:42
+#: Running/templates/Running/challenge_invite.html:42
 #, python-format
 msgid ""
 "\n"
@@ -165,9 +165,9 @@ msgstr ""
 #: Running/templates/Running/user_raised.html:272
 #: Running/templates/Running/user_raised.html:312
 #: Running/templates/Running/user_runs.html:162
-#: Running/templates/Running/wager.html:67
-#: Running/templates/Running/wager_invite.html:72
-#: Running/templates/Running/wager_update.html:46
+#: Running/templates/Running/challenge.html:67
+#: Running/templates/Running/challenge_invite.html:72
+#: Running/templates/Running/challenge_update.html:46
 msgid "Submit"
 msgstr "Send"
 
@@ -246,7 +246,7 @@ msgid "The sponsor is using a card"
 msgstr ""
 
 #: Running/templates/Running/overview.html:68
-msgid "All Wagers"
+msgid "All Challenges"
 msgstr ""
 
 #: Running/templates/Running/overview.html:73
@@ -272,7 +272,7 @@ msgid "Decision Date"
 msgstr ""
 
 #: Running/templates/Running/overview.html:78
-msgid "Wager Text"
+msgid "Challenge Text"
 msgstr ""
 
 #: Running/templates/Running/overview.html:79
@@ -469,7 +469,7 @@ msgstr ""
 #| msgid "nvite %(username)s to sponsor you! \n"
 msgid ""
 "\n"
-"                    Challenge %(username)s to a wager! \n"
+"                    Challenge %(username)s to a challenge! \n"
 "                    "
 msgstr ""
 "\n"
@@ -480,7 +480,7 @@ msgstr ""
 #| msgid "nvite %(username)s to sponsor you! \n"
 msgid ""
 "\n"
-"                    Invite %(username)s to challenge you to a wager! \n"
+"                    Invite %(username)s to challenge you to a challenge! \n"
 "                    "
 msgstr ""
 "\n"
@@ -572,7 +572,7 @@ msgstr "Total distance løbet"
 #: Running/templates/Running/user_raised.html:168
 #, fuzzy
 #| msgid "Sponsorships Recieved"
-msgid "Wagers Recieved"
+msgid "Challenges Recieved"
 msgstr "Modtagne sponsorater"
 
 #: Running/templates/Running/user.html:262
@@ -606,7 +606,7 @@ msgstr ""
 #: Running/templates/Running/user_raised.html:185
 #, fuzzy
 #| msgid "Hmm, there don't seem to be any runs here."
-msgid "Hmm, there don't seem to be any wagers here."
+msgid "Hmm, there don't seem to be any challenges here."
 msgstr "Mærkeligt! Vi kan ikke finde nogen løbeture her."
 
 #: Running/templates/Running/user.html:285
@@ -627,7 +627,7 @@ msgstr "Total beløb doneret"
 
 #: Running/templates/Running/user.html:339
 #: Running/templates/Running/user_donated.html:142
-msgid "Wagers Given"
+msgid "Challenges Given"
 msgstr ""
 
 #: Running/templates/Running/user.html:370
@@ -661,7 +661,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"        Alternatively, fill out these fields to invite %(username)s to challenge you to a wager. Feel free to leave whatever you want blank. %(username)s will get an email notifying them that you requested you to challenge them, and the values you do fill out will be displayed to them. They can then choose to challenge you immediately, change or add some values and then challenge you, or decline entirely.\n"
+"        Alternatively, fill out these fields to invite %(username)s to challenge you to a challenge. Feel free to leave whatever you want blank. %(username)s will get an email notifying them that you requested you to challenge them, and the values you do fill out will be displayed to them. They can then choose to challenge you immediately, change or add some values and then challenge you, or decline entirely.\n"
 "        "
 msgstr ""
 
@@ -686,7 +686,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"        Alternatively, fill out these fields to set up a wager with %(username)s. If they complete whatever you specify the bet is, by the time you list in end date, then you agree to pay the amount listed in the amount field, in dkk. Worried they'll cheat? No need to fret! At the end of the time period, you're the only one who gets to make the call about whether or not you pay.\n"
+"        Alternatively, fill out these fields to set up a challenge with %(username)s. If they complete whatever you specify the bet is, by the time you list in end date, then you agree to pay the amount listed in the amount field, in dkk. Worried they'll cheat? No need to fret! At the end of the time period, you're the only one who gets to make the call about whether or not you pay.\n"
 "        "
 msgstr ""
 
@@ -708,7 +708,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"        These are all of the runs that %(username)s has synced with Masanga Runners. At the end of the quater, anyone who was sponsoring %(username)s for this period will be billed, depending on their rates, wagers etc., and the money will be sent to Masanga Hospital.\n"
+"        These are all of the runs that %(username)s has synced with Masanga Runners. At the end of the quater, anyone who was sponsoring %(username)s for this period will be billed, depending on their rates, challenges etc., and the money will be sent to Masanga Hospital.\n"
 "    "
 msgstr ""
 "\n"
@@ -717,7 +717,7 @@ msgstr ""
 #: Running/templates/Running/user_settings.html:58
 msgid ""
 "\n"
-"        Click the card below to register a credit card with Masanga Runners. If you do this, you won't be charged anything initially. From then on, whenever you agree to pay out a wager, or a runner you're sponsoring runs, you card will be automatically charged, without having to do anything!\n"
+"        Click the card below to register a credit card with Masanga Runners. If you do this, you won't be charged anything initially. From then on, whenever you agree to pay out a challenge, or a runner you're sponsoring runs, you card will be automatically charged, without having to do anything!\n"
 "        "
 msgstr ""
 
@@ -735,7 +735,7 @@ msgstr ""
 #: Running/templates/Running/user_settings.html:114
 msgid ""
 "\n"
-"            Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and wagers, click the button below to make your page private.\n"
+"            Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and challenges, click the button below to make your page private.\n"
 "            "
 msgstr ""
 
@@ -764,66 +764,66 @@ msgstr ""
 msgid "Subscribe to our emails"
 msgstr ""
 
-#: Running/templates/Running/wager.html:32
+#: Running/templates/Running/challenge.html:32
 #, fuzzy
 #| msgid "Create a new Sponsorship"
-msgid "Create a new Wager"
+msgid "Create a new Challenge"
 msgstr "Lav et nyt sponsorat"
 
-#: Running/templates/Running/wager.html:38
+#: Running/templates/Running/challenge.html:38
 #, fuzzy
 #| msgid "re recommended for the sponsorship. Feel free ngeatever 'd e."
 msgid ""
-"Here are the values that were recommended for the wager. Feel free to change"
+"Here are the values that were recommended for the challenge. Feel free to change"
 " whatever you'd like."
 msgstr ""
 "Her er de værdier vi anbefaler for sponsoratet. Du kan ændre ligeså meget du"
 " vil"
 
-#: Running/templates/Running/wager_confirm_success.html:14
-msgid "Thank you! Your wager has been confirmed."
+#: Running/templates/Running/challenge_confirm_success.html:14
+msgid "Thank you! Your challenge has been confirmed."
 msgstr ""
 
-#: Running/templates/Running/wager_deny_success.html:14
-msgid "Thank you! Your wager has been declined."
+#: Running/templates/Running/challenge_deny_success.html:14
+msgid "Thank you! Your challenge has been declined."
 msgstr ""
 
-#: Running/templates/Running/wager_invite.html:7
-msgid "Make a Wager"
+#: Running/templates/Running/challenge_invite.html:7
+msgid "Make a Challenge"
 msgstr ""
 
-#: Running/templates/Running/wager_invite.html:36
+#: Running/templates/Running/challenge_invite.html:36
 #, fuzzy, python-format
 #| msgid "ite %(sponsor_name)s to sponsor you!\n"
 msgid ""
 "\n"
-"Invite %(sponsor_name)s to a Wager!\n"
+"Invite %(sponsor_name)s to a Challenge!\n"
 msgstr ""
 "\n"
 "Inviter %(sponsor_name)s til at sponsorere dig.\n"
 
-#: Running/templates/Running/wager_update.html:7
-msgid "Update a Wager"
+#: Running/templates/Running/challenge_update.html:7
+msgid "Update a Challenge"
 msgstr ""
 
-#: Running/templates/Running/wager_update.html:11
+#: Running/templates/Running/challenge_update.html:11
 msgid ""
 "\n"
-"Update your Wager!\n"
+"Update your Challenge!\n"
 msgstr ""
 
-#: Running/templates/Running/wager_update.html:17
+#: Running/templates/Running/challenge_update.html:17
 #, fuzzy, python-format
 #| msgid ""
 #| " values you'd like to suggest to ponsor_name)s. You  ve ngat you t nk.\n"
 msgid ""
 "\n"
-"Fill out this form with the values you'd like to suggest to %(wager.sponsor.username)s. You can leave anything that you want blank.\n"
+"Fill out this form with the values you'd like to suggest to %(challenge.sponsor.username)s. You can leave anything that you want blank.\n"
 msgstr ""
 "\n"
 "Udfyld formularen med de værdier og datoer du vil foreslå %(sponsor_name)s. Du kan også undlade at udfylde nogle felter og lade dette være helt op til %(sponsor_name)s.\n"
 
-#: Running/templates/Running/wager_update_success.html:14
+#: Running/templates/Running/challenge_update_success.html:14
 msgid "Thank you! Your update has been saved."
 msgstr ""
 
@@ -1387,12 +1387,12 @@ msgstr "Skulle du have glemt det, er dit brugernavn  \"%(username)s\"."
 msgid "Masanga Runners run-update"
 msgstr "Masanga Runners løbe-update"
 
-msgid "Masanga Runners wagering notification"
+msgid "Masanga Runners challengeing notification"
 msgstr "Masanga Runners væddemåls-notifikation"
 
 msgid "Masanga Runners run-update"
 msgstr "Masanga Runners løbe-update"
 
-msgid "Masanga Runners invitation for wager"
+msgid "Masanga Runners invitation for challenge"
 msgstr "Masanga Runners invitation til væddemål"
 

@@ -18,7 +18,7 @@ log = get_task_logger(__name__)
 def charge_user(user_id=None):
     from .models import PaymentLog
     from sponsorship.models import Sponsorship
-    from wagers.models import Wager
+    from challenges.models import Challenge
     from django.contrib.auth import get_user_model
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -29,9 +29,9 @@ def charge_user(user_id=None):
              for sp in sponsorships
              if sp.left_to_pay > 0]
     amount_to_pay += sum([spl[2] for spl in spltp])
-    unpaid_wagers = user.wagers_given.filter(status=Wager.CONFIRMED)
-    amount_to_pay += sum([wager.amount for wager
-                          in unpaid_wagers])
+    unpaid_challenges = user.challenges_given.filter(status=Challenge.CONFIRMED)
+    amount_to_pay += sum([challenge.amount for challenge
+                          in unpaid_challenges])
     if amount_to_pay == 0:
         return
 
@@ -49,7 +49,7 @@ def charge_user(user_id=None):
         for sp_id, amount_paid, left_to_pay in spltp:
             Sponsorship.objects.filter(id=sp_id)\
                 .update(amount_paid=amount_paid + left_to_pay)
-        unpaid_wagers.update(status=Wager.PAID)
+        unpaid_challenges.update(status=Challenge.PAID)
 
         log.info("{0} charged {1}".format(user.username,
                                           amount))

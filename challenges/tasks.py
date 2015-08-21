@@ -16,28 +16,28 @@ from django.template import loader, Context
 log = get_task_logger(__name__)
 
 
-def send_wager_reminder(user_id=None):
-    from .models import Wager
+def send_challenge_reminder(user_id=None):
+    from .models import Challenge
     user = get_user_model().objects.get(id=user_id)
     todays = datetime.date.today()
-    remind_delta = todays + Wager.get_remind_date_delta()
-    received_ending_soon_wagers = user.wagers_recieved\
-        .filter(status=Wager.NEW, end_date=remind_delta)
+    remind_delta = todays + Challenge.get_remind_date_delta()
+    received_ending_soon_challenges = user.challenges_recieved\
+        .filter(status=Challenge.NEW, end_date=remind_delta)
 
-    decision_delta = todays - Wager.get_decision_date_delta()
-    given_completed_wagers = user.wagers_given\
-        .filter(status=Wager.COMPLETED, end_date=decision_delta)
+    decision_delta = todays - Challenge.get_decision_date_delta()
+    given_completed_challenges = user.challenges_given\
+        .filter(status=Challenge.COMPLETED, end_date=decision_delta)
 
-    if not received_ending_soon_wagers and not given_completed_wagers:
-        log.debug("user %s has no completed or ending soon wagers", user.id)
+    if not received_ending_soon_challenges and not given_completed_challenges:
+        log.debug("user %s has no completed or ending soon challenges", user.id)
         return
 
     subject = _('Masanga Runners challenge reminder')
-    tmpl_name = 'wagers/emails/wagers_reminder.html'
+    tmpl_name = 'challenges/emails/challenges_reminder.html'
     tmpl = loader.get_template(tmpl_name)
     ctx = Context({
-        'received_ending_soon_wagers': received_ending_soon_wagers,
-        'given_completed_wagers': given_completed_wagers,
+        'received_ending_soon_challenges': received_ending_soon_challenges,
+        'given_completed_challenges': given_completed_challenges,
         'BASE_URL': settings.BASE_URL,
     })
     html_msg = tmpl.render(ctx)
@@ -46,8 +46,8 @@ def send_wager_reminder(user_id=None):
 
 
 @shared_task(ignore_result=True)
-def send_wager_reminders():
+def send_challenge_reminders():
     active_users_ids = get_user_model().objects.filter(is_active=True)\
         .values_list('id', flat=True)
     for user_id in active_users_ids:
-        send_wager_reminder(user_id=user_id)
+        send_challenge_reminder(user_id=user_id)

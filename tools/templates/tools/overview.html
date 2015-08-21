@@ -65,7 +65,7 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading"><h4>{% trans "All Wagers" %}</h4></div>
+        <div class="panel-heading"><h4>{% trans "All Challenges" %}</h4></div>
         <table class="table table-hover">
         <thead>
             <th>{% trans "Sponsor" %}</th>
@@ -75,22 +75,22 @@
             <th>{% trans "Paid" %}</th>
             <th>{% trans "Remind Date" %}</th>
             <th>{% trans "Decision Date" %}</th>
-            <th>{% trans "Wager Text" %}</th>
+            <th>{% trans "Challenge Text" %}</th>
             <th>{% trans "Update Text" %}</th>
 
         </thead>
-        {% for wager in all_wagers %}
-            {% if wager.sponsor %}
+        {% for challenge in all_challenges %}
+            {% if challenge.sponsor %}
                 <tr>
-                    <td><a href="{{ wager.get_admin_url }}">{{ wager.sponsor }}</td>
-                    <td>{{ wager.runner }}</td>
-                    <td>{{ wager.amount }}</td>
-                    <td>{{ wager.fulfilled }}</td>
-                    <td>{{ wager.paid }}</td>
-                    <td>{{ wager.remind_date }}</td>
-                    <td>{{ wager.decision_date }}</td>
-                    <td>{{ wager.wager_text }}</td>
-                    <td>{{ wager.update_text }}</td>
+                    <td><a href="{{ challenge.get_admin_url }}">{{ challenge.sponsor }}</td>
+                    <td>{{ challenge.runner }}</td>
+                    <td>{{ challenge.amount }}</td>
+                    <td>{{ challenge.fulfilled }}</td>
+                    <td>{{ challenge.paid }}</td>
+                    <td>{{ challenge.remind_date }}</td>
+                    <td>{{ challenge.decision_date }}</td>
+                    <td>{{ challenge.challenge_text }}</td>
+                    <td>{{ challenge.update_text }}</td>
                 </tr>
             {% endif %}
         {% endfor %}

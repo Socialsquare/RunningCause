@@ -27,7 +27,7 @@ NOSE_ARGS = [
      '--cover-package=RunningCause',
      '--cover-package=runs',
      '--cover-package=sponsorship',
-     '--cover-package=wagers',
+     '--cover-package=challenges',
 ]
 
 for arg in sys.argv:

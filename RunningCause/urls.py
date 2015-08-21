@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^runs/', include('runs.urls', namespace='runs')),
     url(r'^invitations/', include('invitations.urls',
                                   namespace='invitations')),
-    url(r'^wagers/', include('wagers.urls', namespace='wagers')),
+    url(r'^challenges/', include('challenges.urls', namespace='challenges')),
     url(r'^sponsorship/', include('sponsorship.urls',
                                   namespace='sponsorship')),
     url(r'^tools/', include('tools.urls', namespace='tools')),

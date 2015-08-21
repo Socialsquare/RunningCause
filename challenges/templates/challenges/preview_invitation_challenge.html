@@ -11,8 +11,9 @@
 {% block head %}
 	<div class="row">
 	<div class="col-md-7 col-md-offset-1">
-		{% blocktrans with username=wager_req.sponsor.username %}
-		{{username}} has challenge you. Do you accept the challenge?
+		{% blocktrans with username=challenge_request.runner.username %}
+		{{username}} has invited you to challenge him.
+		Do you want to create challenge for {{username}}?
 		{% endblocktrans %}
 	</div>
 	</div>
@@ -22,12 +23,12 @@
 
 	<div class="row">
 	<div class="col-md-7  col-md-offset-1">
-	<form action="{% url 'wagers:preview_challenge' token=wager_req.token %}" method="post">
+	<form action="{% url 'challenges:preview_invitation_challenge' token=challenge_request.token %}" method="post">
 	    {% csrf_token %}
 		{% bootstrap_form form layout="form-horizontal" %}
 		{% buttons %}
-		  <button type="submit" name="submit" value="accept" class="btn btn-primary pull-left">
-		    {% bootstrap_icon "star" %}{% blocktrans %}Accept{% endblocktrans %}
+		  <button type="submit" name="submit" value="create" class="btn btn-primary pull-left">
+		    {% bootstrap_icon "star" %}{% blocktrans %}Create{% endblocktrans %}
 		  </button>
 		  <button type="submit" name="submit" value="reject" class="btn btn-primary pull-right">
 		    {% bootstrap_icon "star" %}{% blocktrans %}Reject{% endblocktrans %}

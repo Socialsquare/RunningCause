@@ -67,7 +67,7 @@ INSTALLED_APPS = (
     'profile',
     'runs',
     'sponsorship',
-    'wagers',
+    'challenges',
     'invitations',
     'tools',
     'pages',
@@ -309,7 +309,7 @@ LOGGING = {
             'handlers': ['console', ],
             'level': 'DEBUG',
         },
-        'wagers': {
+        'challenges': {
             'handlers': ['console', ],
             'level': 'DEBUG',
         },

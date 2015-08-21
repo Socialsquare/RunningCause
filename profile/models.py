@@ -33,26 +33,26 @@ class User(auth.models.AbstractUser):
     def is_runner(self):
         return self.runs.all().exists() or \
             self.sponsorships_recieved.all().exists() or \
-            self.wagers_recieved.all().exists()
+            self.challenges_recieved.all().exists()
 
     @property
     def is_sponsor(self):
         return self.sponsorships_given.all().exists() or \
-            self.wagers_given.all().exists()
+            self.challenges_given.all().exists()
 
     @property
     def amount_earned(self):
         spship_amount = self.sponsorships_recieved.all()\
             .aggregate(a_sum=Sum('amount_paid'))['a_sum'] or 0
-        wagers_amount = self.wagers_recieved.filter(status='paid')\
+        challenges_amount = self.challenges_recieved.filter(status='paid')\
             .aggregate(a_sum=Sum('amount'))['a_sum'] or 0
-        return spship_amount + wagers_amount
+        return spship_amount + challenges_amount
 
     @property
     def amount_donated(self):
         given_spships = self.sponsorships_given.all()
         spship_amount = sum([sp.total_amount for sp in given_spships])
-        wagers_amount = self.wagers_given.filter(status='paid')\
+        challenges_amount = self.challenges_given.filter(status='paid')\
             .aggregate(a_sum=Sum('amount'))['a_sum'] or 0
-        return spship_amount + wagers_amount
+        return spship_amount + challenges_amount
 
