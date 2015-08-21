@@ -150,7 +150,23 @@
     </table>
     </div>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {% trans "Charge users" %}
+        </div>
+        <div class="panel-body">
+            {% blocktrans %}
+            <p>The users sponsoring on the page is automatically charged on a periodically basis.</p>
+            <p>If you want to extraordinarily settle up and issue payments for all sponsors owing money, please click the button to:</p>
+            {% endblocktrans %}
+            <a href="{% url 'tools:charge_users_now' %}"
+               class="btn btn-default">
+              {% trans "Charge user now" %}
+            </a>
+        </div>
+    </div>
+
     {% else %}
-    {% trans "Sorry, you need to be an admin to access this page." %}
+        {% trans "Sorry, you need to be an admin to access this page." %}
     {% endif %}
 {% endblock %}

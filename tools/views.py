@@ -46,7 +46,7 @@ def charge_users_now(request):
     from payments.tasks import charge_users
     charge_users()
     messages.success(request, "all users have been charged!")
-    return redirect('profile:my_page')
+    return redirect('tools:overview')
 
 @user_passes_test(lambda u: u.is_staff)
 @login_required
