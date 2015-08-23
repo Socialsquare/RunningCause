@@ -18,7 +18,7 @@ class ChallengeForm(forms.ModelForm):
                                            'autocomplete': "off"}),
                                required=True)
 
-    challenge_text = forms.CharField(label="What is the bet?",
+    challenge_text = forms.CharField(label="What is the challenge?",
                                      required=True,
                                      widget=forms.Textarea(
                                      attrs={'class': 'form-control'}))
