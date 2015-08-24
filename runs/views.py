@@ -93,7 +93,7 @@ def user_runs(request, user_id=None):
     context = {
         'person': person,
         'total_distance': total_distance,
-        'runs': person.runs.all(),
+        'runs': person.runs.all().order_by('-start_date'),
         'own_page': own_page,
         'tab_name': 'runs',
     }

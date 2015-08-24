@@ -31,7 +31,7 @@ class Run(models.Model):
     # Either the date of the run, or the start of the period over which
     # the runs took place.
     start_date = models.DateField('Date', auto_now_add=False,
-                                  default=timezone.now)
+                                  default=timezone.now, db_index=True)
 
     # Either the date of the run, or the end of the period over which
     # the runs took place.
