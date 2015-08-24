@@ -5,14 +5,14 @@
 
 
 {% block title %}
-{% trans "Update your Wager" %}
+{% trans "Update your Challenge" %}
 {% endblock %}
 
 {% block head %}
 <div class="row">
 <div class="col-md-7 col-md-offset-1">
 	{% blocktrans %}
-	Update your Wager!
+	Update your Challenge!
 	{% endblocktrans %}
 </div>
 </div>
@@ -22,36 +22,36 @@
 <div class="row">
 <div class="col-md-7 col-md-offset-1">
 
-{% if user == wager.runner %}
+{% if user == challenge.runner %}
 	{% blocktrans %}
 	Here you can mark your challenge as completed and
 	leave a feedback message to your sponsor.
 	{% endblocktrans %}
 {% endif %}
 
-{% if user == wager.sponsor %}
-	{% blocktrans with runner_username=wager.runner.username %}
+{% if user == challenge.sponsor %}
+	{% blocktrans with runner_username=challenge.runner.username %}
 	Here you can confirm or decline the challenge completed 
 	by {{runner_username}}.
 	{% endblocktrans %}
 {% endif %}
 
-{% if wager.runner_msg%}
+{% if challenge.runner_msg%}
 <p>Runner has left a message:</p>
 <blockquote>
-	<p>{{wager.runner_msg}}</p>
+	<p>{{challenge.runner_msg}}</p>
 </blockquote>
 {% endif %}
 
-{% if user == wager.sponsor %}
+{% if user == challenge.sponsor %}
 <p>{% blocktrans %}You can leave a feedback message to the runner.{% endblocktrans %}</p>
 {% endif %}
 
 <form class="form-horizontal" method="post"
-		action="{% url 'wagers:feedback_wager' wager_id=wager.id %}">
+		action="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
     {% csrf_token %}
 	{% bootstrap_form form layout="form-horizontal" %}
-		{% if user == wager.runner %}
+		{% if user == challenge.runner %}
 		{% buttons %}
 		  <button type="submit" class="btn btn-primary">
 		    {% bootstrap_icon "star" %}{% blocktrans %}Complete{% endblocktrans %}
@@ -59,7 +59,7 @@
 		{% endbuttons %}
 		{% endif %}
 	
-		{% if user == wager.sponsor %}
+		{% if user == challenge.sponsor %}
 		{% buttons %}
 		  <button type="submit" name="submit" value="confirm" class="btn btn-primary pull-left">
 		    {% bootstrap_icon "star" %}{% blocktrans %}Confirm{% endblocktrans %}

@@ -1,0 +1,11 @@
+{% extends 'email_base.html' %}
+{% load account %}
+{% user_display user as user_display %}
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans with current_site.name as site_name %}
+Brugeren {{ user_display }} på {{ site_name }} har angivet dette som sin e-mail adresse.
+
+For at bekræfte, at det er korrekt, følg linket --> {{ activate_url }}
+{% endblocktrans %}
+{% endautoescape %}

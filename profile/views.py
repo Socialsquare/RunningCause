@@ -39,7 +39,7 @@ def user_raised(request, user_id=None):
     for sponsorship in sponsorships:
         amount_earned = amount_earned + sponsorship.total_amount
 
-    wagers_recieved = person.wagers_recieved.all().order_by('end_date')
+    challenges_recieved = person.challenges_recieved.all().order_by('end_date')
 
     own_page = False
     if request.user.is_authenticated():
@@ -48,7 +48,7 @@ def user_raised(request, user_id=None):
     context = {
         'sponsorships': sponsorships,
         'amount_earned': amount_earned,
-        'wagers_recieved': wagers_recieved,
+        'challenges_recieved': challenges_recieved,
         'own_page': own_page,
         'person': person,
         'tab_name': 'raised',
@@ -63,13 +63,13 @@ def user_donated(request, user_id=None):
     for sponsorship in sponsorships_given:
         amount_given = amount_given + sponsorship.total_amount
 
-    wagers_given = person.wagers_given.all().order_by('end_date')
+    challenges_given = person.challenges_given.all().order_by('end_date')
     own_page = request.user.id == person.id
 
     context = {
         'sponsorships_given': sponsorships_given,
         'amount_given': amount_given,
-        'wagers_given': wagers_given,
+        'challenges_given': challenges_given,
         'own_page': own_page,
         'person': person,
         'tab_name': 'donations',

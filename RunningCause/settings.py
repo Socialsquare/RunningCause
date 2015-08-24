@@ -67,7 +67,7 @@ INSTALLED_APPS = (
     'profile',
     'runs',
     'sponsorship',
-    'wagers',
+    'challenges',
     'invitations',
     'tools',
     'pages',
@@ -102,7 +102,7 @@ LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
-ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_PASSWORD_MIN_LENGTH = 8
 ACCOUNT_SESSION_REMEMBER = None
 USER_MODEL_USERNAME_FIELD = 'username'
@@ -309,7 +309,7 @@ LOGGING = {
             'handlers': ['console', ],
             'level': 'DEBUG',
         },
-        'wagers': {
+        'challenges': {
             'handlers': ['console', ],
             'level': 'DEBUG',
         },

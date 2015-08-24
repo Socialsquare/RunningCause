@@ -13,20 +13,20 @@ def end_date_default():
 remind_date_default = end_date_default
 
 
-class WagerManager(models.Manager):
-    def create_for_challenge(self, wager_request, **kwargs):
-        proposed = json.loads(wager_request.proposed_wager)
+class ChallengeManager(models.Manager):
+    def create_for_challenge(self, challenge_request, **kwargs):
+        proposed = json.loads(challenge_request.proposed_challenge)
         proposed.update(kwargs)
-        instance = self.model(sponsor=wager_request.sponsor,
-                              runner=wager_request.runner,
+        instance = self.model(sponsor=challenge_request.sponsor,
+                              runner=challenge_request.runner,
                               amount=proposed['amount'],
                               end_date=proposed['end_date'],
-                              wager_text=proposed['wager_text'])
+                              challenge_text=proposed['challenge_text'])
         instance.save()
         return instance
 
 
-class Wager(models.Model):
+class Challenge(models.Model):
     NEW = 'new'
     COMPLETED = 'completed'
     DECLINED = 'declined'
@@ -40,11 +40,11 @@ class Wager(models.Model):
         (PAID, PAID),
     )
     runner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               related_name='wagers_recieved',
+                               related_name='challenges_recieved',
                                null=False)
 
     sponsor = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                related_name='wagers_given',
+                                related_name='challenges_given',
                                 null=False)
 
     amount = models.DecimalField('Amount', default=0, max_digits=10,
@@ -53,7 +53,7 @@ class Wager(models.Model):
     end_date = models.DateField('End Date', default=end_date_default,
                                 null=False, db_index=True)
 
-    wager_text = models.CharField('Wager Text', max_length=500, null=False,
+    challenge_text = models.CharField('Challenge Text', max_length=500, null=False,
                                   default='')
 
     runner_msg = models.CharField('Feedback message', max_length=500,
@@ -65,7 +65,7 @@ class Wager(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, default=NEW,
                               max_length=10, null=False, db_index=True)
 
-    objects = WagerManager()
+    objects = ChallengeManager()
 
     @staticmethod
     def get_remind_date_delta():
@@ -74,7 +74,7 @@ class Wager(models.Model):
     @property
     def remind_date(self):
         if self.end_date:
-            return self.end_date - Wager.get_remind_date_delta()
+            return self.end_date - Challenge.get_remind_date_delta()
 
     @staticmethod
     def get_decision_date_delta():
@@ -83,17 +83,17 @@ class Wager(models.Model):
     @property
     def decision_date(self):
         if self.end_date:
-            return self.end_date + Wager.get_decision_date_delta()
+            return self.end_date + Challenge.get_decision_date_delta()
 
     def get_feedback_url(self):
-        return settings.BASE_URL + reverse('feedback_wager',
-                                           kwargs={'wager_id': self.id})
+        return settings.BASE_URL + reverse('feedback_challenge',
+                                           kwargs={'challenge_id': self.id})
 
     def __unicode__(self):
         return '%s' % self.runner
 
 
-class WagerRequest(models.Model):
+class ChallengeRequest(models.Model):
     NEW = 'new'
     ACCEPTED = 'accepted'
     REJECTED = 'rejected'
@@ -103,15 +103,15 @@ class WagerRequest(models.Model):
         (REJECTED, 'rejected'),
     )
     runner = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               related_name='wagers_requested')
+                               related_name='ingoing_challenge_requests')
     sponsor = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                related_name='wagers_requests')
+                                related_name='outgoing_challenge_requests')
     created_dt = models.DateTimeField(auto_now_add=True)
     token = models.UUIDField(default=uuid.uuid4,
                              unique=True, db_index=True, null=False,
                              editable=False, primary_key=False)
-    wager = models.ForeignKey(Wager, null=True)
-    proposed_wager = models.TextField()  # json field
+    challenge = models.ForeignKey(Challenge, null=True)
+    proposed_challenge = models.TextField()  # json field
     status = models.CharField(choices=STATUS_CHOICES, default=NEW,
                               max_length=10, null=False, db_index=True)
 

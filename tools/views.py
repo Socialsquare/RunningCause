@@ -10,7 +10,7 @@ from django.utils.translation import ugettext as _
 
 from profile.models import User
 from sponsorship.models import Sponsorship
-from wagers.models import Wager
+from challenges.models import Challenge
 from runs.models import Run
 
 from .forms import PaidForm
@@ -26,8 +26,8 @@ def info_widget(request):
     spships = Sponsorship.objects.all()
     amount_donated = sum([sp.amount_paid for sp in spships])
 
-    wagers = Wager.objects.filter(status='paid')
-    amount_donated += sum([wager.amount for wager in wagers])
+    challenges = Challenge.objects.filter(status='paid')
+    amount_donated += sum([challenge.amount for challenge in challenges])
 
     total_distance = Run.objects.all().aggregate(x=Sum('distance'))['x'] or 0
 
@@ -46,7 +46,7 @@ def charge_users_now(request):
     from payments.tasks import charge_users
     charge_users()
     messages.success(request, "all users have been charged!")
-    return redirect('profile:my_page')
+    return redirect('tools:overview')
 
 @user_passes_test(lambda u: u.is_staff)
 @login_required
@@ -69,7 +69,7 @@ def overview(request):
     all_users = User.objects.order_by('username')
     all_subscribed_users = all_users.filter(subscribed=True)
     all_emails = [user.email for user in all_subscribed_users]
-    all_wagers = Wager.objects.order_by('sponsor')
+    all_challenges = Challenge.objects.order_by('sponsor')
     newsletter_users = User.objects.filter(subscribed=True)
     newsletter_emails = [user.email for user in newsletter_users]
 
@@ -77,7 +77,7 @@ def overview(request):
         'sponsorships': sponsorships,
         'all_users': all_users,
         'all_emails': all_emails,
-        'all_wagers': all_wagers,
+        'all_challenges': all_challenges,
         'newsletter_emails': newsletter_emails,
         'form': form,
     }

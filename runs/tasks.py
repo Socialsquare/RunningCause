@@ -38,7 +38,7 @@ def notify_sponsors_about_run(run_id=None):
                                                     flat=True)
     for email in relevant_emails:
         ctx = {
-            'runner': runner.username,
+            'runner_username': runner.username,
             'kilometers': run.distance,
             'title': _("Masanga Runners run-update"),
             'BASE_URL': settings.BASE_URL,

@@ -1,9 +1,9 @@
 # coding: utf8
 """
-Wager is a type of a challenge.
-* A runner can invite a sponsor to a wager, runner challenge itself and asks
+Challenge is a type of a challenge.
+* A runner can invite a sponsor to a challenge, runner challenge itself and asks
   for sponsorship.
-* A sponsor can challenge a runner by sending him a wager.
+* A sponsor can challenge a runner by sending him a challenge.
 
 """
 
@@ -24,8 +24,8 @@ from django.utils.translation import ugettext as _
 from django.views.generic import View
 from django.db import transaction
 
-from .models import Wager, WagerRequest
-from .forms import WagerForm, WagerFeedbackForm, WagerChallengePreviewForm
+from .models import Challenge, ChallengeRequest
+from .forms import ChallengeForm, ChallengeFeedbackForm, ChallengeChallengePreviewForm
 from django.http.response import HttpResponseForbidden, HttpResponseNotFound,\
     HttpResponseRedirect
 
@@ -36,28 +36,28 @@ log = logging.getLogger(__name__)
 @login_required
 def challenge_runner(request, person_id):
     """
-    Sponsor creates a wager for a runner with person_id.
+    Sponsor creates a challenge for a runner with person_id.
     """
     sponsor = request.user
     runner = get_object_or_404(get_user_model(), pk=person_id)
     if runner == sponsor:
         return HttpResponseForbidden()
 
-    form = WagerForm()
+    form = ChallengeForm()
     if request.method == "POST":
-        form = WagerForm(request.POST)
+        form = ChallengeForm(request.POST)
         if form.is_valid():
-            proposed_wager = json.dumps({
+            proposed_challenge = json.dumps({
                 'amount': form.cleaned_data['amount'],
                 'end_date': form.cleaned_data['end_date'],
-                'wager_text': form.cleaned_data['wager_text'],
+                'challenge_text': form.cleaned_data['challenge_text'],
                 }, cls=DjangoJSONEncoder)
 
-            wager_req = WagerRequest.objects.create(runner=runner,
-                sponsor=sponsor, proposed_wager=proposed_wager)
+            challenge_req = ChallengeRequest.objects.create(runner=runner,
+                sponsor=sponsor, proposed_challenge=proposed_challenge)
 
-            link = reverse('wagers:preview_challenge',
-                           kwargs={'token': wager_req.token})
+            link = reverse('challenges:preview_challenge',
+                           kwargs={'token': challenge_req.token})
             full_link = request.build_absolute_uri(link)
             subject = _('%(username)s has challenge you') %\
                 dict(username=sponsor.username)
@@ -66,7 +66,7 @@ def challenge_runner(request, person_id):
                 'link': full_link,
                 'BASE_URL': settings.BASE_URL,
             }
-            tmpl = 'wagers/emails/challenge_runner.html'
+            tmpl = 'challenges/emails/challenge_runner.html'
             html_msg = loader.get_template(tmpl)\
                 .render(Context(ctx))
             send_mail(
@@ -86,11 +86,11 @@ def challenge_runner(request, person_id):
         'runner': runner,
         'form': form,
     }
-    return render(request, 'wagers/challenge_runner.html', context)
+    return render(request, 'challenges/challenge_runner.html', context)
 
 
 @login_required
-def invite_sponsor_to_wager(request, person_id=None):
+def invite_sponsor_to_challenge(request, person_id=None):
     """
     Invites a user with person_id to sponsor a challenge for the user
     currently logged in.
@@ -100,31 +100,31 @@ def invite_sponsor_to_wager(request, person_id=None):
     if runner == sponsor:
         return HttpResponseForbidden()
 
-    form = WagerForm()
+    form = ChallengeForm()
     if request.method == "POST":
-        form = WagerForm(request.POST)
+        form = ChallengeForm(request.POST)
         if form.is_valid():
-            proposed_wager = json.dumps({
+            proposed_challenge = json.dumps({
                 'amount': form.cleaned_data['amount'],
                 'end_date': form.cleaned_data['end_date'],
-                'wager_text': form.cleaned_data['wager_text'],
+                'challenge_text': form.cleaned_data['challenge_text'],
                 }, cls=DjangoJSONEncoder)
 
-            wager_req = WagerRequest.objects.create(runner=runner,
-                sponsor=sponsor, proposed_wager=proposed_wager)
+            challenge_req = ChallengeRequest.objects.create(runner=runner,
+                sponsor=sponsor, proposed_challenge=proposed_challenge)
 
-            email_url = reverse('wagers:preview_invitation_wager',
-                                kwargs={'token': wager_req.token.hex})
+            email_url = reverse('challenges:preview_invitation_challenge',
+                                kwargs={'token': challenge_req.token.hex})
             full_link = request.build_absolute_uri(email_url)
             ctx = {
                 'runner': runner.username,
                 'link': full_link,
                 'BASE_URL': settings.BASE_URL,
             }
-            tmpl = 'wagers/emails/invite_sponsor_to_wager.html'
+            tmpl = 'challenges/emails/invite_sponsor_to_challenge.html'
             html_msg = loader.get_template(tmpl)\
                 .render(Context(ctx))
-            send_mail(_('Masanga Runners invitation for wager'),
+            send_mail(_('Masanga Runners invitation for challenge'),
                       '',
                       settings.DEFAULT_FROM_EMAIL,
                       [sponsor.email],
@@ -133,79 +133,79 @@ def invite_sponsor_to_wager(request, person_id=None):
 
             messages.info(request, _("You have send invitation"
                                      " to %(username)s to challenge you.") %\
-                          dict(username=wager_req.sponsor.username))
+                          dict(username=challenge_req.sponsor.username))
             return redirect('profile:user_page', user_id=sponsor.id)
     context = {
         'person': sponsor,
         'form': form
     }
-    return render(request, 'wagers/invite_sponsor_to_wager.html', context)
+    return render(request, 'challenges/invite_sponsor_to_challenge.html', context)
 
 
-class FeedbackWager(View):
+class FeedbackChallenge(View):
     http_method_names = ['get', 'post']
-    template_name = 'wagers/feedback_wager.html'
-    form_class = WagerFeedbackForm
+    template_name = 'challenges/feedback_challenge.html'
+    form_class = ChallengeFeedbackForm
 
-    def _check_wager_permission(self, wager):
-        if self.request.user not in [wager.sponsor, wager.runner]:
-            raise PermissionDenied("You cannot update this wager.")
+    def _check_challenge_permission(self, challenge):
+        if self.request.user not in [challenge.sponsor, challenge.runner]:
+            raise PermissionDenied("You cannot update this challenge.")
 
-        if self.request.user == wager.runner and wager.status != Wager.NEW:
-                raise PermissionDenied("Wager has already been completed.")
+        if self.request.user == challenge.runner and challenge.status != Challenge.NEW:
+                raise PermissionDenied("Challenge has already been completed.")
 
-        if self.request.user == wager.sponsor and\
-                wager.status != Wager.COMPLETED:
-            raise PermissionDenied("Wager is not completed yet.")
+        if self.request.user == challenge.sponsor and\
+                challenge.status != Challenge.COMPLETED:
+            raise PermissionDenied("Challenge is not completed yet.")
 
-    def get(self, request, wager_id):
-        wager = get_object_or_404(Wager, pk=wager_id)
-        self._check_wager_permission(wager)
+    def get(self, request, challenge_id):
+        challenge = get_object_or_404(Challenge, pk=challenge_id)
+        self._check_challenge_permission(challenge)
         form = self.form_class()
         ctx = {
-            'wager': wager,
+            'challenge': challenge,
             'form': form,
         }
         return render(request, self.template_name, ctx)
 
-    def post(self, request, wager_id):
-        wager = get_object_or_404(Wager, pk=wager_id)
-        self._check_wager_permission(wager)
+    def post(self, request, challenge_id):
+        challenge = get_object_or_404(Challenge, pk=challenge_id)
+        self._check_challenge_permission(challenge)
 
         form = self.form_class(request.POST)
         if form.is_valid():
             feedback_msg = form.cleaned_data['feedback_msg']
-            if request.user == wager.runner:
-                wager.runner_msg = feedback_msg
-                wager.status = Wager.COMPLETED
+            if request.user == challenge.runner:
+                challenge.runner_msg = feedback_msg
+                challenge.status = Challenge.COMPLETED
                 msg = _("Congratulations!, Your challenge will be send to"
                         " the sponsor for the final review.")
                 redirect_url = reverse('profile:user_raised',
                                        kwargs=dict(user_id=request.user.id))
-            elif request.user == wager.sponsor:
-                wager.sponsor_msg = feedback_msg
+            elif request.user == challenge.sponsor:
+                challenge.sponsor_msg = feedback_msg
                 redirect_url = reverse('profile:user_donated',
                                        kwargs=dict(user_id=request.user.id))
                 if request.POST.get('submit') == 'confirm':
-                    wager.status = Wager.CONFIRMED
+                    challenge.status = Challenge.CONFIRMED
                     msg = _("You have accepted to pay %(username)s "
                             "for the challenge.") %\
-                        dict(username=wager.runner)
+                        dict(username=challenge.runner)
                 else:  # request.POST.get('submit') == 'decline':
-                    wager.status = Wager.DECLINED
+                    challenge.status = Challenge.DECLINED
                     msg = _("You have declined to pay %(username)s "
                             "for the challenge.") %\
-                        dict(username=wager.runner)
-            wager.save()
+                        dict(username=challenge.runner)
+            challenge.save()
             messages.info(request, msg)
             return HttpResponseRedirect(redirect_url)
 
         ctx = {
-            'wager': wager,
+            'challenge': challenge,
             'form': form
         }
         return render(request, self.template_name, ctx)
-feedback_wager = login_required(FeedbackWager.as_view())
+feedback_challenge = login_required(FeedbackChallenge.as_view())
 
 
 @login_required
@@ -213,77 +213,77 @@ def preview_challenge(request, token=None):
     """
     Runner can either accept or reject the challenge.
     """
-    wager_req = WagerRequest.objects.get(token=token)
-    if wager_req.runner != request.user or\
-            wager_req.status != WagerRequest.NEW:
+    challenge_req = ChallengeRequest.objects.get(token=token)
+    if challenge_req.runner != request.user or\
+            challenge_req.status != ChallengeRequest.NEW:
         return HttpResponseForbidden()
 
-    proposed = json.loads(wager_req.proposed_wager)
-    form = WagerChallengePreviewForm(proposed)
+    proposed = json.loads(challenge_req.proposed_challenge)
+    form = ChallengeChallengePreviewForm(proposed)
     if request.method == 'POST':
         if request.POST.get('submit') == 'accept':
-            wager_req.status = WagerRequest.ACCEPTED
+            challenge_req.status = ChallengeRequest.ACCEPTED
             email_msg = _("Runner %(username)s has accepted your challenge") %\
-                dict(username=wager_req.runner.username)
+                dict(username=challenge_req.runner.username)
             msg = _("You have accepted a challenge.")
-            Wager.objects.create_for_challenge(wager_req)
+            Challenge.objects.create_for_challenge(challenge_req)
         else:  # request.POST.get('submit') == 'reject':
-            wager_req.status = WagerRequest.REJECTED
+            challenge_req.status = ChallengeRequest.REJECTED
             email_msg = _("Runner %(username)s has rejected your challenge") %\
-                dict(username=wager_req.runner.username)
+                dict(username=challenge_req.runner.username)
             msg = _("You have rejected a challenge.")
-        wager_req.save()
+        challenge_req.save()
         messages.info(request, msg)
         send_mail(email_msg, email_msg, settings.DEFAULT_FROM_EMAIL,
-                  [wager_req.sponsor.email, ])
+                  [challenge_req.sponsor.email, ])
         return redirect('profile:my_page')
 
     context = {
-        'wager_req': wager_req,
+        'challenge_req': challenge_req,
         'form': form
     }
-    return render(request, 'wagers/preview_challenge.html', context)
+    return render(request, 'challenges/preview_challenge.html', context)
 
 
 @login_required
-def preview_invitation_wager(request, token=None):
+def preview_invitation_challenge(request, token=None):
     """
-    Sponsor can edit wager, accept or reject wager invitation.
+    Sponsor can edit challenge, accept or reject challenge invitation.
     """
-    wager_req = WagerRequest.objects.get(token=token)
-    if wager_req.sponsor != request.user or wager_req.status != Wager.NEW:
+    challenge_req = ChallengeRequest.objects.get(token=token)
+    if challenge_req.sponsor != request.user or challenge_req.status != Challenge.NEW:
         return HttpResponseForbidden()
 
-    form = WagerForm(json.loads(wager_req.proposed_wager))
+    form = ChallengeForm(json.loads(challenge_req.proposed_challenge))
     if request.method == 'POST':
-        form = WagerForm(request.POST)
+        form = ChallengeForm(request.POST)
         if form.is_valid():
             if request.POST.get('submit') == 'create':
-                wager_req.status = WagerRequest.ACCEPTED
+                challenge_req.status = ChallengeRequest.ACCEPTED
                 email_msg = _("Sponsor %(username)s has challenge you!") %\
-                              dict(username=wager_req.sponsor.username)
+                              dict(username=challenge_req.sponsor.username)
                 msg = _("You have successfully created a challenge "
                         "for %(username)s.") %\
-                        dict(username=wager_req.runner.username)
-                Wager.objects.create_for_challenge(wager_req,
+                        dict(username=challenge_req.runner.username)
+                Challenge.objects.create_for_challenge(challenge_req,
                                                    **form.cleaned_data)
             else: # request.POST.get('submit') == 'reject':
-                wager_req.status = WagerRequest.REJECTED
+                challenge_req.status = ChallengeRequest.REJECTED
                 email_msg = _("Sponsor %(username)s has rejected your "
                               "challenge invitation.") %\
-                              dict(username=wager_req.sponsor.username)
+                              dict(username=challenge_req.sponsor.username)
                 msg = _("You have rejected a challenge invitation "
                         "from %(username)s.") %\
-                    dict(username=wager_req.runner.username)
-            wager_req.save()
+                    dict(username=challenge_req.runner.username)
+            challenge_req.save()
             messages.info(request, msg)
             send_mail(email_msg, email_msg, settings.DEFAULT_FROM_EMAIL,
-                      [wager_req.sponsor.email, ])
+                      [challenge_req.sponsor.email, ])
             return redirect('profile:my_page')
 
     context = {
-        'wager_request': wager_req,
+        'challenge_request': challenge_req,
         'form': form
     }
 
-    return render(request, 'wagers/preview_invitation_wager.html', context)
+    return render(request, 'challenges/preview_invitation_challenge.html', context)

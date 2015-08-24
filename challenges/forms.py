@@ -3,10 +3,10 @@
 from datetime import date
 
 from django import forms
-from .models import Wager
+from .models import Challenge
 
 
-class WagerForm(forms.ModelForm):
+class ChallengeForm(forms.ModelForm):
     amount = forms.FloatField(label="Amount (kr)",
                               widget=forms.TextInput(
                                   attrs={'class': 'form-control'}),
@@ -14,22 +14,22 @@ class WagerForm(forms.ModelForm):
     end_date = forms.DateField(label="End date:",
                                widget=forms.DateInput(
                                     attrs={'class': 'form-control',
-                                           'id': 'wager_datepicker',
+                                           'id': 'challenge_datepicker',
                                            'autocomplete': "off"}),
                                required=True)
 
-    wager_text = forms.CharField(label="What is the bet?",
-                                 required=True,
-                                 widget=forms.Textarea(
-                                        attrs={'class': 'form-control'}))
+    challenge_text = forms.CharField(label="What is the challenge?",
+                                     required=True,
+                                     widget=forms.Textarea(
+                                     attrs={'class': 'form-control'}))
 
     class Meta:
-        model = Wager
-        fields = ['amount', 'end_date', 'wager_text']
+        model = Challenge
+        fields = ['amount', 'end_date', 'challenge_text']
 
     def is_valid(self):
 
-        valid = super(WagerForm, self).is_valid()
+        valid = super(ChallengeForm, self).is_valid()
 
         if not valid:
             return valid
@@ -45,7 +45,7 @@ class WagerForm(forms.ModelForm):
         return valid
 
 
-class WagerFeedbackForm(forms.Form):
+class ChallengeFeedbackForm(forms.Form):
     feedback_msg = forms.CharField(
         max_length=500, min_length=2,
         label="Please write a feedback message",
@@ -53,13 +53,13 @@ class WagerFeedbackForm(forms.Form):
     )
 
 
-class WagerChallengePreviewForm(forms.ModelForm):
+class ChallengeChallengePreviewForm(forms.ModelForm):
     class Meta:
-        model = Wager
-        fields = ['amount', 'end_date', 'wager_text']
+        model = Challenge
+        fields = ['amount', 'end_date', 'challenge_text']
 
     def __init__(self, *args, **kwargs):
-        super(WagerChallengePreviewForm, self).__init__(*args, **kwargs)
+        super(ChallengeChallengePreviewForm, self).__init__(*args, **kwargs)
         instance = getattr(self, 'instance', None)
         if instance and instance.pk:
             for fname in self.fields:

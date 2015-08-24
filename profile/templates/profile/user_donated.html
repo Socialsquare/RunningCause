@@ -102,19 +102,19 @@
                     <th>{% trans "Status" %}</th>
                     <th>&nbsp;</th>
                 </thead>
-            {% for wager in wagers_given %}
+            {% for challenge in challenges_given %}
                     <tr> 
-                        <td>{{ wager.runner }}</td>
-                        <td>{{ wager.amount|floatformat:-2|intcomma }}</td>
-                        <td>{{ wager.remind_date }}</td>
-                        <td>{{ wager.wager_text }}</td>
-                        <td>{{ wager.status }}</td>
+                        <td>{{ challenge.runner }}</td>
+                        <td>{{ challenge.amount|floatformat:-2|intcomma }}</td>
+                        <td>{{ challenge.remind_date }}</td>
+                        <td>{{ challenge.challenge_text }}</td>
+                        <td>{{ challenge.status }}</td>
                         <td>
-							{% include 'wagers/_feedback_wager_button.html'%}
+							{% include 'challenges/_feedback_challenge_button.html'%}
                         </td>
                     </tr>
             {% empty %}
-            <tr><td>{% trans "Hmm, there don't seem to be any wagers here." %}</td></tr>
+            <tr><td>{% trans "Hmm, there don't seem to be any challenges here." %}</td></tr>
             {% endfor %}
             </table>
             </div>
@@ -137,7 +137,7 @@
 		href="{% url 'sponsorship:request_sponsorship' person.id %}" />
 			request sponsorship from {{person.username}}</a></p>
 		<p><a class="btn btn-primary btn-block" 
-		href="{% url 'wagers:invite_sponsor_to_wager' person.id %}" />
+		href="{% url 'challenges:invite_sponsor_to_challenge' person.id %}" />
 			invite {{person.username}} to challenge you</a></p>
 	</div>
 
