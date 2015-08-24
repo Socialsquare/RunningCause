@@ -94,7 +94,7 @@ def request_sponsorship(request, person_id):
             full_email_url = request.build_absolute_uri(email_url)
             title = _('Masanga Runners sponsorship request')
             ctx = {
-                'runner': runner.username,
+                'runner': runner,
                 'link': full_email_url,
                 'BASE_URL': settings.BASE_URL,
                 'title': title,
@@ -107,7 +107,7 @@ def request_sponsorship(request, person_id):
                       [sponsor.email, ],
                       fail_silently=True,
                       html_message=html_msg)
-
+            messages.info(request, _("We have sent your request to sponsor."))
             return redirect('profile:user_donated', user_id=person_id)
 
     ctx = {
