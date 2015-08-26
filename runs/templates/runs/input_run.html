@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block imports %}
-    <script src="/static/js/bootstrap-datepicker.js"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
     <script type=text/javascript>
     $(document).ready(function() {
         $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
