@@ -227,7 +227,10 @@ STATICFILES_FINDERS = (
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = [SITE_DOMAIN, ]
+ALLOWED_HOSTS = [
+    SITE_DOMAIN,
+    'www.' + SITE_DOMAIN,
+]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
