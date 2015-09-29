@@ -132,14 +132,24 @@
 
     {% else %}
 
-	<div class="btn-group">
-		<p><a class="btn btn-primary btn-block" 
-		href="{% url 'sponsorship:request_sponsorship' person.id %}" />
-			request sponsorship from {{person.username}}</a></p>
-		<p><a class="btn btn-primary btn-block" 
-		href="{% url 'challenges:invite_sponsor_to_challenge' person.id %}" />
-			invite {{person.username}} to challenge you</a></p>
-	</div>
+    <div class="btn-group">
+        <p>
+            <a class="btn btn-primary btn-block" 
+               href="{% url 'sponsorship:request_sponsorship' person.id %}">
+                {% blocktrans with username=person.username %}
+                    Request sponsorship from {{username}}
+                {% endblocktrans %}
+            </a>
+        </p>
+        <p>
+            <a class="btn btn-primary btn-block" 
+               href="{% url 'challenges:invite_sponsor_to_challenge' person.id %}">
+                {% blocktrans with username=person.username %}
+                    Invite {{username}} to challenge you
+                {% endblocktrans %}
+            </a>
+        </p>
+    </div>
 
 	{% endif %}
 </div>

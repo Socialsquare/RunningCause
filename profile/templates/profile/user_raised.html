@@ -156,14 +156,24 @@
 
 {% else %}
 
-	<div class="btn-group">
-		<p><a class="btn btn-primary btn-block" 
-		href="{% url 'sponsorship:add_sponsorship' person.id %}" />
-			sponsor {{person.username}}</a></p>
-		<p><a class="btn btn-primary btn-block" 
-		href="{% url 'challenges:challenge_runner' person.id %}" />
-			challenge {{person.username}}</a></p>
-	</div>
+    <div class="btn-group">
+        <p>
+            <a class="btn btn-primary btn-block" 
+               href="{% url 'sponsorship:add_sponsorship' person.id %}">
+                {% blocktrans with username=person.username %}
+                    Sponsor {{username}}
+                {% endblocktrans %}
+            </a>
+        </p>
+        <p>
+            <a class="btn btn-primary btn-block" 
+               href="{% url 'challenges:challenge_runner' person.id %}">
+                {% blocktrans with username=person.username %}
+                    Challenge {{username}}
+                {% endblocktrans %}
+            </a>
+        </p>
+    </div>
 
 
 
