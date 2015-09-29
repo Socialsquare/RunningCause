@@ -33,8 +33,7 @@ class Sponsorship(models.Model):
 
     # The start date. No runs before this date are added to the sponsorship.
     # (start date is inclusive)
-    start_date = models.DateField('Start Date', auto_now_add=True,
-                                  null=True, db_index=True)
+    start_date = models.DateField('Start Date', null=True, db_index=True)
 
     # The end date. No runs after or on this date are added to the sponsorship.
     # (end date is exclusive!)

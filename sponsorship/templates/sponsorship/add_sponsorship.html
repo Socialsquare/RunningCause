@@ -24,11 +24,19 @@ Sponsor Runner {{runner}}
         {
             month = "0" + month;
         }
-        var yearString = year + "-" + month + "-" + day;
-        $('#start_datepicker').val(yearString).datepicker({
+        var today = year + "-" + month + "-" + day;
+
+        $startDatepicker = $('#start_datepicker');
+        $endDatepicker = $('#end_datepicker');
+
+        if($startDatepicker.val() === '') {
+            $startDatepicker.val(today);
+        }
+
+        $startDatepicker.datepicker({
             format:'yyyy-mm-dd'
         });
-        $('#end_datepicker').val(yearString).datepicker({
+        $endDatepicker.datepicker({
             format:'yyyy-mm-dd'
         });
     });

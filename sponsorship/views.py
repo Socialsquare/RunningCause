@@ -124,7 +124,7 @@ def add_sponsorship_from_request(request, token=None):
     sp_req = get_object_or_404(SponsorRequest, token=token)
     runner = sp_req.runner
     if sponsor != sp_req.sponsor:
-        return HttpResponseForbidden()
+        return HttpResponseForbidden(_('You are not the intended sponsor, please log in as%127 s.') % sp_req.sponsor.username)
 
     form = SponsorForm(json.loads(sp_req.proposed_sponsorship))
     if request.method == "POST":
