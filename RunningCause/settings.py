@@ -14,7 +14,7 @@ ADMINS = (
 )
 
 MANAGERS = (
-    ('Paweł Bielecki', 'pawel+runners-prod-manager@socialsquare.dk'),
+    ('Pawel Bielecki', 'pawel+runners-prod-manager@socialsquare.dk'),
 )
 
 MESSAGE_TAGS = {
@@ -185,7 +185,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale')+"/",
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 TEMPLATE_DIRS = [
