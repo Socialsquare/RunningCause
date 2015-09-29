@@ -89,7 +89,7 @@ footer .credit {
 
 /* profile/signup_or_login.html */
 @media (min-width: 768px) {
-  form.signup {
+  form.signup.form-horizontal {
     /* The margin, padding moves the border to the left */
     border-left: 1px solid #ccc;
     margin-left: -15px;
