@@ -12,15 +12,33 @@
     <script src="/static/js/bootstrap-datepicker.js"></script>
     <script type=text/javascript>
     $(document).ready(function() {
-        date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        var yearString = year + "-" + month + "-" + day;
-        $('#challenge_datepicker').datepicker({
-            format:'yyyy-mm-dd',
-            startDate: new Date()
-        }).val(yearString);
+        var $challengeDatepicker = $('#challenge_datepicker');
+        if($challengeDatepicker.val() === '') {
+            date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1; // january is 0 in this "language"
+            month += 1; // give a runner at least a month
+            var day = date.getDate();
+            if (day < 10)
+            {
+                day = "0" + day;
+            }
+            if (month == 13)
+            {
+                month == 1;
+                year += 1;
+            }
+            if (month < 10)
+            {
+                month = "0" + month;
+            }
+            
+            var yearString = year + "-" + month + "-" + day;
+            $challengeDatepicker.val(yearString);
+        }
+        $challengeDatepicker.datepicker({
+            format:'yyyy-mm-dd'
+        });
     });
     </script>
 {% endblock %}
