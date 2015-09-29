@@ -2,7 +2,10 @@ from django.contrib import admin
 
 from .models import Sponsorship, SponsorRequest
 
-admin.register(SponsorRequest)
+
+@admin.register(SponsorRequest)
+class SponsorRequestAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(Sponsorship)
