@@ -4,8 +4,9 @@
 {% load i18n %}
 {% autoescape off %}
 {% blocktrans with current_site.name as site_name %}
-Brugeren {{ user_display }} på {{ site_name }} har angivet dette som sin e-mail adresse.
 
-For at bekræfte, at det er korrekt, følg linket --> {{ activate_url }}
+You're receiving this e-mail because user {{ user_display }} at {{ site_domain }} has given yours as an e-mail address to connect their account.
+
+To confirm this is correct: <a href="{{ activate_url }}">Click here to activate</a>.
 {% endblocktrans %}
 {% endautoescape %}
