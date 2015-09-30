@@ -188,14 +188,10 @@ class FeedbackChallenge(View):
                                        kwargs=dict(user_id=request.user.id))
                 if request.POST.get('submit') == 'confirm':
                     challenge.status = Challenge.CONFIRMED
-                    msg = _("You have accepted to pay %(username)s "
-                            "for the challenge.") %\
-                        dict(username=challenge.runner)
+                    msg = _("You have accepted to pay for the challenge.")
                 else:  # request.POST.get('submit') == 'decline':
                     challenge.status = Challenge.DECLINED
-                    msg = _("You have declined to pay %(username)s "
-                            "for the challenge.") %\
-                        dict(username=challenge.runner)
+                    msg = _("You have declined to pay for the challenge.")
             challenge.save()
             messages.info(request, msg)
             return HttpResponseRedirect(redirect_url)

@@ -2,1105 +2,244 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-17 14:28+0200\n"
-"PO-Revision-Date: 2015-04-17 14:33+0050\n"
-"Last-Translator:   <niles_christensen@yahoo.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-30 23:31+0200\n"
+"PO-Revision-Date: 2015-09-30 23:32+0100\n"
+"Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
-"X-Generator: Poedit 1.7.4\n"
-"X-Translated-Using: django-rosetta 0.7.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Running/templates/Running/credit_card_prompt.html:12
-msgid "Register a Credit Card"
-msgstr "Registerer en Kreditkort"
-
-#: Running/templates/Running/credit_card_prompt.html:16
-msgid "Either register a credit card, or continue to our homepage "
-msgstr "Hverken registerer en kreditkort, eller fortsæt til vores hjemmeside"
-
-#: Running/templates/Running/credit_card_prompt.html:17
-#: Running/templates/Running/home.html:9
-#: Running/templates/Running/home.html:15
-msgid "here."
-msgstr "her."
-
-#: Running/templates/Running/credit_card_success.html:14
-msgid ""
-"Thank you! Your card has been successfully registered with Masanga Runners."
-msgstr "Tak skal du have! Din kort har vært anbefalet med Masanga Runners"
-
-#: Running/templates/Running/deregister_success.html:14
-#, fuzzy
-#| msgid "our card has been successfully registered with Masanga ners."
-msgid "You have successfully deregistered your card."
-msgstr "Tak skal du have! Din kort har vært anbefalet med Masanga Runners"
-
-#: Running/templates/Running/home.html:8
-#, python-format
-msgid "Hello, %(username)s!"
-msgstr "Hej, %(username)s!"
-
-#: Running/templates/Running/home.html:9
-#, python-format
-msgid "Not %(username)s? Log out"
-msgstr "Er du ikke %(username)s? Så log ud"
-
-#: Running/templates/Running/home.html:13
-msgid "Log in or create an account"
-msgstr "Log ind eller laver en konto"
-
-#: Running/templates/Running/home.html:25
-msgid "Users:"
-msgstr "Brugere:"
-
-#: Running/templates/Running/home.html:33
-msgid "Huh, that's weird. We can't find any users. Check back later."
-msgstr ""
-"Mærkeligt! Vi kan ikke finde nogen brugere i øjeblikket. Kom tilbage lidt "
-"senere."
-
-#: Running/templates/Running/home.html:71
-#| msgid ""
-#| "es the world a little better</h4>\n"
-#| " is not just a fun way to support a good project. It’s o a at way to make it easier to get in to your running shoes! With anga ner, you can sponsor your running friends, but also get family  ends involved in your runs and the world’s best hospital project.</The a behind Masanga Runners is that many runners and sponsors ether can ate a huge difference for the hospital in Masanga by ning and donating ll amounts.</p>\n"
-#| " Runner because it’s a form of motivation to get side. As a anga Runner I know that it’s not just me getting ething out of my s,” says Søren Bo Steendahl, who has been a anga Runner since Fall 4.</p>\n"
-#| ", you can create an account by entering only a little ation and become a part of the Masanga Runners community. You can ite r friends to sponsor you, share your page on social media, and e bets ut your performance on runs – you’re only limited by your gination! </redits</h4>\n"
-#| "l Rehabilitation Project is approved as a charitable sation, so you can receive tax credits for your donations – all the  to 15,000 kr. Masanga Runners sends out an email once a year to ryone ’s donated, asking them if they’re interested in the tax dits. You y need to provide your CPR number or you CVR number. It’s pletely safe  secure.</p>\n"
-#| "rmination</h4>\n"
-#| "r sponsorships at any time, both as a runner and as a nsor.  do this by clicking the ”end sponsorship” button by the evant nsorship. Both the runner and the sponsor will recieve an il with a firmation.</p>\n"
-#| "s t-shirt</h4>\n"
-#| "se your good work by buying a great Masanga Runners t-rt e! It costs 250 kr, 50 of which go directly to Masanga. The rest s to pping, handling, and the t-shirt itself.</p>\n"
-#| " questions or comments regarding Masanga Runners, ’re welcome contact Johanne Tofting Schaarup by email at angarunners@masanga.dk, by phone at +45 29 80 30 73.</p>\n"
-msgid ""
-"\n"
-"<h3>Every Step Makes a Difference</h3>\n"
-"<p>Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.</p>\n"
-"<p>The idea behind Masanga Runners is that many runners and sponsors together can create a huge difference for the hospital in Masanga by running and donating small amounts.</p>\n"
-"<p>As a runner, you find one or more sponsors, who support Masanga with a small amount for each kilometre you run. Furthermore the sponsor can support Masanga with a bigger amount, for an example by making a challenge, in connection to you achieving one of your running goals.</p>\n"
-"<p>It could be to complete a half marathon or a DHL race. Depending on how far you run throughout the year, and if you reach your goals, your sponsor pays x amount of money, which will go to the Masanga Hospital.</p>\n"
-"<p>”I am a Masanga Runner because it’s a form of motivation to get outside. As a Masanga Runner I know that it’s not just me getting something out of my runs,” says Søren Bo Steendahl, who has been a Masanga Runner since Fall 2014.</p>\n"
-"<p>On this website, you can create an account and be a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make bets about your performance on runs – you’re only limited by your imagination! </p>\n"
-"<h4>Tax Credits</h4>\n"
-"<p>Masanga Hospital Rehabilitation Project is approved as a charitable organisation, so you can receive tax credits for your donations – all the way up to DKK 15,000. Masanga Runners sends out an email once a year to everyone who’s donated, asking them if they’re interested in the tax credits. You only need to provide your CPR number or your CVR number.</p>\n"
-"<h4>Sponsorship Termination</h4>\n"
-"<p>You can end your sponsorships at any time, both as a runner and as a sponsor. You do this by clicking the ”end sponsorship” button by the relevant sponsorship.</p>\n"
-"<h4>Masanga Runners t-shirt</h4>\n"
-"<p>You can advertise your good work by buying a nice Masanga Runners t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" style=\"text-decoration:underline;\">here</a>! It costs 250 kr., 50 of which go directly to Masanga. The rest goes to shipping, handling, and the t-shirt itself.</p>\n"
-"<h4>Contact</h4>\n"
-"<p>If you have any questions or comments regarding Masanga Runners, you’re welcome to contact us by email at masangarunners@masanga.dk.</p>\n"
-msgstr ""
-"\n"
-"<h4>Hvert skridt gør en forskel</h4>\n"
-"<p>Masanga Runners er ikke bare en nem måde at støtte et godt projekt på. Det er også med til at gøre det lidt sjovere at hoppe i løbeskoene. Med Masanga Runners kan du udfordre dine løbevenner, men også involvere familie og venner i dine løbeture og verdens bedste hospitalsprojekt. </p>\n"
-"<p>Idéen bag Masanga Runners er, at mange løbere og sponsorer sammen kan gøre en kæmpe forskel for hospitalet i Masanga ved at donere og løbe forholdsvis små beløb ind.</p>\n"
-"<p>Som løber finder du en eller flere sponsorer, der støtter Masanga hospitalet med et øre- eller kronebeløb for hver kilometer du løber – eks. 50 øre eller 1 kr. Herudover kan sponsoren støtte Masanga med et bonusbeløb i forbindelse med, at du opnår en af dine målsætninger – eks. gennemførelse af en halvmaraton eller forbedrer din personlige rekord på en given distance. Afhængig af hvor langt du løber, og om du når dine mål, betaler din sponsor x antal kroner, som går til Masanga Hospitalet.</p>\n"
-"<p>”Jeg er Masanga Runner, fordi det er en form for motivation til at komme afsted. Som Masanga Runners ved jeg, at det ikke kun er mig, der får noget ud af min løbetur”, siger Søren Bo Steendahl, der har været Masanga Runner siden efteråret 2014.</p>\n"
-"<p>Her på siden kan du oprette en bruger og blive en del af Masanga Runners fællesskabet. Du kan invitere dine venner til at sponsorere dig, dele din side på diverse sociale medier og lave væddemål om deltagelse i et løb - det er kun fantasien, der sætter grænser!</p>\n"
-"<h4>Skattefradrag</h4>\n"
-"<p>Masanga Hospital Rehabilitation Project er godkendt som en almenvelgørende forening, og du kan derfor opnå skattefradrag for dine donationer – helt op til 15.000 kr. Masanga Runners udsender ved udgangen af året en mail til alle, der \n"
-"har doneret penge og spørger, om de er interesseret i et sådant fradrag. Det eneste du skal oplyse til den tid, er dit CPR-nummer eller CVR-nummer.</p>\n"
-"<h4>Opsigelse\t</h4>\n"
-"<p>Du kan til enhver tid afslutte dine sponsorater – både som løber og sponsor.  Det gør du ved at trykke på ”slut sponsoraftale” ud for den givne aftale.</p>\n"
-"<h4>Masanga Runners t-shirt</h4>\n"
-"<p>Du kan reklamere for den gode sag ved at købe en lækker Masanga Runners t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" style=\"text-decoration:underline;\">her</a>! Den koster 250 kr. og 50 af dem går direkte til Masanga. Resten går til tryk, forsendelse og selve t-shirten.</p>\n"
-"<h4>Kontakt</h4>\n"
-"<p>Har du spørgsmål eller lignende vedrørende Masanga Runners, er du velkommen til at kontakte os på mail: masangarunners@masanga.dk.</p>\n"
-
-#: Running/templates/Running/invite.html:7
-msgid "Sponsor a Runner"
-msgstr "Sponsorér en løber."
-
-#: Running/templates/Running/invite.html:40
-#, python-format
-msgid ""
-"\n"
-"Invite %(sponsor_name)s to sponsor you!\n"
-msgstr ""
-"\n"
-"Inviter %(sponsor_name)s til at sponsorere dig.\n"
-
-#: Running/templates/Running/invite.html:44
-#, fuzzy
-#| msgid "ite %(sponsor_name)s to sponsor you!\n"
-msgid "Invite someone to sponsor you!"
-msgstr "Inviter %(sponsor_name)s til at sponsorere dig."
-
-#: Running/templates/Running/invite.html:50
-#: Running/templates/Running/challenge_invite.html:42
-#, python-format
-msgid ""
-"\n"
-"Fill out this form with the values you'd like to suggest to %(sponsor_name)s. You can leave anything that you want blank.\n"
-msgstr ""
-"\n"
-"Udfyld formularen med de værdier og datoer du vil foreslå %(sponsor_name)s. Du kan også undlade at udfylde nogle felter og lade dette være helt op til %(sponsor_name)s.\n"
-
-#: Running/templates/Running/invite.html:54
-#, fuzzy
-#| msgid ""
-#| " values you'd like to suggest to ponsor_name)s. You  ve ngat you t nk.\n"
-msgid ""
-"Fill out this form with the values you'd like to suggest to your potential "
-"sponsor. You can leave anything that you want blank."
-msgstr ""
-"Udfyld formularen med de værdier og datoer du vil foreslå %(sponsor_name)s. "
-"Du kan også undlade at udfylde nogle felter og lade dette være helt op til "
-"%(sponsor_name)s."
-
-#: Running/templates/Running/invite.html:87
-#: Running/templates/Running/run_edit.html:63
-#: Running/templates/Running/run_input.html:87
-#: Running/templates/Running/sponsorship.html:77
-#: Running/templates/Running/user_donated.html:208
-#: Running/templates/Running/user_donated.html:246
-#: Running/templates/Running/user_raised.html:234
-#: Running/templates/Running/user_raised.html:272
-#: Running/templates/Running/user_raised.html:312
-#: Running/templates/Running/user_runs.html:162
-#: Running/templates/Running/challenge.html:67
-#: Running/templates/Running/challenge_invite.html:72
-#: Running/templates/Running/challenge_update.html:46
-msgid "Submit"
-msgstr "Send"
-
-#: Running/templates/Running/overview.html:5
-#: Running/templates/Running/overview.html:7
-msgid "Overview"
-msgstr "Oversigt"
-
-#: Running/templates/Running/overview.html:12
-msgid "All sponsorships"
-msgstr "Alle sponsorater"
-
-#: Running/templates/Running/overview.html:15
-#: Running/templates/Running/overview.html:71
-#: Running/templates/Running/user.html:149
-#: Running/templates/Running/user.html:261
-#: Running/templates/Running/user_raised.html:84
-#: Running/templates/Running/user_raised.html:172
-msgid "Sponsor"
-msgstr "Sponsor"
-
-#: Running/templates/Running/overview.html:16
-#: Running/templates/Running/overview.html:72
-#: Running/templates/Running/user.html:292
-#: Running/templates/Running/user.html:343
-#: Running/templates/Running/user_donated.html:91
-#: Running/templates/Running/user_donated.html:145
-msgid "Runner"
-msgstr "Løber"
-
-#: Running/templates/Running/overview.html:17
-msgid "Rate"
-msgstr "Sats (kr./øre.)"
-
-#: Running/templates/Running/overview.html:18
-#: Running/templates/Running/overview.html:107
-msgid "Amount Earned"
-msgstr "Optjent beløb"
-
-#: Running/templates/Running/overview.html:19
-msgid "Amount Paid"
-msgstr "Betalt beløb"
-
-#: Running/templates/Running/overview.html:20
-msgid "Amount Left to Pay"
-msgstr "Manglende beløb til betaling"
-
-#: Running/templates/Running/overview.html:21
-msgid "Max Amount"
-msgstr "Maks beløb"
-
-#: Running/templates/Running/overview.html:22
-#: Running/templates/Running/user.html:152
-#: Running/templates/Running/user_raised.html:87
-msgid "Started"
-msgstr "Startede"
-
-#: Running/templates/Running/overview.html:23
-#: Running/templates/Running/user.html:153
-#: Running/templates/Running/user.html:295
-#: Running/templates/Running/user_donated.html:94
-#: Running/templates/Running/user_raised.html:88
-msgid "Continues Until"
-msgstr "Løber indtil"
-
-#: Running/templates/Running/overview.html:24
-msgid "Active"
-msgstr "Aktiv"
-
-#: Running/templates/Running/overview.html:25
-msgid "Change Total Amount Paid"
-msgstr "Ændr det totale beløb, der er betalt"
-
-#: Running/templates/Running/overview.html:58
-msgid "The sponsor is using a card"
-msgstr ""
-
-#: Running/templates/Running/overview.html:68
-msgid "All Challenges"
-msgstr ""
-
-#: Running/templates/Running/overview.html:73
-#, fuzzy
-#| msgid "Account"
-msgid "Amount"
-msgstr "Konto"
-
-#: Running/templates/Running/overview.html:74
-msgid "Fulfilled"
-msgstr ""
-
-#: Running/templates/Running/overview.html:75
-msgid "Paid"
-msgstr ""
-
-#: Running/templates/Running/overview.html:76
-msgid "Remind Date"
-msgstr ""
-
-#: Running/templates/Running/overview.html:77
-msgid "Decision Date"
-msgstr ""
-
-#: Running/templates/Running/overview.html:78
-msgid "Challenge Text"
-msgstr ""
-
-#: Running/templates/Running/overview.html:79
-msgid "Update Text"
-msgstr ""
-
-#: Running/templates/Running/overview.html:101
-#, fuzzy
-#| msgid "Users:"
-msgid "All Users"
-msgstr "Brugere:"
-
-#: Running/templates/Running/overview.html:104
-msgid "Username"
-msgstr "Brugernavn"
-
-#: Running/templates/Running/overview.html:105
-msgid "Email"
-msgstr "Email"
-
-#: Running/templates/Running/overview.html:106
-msgid "Is public"
-msgstr "Er offentlig"
-
-#: Running/templates/Running/overview.html:108
-msgid "Amount Donated"
-msgstr "Doneret beløb"
-
-#: Running/templates/Running/overview.html:122
-msgid "All email addresses"
-msgstr "Alle email-addresser"
-
-#: Running/templates/Running/overview.html:136
-#, fuzzy
-#| msgid "All email addresses"
-msgid "Newsletter email addresses"
-msgstr "Alle email-addresser"
-
-#: Running/templates/Running/overview.html:154
-#, fuzzy
-#| msgid "rry, you need to be an admin to access this page.\n"
-msgid "Sorry, you need to be an admin to access this page."
-msgstr ""
-"Beklager, du skal være administrator for at kunne se denne side.\n"
-"    "
-
-#: Running/templates/Running/run_edit.html:7
-#: Running/templates/Running/run_input.html:7
-msgid ""
-"\n"
-"Input a Run\n"
-msgstr ""
-"\n"
-"Indtast dine løbeture. \n"
-
-#: Running/templates/Running/run_edit.html:28
-msgid "Edit your run"
-msgstr "Rediger længden af din løbetur."
-
-#: Running/templates/Running/run_edit.html:32
-msgid "Make end date the same as start date if it was a single run."
-msgstr ""
-"Vær sikker på at startdatoen er den samme som slutdatoen hvis du du kun "
-"indtaster én løbetur."
-
-#: Running/templates/Running/run_input.html:31
-msgid "Input a new Run"
-msgstr "Indtast en ny løbetur"
-
-#: Running/templates/Running/run_input.html:69
-#: Running/templates/Running/user_runs.html:145
-msgid "Entering multiple runs?"
-msgstr "Vil du indtaste flere løbeture?"
-
-#: Running/templates/Running/signup_or_login.html:8
-#: Running/templates/Running/signup_or_login.html:72
-#: RunningCause/templates/account/login.html:8
-#: RunningCause/templates/account/login.html:12
-#: RunningCause/templates/account/login.html:53
-#: RunningCause/templates/account/signup.html:36
-#: templates/account/login.html:8 templates/account/login.html.py:12
-#: templates/account/login.html:65 templates/account/signup.html:76
-msgid "Sign In"
-msgstr "Log ind"
-
-#: Running/templates/Running/signup_or_login.html:22
-#: RunningCause/templates/account/login.html:15
-#: templates/account/login.html:15
-#, python-format
-msgid ""
-"Please sign in with one\n"
-"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a>\n"
-"for a %(site_name)s account and sign in below:"
-msgstr ""
-"Log venligst ind med en \n"
-" af dine konti. Eller, <a href=\"%(signup_url)s\"> sign up </a> for en %(site_name)s konto og log ind nedenfor:"
-
-#: Running/templates/Running/signup_or_login.html:32
-#: RunningCause/templates/account/login.html:25
-#: templates/account/login.html:25
-msgid "or"
-msgstr "eller"
-
-#: Running/templates/Running/signup_or_login.html:71
-#: RunningCause/templates/account/login.html:52
-#: RunningCause/templates/account/signup.html:35
-#: templates/account/login.html:64 templates/account/signup.html:75
-msgid "Forgot Password?"
-msgstr "Glemt kodeord?"
-
-#: Running/templates/Running/signup_or_login.html:132
-#: RunningCause/templates/account/signup.html:11
-#: RunningCause/templates/socialaccount/signup.html:9
-#: RunningCause/templates/socialaccount/signup.html:20
-#: templates/account/signup.html:11 templates/socialaccount/signup.html:9
-#: templates/socialaccount/signup.html:20
-msgid "Sign Up"
-msgstr "Opret en bruger"
-
-#: Running/templates/Running/sponsorship.html:42
-msgid "Create a new Sponsorship"
-msgstr "Lav et nyt sponsorat"
-
-#: Running/templates/Running/sponsorship.html:48
-msgid ""
-"Here are the values that were recommended for the sponsorship. Feel free to "
-"change whatever you'd like."
-msgstr ""
-"Her er de værdier vi anbefaler for sponsoratet. Du kan ændre ligeså meget du"
-" vil"
-
-#: Running/templates/Running/subscribed_success.html:14
-#, fuzzy
-#| msgid "Password successfully set."
-msgid "You have successfully subscribed."
-msgstr "Adgangskode er nu indtastet"
-
-#: Running/templates/Running/unsubscribed_success.html:14
-msgid "You have successfully unsubscribed."
-msgstr ""
-
-#: Running/templates/Running/user.html:80
-msgid "Input a run!"
-msgstr "Registrér en løbetur!"
-
-#: Running/templates/Running/user.html:84
-#: Running/templates/Running/user_runs.html:173
-msgid "Register with runkeeper!"
-msgstr "Kobl dig op med Runkeeper!"
-
-#: Running/templates/Running/user.html:88
-msgid "Invite a sponsor without a Masanga Runners account!"
-msgstr ""
-
-#: Running/templates/Running/user.html:93
-#: Running/templates/Running/user_settings.html:119
-msgid "Click here to make your page private."
-msgstr "Klik her for at gøre din side privat."
-
-#: Running/templates/Running/user.html:95
-#: Running/templates/Running/user_settings.html:127
-msgid "Click here to make your page public."
-msgstr "Klik her for at gøre din side offentlig."
-
-#: Running/templates/Running/user.html:100
-#: Running/templates/Running/user_settings.html:139
-msgid "Unsubscribe from our emails"
-msgstr ""
-
-#: Running/templates/Running/user.html:113
-#, fuzzy, python-format
-#| msgid "ponsor %(username)s!\n"
-msgid ""
-"\n"
-"                    Sponsor %(username)s!\n"
-"                    "
-msgstr ""
-"\n"
-"Sponsorer %(username)s!"
-
-#: Running/templates/Running/user.html:119
-#, fuzzy, python-format
-#| msgid "nvite %(username)s to sponsor you! \n"
-msgid ""
-"\n"
-"                    Invite %(username)s to sponsor you! \n"
-"                    "
-msgstr ""
-"\n"
-"Inviter %(username)s til at sponsorere dig!"
-
-#: Running/templates/Running/user.html:125
-#, fuzzy, python-format
-#| msgid "nvite %(username)s to sponsor you! \n"
-msgid ""
-"\n"
-"                    Challenge %(username)s to a challenge! \n"
-"                    "
-msgstr ""
-"\n"
-"Inviter %(username)s til at sponsorere dig!"
-
-#: Running/templates/Running/user.html:131
-#, fuzzy, python-format
-#| msgid "nvite %(username)s to sponsor you! \n"
-msgid ""
-"\n"
-"                    Invite %(username)s to challenge you to a challenge! \n"
-"                    "
-msgstr ""
-"\n"
-"Inviter %(username)s til at sponsorere dig!"
-
-#: Running/templates/Running/user.html:146
-#: Running/templates/Running/user_raised.html:81
-msgid "Sponsorships Recieved"
-msgstr "Modtagne sponsorater"
-
-#: Running/templates/Running/user.html:150
-#: Running/templates/Running/user.html:293
-#: Running/templates/Running/user_donated.html:92
-#: Running/templates/Running/user_raised.html:85
-msgid "Rate(kr/km)"
-msgstr "Sats (kr./km.)"
-
-#: Running/templates/Running/user.html:151
-#: Running/templates/Running/user.html:294
-#: Running/templates/Running/user_donated.html:93
-#: Running/templates/Running/user_raised.html:86
-msgid "Maximum Possible Amount (kr)"
-msgstr "Hvad vil jeg maks donere"
-
-#: Running/templates/Running/user.html:154
-#: Running/templates/Running/user.html:296
-#: Running/templates/Running/user_donated.html:95
-#: Running/templates/Running/user_raised.html:89
-msgid "Amount Earned (kr)"
-msgstr "Optjent beløb"
-
-#: Running/templates/Running/user.html:169
-#: Running/templates/Running/user.html:309
-#: Running/templates/Running/user_donated.html:109
-#: Running/templates/Running/user_raised.html:105
-msgid "End Sponsorship"
-msgstr "Slut sponsorat"
-
-#: Running/templates/Running/user.html:189
-#: Running/templates/Running/user_raised.html:127
-msgid "Anonymous Sponsor"
-msgstr "Anonym sponsor"
-
-#: Running/templates/Running/user.html:210
-#: Running/templates/Running/user.html:324
-#: Running/templates/Running/user_donated.html:127
-#: Running/templates/Running/user_raised.html:149
-msgid "Hmm, there don't seem to be any sponsorships here."
-msgstr "Mærkeligt! Vi kan ikke finde nogle sponsorater her."
-
-#: Running/templates/Running/user.html:218
-#: Running/templates/Running/user_raised.html:157
-msgid "Total Amount Earned:"
-msgstr "Total optjent beløb"
-
-#: Running/templates/Running/user.html:227
-#: Running/templates/Running/user_runs.html:71
-#, fuzzy
-#| msgid "Runs:"
-msgid "Runs"
-msgstr "Løbeture:"
-
-#: Running/templates/Running/user.html:231
-#: Running/templates/Running/user_runs.html:75
-msgid "Date"
-msgstr "Dato"
-
-#: Running/templates/Running/user.html:232
-#: Running/templates/Running/user_runs.html:76
-msgid "Distance (km)"
-msgstr "Distance (km.)"
-
-#: Running/templates/Running/user.html:239
-#: Running/templates/Running/user_runs.html:86
-msgid "Edit Run Details"
-msgstr "Rediger løbedetaljer"
-
-#: Running/templates/Running/user.html:244
-#: Running/templates/Running/user_runs.html:91
-msgid "Hmm, there don't seem to be any runs here."
-msgstr "Mærkeligt! Vi kan ikke finde nogen løbeture her."
-
-#: Running/templates/Running/user.html:248
-#: Running/templates/Running/user_runs.html:95
-msgid "Total Distance Run:"
-msgstr "Total distance løbet"
-
-#: Running/templates/Running/user.html:257
-#: Running/templates/Running/user_raised.html:168
-#, fuzzy
-#| msgid "Sponsorships Recieved"
-msgid "Challenges Recieved"
-msgstr "Modtagne sponsorater"
-
-#: Running/templates/Running/user.html:262
-#: Running/templates/Running/user.html:344
-#: Running/templates/Running/user_donated.html:146
-#: Running/templates/Running/user_raised.html:173
-#, fuzzy
-#| msgid "Amount Paid"
-msgid "Amount (dkk)"
-msgstr "Betalt beløb"
-
-#: Running/templates/Running/user.html:263
-#: Running/templates/Running/user.html:345
-#: Running/templates/Running/user_donated.html:147
-#: Running/templates/Running/user_raised.html:174
-#, fuzzy
-#| msgid "Date"
-msgid "End Date"
-msgstr "Dato"
-
-#: Running/templates/Running/user.html:264
-#: Running/templates/Running/user.html:346
-#: Running/templates/Running/user_donated.html:148
-#: Running/templates/Running/user_raised.html:175
-msgid "Bet"
-msgstr ""
-
-#: Running/templates/Running/user.html:274
-#: Running/templates/Running/user.html:356
-#: Running/templates/Running/user_donated.html:158
-#: Running/templates/Running/user_raised.html:185
-#, fuzzy
-#| msgid "Hmm, there don't seem to be any runs here."
-msgid "Hmm, there don't seem to be any challenges here."
-msgstr "Mærkeligt! Vi kan ikke finde nogen løbeture her."
-
-#: Running/templates/Running/user.html:285
-#: Running/templates/Running/user_donated.html:85
-msgid "You are sponsoring"
-msgstr ""
-
-#: Running/templates/Running/user.html:287
-#: Running/templates/Running/user_donated.html:87
-#, python-format
-msgid "%(username)s is sponsoring"
-msgstr ""
-
-#: Running/templates/Running/user.html:330
-#: Running/templates/Running/user_donated.html:133
-msgid "Total Amount Donated: "
-msgstr "Total beløb doneret"
-
-#: Running/templates/Running/user.html:339
-#: Running/templates/Running/user_donated.html:142
-msgid "Challenges Given"
-msgstr ""
-
-#: Running/templates/Running/user.html:370
-#: Running/templates/Running/user_donated.html:165
-#: Running/templates/Running/user_raised.html:192
-#: Running/templates/Running/user_runs.html:188
-msgid "Sorry, this user has chosen to make their information private."
-msgstr ""
-"Denne bruger har desværre besluttet sig for at gøre sine informationer om "
-"løbeture og sponsorater private."
-
-#: Running/templates/Running/user.html:388
-#: Running/templates/Running/user_donated.html:56
-#: Running/templates/Running/user_raised.html:56
-#: Running/templates/Running/user_runs.html:43
-#: Running/templates/Running/user_settings.html:31
-msgid "You have to make your page public before you can share it."
-msgstr "Din side skal være offentlig for at du kan \"share\"."
-
-#: Running/templates/Running/user_donated.html:177
-#, python-format
-msgid ""
-"\n"
-"        You can fill out the form below to invite %(username)s to sponsor you. Feel free to leave whatever you want blank. %(username)s will get an email notifying them that you requested them as a sponsor, and the values you do fill out will be displayed to them. They can then choose to sponsor you immediately, change or add some values and then sponsor you, or decline entirely.\n"
-"        "
-msgstr ""
-"\n"
-"Du kan udfylde formularen nedenfor, for at invitere %(username)s til at sponsorere dig. Det er op til dig, hvor mange felter du vil udfylde. %(username)s vil få en e-mail med information om, at du har anmodet ham/hende om at sponsorere dig. %(username)s kan herefter vælge at sponsorere dig med de værdier du har indtastet, vælge at ændre og/eller tilføje værdier, eller ignorere din invitation."
-
-#: Running/templates/Running/user_donated.html:215
-#, python-format
-msgid ""
-"\n"
-"        Alternatively, fill out these fields to invite %(username)s to challenge you to a challenge. Feel free to leave whatever you want blank. %(username)s will get an email notifying them that you requested you to challenge them, and the values you do fill out will be displayed to them. They can then choose to challenge you immediately, change or add some values and then challenge you, or decline entirely.\n"
-"        "
-msgstr ""
-
-#: Running/templates/Running/user_raised.html:202
-msgid ""
-"\n"
-"        Fill out these fields below to invite someone who doesn't currently have a Masanga account to sponsor you. They will get an email inviting them to create an account and sponsor you.\n"
-"        "
-msgstr ""
-
-#: Running/templates/Running/user_raised.html:242
-#, python-format
-msgid ""
-"\n"
-"            Fill out these fields down here to sponsor %(username)s. Between the dates in start date and end date, any time %(username)s runs, you will agree to donate the number of dkk in the \"rate\" field to Masanga Hospital. If you're worried that your runner will run too much, don't worry too much! You won't be charged more than the number you put in the \"max amount\" field, no matter how much they run.\n"
-"        "
-msgstr ""
-"\n"
-"Udfyld felterne for at sponsorere %(username)s. Hver gang %(username)s løber inden for start- og slutdatoen, accepterer du at donere det beløb du har indtastet, til Masanga Hospitalet. Er du bekymret for at din løber løber for meget? Bekymr dig ikke for meget! Du bliver ikke trukket mere end det beløb du har indtastet i feltet maksbeløb, uanset hvor meget vedkommende løber."
-
-#: Running/templates/Running/user_raised.html:282
-#, python-format
-msgid ""
-"\n"
-"        Alternatively, fill out these fields to set up a challenge with %(username)s. If they complete whatever you specify the bet is, by the time you list in end date, then you agree to pay the amount listed in the amount field, in dkk. Worried they'll cheat? No need to fret! At the end of the time period, you're the only one who gets to make the call about whether or not you pay.\n"
-"        "
-msgstr ""
-
-#: Running/templates/Running/user_runs.html:109
-msgid ""
-"\n"
-"    Here, you can input a run! All your sponsors will have the distance you ran added to tab for their sponsorship, and they'll be billed at the end of the month.\n"
-"    "
-msgstr ""
-
-#: Running/templates/Running/user_runs.html:169
-msgid ""
-"\n"
-"    Alternatively, you can connect your Masanga Runners account to your Runkeeper account! Runkeeper is a mobile app that makes it easy to keep track of your runs. If you connect your accounts, your runs will automatically show up on Masanga Runners every day.\n"
-"    "
-msgstr ""
-
-#: Running/templates/Running/user_runs.html:180
-#, python-format
-msgid ""
-"\n"
-"        These are all of the runs that %(username)s has synced with Masanga Runners. At the end of the quater, anyone who was sponsoring %(username)s for this period will be billed, depending on their rates, challenges etc., and the money will be sent to Masanga Hospital.\n"
-"    "
-msgstr ""
-"\n"
-"Her kan du se hvor mange kilometer %(username)s har synkroniseret med Masanga Runners. Ved udgangen af kvartalet vil alle der sponsorerer %(username)s blive opkrævet et beløb afhængig af sponsoraftale, væddemål, maksbeløb osv., hvorefter pengene sendes til Masanga Hospitalet."
-
-#: Running/templates/Running/user_settings.html:58
-msgid ""
-"\n"
-"        Click the card below to register a credit card with Masanga Runners. If you do this, you won't be charged anything initially. From then on, whenever you agree to pay out a challenge, or a runner you're sponsoring runs, you card will be automatically charged, without having to do anything!\n"
-"        "
-msgstr ""
-
-#: Running/templates/Running/user_settings.html:102
-msgid ""
-"\n"
-"            Click the button below if you want to have Masanga Runners forget your card.\n"
-"            "
-msgstr ""
-
-#: Running/templates/Running/user_settings.html:107
-msgid "Forget your card."
-msgstr ""
-
-#: Running/templates/Running/user_settings.html:114
-msgid ""
-"\n"
-"            Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and challenges, click the button below to make your page private.\n"
-"            "
-msgstr ""
-
-#: Running/templates/Running/user_settings.html:122
-msgid ""
-"\n"
-"            Right now, no one can see your page. Potential sponsors won't be able to see information on you when they're trying to decide whether or not to sponsor you. If you want people to be able to see your information, click the button below to make your page public.\n"
-"            "
-msgstr ""
-
-#: Running/templates/Running/user_settings.html:134
-msgid ""
-"\n"
-"            Click the button below if you want to unsubscribe from all reminder emails from us.\n"
-"            "
-msgstr ""
-
-#: Running/templates/Running/user_settings.html:144
-msgid ""
-"\n"
-"            Click the button below if you want to subscribe to reminder emails.\n"
-"            "
-msgstr ""
-
-#: Running/templates/Running/user_settings.html:149
-msgid "Subscribe to our emails"
-msgstr ""
-
-#: Running/templates/Running/challenge.html:32
-#, fuzzy
-#| msgid "Create a new Sponsorship"
-msgid "Create a new Challenge"
-msgstr "Lav et nyt sponsorat"
-
-#: Running/templates/Running/challenge.html:38
-#, fuzzy
-#| msgid "re recommended for the sponsorship. Feel free ngeatever 'd e."
-msgid ""
-"Here are the values that were recommended for the challenge. Feel free to change"
-" whatever you'd like."
-msgstr ""
-"Her er de værdier vi anbefaler for sponsoratet. Du kan ændre ligeså meget du"
-" vil"
-
-#: Running/templates/Running/challenge_confirm_success.html:14
-msgid "Thank you! Your challenge has been confirmed."
-msgstr ""
-
-#: Running/templates/Running/challenge_deny_success.html:14
-msgid "Thank you! Your challenge has been declined."
-msgstr ""
-
-#: Running/templates/Running/challenge_invite.html:7
-msgid "Make a Challenge"
-msgstr ""
-
-#: Running/templates/Running/challenge_invite.html:36
-#, fuzzy, python-format
-#| msgid "ite %(sponsor_name)s to sponsor you!\n"
-msgid ""
-"\n"
-"Invite %(sponsor_name)s to a Challenge!\n"
-msgstr ""
-"\n"
-"Inviter %(sponsor_name)s til at sponsorere dig.\n"
-
-#: Running/templates/Running/challenge_update.html:7
-msgid "Update a Challenge"
-msgstr ""
-
-#: Running/templates/Running/challenge_update.html:11
-msgid ""
-"\n"
-"Update your Challenge!\n"
-msgstr ""
-
-#: Running/templates/Running/challenge_update.html:17
-#, fuzzy, python-format
-#| msgid ""
-#| " values you'd like to suggest to ponsor_name)s. You  ve ngat you t nk.\n"
-msgid ""
-"\n"
-"Fill out this form with the values you'd like to suggest to %(challenge.sponsor.username)s. You can leave anything that you want blank.\n"
-msgstr ""
-"\n"
-"Udfyld formularen med de værdier og datoer du vil foreslå %(sponsor_name)s. Du kan også undlade at udfylde nogle felter og lade dette være helt op til %(sponsor_name)s.\n"
-
-#: Running/templates/Running/challenge_update_success.html:14
-msgid "Thank you! Your update has been saved."
-msgstr ""
-
-#: Running/templates/masanga_base.html:69
-msgid "ABOUT US"
-msgstr "OM OS"
-
-#: Running/templates/masanga_base.html:72
-msgid "MY PAGE"
-msgstr ""
-
-#: Running/templates/masanga_base.html:75
-msgid "ABOUT MASANGA HOSPITAL"
-msgstr ""
-
-#: Running/templates/masanga_base.html:79
-msgid "OVERVIEW"
-msgstr ""
-
-#: RunningCause/settings.py:155
+#: RunningCause/settings.py:167
 msgid "English"
 msgstr "Engelsk"
 
-#: RunningCause/settings.py:156
+#: RunningCause/settings.py:168
 msgid "Danish"
 msgstr "Dansk"
 
 #: RunningCause/templates/account/account_inactive.html:5
 #: RunningCause/templates/account/account_inactive.html:8
-#: templates/account/account_inactive.html:5
-#: templates/account/account_inactive.html:8
 msgid "Account Inactive"
-msgstr "Inaktiv konto"
+msgstr "Kontoen er inaktiv"
 
 #: RunningCause/templates/account/account_inactive.html:10
-#: templates/account/account_inactive.html:10
 msgid "This account is inactive."
 msgstr "Denne konto er inaktiv"
 
-#: RunningCause/templates/account/email.html:6 templates/account/email.html:6
+#: RunningCause/templates/account/email.html:6
 msgid "Account"
 msgstr "Konto"
 
-#: RunningCause/templates/account/email.html:9 templates/account/email.html:9
+#: RunningCause/templates/account/email.html:9
 msgid "E-mail Addresses"
 msgstr "E-mail adresser"
 
 #: RunningCause/templates/account/email.html:11
-#: templates/account/email.html:11
 msgid "The following e-mail addresses are associated with your account:"
-msgstr "De følgende e-mail adresser er associeret med din konto"
+msgstr "Følgende e-mail adresse er tilføjet til din konto:"
 
 #: RunningCause/templates/account/email.html:25
-#: templates/account/email.html:25
 msgid "Verified"
-msgstr "Bekræftet"
+msgstr "Godkendt"
 
 #: RunningCause/templates/account/email.html:27
-#: templates/account/email.html:27
 msgid "Unverified"
-msgstr "Ubekræftet"
+msgstr "Ikke godkendt"
 
 #: RunningCause/templates/account/email.html:29
-#: templates/account/email.html:29
 msgid "Primary"
 msgstr "Primær"
 
 #: RunningCause/templates/account/email.html:35
-#: templates/account/email.html:35
 msgid "Make Primary"
-msgstr "Gør til primær"
+msgstr "Gør primær"
 
 #: RunningCause/templates/account/email.html:36
-#: templates/account/email.html:36
 msgid "Re-send Verification"
-msgstr "Gensend bekræftelse"
+msgstr "Gen-send verifikation"
 
 #: RunningCause/templates/account/email.html:37
 #: RunningCause/templates/socialaccount/connections.html:36
-#: templates/account/email.html:37 templates/socialaccount/connections.html:36
 msgid "Remove"
 msgstr "Fjern"
 
 #: RunningCause/templates/account/email.html:44
-#: templates/account/email.html:44
 msgid "Warning:"
-msgstr "Advarsel"
+msgstr "Advarsel:"
 
 #: RunningCause/templates/account/email.html:44
-#: templates/account/email.html:44
-msgid ""
-"You currently do not have any e-mail address set up. You should really add "
-"an e-mail address so you can receive notifications, reset your password, "
-"etc."
-msgstr ""
-"Du har på nuværende tidspunkt ikke tilknyttet en e-mail adresse. Det bør du "
-"gøre, så du kan modtage notifikationer, nulstille dit kodeord osv."
+msgid "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc."
+msgstr "Lige nu har du ingen e-mail adresse sat op. Du bør virkelig tilføje en e-mail adresse så du kan modtage påmindelser, nulstille dit kodeord, mv."
 
 #: RunningCause/templates/account/email.html:49
-#: templates/account/email.html:49
 msgid "Add E-mail Address"
 msgstr "Tilføj e-mail adresse"
 
 #: RunningCause/templates/account/email.html:54
-#: templates/account/email.html:54
 msgid "Add E-mail"
 msgstr "Tilføj e-mail"
 
 #: RunningCause/templates/account/email.html:63
-#: templates/account/email.html:63
 msgid "Do you really want to remove the selected e-mail address?"
-msgstr "Er du sikker på at du vil fjerne den valgte e-mail adresse?"
+msgstr "Ønsker du virkelig at fjerne den valgte e-mail adresse?"
 
-#: RunningCause/templates/account/email/email_confirmation_message.txt:1
-#: templates/account/email/email_confirmation_message.txt:1
+#: RunningCause/templates/account/email/email_confirmation_message.html:9
 #, python-format
-msgid ""
-"User %(user_display)s at %(site_name)s has given this as an email address.\n"
-"\n"
-"To confirm this is correct, go to %(activate_url)s\n"
-msgstr ""
-"Brugeren %(user_display)s på %(site_name)s har indtastet dette som en e-mail adresse.\n"
-"\n"
-"Gå til %(activate_url)s for at bekræfte at dette er korrekt.\n"
+msgid "You're receiving this e-mail because user %(user_display)s at %(site_domain)s has given yours as an e-mail address to connect their account."
+msgstr "Du modtager denne e-mail fordi brugeren %(user_display)s på %(site_domain)s har tilknyttet denne e-mail adresse som til deres konto."
 
-#: RunningCause/templates/account/email/email_confirmation_subject.txt:3
+#: RunningCause/templates/account/email/email_confirmation_message.html:12
+msgid "To confirm this is correct:"
+msgstr "For at bekræfte at dette er korrekt:"
+
+#: RunningCause/templates/account/email/email_confirmation_message.html:14
+msgid "Click here to activate"
+msgstr "Klik her for at aktivere"
+
+#: RunningCause/templates/account/email/password_reset_key_message.html:6
+#, python-format
+msgid "You're receiving this e-mail because you or someone else has requested a password for your user account at %(site_domain)s."
+msgstr "Du modtager denne e-mail fordi du eller en anden har efterspurgt et kodeord til din konto på %(site_domain)s."
+
+#: RunningCause/templates/account/email/password_reset_key_message.html:9
+msgid "It can be safely ignored if you did not request a password reset. Click the link below to reset your password."
+msgstr "Du kan blot set bort fra dette hvis du ikke efterspurgte at nulstille dit kodeord. Klik på linket nedenfor for at nulstille kodeordet."
+
+# ..
+#: RunningCause/templates/account/email/password_reset_key_message.html:13
+msgid "Click here to reset your password."
+msgstr "Klik her for at nulstille dit kodeord."
+
+#: RunningCause/templates/account/email/password_reset_key_message.html:18
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr "I tilfælde af at du at glemt dit brugernavn, er det %(username)s."
+
 #: RunningCause/templates/account/email_confirm.html:7
 #: RunningCause/templates/account/email_confirm.html:11
 #: RunningCause/templates/account/email_confirmed.html:6
 #: RunningCause/templates/account/email_confirmed.html:11
-#: templates/account/email/email_confirmation_subject.txt:3
-#: templates/account/email_confirm.html:7
-#: templates/account/email_confirm.html:11
-#: templates/account/email_confirmed.html:6
-#: templates/account/email_confirmed.html:11
 msgid "Confirm E-mail Address"
 msgstr "Bekræft e-mail adresse"
 
-#: RunningCause/templates/account/email/password_reset_key_message.txt:1
-#: templates/account/email/password_reset_key_message.txt:1
-#, python-format
-msgid ""
-"You're receiving this e-mail because you or someone else has requested a password for your user account at %(site_domain)s.\n"
-"It can be safely ignored if you did not request a password reset. Click the link below to reset your password."
-msgstr ""
-"Du modtager denne e-mail fordi du eller en anden har bedt om en adgangskode "
-"til din bruger på %(site_domain)s.Du kan roligt ignorere dette hvis ikke du "
-"har bedt om at få din adgangskode nulstillet. Klik på linken nedenfor hvis "
-"du vil nulstille adgangskoden."
-
-#: RunningCause/templates/account/email/password_reset_key_message.txt:6
-#, python-format
-msgid "In case you forgot, your username is %(username)s."
-msgstr "Skulle du have glemt det, er dit brugernavn %(username)s."
-
-#: RunningCause/templates/account/email/password_reset_key_message.txt:8
-#: templates/account/email/password_reset_key_message.txt:8
-msgid "Thanks for using our site!"
-msgstr "Tak fordi du bruger vores side!"
-
-#: RunningCause/templates/account/email/password_reset_key_subject.txt:3
-#: templates/account/email/password_reset_key_subject.txt:3
-msgid "Password Reset E-mail"
-msgstr "Adgangskode nulstil e-mail"
-
 #: RunningCause/templates/account/email_confirm.html:17
-#: templates/account/email_confirm.html:17
 #, python-format
-msgid ""
-"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
-"address for user %(user_display)s."
-msgstr ""
-"Bekræft venligst at <a href=\"mailto:%(email)s\">%(email)s</a> er en e-mail "
-"adresse til brugeren %(user_display)s"
+msgid "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail address for user %(user_display)s."
+msgstr "Bekræft venligst at <a href=\"mailto:%(email)s\">%(email)s</a> er en e-mail adresse for brugeren %(user_display)s."
 
 #: RunningCause/templates/account/email_confirm.html:21
-#: templates/account/email_confirm.html:21
+#: challenges/templates/challenges/feedback_challenge.html:65
 msgid "Confirm"
 msgstr "Bekræft"
 
 #: RunningCause/templates/account/email_confirm.html:28
-#: templates/account/email_confirm.html:28
 #, python-format
-msgid ""
-"This e-mail confirmation link expired or is invalid. Please <a "
-"href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
-msgstr ""
-"Dette link til e-mail-bekræftelses er udløbet eller ugyldigt. Anmod venligst"
-" <a href=\"%(email_url)s\"> om at udstede en ny e-mail-bekræftelse."
+msgid "This e-mail confirmation link expired or is invalid. Please <a href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr "Dette e-mail bekræftelses link er udløbet eller ugyldigt. <a href=\"%(email_url)s\">Efterspørg venligst et ny e-mail bekræftelses link</a>."
 
 #: RunningCause/templates/account/email_confirmed.html:15
-#: templates/account/email_confirmed.html:15
+#, python-format
+msgid "You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail address for user %(user_display)s."
+msgstr "Du har bekræftet at <a href=\"mailto:%(email)s\">%(email)s</a> er en e-mail adresse for brugeren %(user_display)s."
+
+#: RunningCause/templates/account/login.html:8
+#: RunningCause/templates/account/login.html:12
+#: RunningCause/templates/account/login.html:65
+#: profile/templates/profile/signup_or_login.html:8
+#: profile/templates/profile/signup_or_login.html:73
+msgid "Sign In"
+msgstr "Log ind"
+
+#: RunningCause/templates/account/login.html:15
 #, python-format
 msgid ""
-"You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an "
-"e-mail address for user %(user_display)s."
-msgstr ""
-"Du har bekræftet at <a href=\"mailto:%(email)s\">%(email)s</a> er en e-mail "
-"adresse tilknyttet brugeren %(user_display)s."
+"Please sign in with one\n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a>\n"
+"for a %(site_name)s account and sign in below:"
+msgstr "Log venligst ind med en af dine eksisterende tredjeparts kontoer. Eller, <a href=\"%(signup_url)s\">opret en bruger</a> til en %(site_name)s konto og log ind:"
+
+#: RunningCause/templates/account/login.html:25
+#: profile/templates/profile/signup_or_login.html:25
+msgid "or"
+msgstr "eller"
 
 #: RunningCause/templates/account/login.html:32
-#: templates/account/login.html:32
 #, python-format
 msgid ""
 "If you have not created an account yet, then please\n"
 "<a href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
-"Hvis ikke du allerede har oprettet en bruger, så \n"
-"<a href=\"%(signup_url)s\"> tilmeld </a> først."
+"Hvis du ikke allerede har opretten en bruger, så\n"
+"<a href=\"%(signup_url)s\">opret venligst en bruger</a> først."
+
+#: RunningCause/templates/account/login.html:64
+#: RunningCause/templates/account/signup.html:75
+#: profile/templates/profile/signup_or_login.html:72
+msgid "Forgot Password?"
+msgstr "Glemt dit kodeord?"
 
 #: RunningCause/templates/account/logout.html:6
 #: RunningCause/templates/account/logout.html:9
 #: RunningCause/templates/account/logout.html:18
-#: templates/account/logout.html:6 templates/account/logout.html.py:9
-#: templates/account/logout.html:18
 msgid "Sign Out"
 msgstr "Log ud"
 
 #: RunningCause/templates/account/logout.html:11
-#: templates/account/logout.html:11
 msgid "Are you sure you want to sign out?"
-msgstr "Er du sikker på at du vil logge ud?"
+msgstr "Er du sikker på at du ønsker at logge ud?"
 
 #: RunningCause/templates/account/messages/cannot_delete_primary_email.txt:2
-#: templates/account/messages/cannot_delete_primary_email.txt:2
 #, python-format
 msgid "You cannot remove your primary e-mail address (%(email)s)."
 msgstr "Du kan ikke fjerne din primære e-mail adresse (%(email)s)."
 
 #: RunningCause/templates/account/messages/email_confirmation_sent.txt:2
-#: templates/account/messages/email_confirmation_sent.txt:2
 #, python-format
 msgid "Confirmation e-mail sent to %(email)s."
-msgstr "Beræftelses e-mail er sendt til %(email)s"
+msgstr "Bekræftelses e-mail er sendt til %(email)s."
 
 #: RunningCause/templates/account/messages/email_confirmed.txt:2
-#: templates/account/messages/email_confirmed.txt:2
 #, python-format
 msgid "You have confirmed %(email)s."
-msgstr "Du har bekræftet %(email)s"
+msgstr "Du har bekræftet %(email)s."
 
 #: RunningCause/templates/account/messages/email_deleted.txt:2
-#: templates/account/messages/email_deleted.txt:2
 #, python-format
 msgid "Removed e-mail address %(email)s."
-msgstr "Fjern e-mail adresse %(email)s"
+msgstr "E-mail adressen %(email)s blev fjernet."
 
 #: RunningCause/templates/account/messages/logged_in.txt:4
-#: templates/account/messages/logged_in.txt:4
 #, python-format
 msgid "Successfully signed in as %(name)s."
 msgstr "Du er nu logget ind som %(name)s."
 
 #: RunningCause/templates/account/messages/logged_out.txt:2
-#: templates/account/messages/logged_out.txt:2
 msgid "You have signed out."
-msgstr "Du er nu logget ud."
+msgstr "Du er blevet logget ud."
 
 #: RunningCause/templates/account/messages/password_changed.txt:2
-#: templates/account/messages/password_changed.txt:2
 msgid "Password successfully changed."
-msgstr "Adgangskoden er nu ændret"
+msgstr "Kodeordet blev ændret."
 
 #: RunningCause/templates/account/messages/password_set.txt:2
-#: templates/account/messages/password_set.txt:2
 msgid "Password successfully set."
-msgstr "Adgangskode er nu indtastet"
+msgstr "Kodeordet blev valgt."
 
 #: RunningCause/templates/account/messages/primary_email_set.txt:2
-#: templates/account/messages/primary_email_set.txt:2
 msgid "Primary e-mail address set."
-msgstr "Primær e-mail adresse er nu indtastet"
+msgstr "Den primære e-mail adresse blev valgt."
 
 #: RunningCause/templates/account/messages/unverified_primary_email.txt:2
-#: templates/account/messages/unverified_primary_email.txt:2
 msgid "Your primary e-mail address must be verified."
-msgstr "Din primære e-mail adresse skal bekræftes"
+msgstr "Din primære e-mail adresse skal verificeres."
 
 #: RunningCause/templates/account/password_change.html:6
 #: RunningCause/templates/account/password_change.html:9
@@ -1109,290 +248,1291 @@ msgstr "Din primære e-mail adresse skal bekræftes"
 #: RunningCause/templates/account/password_reset_from_key.html:8
 #: RunningCause/templates/account/password_reset_from_key_done.html:5
 #: RunningCause/templates/account/password_reset_from_key_done.html:8
-#: templates/account/password_change.html:6
-#: templates/account/password_change.html:9
-#: templates/account/password_change.html:14
-#: templates/account/password_reset_from_key.html:5
-#: templates/account/password_reset_from_key.html:8
-#: templates/account/password_reset_from_key_done.html:5
-#: templates/account/password_reset_from_key_done.html:8
 msgid "Change Password"
-msgstr "Skift adgangskode"
+msgstr "Ændre kodeord"
 
 #: RunningCause/templates/account/password_reset.html:7
 #: RunningCause/templates/account/password_reset.html:11
 #: RunningCause/templates/account/password_reset_done.html:6
 #: RunningCause/templates/account/password_reset_done.html:9
-#: templates/account/password_reset.html:7
-#: templates/account/password_reset.html:11
-#: templates/account/password_reset_done.html:6
-#: templates/account/password_reset_done.html:9
 msgid "Password Reset"
-msgstr "Adgangskoden er nulstillet"
+msgstr "Nulstil kodeord"
 
 #: RunningCause/templates/account/password_reset.html:16
-#: templates/account/password_reset.html:16
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send you"
-" an e-mail allowing you to reset it."
-msgstr ""
-"Glemt adgangskode? Indtast din e-mail adresse nedenfor, og du vil modtage en"
-" e-mail som vil tillade dig at nulstille din adgangskode"
+msgid "Forgotten your password? Enter your e-mail address below, and we'll send you an e-mail allowing you to reset it."
+msgstr "Har du glemt dit kodeord? Skriv din e-mail adresse herunder, og vi vil sende dig en e-mail der vil give dig mulighed for at nulstille det."
 
 #: RunningCause/templates/account/password_reset.html:21
-#: templates/account/password_reset.html:21
 msgid "Reset My Password"
-msgstr "Nulstil min adgangskode"
+msgstr "Nulstil mit kodeord"
 
 #: RunningCause/templates/account/password_reset.html:24
-#: templates/account/password_reset.html:24
 msgid "Please contact us if you have any trouble resetting your password."
-msgstr ""
-"Kontakt os venligst hvis du har problemer med at nulstille din adgangskode."
+msgstr "Kontakt os venligst hvis du oplever problemer med at nulstille dit kodeord."
 
 #: RunningCause/templates/account/password_reset_done.html:15
-#: templates/account/password_reset_done.html:15
-msgid ""
-"We have sent you an e-mail. Please contact us if you do not receive it "
-"within a few minutes."
-msgstr ""
-"Vi har sendt dig en e-mail. Kontakt os venligst hvis ikke du modtager den i "
-"løbet af et par minutter"
+msgid "We have sent you an e-mail. Please contact us if you do not receive it within a few minutes."
+msgstr "Vi har sendt dig en e-mail. Kontakt os venligst hvis du ikke har modtaget den indenfor få minutter."
 
 #: RunningCause/templates/account/password_reset_from_key.html:8
-#: templates/account/password_reset_from_key.html:8
 msgid "Bad Token"
-msgstr "???"
+msgstr "Ugyldig token"
 
 #: RunningCause/templates/account/password_reset_from_key.html:12
-#: templates/account/password_reset_from_key.html:12
 #, python-format
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
-"reset</a>."
-msgstr ""
-"Linket hvor du kunne nulstille din adgangskode var ugyldig, formentlig fordi"
-" det allerede er blevet brugt. Anmod venligst <a "
-"href=\"%(passwd_reset_url)s\"> om et nyt link </a>."
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</a>."
+msgstr "Linket til nulstilling af kodeord var ugyldigt, måske fordi det allerede har været brugt. Efterspørg venligst <a href=\"%(passwd_reset_url)s\">en ny nulstilling af kodeord</a>."
 
 #: RunningCause/templates/account/password_reset_from_key.html:18
-#: templates/account/password_reset_from_key.html:18
 msgid "change password"
-msgstr "Skift adgangskode"
+msgstr "skift kodeord"
 
 #: RunningCause/templates/account/password_reset_from_key.html:21
 #: RunningCause/templates/account/password_reset_from_key_done.html:9
-#: templates/account/password_reset_from_key.html:21
-#: templates/account/password_reset_from_key_done.html:9
 msgid "Your password is now changed."
-msgstr "Din adgangskode er nu ændret"
+msgstr "Dit kodeord er nu ændret."
 
 #: RunningCause/templates/account/password_set.html:6
 #: RunningCause/templates/account/password_set.html:9
 #: RunningCause/templates/account/password_set.html:14
-#: templates/account/password_set.html:6 templates/account/password_set.html:9
-#: templates/account/password_set.html:14
 msgid "Set Password"
-msgstr "Indtast adgangskode"
+msgstr "Sæt kodeord"
 
 #: RunningCause/templates/account/signup.html:8
 #: RunningCause/templates/socialaccount/signup.html:6
-#: templates/account/signup.html:8 templates/socialaccount/signup.html:6
 msgid "Signup"
-msgstr "Tilmeld"
+msgstr "Opret bruger"
+
+#: RunningCause/templates/account/signup.html:11
+#: RunningCause/templates/account/signup.html:76
+#: RunningCause/templates/socialaccount/signup.html:9
+#: RunningCause/templates/socialaccount/signup.html:20
+#: profile/templates/profile/signup_or_login.html:81
+#: profile/templates/profile/signup_or_login.html:143
+msgid "Sign Up"
+msgstr "Opret bruger"
 
 #: RunningCause/templates/account/signup.html:13
-#: templates/account/signup.html:13
 #, python-format
-msgid ""
-"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
-msgstr ""
-"Har du allerede en bruger? Så log <a href=\"%(login_url)s\"> venligst ind "
-"</a>."
+msgid "Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr "Har du allerede en konto? Så <a href=\"%(login_url)s\">log ind</a>."
 
 #: RunningCause/templates/account/signup_closed.html:6
 #: RunningCause/templates/account/signup_closed.html:9
-#: templates/account/signup_closed.html:6
-#: templates/account/signup_closed.html:9
 msgid "Sign Up Closed"
-msgstr "Tilmelding er lukket"
+msgstr "Oprettelse af brugere er lukket"
 
 #: RunningCause/templates/account/signup_closed.html:11
-#: templates/account/signup_closed.html:11
 msgid "We are sorry, but the sign up is currently closed."
-msgstr "Beklager, men tilmeldingen er i øjeblikket lukket"
+msgstr "Vi har desværre lukket for oprettelse af nye brugere."
 
 #: RunningCause/templates/account/snippets/already_logged_in.html:5
-#: templates/account/snippets/already_logged_in.html:5
 msgid "Note"
 msgstr "Note"
 
 #: RunningCause/templates/account/snippets/already_logged_in.html:5
-#: templates/account/snippets/already_logged_in.html:5
 #, python-format
 msgid "you are already logged in as %(user_display)s."
-msgstr "Du er allerede logget ind som %(user_display)s."
+msgstr "du er allerede logget ind som %(user_display)s."
 
 #: RunningCause/templates/account/verification_sent.html:5
 #: RunningCause/templates/account/verification_sent.html:8
 #: RunningCause/templates/account/verified_email_required.html:6
 #: RunningCause/templates/account/verified_email_required.html:9
-#: templates/account/verification_sent.html:5
-#: templates/account/verification_sent.html:8
-#: templates/account/verified_email_required.html:6
-#: templates/account/verified_email_required.html:9
 msgid "Verify Your E-mail Address"
-msgstr "Bekræft din e-mail adresse"
+msgstr "Godkend din e-mail adresse"
 
 #: RunningCause/templates/account/verification_sent.html:10
-#: templates/account/verification_sent.html:10
-msgid ""
-"We have sent an e-mail to you for verification. Follow the link provided to "
-"finalize the signup process. Please contact us if you do not receive it "
-"within a few minutes."
-msgstr ""
-"Vi har sendt dig en e-mail for at du kan bekræfte denne. Følg linket for at "
-"færdiggøre din tilmelding. Kontakt os venligst hvis ikke du modtager mailen "
-"inden for et par minutter."
+msgid "We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes."
+msgstr "Vi har sendt dig en e-mail til godkendelse af din e-mail adresse. Følg linket i mailen for at afslutte oprettelsen. Kontakt os venligst hvis du ikke har modtaget mailen indenfor få minutter."
 
 #: RunningCause/templates/account/verified_email_required.html:13
-#: templates/account/verified_email_required.html:13
 msgid ""
 "This part of the site requires us to verify that\n"
 "you are who you claim to be. For this purpose, we require that you\n"
 "verify ownership of your e-mail address. "
 msgstr ""
-"Denne del af siden kræver at du bekræfter, at du \n"
-" er hvem du hævder at være. Til dette formål kræves, at du bekræfter ejerskabet af din e-mail adresse."
+"Denne del af sitet kræver at vi har verificeret\n"
+"at du er den du hævder at være. Derfor kræver vi at du\n"
+"verificerer at du ejer din e-mail adresse."
 
 #: RunningCause/templates/account/verified_email_required.html:17
-#: templates/account/verified_email_required.html:17
 msgid ""
 "We have sent an e-mail to you for\n"
 "verification. Please click on the link inside this e-mail. Please\n"
 "contact us if you do not receive it within a few minutes."
 msgstr ""
-"Vi har sendt dig en e-mail for at du kan \n"
-" bekræfte denne. Klik venligst på linket i e-mailen.  Kontakt os venligst, hvis ikke du modtager e-mailen inden for et par minutter."
+"Vi har sendt dig en e-mail til godkendelse af din e-mail adresse.\n"
+"Klik venligst på linket i mailen. Kontakt os venligst hvis du ikke har modtaget mailen indenfor få minutter."
 
 #: RunningCause/templates/account/verified_email_required.html:21
-#: templates/account/verified_email_required.html:21
+#, python-format
+msgid "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-mail address</a>."
+msgstr "<strong>Vær opmærksom:</strong> du kan stadigvæk <a href=\"%(email_url)s\">ændre din e-mail adresse</a>."
+
+#: RunningCause/templates/includes/_share_it_buttons.html:13
+msgid "You have to make your page public before you can share it."
+msgstr "Du bliver nødt til at gøre din profil offentlig før du kan dele den."
+
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:5
+#: runs/templates/runs/user_runs.html:45
+msgid "Runs"
+msgstr "Løb"
+
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:10
+msgid "Money Raised"
+msgstr "Penge optjent"
+
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:15
+msgid "Donations"
+msgstr "Donationer"
+
+#: RunningCause/templates/masanga_base.html:55
+msgid "RUNNERS &amp; SPONSORS"
+msgstr "LØBERE &amp; SPONSORER"
+
+#: RunningCause/templates/masanga_base.html:60
+msgid "WHY JOIN US?"
+msgstr "HVORFOR BLIVE MEDLEM?"
+
+#: RunningCause/templates/masanga_base.html:65
+msgid "ABOUT MASANGA HOSPITAL"
+msgstr "OM MASANGA HOSPITAL"
+
+#: RunningCause/templates/masanga_base.html:71
+msgid "OVERVIEW"
+msgstr "OVERBLIK"
+
+#: RunningCause/templates/masanga_base.html:83
 #, python-format
 msgid ""
-"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your "
-"e-mail address</a>."
+"\n"
+"                    Hello, %(username)s!\n"
+"                  "
 msgstr ""
-"<strong>Note:</strong> Du kan stadig <a href=\"%(email_url)s\"> ændre din "
-"e-mail addresse</a>."
+"\n"
+"Hej, %(username)s!"
 
-#: RunningCause/templates/openid/login.html:10 templates/openid/login.html:10
+#: RunningCause/templates/masanga_base.html:89
+msgid "MY PAGE"
+msgstr "MIN SIDE"
+
+#: RunningCause/templates/masanga_base.html:90
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: RunningCause/templates/masanga_base.html:91
+msgid "Log out"
+msgstr "Log ud"
+
+#: RunningCause/templates/masanga_base.html:97
+msgid "Log in or create an account"
+msgstr "Log ind eller opret en konto"
+
+#: RunningCause/templates/openid/login.html:10
 msgid "OpenID Sign In"
-msgstr "Åben ID Log ind"
+msgstr "OpenID log in"
 
 #: RunningCause/templates/socialaccount/authentication_error.html:5
 #: RunningCause/templates/socialaccount/authentication_error.html:8
-#: templates/socialaccount/authentication_error.html:5
-#: templates/socialaccount/authentication_error.html:8
 msgid "Social Network Login Failure"
-msgstr "Fejl ved log in til socialt netværk"
+msgstr "Socialt netværks log in fejl"
 
 #: RunningCause/templates/socialaccount/authentication_error.html:10
-#: templates/socialaccount/authentication_error.html:10
-msgid ""
-"An error occurred while attempting to login via your social network account."
-msgstr ""
-"Der opstod en fejl i forsøget på at logge ind via din konto på dit sociale "
-"netværk."
+msgid "An error occurred while attempting to login via your social network account."
+msgstr "Der skete en fejl da vi forsøgte at logge dig ind via din sociale netværks konto."
 
 #: RunningCause/templates/socialaccount/connections.html:6
 #: RunningCause/templates/socialaccount/connections.html:9
-#: templates/socialaccount/connections.html:6
-#: templates/socialaccount/connections.html:9
 msgid "Account Connections"
-msgstr "Brugerforbindelser"
+msgstr "Konto forbindelser"
 
 #: RunningCause/templates/socialaccount/connections.html:12
-#: templates/socialaccount/connections.html:12
-msgid ""
-"You can sign in to your account using any of the following third party "
-"accounts:"
-msgstr ""
-"Du kan logge ind på din konto ved at bruge enhver af de følgende tredjemænds"
-" konti:"
+msgid "You can sign in to your account using any of the following third party accounts:"
+msgstr "Log ind på din konto ved at bruge en af følgende tredjeparts kontoer:"
 
 #: RunningCause/templates/socialaccount/connections.html:44
-#: templates/socialaccount/connections.html:44
-msgid ""
-"You currently have no social network accounts connected to this account."
-msgstr ""
-"Du har i øjeblikket ikke tilknyttet nogle konti fra sociale netværk til "
-"denne konto."
+msgid "You currently have no social network accounts connected to this account."
+msgstr "Du har på nuværende tidspunkt ingen sociale netværks kontoer forbundet til denne konto."
 
 #: RunningCause/templates/socialaccount/connections.html:47
-#: templates/socialaccount/connections.html:47
 msgid "Add a 3rd Party Account"
-msgstr "Tilføj en tredjemands konti"
+msgstr "Tilføj 3. parts konto"
 
 #: RunningCause/templates/socialaccount/login_cancelled.html:6
 #: RunningCause/templates/socialaccount/login_cancelled.html:10
-#: templates/socialaccount/login_cancelled.html:6
-#: templates/socialaccount/login_cancelled.html:10
 msgid "Login Cancelled"
-msgstr "Log in annulleret"
+msgstr "Log ind afbrudt"
 
 #: RunningCause/templates/socialaccount/login_cancelled.html:14
-#: templates/socialaccount/login_cancelled.html:14
 #, python-format
-msgid ""
-"You decided to cancel logging in to our site using one of your existing "
-"accounts. If this was a mistake, please proceed to <a "
-"href=\"%(login_url)s\">sign in</a>."
-msgstr ""
-"Du besluttede at annullere at logge ind på vores side ved at bruge en af "
-"dine eksisterende konti. Hvis det var en fejl, så fortsæt venligst <a "
-"href=\"%(login_url)s\">sign in</a>."
+msgid "You decided to cancel logging in to our site using one of your existing accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s\">sign in</a>."
+msgstr "Du har valgt at afbryde dit login to vores side ved at bruge en af dine eksisterende kontoer. Hvis dette var en fejl så forsæt venligst til <a href=\"%(login_url)s\">log ind</a>."
 
 #: RunningCause/templates/socialaccount/messages/account_connected.txt:2
-#: templates/socialaccount/messages/account_connected.txt:2
 msgid "The social account has been connected."
-msgstr "Din sociale konti er blevet tilknyttet"
+msgstr "Din sociale konto er blevet forbundet."
 
 #: RunningCause/templates/socialaccount/messages/account_connected_other.txt:2
-#: templates/socialaccount/messages/account_connected_other.txt:2
 msgid "The social account is already connected to a different account."
-msgstr "Denne sociale konto er allerede tilknyttet en anden konto."
+msgstr "Den sociale konto er allerede forbundet til en anden konto."
 
 #: RunningCause/templates/socialaccount/messages/account_disconnected.txt:2
-#: templates/socialaccount/messages/account_disconnected.txt:2
 msgid "The social account has been disconnected."
-msgstr "Den sociale konto er ikke længere tilknyttet"
+msgstr "Din sociale konto er blevet afbrudt."
 
 #: RunningCause/templates/socialaccount/signup.html:11
-#: templates/socialaccount/signup.html:11
 #, python-format
 msgid ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
-"Du er ved at bruge din %(provider_name)s konto til at logge ind på \n"
-"%(site_name)s. Udfyld venligst den følgende formel for at færdiggøre."
+"Du skal til at benytte din %(provider_name)s konto til at logge ind på\n"
+"%(site_name)s. Udfyld venligst denne formular som det sidste:"
 
-#: templates/account/email/password_reset_key_message.txt:6
+#: challenges/forms.py:11
+msgid "Amount (kr)"
+msgstr "Beløb (dkk)"
+
+#: challenges/forms.py:15
+msgid "End date:"
+msgstr "Afslutnings dato:"
+
+#: challenges/forms.py:22
+msgid "What is the challenge?"
+msgstr "Hvad er udfordringen?"
+
+#: challenges/forms.py:39
+msgid "Amount cannot be negative"
+msgstr "Beløbet kan ikke være negativt"
+
+#: challenges/forms.py:43
+msgid "End date cannot be in the past"
+msgstr "Slut datoen kan ikke være i fortiden."
+
+#: challenges/tasks.py:35
+msgid "Masanga Runners challenge reminder"
+msgstr "Masanga Runners udfordrings påmindelse"
+
+#: challenges/templates/challenges/challenge_runner.html:43
+msgid "Challenge runner"
+msgstr "Udfordre løber"
+
+#: challenges/templates/challenges/challenge_runner.html:49
 #, python-format
-msgid "In case you forgot, your username is \"%(username)s\"."
-msgstr "Skulle du have glemt det, er dit brugernavn  \"%(username)s\"."
+msgid ""
+"\n"
+"\t\tChallenge %(username)s.\n"
+"\t\t"
+msgstr ""
+"\n"
+"Udfordre %(username)s."
 
-# Running.tasks
-msgid "Masanga Runners run-update"
-msgstr "Masanga Runners løbe-update"
+#: challenges/templates/challenges/challenge_runner.html:61
+#, python-format
+msgid ""
+"\n"
+"        Fill in these fields to challenge %(username)s.\n"
+"        This works like a bet, if he/she completes\n"
+"         whatever you specify the by the time and date you specified,\n"
+"         then you agree to pay the amount listed in the amount field, in dkk.\n"
+"         Worried he/she will cheat?\n"
+"         No need to fret! At the end of the time period, you're the only one \n"
+"         who gets to make the call about whether or not you pay.\n"
+"        "
+msgstr ""
+"\n"
+"        Udfyld disse felter for at udfordre %(username)s.\n"
+"        Dette virker som et væddemål, hvis han/hun gennemfører\n"
+"         hvad end du skriver indenfor det tidspunkt og dato som du skriver,\n"
+"         så går du med til at betale det beløb som står i beløbs-feltet, i danske kroner.\n"
+"         Er du bange for at han/hun vil snyde?\n"
+"         Ingen grund til at være bange! I slutningen af perioden er du den eneste \n"
+"         der får lov til at afgøre om du skal betale eller ej."
 
-msgid "Masanga Runners challengeing notification"
-msgstr "Masanga Runners væddemåls-notifikation"
+#: challenges/templates/challenges/challenge_runner.html:82
+#: challenges/templates/challenges/invite_sponsor_to_challenge.html:80
+#: invitations/templates/invitations/invitation.html:38
+#: runs/templates/runs/input_run.html:46
+#: runs/templates/runs/run_edit.html:48
+#: sponsorship/templates/sponsorship/add_sponsorship.html:70
+#: sponsorship/templates/sponsorship/request_sponsorship.html:75
+msgid "Submit"
+msgstr "Indsend"
 
-msgid "Masanga Runners run-update"
-msgstr "Masanga Runners løbe-update"
+#: challenges/templates/challenges/feedback_challenge.html:8
+msgid "Update your Challenge"
+msgstr "Opdater din udfordring"
 
+#: challenges/templates/challenges/feedback_challenge.html:14
+msgid ""
+"\n"
+"\tUpdate your Challenge!\n"
+"\t"
+msgstr ""
+"\n"
+"Opdater din udfordring"
+
+#: challenges/templates/challenges/feedback_challenge.html:26
+msgid ""
+"\n"
+"\tHere you can mark your challenge as completed and\n"
+"\tleave a feedback message to your sponsor.\n"
+"\t"
+msgstr ""
+"\n"
+"Her kan du markere en udfordring som gennemført og efterlade en tilbagemelding til din sponsor."
+
+#: challenges/templates/challenges/feedback_challenge.html:33
+#, python-format
+msgid ""
+"\n"
+"\tHere you can confirm or decline the challenge completed \n"
+"\tby %(runner_username)s.\n"
+"\t"
+msgstr ""
+"\n"
+"Her kan du bekræfte eller afvise at udfordringen er gennemført af %(runner_username)s."
+
+#: challenges/templates/challenges/feedback_challenge.html:47
+msgid "You can leave a feedback message to the runner."
+msgstr "Du kan efterlade en tilbagemelding til løberen."
+
+#: challenges/templates/challenges/feedback_challenge.html:57
+msgid "Complete"
+msgstr "Gennemfør"
+
+#: challenges/templates/challenges/feedback_challenge.html:68
+msgid "Decline"
+msgstr "Afvis"
+
+#: challenges/templates/challenges/invite_sponsor_to_challenge.html:8
+msgid "Request challenge"
+msgstr "Efterspørg udfordring"
+
+#: challenges/templates/challenges/invite_sponsor_to_challenge.html:49
+#, python-format
+msgid ""
+"\n"
+"\t\tInvite %(username)s to challenge you.\n"
+"\t\t"
+msgstr ""
+"\n"
+"Invitér %(username)s til at udfordre dig."
+
+#: challenges/templates/challenges/invite_sponsor_to_challenge.html:61
+#, python-format
+msgid ""
+"\n"
+"        Fill out these fields to invite %(username)s to challenge\n"
+"        you to a challenge. Feel free to leave whatever you want blank. %(username)s\n"
+"        will get an email notifying him/her that you requested a challenge,\n"
+"        and the values you do fill out will be displayed to him/her. The sponsor can then \n"
+"        choose to challenge you immediately, change or add some values and then\n"
+"        challenge you, or decline entirely.\n"
+"        "
+msgstr ""
+"\n"
+"Udfyld disse felter for at invitere %(username)s til at udfordre dig. Du kan efterlade de felter du ønsker blanke. %(username)s vil modtage en email der oplyser ham/hende om at du har efterspurgt en udfordring, og de værdier du udfylder vil blive vist til ham/hende. Sponsoren kan så vælge at udfordre dig med det samme, ændre/tilføje nogle værdier og så udfordre dig eller afvise helt at udfordre dig."
+
+#: challenges/templates/challenges/preview_challenge.html:8
+#: challenges/templates/challenges/preview_invitation_challenge.html:8
+msgid "Do you accept the challenge?"
+msgstr "Accepterer du udfordringen?"
+
+#: challenges/templates/challenges/preview_challenge.html:14
+#, python-format
+msgid ""
+"\n"
+"\t\t%(username)s has challenge you. Do you accept the challenge?\n"
+"\t\t"
+msgstr ""
+"\n"
+"%(username)s har udfordret dig. Accepterer du udfordringen?"
+
+#: challenges/templates/challenges/preview_challenge.html:30
+msgid "Accept"
+msgstr "Acceptér"
+
+#: challenges/templates/challenges/preview_challenge.html:33
+#: challenges/templates/challenges/preview_invitation_challenge.html:34
+msgid "Reject"
+msgstr "Afvis"
+
+#: challenges/templates/challenges/preview_invitation_challenge.html:14
+#, python-format
+msgid ""
+"\n"
+"\t\t%(username)s has invited you to challenge him.\n"
+"\t\tDo you want to create challenge for %(username)s?\n"
+"\t\t"
+msgstr ""
+"\n"
+"%(username)s har inviteret dig til at udfordre ham/hende. Ønsker du at oprette en udfordring til %(username)s?"
+
+#: challenges/templates/challenges/preview_invitation_challenge.html:31
+msgid "Create"
+msgstr "Opret"
+
+#: challenges/views.py:62
+#, python-format
+msgid "%(username)s has challenge you"
+msgstr "%(username)s har udfordret dig"
+
+#: challenges/views.py:80
+#, python-format
+msgid "You have just challenge %(username)s"
+msgstr "Du har netop udfordret %(username)s"
+
+#: challenges/views.py:127
 msgid "Masanga Runners invitation for challenge"
-msgstr "Masanga Runners invitation til væddemål"
+msgstr "Masanga Runners invitation til udfordring"
 
+#: challenges/views.py:134
+#, python-format
+msgid "You have send invitation to %(username)s to challenge you."
+msgstr "Du har sendt en invitation til at %(username)s udfordrer dig."
+
+#: challenges/views.py:181
+msgid "Congratulations!, Your challenge will be send to the sponsor for the final review."
+msgstr "Tillykke! Din udfordring vil blive sendt til sponsoren for endelig gennemgang."
+
+#: challenges/views.py:191
+msgid "You have accepted to pay for the challenge."
+msgstr "Du har accepteret at betale for udfordringen."
+
+#: challenges/views.py:194
+msgid "You have declined to pay for the challenge."
+msgstr "Du har afvist at betale for udfordringen."
+
+#: challenges/views.py:222
+#, python-format
+msgid "Runner %(username)s has accepted your challenge"
+msgstr "Løberen %(username)s har accepteret din udfordring"
+
+#: challenges/views.py:224
+msgid "You have accepted a challenge."
+msgstr "Du har accepteret en udfordring."
+
+#: challenges/views.py:228
+#, python-format
+msgid "Runner %(username)s has rejected your challenge"
+msgstr "Løberen %(username)s har afvist din udfordring"
+
+#: challenges/views.py:230
+msgid "You have rejected a challenge."
+msgstr "Du har afvist udfordringen."
+
+#: challenges/views.py:259
+#, python-format
+msgid "Sponsor %(username)s has challenge you!"
+msgstr "Sponsoren %(username)s har udfordret dig!"
+
+#: challenges/views.py:261
+#, python-format
+msgid "You have successfully created a challenge for %(username)s."
+msgstr "Du har succesfuldt oprettet en udfordring til %(username)s."
+
+#: challenges/views.py:268
+#, python-format
+msgid "Sponsor %(username)s has rejected your challenge invitation."
+msgstr "Sponsoren %(username)s har afvist din udfordrings invitation."
+
+#: challenges/views.py:271
+#, python-format
+msgid "You have rejected a challenge invitation from %(username)s."
+msgstr "Du har afvist en udfordrings invitation fra %(username)s."
+
+#: invitations/templates/invitations/invitation.html:7
+msgid "Invite someone you know"
+msgstr "Inviter en du kender"
+
+#: invitations/templates/invitations/invitation.html:16
+msgid "Invite someone you know!"
+msgstr "Inviter en du kender!"
+
+#: invitations/templates/invitations/invitation.html:25
+msgid ""
+"\n"
+"        Fill out these fields below to invite someone who doesn't currently \n"
+"        have a Masanga account. This could be either a runner or a potencial\n"
+"        sponsor. He/she will get an email with an invitation to create an account.\n"
+"        "
+msgstr ""
+"\n"
+"Udfyld disse felter nedenfor for at invitere en der ikke på nuværende tidspunkt har en Masanga Runners konto. Dette kunne enten være en løber eller en potentiel sponsor. Han/hun vil få en e-mail med en invitation til at oprette en konto."
+
+#: invitations/views.py:24
+#, python-format
+msgid "You have already send 3 invitation to %(email)s"
+msgstr "Du har allerede sendt 3 invitationer til %(email)s"
+
+#: invitations/views.py:47
+#, python-format
+msgid "You have just sent invitation to %(email)s"
+msgstr "Du har netop sendt en invitation til %(email)s"
+
+#: pages/templates/pages/why_join_us.html:41
+msgid ""
+"\n"
+"  \t<h3>Every Step Makes a Difference</h3>\n"
+"  \t<p>Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.</p>\n"
+"  \t<p>The idea behind Masanga Runners is that many runners and sponsors together can create a huge difference for the hospital in Masanga by running and donating small amounts.</p>\n"
+"  \t<p>As a runner, you find one or more sponsors, who support Masanga with a small amount for each kilometre you run. Furthermore the sponsor can support Masanga with a bigger amount, for an example by making a challenge, in connection to you achieving one of your running goals.</p>\n"
+"  \t<p>It could be to complete a half marathon or a DHL race. Depending on how far you run throughout the year, and if you reach your goals, your sponsor pays x amount of money, which will go to the Masanga Hospital.</p>\n"
+"  \t<p>”I am a Masanga Runner because it’s a form of motivation to get outside. As a Masanga Runner I know that it’s not just me getting something out of my runs,” says Søren Bo Steendahl, who has been a Masanga Runner since Fall 2014.</p>\n"
+"  \t<p>On this website, you can create an account and be a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make challenges about your performance on runs – you’re only limited by your imagination! </p>\n"
+"  \t<h4>Tax Credits</h4>\n"
+"  \t<p>Masanga Hospital Rehabilitation Project is approved as a charitable organisation, so you can receive tax credits for your donations – all the way up to DKK 15,000. Masanga Runners sends out an email once a year to everyone who’s donated, asking them if they’re interested in the tax credits. You only need to provide your CPR number or your CVR number.</p>\n"
+"  \t<h4>Sponsorship Termination</h4>\n"
+"  \t<p>You can end your sponsorships at any time, both as a runner and as a sponsor. You do this by clicking the ”end sponsorship” button by the relevant sponsorship.</p>\n"
+"  \t<h4>Masanga Runners t-shirt</h4>\n"
+"  \t<p>You can advertise your good work by buying a nice Masanga Runners t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" style=\"text-decoration:underline;\">here</a>! It costs 250 kr., 50 of which go directly to Masanga. The rest goes to shipping, handling, and the t-shirt itself.</p>\n"
+"  \t<h4>Contact</h4>\n"
+"  \t<p>If you have any questions or comments regarding Masanga Runners, you’re welcome to contact us by email at masangarunners@masanga.dk.</p>\n"
+"\t"
+msgstr ""
+"\n"
+"<h3>You Never Run Alone, You Never Run For Nothing</h3>\n"
+"<p>Masanga Runners er ikke bare en nem måde at støtte et godt projekt på. Det er også med til at gøre det lidt sjovere at hoppe i løbeskoene. Med Masanga Runners kan du udfordre dine løbevenner, men også involvere familie og venner i dine løbeture og verdens bedste hospitalsprojekt.</p>\n"
+"<p>Idéen bag Masanga Runners er, at mange løbere og sponsorer sammen kan gøre en kæmpe forskel for hospitalet i Masanga ved at donere og løbe forholdsvis små beløb ind.</p>\n"
+"<p>Som løber finder du en eller flere sponsorer, der støtter Masanga med et øre- eller kronebeløb for hver kilometer du løber om året – eksempelvis 50 øre eller 1 krone. Herudover kan sponsoren støtte Masanga med et lidt større beløb, eksempelvis ved at lave et væddemål, i forbindelse med, at du opnår en af dine løbe-målsætninger. Det kunne være at gennemføre et halvmaraton eller en DHL-stafet. Afhængig af hvor langt du løber i løbet af året, og om du når dine mål, betaler din sponsor x antal kroner, som går til Masanga Hospitalet.</p>\n"
+"<p>”Jeg er Masanga Runner, fordi det er en form for motivation til at komme afsted. Som Masanga Runner ved jeg, at det ikke kun er mig, der får noget ud af min løbetur”, siger Søren Bo Steendahl, der har været Masanga Runner siden efteråret 2014.</p><p>Her på siden kan du med få oplysninger oprette en bruger og blive en del af Masanga Runners fællesskabet. Du kan invitere dine venner til at sponsorere dig, dele din side på diverse sociale medier og lave væddemål om deltagelse i et løb - det er kun fantasien, der sætter grænser!</p>\n"
+"<h4>Skattefradrag</h4>\n"
+"<p>Masanga Hospital Rehabilitation Project er godkendt som en almenvelgørende forening, og du kan derfor opnå skattefradrag for dine donationer – helt op til 15.000 kr. Masanga Runners udsender ved udgangen af året en mail til alle, der har doneret penge og spørger, om de er interesseret i et sådant fradrag. Det eneste du skal oplyse til den tid er dit cpr. nummer eller CVR-nummer. Det er helt enkelt og sikkert.</p>\n"
+"<h4>Opsigelse</h4>\n"
+"<p>Du kan til enhver tid afslutte dine sponsorater – både som løber og sponsor.  Det gør du ved at trykke på ”slut sponsoraftale” ud for den givne aftale. Både dig og din sponsor/løber får en mail med en bekræftelse.</p>\n"
+"<h4>Masanga Runners t-shirt</h4>\n"
+"<p>Du kan reklamere for den gode sag ved at købe en lækker Masanga Runners t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" style=\"text-decoration:underline;\">her</a>! Den koster 250 kr. og 50 af dem går direkte til Masanga. Resten går til tryk, forsendelse og selve t-shirten.</p>\n"
+"<h4>Kontakt</h4>\n"
+"<p>Har du spørgsmål eller lignende vedrørende Masanga Runners, er du velkommen til at kontakte os på mail: masangarunners@masanga.dk eller på telefon +45 29 80 30 73.</p>"
+
+#: profile/forms.py:8
+msgid "I want my sponsorships to be publicly visible"
+msgstr "Jeg ønsker at mine sponsorater bliver offentligt tilgængelige"
+
+#: profile/forms.py:13
+msgid "I would like to recieve the Masanga newsletter"
+msgstr "Jeg ønsker at modtage nyhedsbrevet fra Masanga"
+
+#: profile/templates/profile/credit_card_prompt.html:13
+msgid "Register a Credit Card"
+msgstr "Registrer et kredit kort"
+
+#: profile/templates/profile/credit_card_prompt.html:17
+msgid "Either register a credit card, or go to your profile settings "
+msgstr "Registrer et kredit kort, eller gå til din profil"
+
+#: profile/templates/profile/credit_card_prompt.html:18
+msgid "here."
+msgstr "her."
+
+#: profile/templates/profile/credit_card_prompt.html:21
+msgid ""
+"\n"
+"It's free to register your card and we won't charge you anything unless you \n"
+"create a sponsorship or a challenge. You can put a maximum on the \n"
+"sponsorships and you are the only one to decide whether the runner \n"
+"completed the challenge or not. Are you only interested in being a runner, \n"
+"continue to our homepage here. We charge quarterly if you choose to sponsor.\n"
+msgstr ""
+"\n"
+"Det er gratisk at registrere dit kort og vi vil ikke opkræve dig nogle penge med mindre du opretter et sponsorat eller en udfordring. Du kan opgive et maksimalt beløb på sponsoraterne og du er den eneste der beslutter om en løber har gennemført en udfordring eller ej. Er du kun interesseret i at være løber, så forsæt til vores side her. Vi opkræver kvartalsvis hvis du vælger at sponsorere.\n"
+
+#: profile/templates/profile/credit_card_success.html:14
+msgid "Thank you! Your card has been successfully registered with Masanga Runners."
+msgstr "Tak! Dit kort blev successfuldt registreret med Masanga Runners."
+
+#: profile/templates/profile/deregister_success.html:14
+msgid "You have successfully deregistered your card."
+msgstr "Du har successfuldt afmeldt dig kort."
+
+#: profile/templates/profile/signup_or_login.html:15
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"    of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a>\n"
+"    for a %(site_name)s account and sign in below:"
+msgstr ""
+"Log venligst ind med en\n"
+"    af dine eksisterende tredje parts kontoer. Eller, <a href=\"%(signup_url)s\">opret bruger</a>\n"
+"    for at få en %(site_name)s konto og log ind:"
+
+#: profile/templates/profile/signup_or_login.html:35
+msgid "Log In"
+msgstr "Log ind"
+
+#: profile/templates/profile/subscribed_success.html:14
+msgid "You have successfully subscribed."
+msgstr "Du har successfuldt skrevet dig op."
+
+#: profile/templates/profile/unsubscribed_success.html:14
+msgid "You have successfully unsubscribed."
+msgstr "Du har successfuldt afskrevet dig."
+
+#: profile/templates/profile/user_donated.html:30
+msgid "You are sponsoring"
+msgstr "Du sponserer"
+
+#: profile/templates/profile/user_donated.html:32
+#, python-format
+msgid "%(username)s is sponsoring"
+msgstr "%(username)s sponserer"
+
+#: profile/templates/profile/user_donated.html:36
+#: profile/templates/profile/user_donated.html:98
+#: tools/templates/tools/overview.html:16
+#: tools/templates/tools/overview.html:72
+msgid "Runner"
+msgstr "Løber"
+
+#: profile/templates/profile/user_donated.html:37
+#: profile/templates/profile/user_raised.html:32
+msgid "Rate(kr/km)"
+msgstr "Rate (kr/km)"
+
+#: profile/templates/profile/user_donated.html:38
+#: profile/templates/profile/user_raised.html:33
+msgid "Maximum Possible Amount (kr)"
+msgstr "Maksimalt muligt beløb (kr)"
+
+#: profile/templates/profile/user_donated.html:39
+#: profile/templates/profile/user_raised.html:34
+#: tools/templates/tools/overview.html:22
+msgid "Started"
+msgstr "Startet"
+
+#: profile/templates/profile/user_donated.html:40
+#: profile/templates/profile/user_raised.html:35
+#: tools/templates/tools/overview.html:23
+msgid "Continues Until"
+msgstr "Forsættes indtil"
+
+#: profile/templates/profile/user_donated.html:41
+#: profile/templates/profile/user_raised.html:36
+msgid "Amount Earned (kr)"
+msgstr "Beløb optjent (kr)"
+
+#: profile/templates/profile/user_donated.html:73
+#: profile/templates/profile/user_raised.html:93
+msgid "Hmm, there don't seem to be any sponsorships here."
+msgstr "Hmm, det ser ikke ud til at der er nogle sponsorater her."
+
+#: profile/templates/profile/user_donated.html:79
+msgid "Total Amount Donated: "
+msgstr "Totalt beløb doneret:"
+
+#: profile/templates/profile/user_donated.html:89
+msgid "Challenges where you are sponsoring"
+msgstr "Udfordringer hvor du sponsorerer"
+
+#: profile/templates/profile/user_donated.html:92
+#, python-format
+msgid "Challenges where %(username)s is sponsoring"
+msgstr "Udfordringer hvor %(username)s sponsorerer"
+
+#: profile/templates/profile/user_donated.html:99
+#: profile/templates/profile/user_raised.html:124
+msgid "Amount (dkk)"
+msgstr "Beløb (dkk)"
+
+#: profile/templates/profile/user_donated.html:100
+#: profile/templates/profile/user_raised.html:125
+msgid "End Date"
+msgstr "Slut dato"
+
+#: profile/templates/profile/user_donated.html:101
+#: profile/templates/profile/user_raised.html:126
+msgid "Bet"
+msgstr "Væddemål"
+
+#: profile/templates/profile/user_donated.html:102
+#: profile/templates/profile/user_raised.html:127
+msgid "Status"
+msgstr "Status"
+
+#: profile/templates/profile/user_donated.html:117
+#: profile/templates/profile/user_raised.html:142
+msgid "Hmm, there don't seem to be any challenges here."
+msgstr "Hmm, det ser ikke ud til at der er nogle udfordringer her."
+
+#: profile/templates/profile/user_donated.html:124
+#: profile/templates/profile/user_raised.html:149
+#: runs/templates/runs/user_runs.html:103
+msgid "Sorry, this user has chosen to make their information private."
+msgstr "Beklager, denne bruger har valgt at gøre deres information privat."
+
+#: profile/templates/profile/user_donated.html:139
+#, python-format
+msgid ""
+"\n"
+"                    Request sponsorship from %(username)s\n"
+"                "
+msgstr ""
+"\n"
+"Spørg om et sponsorat fra %(username)s                  "
+
+#: profile/templates/profile/user_donated.html:147
+#, python-format
+msgid ""
+"\n"
+"                    Invite %(username)s to challenge you\n"
+"                "
+msgstr ""
+"\n"
+"Invitér %(username)s til at udfordre dig"
+
+#: profile/templates/profile/user_raised.html:27
+msgid "Sponsorships Recieved"
+msgstr "Sponsorater modtaget"
+
+#: profile/templates/profile/user_raised.html:31
+#: profile/templates/profile/user_raised.html:123
+#: tools/templates/tools/overview.html:15
+#: tools/templates/tools/overview.html:71
+msgid "Sponsor"
+msgstr "Sponsor"
+
+#: profile/templates/profile/user_raised.html:71
+msgid "Anonymous Sponsor"
+msgstr "Anonym sponsor"
+
+#: profile/templates/profile/user_raised.html:101
+msgid "Total Amount Earned:"
+msgstr "Totalt beløb optjent:"
+
+#: profile/templates/profile/user_raised.html:113
+msgid "Challenges where you are running"
+msgstr "Udfordringer hvor du løber"
+
+#: profile/templates/profile/user_raised.html:115
+#, python-format
+msgid "Challenges where %(username)s is running"
+msgstr "Udfordringer hvor %(username)s løber"
+
+#: profile/templates/profile/user_raised.html:163
+#, python-format
+msgid ""
+"\n"
+"                    Sponsor %(username)s\n"
+"                "
+msgstr ""
+"\n"
+"Sponser %(username)s                  "
+
+#: profile/templates/profile/user_raised.html:171
+#, python-format
+msgid ""
+"\n"
+"                    Challenge %(username)s\n"
+"                "
+msgstr ""
+"\n"
+"Udfordre %(username)s!"
+
+#: profile/templates/profile/user_settings.html:14
+#: profile/templates/profile/user_settings.html:18
+msgid "Your Settings"
+msgstr "Dine indstillinger"
+
+#: profile/templates/profile/user_settings.html:28
+msgid "Pay with your credit card when you sponsor runners"
+msgstr "Betal med dit kredit kort når du sponsorerer løbere"
+
+#: profile/templates/profile/user_settings.html:33
+msgid ""
+"\n"
+"              Click the card below to register a credit card with Masanga Runners. \n"
+"              If you do this, you won't be charged anything initially. From then on,\n"
+"              whenever you agree to pay out a challenge, or a runner you're sponsoring\n"
+"              runs, you card will be automatically charged, without having to\n"
+"              do anything!\n"
+"              "
+msgstr ""
+"\n"
+"Klik på kortet erunder for at registere et kredit kort på Masanga Runners. Hvis du gør dette, vil du ikke blive opkrævet noget med det samme. Herefter vil dit kreditkort automatisk blive opkrevet hver gang du accepterer at betale en udfordring, eller når en løber du sponsorerer løber, uden at du behøver at gøre noget!"
+
+#: profile/templates/profile/user_settings.html:42
+msgid "Register your card with Masanga Runners"
+msgstr "Registrer dit kort med Masanga Runners"
+
+#: profile/templates/profile/user_settings.html:46
+msgid ""
+"\n"
+"              Click the button below if you want to have Masanga Runners forget your card.\n"
+"              "
+msgstr ""
+"\n"
+"Klik på knappen nedenunder hvis du ønsker at Masanga Runners glemmer dit kort."
+
+#: profile/templates/profile/user_settings.html:51
+msgid "Forget my card"
+msgstr "Glem mit kort"
+
+#: profile/templates/profile/user_settings.html:59
+msgid "Automatically track your runs with Runkeeper"
+msgstr "Indlæs automatisk dine løb med RunKeeper"
+
+#: profile/templates/profile/user_settings.html:63
+msgid ""
+"\n"
+"            You can connect your Masanga Runners account to your Runkeeper account!\n"
+"            Runkeeper is a mobile app that makes it easy to keep track of your runs. \n"
+"            If you connect your accounts, your runs will automatically show up on\n"
+"            Masanga Runners every day.\n"
+"            "
+msgstr ""
+"\n"
+"Forbind din Masanga Runners konto til din RunKeeper konto! RunKeeper er en mobil app der gør det lettere for dig at holde styr på dine løb. Hvis du forbinder dine konti, vil dine løb automatisk blive dukke op på Masanga Runners hver dag."
+
+#: profile/templates/profile/user_settings.html:71
+msgid "Register with runkeeper!"
+msgstr "Registrer med RunKeeper!"
+
+#: profile/templates/profile/user_settings.html:78
+msgid "Public profile, visible to the world"
+msgstr "Offentlig profil, synlig for verdenen"
+
+#: profile/templates/profile/user_settings.html:83
+msgid ""
+"\n"
+"              Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and challenges, click the button below to make your page private.\n"
+"              "
+msgstr ""
+"\n"
+"Lige nu kan alle se din side. Dette vil hjælpe mulige sponsorer med at finde dig og vælge enten at sponsorere dig eller ej. Hvis du ikke ønsker at andre end dig selv kan se dine sponsorater, løb og udfordringer, så klik på knappen nedenunder for at gøre din profil privat."
+
+#: profile/templates/profile/user_settings.html:89
+msgid "Click here to make your page private."
+msgstr "Klik her for at gøre din side privat."
+
+#: profile/templates/profile/user_settings.html:93
+msgid ""
+"\n"
+"              Right now, no one can see your page. Potential sponsors won't be able to see information on you when they're trying to decide whether or not to sponsor you. If you want people to be able to see your information, click the button below to make your page public.\n"
+"              "
+msgstr ""
+"\n"
+"Lige nu er der ingen der kan se din side. Potentielle sponsorer vil ikke være i stand til at se dine informationener når de skal beslutte sig for om de ønsker at sponsorere dig eller ej. Hvis du ønsker at folk kan se din information, så klik på knappen nedenunder for at gøre din side offentlig."
+
+#: profile/templates/profile/user_settings.html:99
+msgid "Click here to make your page public."
+msgstr "Klik her for at gøre din side offentlig."
+
+#: profile/templates/profile/user_settings.html:107
+msgid "Mails and reminders"
+msgstr "Mails og påmindelser"
+
+#: profile/templates/profile/user_settings.html:112
+msgid ""
+"\n"
+"              Click the button below if you want to unsubscribe from all reminder emails from us.\n"
+"              "
+msgstr ""
+"\n"
+"Klik på knappen nedenunder hvis du ønsker at afmelde dig fra alle påmindelses e-mails fra os."
+
+#: profile/templates/profile/user_settings.html:117
+msgid "Unsubscribe from our emails"
+msgstr "Afmeld dig fra vores e-mails"
+
+#: profile/templates/profile/user_settings.html:121
+msgid ""
+"\n"
+"              Click the button below if you want to subscribe to reminder emails.\n"
+"              "
+msgstr ""
+"\n"
+"Klik på knappen nedenunder hvis du ønsker at tilmelde dig påmindelses e-mails.\n"
+"              "
+
+#: profile/templates/profile/user_settings.html:126
+msgid "Subscribe to our emails"
+msgstr "Tilmeld dig til vores e-mails"
+
+#: profile/templates/profile/users_list.html:12
+msgid "Our runners & sponsors"
+msgstr "Vores løbere & sponsorer"
+
+#: profile/templates/profile/users_list.html:28
+msgid "Huh, that's weird. We can't find any runners. Check back later."
+msgstr "Hov, det var underligt. Vi kan ikke finde nogle løbere. Kig tilbage senere."
+
+#: profile/templates/profile/users_list.html:33
+msgid "Are we missing someone you know?"
+msgstr "Mangler vi en du kender?"
+
+#: profile/templates/profile/users_list.html:37
+msgid "Invite a runner or sponsor, to join us!"
+msgstr "Inviter en løber eller sponsor til at være med!"
+
+#: profile/views.py:116
+msgid "The email has been successfully subscribed"
+msgstr "Din e-mail blev tilmeldt"
+
+#: profile/views.py:119
+msgid "That email is already subscribed to the list"
+msgstr "Denne e-mail modtager allerede nyhedsbrevet."
+
+#: profile/views.py:123
+msgid "An error occurred while subscribing to mailing list."
+msgstr "En fejl opstod da du skulle tilmeldes nyhedsbrevet."
+
+#: profile/views.py:225
+#: profile/views.py:233
+msgid "Your settings has been saved."
+msgstr "Dine indstillinger blev gemt."
+
+#: runs/tasks.py:43
+#: runs/tasks.py:48
+msgid "Masanga Runners run-update"
+msgstr "Masanga Runners opdatering"
+
+#: runs/tasks.py:65
+msgid "Masanga Runners Reminder"
+msgstr "Masanga Runners påmindelse"
+
+#: runs/tasks.py:68
+msgid "Reminder"
+msgstr "Påmindelse"
+
+#: runs/templates/runs/input_run.html:8
+msgid "Input a Run"
+msgstr "Indtast et løb"
+
+#: runs/templates/runs/input_run.html:26
+msgid "Add your run"
+msgstr "Tilføj dit løb"
+
+#: runs/templates/runs/input_run.html:35
+msgid ""
+"\n"
+"    Here, you can input a run! All your sponsors will have the distance you \n"
+"    ran added to tab for their sponsorship, and they'll be billed at the end of the month.\n"
+"    "
+msgstr ""
+"\n"
+"Her kan du indtaste et løb. Alle dine sponsorer vil få tilføjet distancen du har løbet til deres regning for deres sponsorater, og de bil blive opkrævet i slutningen af hvert kvartal."
+
+#: runs/templates/runs/run_edit.html:7
+msgid ""
+"\n"
+"Edit Run\n"
+msgstr ""
+"\n"
+"Ændre løb\n"
+
+#: runs/templates/runs/run_edit.html:31
+msgid "Edit your run"
+msgstr "Ændre dit løb"
+
+#: runs/templates/runs/run_edit.html:39
+msgid "Make end date the same as start date if it was a single run."
+msgstr "Sæt slut datoen til det samme som start datoen hvis det var et enkelt løb."
+
+#: runs/templates/runs/user_runs.html:49
+msgid "Date"
+msgstr "Dato"
+
+#: runs/templates/runs/user_runs.html:50
+msgid "Distance (km)"
+msgstr "Distance (km)"
+
+#: runs/templates/runs/user_runs.html:51
+msgid "Time"
+msgstr "Tid"
+
+#: runs/templates/runs/user_runs.html:62
+msgid "Edit Run Details"
+msgstr "Ændre løbs detaljer"
+
+#: runs/templates/runs/user_runs.html:67
+msgid "Hmm, there don't seem to be any runs here."
+msgstr "Hmm, der ser ikke ud til at være nogle løb her."
+
+#: runs/templates/runs/user_runs.html:71
+msgid "Total Distance Run:"
+msgstr "Total distance løbet:"
+
+#: runs/templates/runs/user_runs.html:85
+msgid "Add new run here!"
+msgstr "Tilføj et løb her!"
+
+#: runs/templates/runs/user_runs.html:92
+#, python-format
+#| msgid ""
+#| "\n"
+#| "        These are all of the runs that %(runner_username)s has "
+#| "synchronized with Masanga Runners. \n"
+#| "        At the end of the quarter, anyone who was sponsoring "
+#| "%(runner_username)s for \n"
+#| "        this period will be billed, depending on their rates, challenges "
+#| "etc., \n"
+#| "        and the money will be sent to Masanga Hospital.\n"
+#| "    "
+msgid ""
+"\n"
+"            These are all of the runs that %(runner_username)s has synchronized with Masanga Runners. \n"
+"            At the end of the quarter, anyone who was sponsoring %(runner_username)s for \n"
+"            this period will be billed, depending on their rates, challenges etc., \n"
+"            and the money will be sent to Masanga Hospital.\n"
+"        "
+msgstr ""
+"\n"
+"Dette er alle de løb som %(runner_username)s har synkroniseret med Masanga Runners. I slutningen af hvert kvartal bliver enhver der har sponsoreret %(runner_username)s i perioden opkrævet afhængigt af sponsoraternes rater, udfordringer, osv. og pengene vil blive sendt til Masanga Hospital."
+
+#: runs/views.py:43
+msgid "Your run has been added"
+msgstr "Dit løb er blevet tilføjet"
+
+#: runs/views.py:58
+msgid "You are not the owner of this run."
+msgstr "Du er ikke ejeren af dette løb."
+
+#: runs/views.py:161
+msgid "Your runs from RunKeeper are being processed..."
+msgstr "Dine løb fra RunKeeper bliver behandlet..."
+
+#: sponsorship/forms.py:9
+msgid "Rate (kr. pr. km)"
+msgstr "Rate (kr. pr. km)"
+
+#: sponsorship/forms.py:13
+msgid "Sponsorship start date"
+msgstr "Sponsoratets start dato"
+
+#: sponsorship/forms.py:18
+msgid "Sponsorship end date"
+msgstr "Sponsoratets afslutnings dato"
+
+#: sponsorship/forms.py:23
+msgid "Maximum total amount"
+msgstr "Maksimalt muligt beløb"
+
+#: sponsorship/forms.py:40
+msgid "Rate cannot be negative"
+msgstr "Raten kan ikke være negativ"
+
+#: sponsorship/forms.py:44
+msgid "Max amount cannot be negative"
+msgstr "Maksimalt beløb kan ikke være negativt"
+
+#: sponsorship/forms.py:48
+msgid "End date cannot be before start date."
+msgstr "Slut datoen kan ikke være før start datoen."
+
+#: sponsorship/templates/sponsorship/_end_sponsorship_button.html:2
+msgid "End Sponsorship"
+msgstr "Afslut sponsorat"
+
+#: sponsorship/templates/sponsorship/add_sponsorship.html:47
+msgid "Create a new Sponsorship"
+msgstr "Opret nyt sponsorat"
+
+#: sponsorship/templates/sponsorship/add_sponsorship.html:52
+#, python-format
+msgid ""
+"\n"
+"            Fill out these fields down here to sponsor %(username)s. \n"
+"            Between the dates in start date and end date, any \n"
+"            time %(username)s runs, you will agree to donate the\n"
+"             number of dkk in the \"rate\" field to Masanga Hospital. \n"
+"             If you're worried that your runner will run too much, \n"
+"             don't worry too much! You won't be charged more than \n"
+"             the number you put in the \"max amount\" field, no matter \n"
+"             how much they run.\n"
+"        "
+msgstr ""
+"\n"
+"Udfyld disse felter for at sponsorere %(username)s.Imellem start og slut datoerne accepterer du at donere antallet af danske krone per kilometer i \"rate\" feltet til Masanga Hospital, hver gang %(username)s løber.Hvis du er bekymret for at din løber vil løbe for meget, så fortvivl ej. Du vil ikke bliver opkrævet mere end beløbet der står i \"maksimalt beløb\" feltet, uanset hvor meget de løber."
+
+#: sponsorship/templates/sponsorship/request_sponsorship.html:8
+msgid "Request sponsorship"
+msgstr "Efterspørg sponsorat"
+
+#: sponsorship/templates/sponsorship/request_sponsorship.html:49
+#, python-format
+msgid ""
+"\n"
+"\t\tInvite %(username)s to sponsor you.\n"
+"\t\t"
+msgstr ""
+"\n"
+"Inviter %(username)s til at sponsorere dig.\n"
+"\t"
+
+#: sponsorship/templates/sponsorship/request_sponsorship.html:58
+#, python-format
+msgid ""
+"\n"
+"        You can fill out the form below to invite %(username)s to sponsor you.\n"
+"        Feel free to leave whatever you want blank. %(username)s will get \n"
+"        an email notifying him/her that you requested him/her as a sponsor, \n"
+"        and the values you do fill out will be displayed.\n"
+"        They can then choose to sponsor you immediately, change or add \n"
+"        some values and then sponsor you, or decline entirely.\n"
+"        "
+msgstr ""
+"\n"
+"Du kan udfylde formularen nedenunder for at invitere %(username)s til at sponsorere dig. Udfyld kun de felter du ønsker. %(username)s vil få en email der oplyser ham/hende om at du ønsker at de sponsorerer dig, og de værdier som du har udfyldt vil blive vist. Derefter kan han/hun vælge at sponsorere dig direkte, ændre/tilføje nogle værdier og derefter sponsorere dig eller at afvise helt."
+
+#: sponsorship/views.py:29
+msgid "Sponsorship has been ended."
+msgstr "Sponsoratet er afsluttet."
+
+#: sponsorship/views.py:33
+msgid "You are not a associated with this sponsorship."
+msgstr "Du er ikke i forbindelse med dette sponsorat."
+
+#: sponsorship/views.py:61
+#, python-format
+msgid "Your sponsorship of %(username)s has been set up."
+msgstr "Dit sponsorat af %(username)s er blevet sat op."
+
+#: sponsorship/views.py:95
+msgid "Masanga Runners sponsorship request"
+msgstr "Masanga Runners sponsorat efterspørgsel"
+
+#: sponsorship/views.py:110
+msgid "We have sent your request to sponsor."
+msgstr "Vi har sendt din forespørgsel til sponsoren."
+
+#: sponsorship/views.py:127
+msgid "You are not the intended sponsor, please log in as%127 s."
+msgstr "Du er ikke den forventerede sponsor, log venligst ind som%127 s."
+
+#: tools/templates/tools/overview.html:5
+#: tools/templates/tools/overview.html:7
+msgid "Overview"
+msgstr "Overblik"
+
+#: tools/templates/tools/overview.html:12
+msgid "All sponsorships"
+msgstr "Alle sponsorater"
+
+#: tools/templates/tools/overview.html:17
+msgid "Rate"
+msgstr "Rate"
+
+#: tools/templates/tools/overview.html:18
+#: tools/templates/tools/overview.html:107
+msgid "Amount Earned"
+msgstr "Beløb optjent"
+
+#: tools/templates/tools/overview.html:19
+msgid "Amount Paid"
+msgstr "Betalt beløb"
+
+#: tools/templates/tools/overview.html:20
+msgid "Amount Left to Pay"
+msgstr "Udestående beløb"
+
+#: tools/templates/tools/overview.html:21
+msgid "Max Amount"
+msgstr "Maksimalt beløb"
+
+#: tools/templates/tools/overview.html:24
+msgid "Active"
+msgstr "Aktiv"
+
+#: tools/templates/tools/overview.html:25
+msgid "Change Total Amount Paid"
+msgstr "Ændre totalt beløb betalt"
+
+#: tools/templates/tools/overview.html:58
+msgid "The sponsor is using a card"
+msgstr "Sponsoren benytter et kreditkort"
+
+#: tools/templates/tools/overview.html:68
+msgid "All Challenges"
+msgstr "Alle udfordringer"
+
+#: tools/templates/tools/overview.html:73
+msgid "Amount"
+msgstr "Beløb"
+
+#: tools/templates/tools/overview.html:74
+msgid "Fulfilled"
+msgstr "Opfyldt"
+
+#: tools/templates/tools/overview.html:75
+msgid "Paid"
+msgstr "Betalt"
+
+#: tools/templates/tools/overview.html:76
+msgid "Remind Date"
+msgstr "Påmindelses dato"
+
+#: tools/templates/tools/overview.html:77
+msgid "Decision Date"
+msgstr "Beslutnings dato"
+
+#: tools/templates/tools/overview.html:78
+msgid "Challenge Text"
+msgstr "Udfordrings tekst"
+
+#: tools/templates/tools/overview.html:79
+msgid "Update Text"
+msgstr "Opdater tekst"
+
+#: tools/templates/tools/overview.html:101
+msgid "All Users"
+msgstr "Alle brugere"
+
+#: tools/templates/tools/overview.html:104
+msgid "Username"
+msgstr "Brugernavn"
+
+#: tools/templates/tools/overview.html:105
+msgid "Email"
+msgstr "E-mail"
+
+#: tools/templates/tools/overview.html:106
+msgid "Is public"
+msgstr "Er offentlig"
+
+#: tools/templates/tools/overview.html:108
+msgid "Amount Donated"
+msgstr "Beløb doneret"
+
+#: tools/templates/tools/overview.html:122
+msgid "All email addresses"
+msgstr "Alle e-mail adresser"
+
+#: tools/templates/tools/overview.html:136
+msgid "Newsletter email addresses"
+msgstr "Nyhedsbrevs e-mail adresse"
+
+#: tools/templates/tools/overview.html:155
+msgid "Charge users"
+msgstr "Opkræve brugere"
+
+#: tools/templates/tools/overview.html:158
+msgid ""
+"\n"
+"            <p>The users sponsoring on the page is automatically charged on a periodically basis.</p>\n"
+"            <p>If you want to extraordinarily settle up and issue payments for all sponsors owing money, please click the button to:</p>\n"
+"            "
+msgstr ""
+"\n"
+"            <p>Brugerene der sponsorerer på denne side opkræves automatisk pæriodisk.</p>\n"
+"            <p>Hvis du ønsker ekstraordinært at udligne og udsende opkrævninger for alle sponsorer der skylder penge, så klik venligst på knappen for at:</p>"
+
+#: tools/templates/tools/overview.html:164
+msgid "Charge user now"
+msgstr "Opkræv bruger nu"
+
+#: tools/templates/tools/overview.html:170
+msgid "Sorry, you need to be an admin to access this page."
+msgstr "Beklager, du skal være administrator for at tilgå denne side."
+
+#: tools/views.py:66
+msgid "sponsorship has been changed"
+msgstr "sponsoratet er blevet ændret"
+
+#~ msgid ""
+#~ "Thank you for using %(site_name)s!\n"
+#~ "%(site_domain)s"
+#~ msgstr ""
+#~ "Tak fordi du bruger %(site_name)s!\n"
+#~ "%(site_domain)s"

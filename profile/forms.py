@@ -1,15 +1,16 @@
 # coding: utf8
 
 from django import forms
+from django.utils.translation import ugettext as _
 
 
 class SignupForm(forms.Form):
-    public_info = forms.BooleanField(label="I want my sponsorships to be publicly visible",
+    public_info = forms.BooleanField(label=_("I want my sponsorships to be publicly visible"),
                                      widget=forms.CheckboxInput(),
                                      required=False,
                                      initial=True)
 
-    newsletter = forms.BooleanField(label="I would like to recieve the Masanga newsletter",
+    newsletter = forms.BooleanField(label=_("I would like to recieve the Masanga newsletter"),
                                     widget=forms.CheckboxInput(),
                                     required=False,
                                     initial=True)

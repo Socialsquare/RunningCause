@@ -19,6 +19,9 @@ from django.utils.http import is_safe_url
 from allauth.account.forms import LoginForm, SignupForm
 
 from .models import User
+# TODO: I wonder if there is a better way that makes the apps
+# more decoupled.
+from challenges.models import Challenge
 
 
 log = logging.getLogger(__name__)

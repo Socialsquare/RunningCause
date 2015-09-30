@@ -1,11 +1,18 @@
+{% load i18n %}
 <ul class="nav nav-tabs" role="tablist">
 	<li class="{% if tab_name == 'runs' %}active{% endif %}">
-	<a href="{% url 'runs:user_runs' user_id=person.id %}">Runs</a>
+		<a href="{% url 'runs:user_runs' user_id=person.id %}">
+			{% trans 'Runs' %}
+		</a>
 	</li>
 	<li class="{% if tab_name == 'raised' %}active{% endif %}">
-	<a href="{% url 'profile:user_raised' user_id=person.id %}">Money Raised</a>
+		<a href="{% url 'profile:user_raised' user_id=person.id %}">
+			{% trans 'Money Raised' %}
+		</a>
 	</li>
 	<li class="{% if tab_name == 'donations' %}active{% endif %}">
-	<a href="{% url 'profile:user_donated' user_id=person.id %}">Donations</a>
+		<a href="{% url 'profile:user_donated' user_id=person.id %}">
+			{% trans 'Donations' %}
+		</a>
 	</li>
 </ul>

@@ -2,24 +2,25 @@
 from django import forms
 
 from .models import Sponsorship, SponsorRequest
+from django.utils.translation import ugettext as _
 
 
 class SponsorForm(forms.ModelForm):
-    rate = forms.FloatField(label="Rate (kr. pr. km)",
+    rate = forms.FloatField(label=_("Rate (kr. pr. km)"),
                             widget=forms.TextInput(
                                 attrs={'class': 'form-control'}),
                             localize=True)
-    start_date = forms.DateField(label="Sponsorship start date",
+    start_date = forms.DateField(label=_("Sponsorship start date"),
                                  widget=forms.DateInput(attrs={'class': 'form-control',
                                                                'id': 'start_datepicker',
                                                                         'autocomplete': "off"}),
                                  required=True)
-    end_date = forms.DateField(label="Sponsorship end date",
+    end_date = forms.DateField(label=_("Sponsorship end date"),
                                widget=forms.DateInput(attrs={'class': 'form-control',
                                                              'id': 'end_datepicker',
                                                              'autocomplete': "off"}),
                                required=True)
-    max_amount = forms.FloatField(label="Maximum total amount",
+    max_amount = forms.FloatField(label=_("Maximum total amount"),
                                   widget=forms.TextInput(
                                       attrs={'class': 'form-control'}),
                                   localize=True)
@@ -36,15 +37,15 @@ class SponsorForm(forms.ModelForm):
             return valid
 
         if self.cleaned_data['rate'] < 0:
-            self.add_error('rate', 'Rate cannot be negative')
+            self.add_error('rate', _('Rate cannot be negative'))
             valid = False
 
         if self.cleaned_data['max_amount'] < 0:
-            self.add_error('max_amount', 'Max amount cannot be negative')
+            self.add_error('max_amount', _('Max amount cannot be negative'))
             valid = False
 
         if self.cleaned_data['start_date'] > self.cleaned_data['end_date']:
-            self.add_error('end_date', 'End date cannot be before start date.')
+            self.add_error('end_date', _('End date cannot be before start date.'))
             valid = False
 
         return valid
