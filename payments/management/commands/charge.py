@@ -8,8 +8,9 @@ class Command(BaseCommand):
     help = 'Charges all customers who have registered with stripe'
 
     def handle(self, *args, **options):
-        # FIXME: hack because celery on heroku is expensive...
-        if datetime.date.today().month in (1, 4, 7, 10):
+        # FIXME: hack because celery on heroku is expensive..
+        today = datetime.date.today()
+        if today.month in (1, 4, 7, 10) and today.day == 1:
             charge_users()
         else:
-            print "skipping call... we charge users quarterly only!"
+            print "Skipping... We only charge users the first day of a quarter!"
