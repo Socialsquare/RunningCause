@@ -1,9 +1,12 @@
+{% load i18n %}
 {% if user == challenge.runner and challenge.status == 'new' %}
-<a class="btn btn-default" 
-href="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
-<i class="fa fa-money fa-2x"></i>complete</a>
+    <a class="btn btn-default"
+        href="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
+        {% trans 'Update' %}
+    </a>
 {% elif user == challenge.sponsor and challenge.status == 'completed' %}
-<a class="btn btn-default" 
-href="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
-<i class="fa fa-money fa-2x"></i></a>
+    <a class="btn btn-default"
+        href="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
+        {% trans 'Confirm' %}
+    </a>
 {% endif %}
