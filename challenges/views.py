@@ -232,10 +232,34 @@ class FeedbackChallenge(View):
                     challenge.status = Challenge.CONFIRMED
                     msg = _("You have accepted to pay for the challenge. "
                             "The money will be charged at the end of the "
-                            "quarter.")
+                            "quarter. Thank you for making a change in "
+                            "Masanga!")
+                    email_subject = _("%(sponsor)s accepted to pay!") % {
+                        'sponsor': challenge.sponsor.username
+                    }
+                    email_template = 'challenges/emails/challenge_confirmed.html'
                 else:  # request.POST.get('submit') == 'decline':
                     challenge.status = Challenge.DECLINED
                     msg = _("You have declined to pay for the challenge.")
+                    email_subject = _("%(sponsor)s rejected to pay!") % {
+                        'sponsor': challenge.sponsor.username
+                    }
+                    email_template = 'challenges/emails/challenge_rejected.html'
+
+                ctx = Context({
+                    'sponsor': challenge.runner.username,
+                    'amount': challenge.amount,
+                    'challenge_text': challenge.challenge_text,
+                    'runners_message': challenge.runner_msg,
+                    'sponsors_message': challenge.sponsor_msg,
+                    'BASE_URL': settings.BASE_URL
+                })
+                email_msg = loader.get_template(email_template).render(ctx)
+                send_mail(email_subject,
+                          '',
+                          settings.DEFAULT_FROM_EMAIL,
+                          [challenge.runner.email, ],
+                          html_message=email_msg)
             challenge.save()
             messages.info(request, msg)
             return HttpResponseRedirect(redirect_url)

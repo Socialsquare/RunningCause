@@ -4,17 +4,11 @@
 <p>
     {%blocktrans%}Oh no! {{runner}} failed to complete the challenge:{%endblocktrans%}
 </p>
-<p style="
-    white-space: pre-line;
-    background: #eee;
-    padding: 0.7em;">{{challenge_text}}</p>
+{% include "_email_quotation.html" with quote=challenge_text %}
 <p>
     {% blocktrans %}{{runner}} wrote:{% endblocktrans %}
 </p>
-<p style="
-    white-space: pre-line;
-    background: #eee;
-    padding: 0.7em;">{{runners_message}}</p>
+{% include "_email_quotation.html" with quote=runners_message %}
 <p>
     {% blocktrans %}You don't need to do more with this challenge, but perhaps you want to create another one?{% endblocktrans %}
 </p>
