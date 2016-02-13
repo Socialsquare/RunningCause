@@ -1,5 +1,5 @@
 {% load staticfiles %}
-<p style="
+<div style="
     background-color: #C90401;
     margin-bottom: 30px;
     padding-left: 10px;
@@ -9,25 +9,18 @@
     <h1 style="color:#fff;">
         {% if title %}{{ title }}{% else %}Masanga Runners{% endif %}
     </h1>
-</p>
+</div>
 
 {% block message %}
 {% endblock %}
 
-<img
-    src="{{ BASE_URL }}{% static 'img/masanga_logo123.png' %}"
-    alt="Masanga Logo"
-    style="
-        float: right;
-        height: 109px;
-        width: 211px;
-    ">
-
-
 <p>
     De bedste løbehilsner<br/>
-    Masanga Runners<br/>
-    _________________<br/><br/>
+    <img
+        src="{{ BASE_URL }}{% static 'img/masanga_logo123.png' %}"
+        alt="Masanga Logo"
+        style="width: 150px;">
+    <hr>
     Masanga DK<br/>
     Dalbergstrøget 7<br/>
     2630 Taastrup<br/>

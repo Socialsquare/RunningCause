@@ -124,7 +124,7 @@ def invite_sponsor_to_challenge(request, person_id=None):
             tmpl = 'challenges/emails/invite_sponsor_to_challenge.html'
             html_msg = loader.get_template(tmpl)\
                 .render(Context(ctx))
-            send_mail(_('Masanga Runners invitation for challenge'),
+            send_mail(_('Masanga Runners invitation to challenge'),
                       '',
                       settings.DEFAULT_FROM_EMAIL,
                       [sponsor.email],
