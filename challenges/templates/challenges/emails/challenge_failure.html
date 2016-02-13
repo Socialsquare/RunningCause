@@ -1,0 +1,24 @@
+{% extends 'email_base.html' %}
+{% load i18n %}
+{% block message %}
+<p>
+    {%blocktrans%}Oh no! {{runner}} failed to complete the challenge:{%endblocktrans%}
+</p>
+<p style="
+    white-space: pre-line;
+    background: #eee;
+    padding: 0.7em;">{{challenge_text}}</p>
+<p>
+    {% blocktrans %}{{runner}} wrote:{% endblocktrans %}
+</p>
+<p style="
+    white-space: pre-line;
+    background: #eee;
+    padding: 0.7em;">{{runners_message}}</p>
+<p>
+    {% blocktrans %}You don't need to do more with this challenge, but perhaps you want to create another one?{% endblocktrans %}
+</p>
+<p>
+    {% include "_email_button.html" with link=link text=_("Click to create another challenge") %}
+</p>
+{% endblock %}

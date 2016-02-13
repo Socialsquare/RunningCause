@@ -1,0 +1,21 @@
+{% extends 'email_base.html' %}
+{% load i18n %}
+{% block message %}
+<p>
+    {% blocktrans %}Fantastic! {{runner}} completed the challenge:{% endblocktrans %}
+</p>
+<p style="
+    white-space: pre-line;
+    background: #eee;
+    padding: 0.7em;">{{challenge_text}}</p>
+<p>
+    {% blocktrans %}{{runner}} wrote:{% endblocktrans %}
+</p>
+<p style="
+    white-space: pre-line;
+    background: #eee;
+    padding: 0.7em;">{{runners_message}}</p>
+<p>
+    {% include "_email_button.html" with link=link text=_("Click to confirm or reject to pay") %}
+</p>
+{% endblock %}
