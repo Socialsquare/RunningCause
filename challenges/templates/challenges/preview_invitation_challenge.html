@@ -27,11 +27,11 @@
 	    {% csrf_token %}
 		{% bootstrap_form form layout="form-horizontal" %}
 		{% buttons %}
-		  <button type="submit" name="submit" value="create" class="btn btn-primary pull-left">
-		    {% bootstrap_icon "star" %}{% blocktrans %}Create{% endblocktrans %}
+		  <button type="submit" name="submit" value="create" class="btn btn-success">
+		    {% bootstrap_icon "ok" %} {% trans 'Accept' %}
 		  </button>
-		  <button type="submit" name="submit" value="reject" class="btn btn-primary pull-right">
-		    {% bootstrap_icon "star" %}{% blocktrans %}Reject{% endblocktrans %}
+		  <button type="submit" name="submit" value="reject" class="btn btn-danger">
+		    {% bootstrap_icon "remove" %} {% trans 'Reject' %}
 		  </button>
 		{% endbuttons %}
 	</form>
