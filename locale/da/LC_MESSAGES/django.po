@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-13 16:52+0100\n"
-"PO-Revision-Date: 2016-02-13 17:02+0100\n"
+"POT-Creation-Date: 2016-02-13 17:25+0100\n"
+"PO-Revision-Date: 2016-02-13 17:26+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -595,11 +595,17 @@ msgstr "Indsend"
 msgid "Oh no! %(runner)s failed to complete the challenge:"
 msgstr "Åh nej! %(runner)s gennemførte desværre ikke udfordringen:"
 
-#: challenges/templates/challenges/emails/challenge_failure.html:15
+#: challenges/templates/challenges/emails/challenge_failure.html:12
+#: challenges/templates/challenges/emails/challenge_success.html:12
+#, python-format
+msgid "%(runner)s wrote:"
+msgstr "%(runner)s skrev:"
+
+#: challenges/templates/challenges/emails/challenge_failure.html:19
 msgid "You don't need to do more with this challenge, but perhaps you want to create another one?"
 msgstr "Du behøver ikke gøre mere ved denne udfordring, men måske har du lyst til at oprette en ny?"
 
-#: challenges/templates/challenges/emails/challenge_failure.html:18
+#: challenges/templates/challenges/emails/challenge_failure.html:22
 msgid "Click to create another challenge"
 msgstr "Klik for at oprette en ny udfordring"
 
@@ -608,18 +614,14 @@ msgstr "Klik for at oprette en ny udfordring"
 msgid "Fantastic! %(runner)s completed the challenge:"
 msgstr "Fantastisk! %(runner)s gennemførte udfordringen:"
 
-#: challenges/templates/challenges/emails/challenge_success.html:12
-#, python-format
-msgid "%(runner)s wrote:"
-msgstr "%(runner)s skrev:"
-
 #: challenges/templates/challenges/emails/challenge_success.html:19
 msgid "Click to confirm or reject to pay"
 msgstr "Klik for at bekræfte eller afvise at betale"
 
 #: challenges/templates/challenges/feedback_challenge.html:8
-msgid "Update your Challenge"
-msgstr "Opdater din udfordring"
+#| msgid "Update your Challenge"
+msgid "Update your challenge"
+msgstr "Opdatér din udfordring"
 
 #: challenges/templates/challenges/feedback_challenge.html:14
 msgid ""
@@ -651,23 +653,42 @@ msgstr ""
 "\n"
 "Her kan du bekræfte eller afvise at udfordringen er gennemført af %(runner_username)s."
 
-#: challenges/templates/challenges/feedback_challenge.html:47
-msgid "You can leave a feedback message to the runner."
-msgstr "Du kan efterlade en tilbagemelding til løberen."
+#: challenges/templates/challenges/feedback_challenge.html:41
+#, python-format
+#| msgid "Please write a message"
+msgid ""
+"\n"
+"        %(runner)s has left a message:\n"
+"    "
+msgstr ""
+"\n"
+"%(runner)s har skrevet en besked:"
 
-#: challenges/templates/challenges/feedback_challenge.html:60
+#: challenges/templates/challenges/feedback_challenge.html:52
+#, python-format
+#| msgid "You can leave a feedback message to the runner."
+msgid ""
+"\n"
+"            You can leave a feedback message to %(runner)s.\n"
+"        "
+msgstr ""
+"\n"
+"Du kan efterlade en tilbagemelding til %(runner)s."
+
+#: challenges/templates/challenges/feedback_challenge.html:68
 msgid "I did it!"
 msgstr "Jeg gjorde det!"
 
-#: challenges/templates/challenges/feedback_challenge.html:66
+#: challenges/templates/challenges/feedback_challenge.html:74
 msgid "I did not make it"
 msgstr "Jeg klarede den ikke"
 
-#: challenges/templates/challenges/feedback_challenge.html:74
-msgid "Confirm and pay"
-msgstr "Bekræft og betal"
+#: challenges/templates/challenges/feedback_challenge.html:82
+#, python-format
+msgid "Confirm and pay %(amount)s DKK"
+msgstr "Bekræft og betal %(amount)s kr"
 
-#: challenges/templates/challenges/feedback_challenge.html:77
+#: challenges/templates/challenges/feedback_challenge.html:85
 msgid "Decline"
 msgstr "Afvis"
 
@@ -750,79 +771,79 @@ msgstr "%(username)s har udfordret dig"
 msgid "You have just challenge %(username)s"
 msgstr "Du har netop udfordret %(username)s"
 
-#: challenges/views.py:129
+#: challenges/views.py:130
 msgid "Masanga Runners invitation to challenge"
 msgstr "Masanga Runners invitation til at udfordre"
 
-#: challenges/views.py:136
+#: challenges/views.py:137
 #, python-format
 msgid "You have send invitation to %(username)s to challenge you."
 msgstr "Du har sendt en invitation til at %(username)s udfordrer dig."
 
-#: challenges/views.py:186
+#: challenges/views.py:187
 msgid "Congratulations!, Your update will be send to the sponsor for the final review."
 msgstr "Tillykke! Din opdatering vil blive sendt til sponsoren for endelig gennemgang."
 
-#: challenges/views.py:188
+#: challenges/views.py:189
 #, python-format
 msgid "%(runner)s completed the challenge successfully!"
 msgstr "%(runner)s gennemførte udfordringen!"
 
-#: challenges/views.py:197
+#: challenges/views.py:198
 msgid "Too bad. Your sponsor will be notified about the failed challenge."
 msgstr "Ærgerligt. Din sponsor vil blive informeret om den mislykkede udfordring."
 
-#: challenges/views.py:199
+#: challenges/views.py:200
 #, python-format
 msgid "%(runner)s failed to complete the challenge!"
 msgstr "%(runner)s gennemførte desværre ikke udfordringen!"
 
-#: challenges/views.py:232
+#: challenges/views.py:233
 msgid "You have accepted to pay for the challenge. The money will be charged at the end of the quarter."
 msgstr "Du har accepteret at betale for udfordringen. Pengene vil blive opkrævet ved udgangen af dette kvartal."
 
-#: challenges/views.py:237
+#: challenges/views.py:238
 msgid "You have declined to pay for the challenge."
 msgstr "Du har afvist at betale for udfordringen."
 
-#: challenges/views.py:265
+#: challenges/views.py:266
 #, python-format
 msgid "Runner %(username)s has accepted your challenge"
 msgstr "Løberen %(username)s har accepteret din udfordring"
 
-#: challenges/views.py:267
+#: challenges/views.py:268
 msgid "You have accepted a challenge."
 msgstr "Du har accepteret en udfordring."
 
-#: challenges/views.py:271
+#: challenges/views.py:272
 #, python-format
 msgid "Runner %(username)s has rejected your challenge"
 msgstr "Løberen %(username)s har afvist din udfordring"
 
-#: challenges/views.py:273
+#: challenges/views.py:274
 msgid "You have rejected a challenge."
 msgstr "Du har afvist udfordringen."
 
-#: challenges/views.py:294
+#: challenges/views.py:295
 msgid "You have been logged out, because you visited an invitation to a challenge that was sent to another user."
 msgstr "Du er blevet logget ud, fordi du har besøgt en invitation til en udfordring der var sendt til en anden bruger."
 
-#: challenges/views.py:317
+#: challenges/views.py:318
 #, python-format
 msgid "%(sponsor)s has challenged you!"
 msgstr "%(sponsor)s har udfordret dig!"
 
-#: challenges/views.py:321
+#: challenges/views.py:322
 #, python-format
 msgid "You have created a challenge for %(username)s."
 msgstr "Du har nu udfordret %(username)s."
 
-#: challenges/views.py:334
+#: challenges/views.py:335
 #, python-format
 msgid "%(sponsor)s rejected to challenge you."
 msgstr "%(sponsor)s har afvist at udfordre dig."
 
-#: challenges/views.py:338
+#: challenges/views.py:339
 #, python-format
 msgid "You have rejected to challenge %(runner)s."
 msgstr "Du har afvist at udfordre %(runner)s."
