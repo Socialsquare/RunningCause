@@ -4,7 +4,7 @@
 {% block message %}
 
 {% if given_completed_challenges %}
-<p>The list of completed challenges that need yor input:</p>
+<p>The list of completed challenges that need your input:</p>
 
 {% for challenge in given_completed_challenges %}
 	<li><a href="{{challenge.get_feedback_url|safe}}">{{challenge.challenge_text}}</a></li>
