@@ -121,7 +121,8 @@ def invite_sponsor_to_challenge(request, person_id=None):
             ctx = {
                 'runner': runner.username,
                 'link': full_link,
-                'BASE_URL': settings.BASE_URL,
+                'challenge_text': form.cleaned_data['challenge_text'],
+                'BASE_URL': settings.BASE_URL
             }
             tmpl = 'challenges/emails/invite_sponsor_to_challenge.html'
             html_msg = loader.get_template(tmpl)\
