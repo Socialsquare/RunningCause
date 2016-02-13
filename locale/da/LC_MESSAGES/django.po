@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-13 18:21+0100\n"
-"PO-Revision-Date: 2016-02-13 18:23+0100\n"
+"PO-Revision-Date: 2016-02-13 18:28+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -519,7 +519,7 @@ msgstr "aktiv"
 
 #: challenges/models.py:38
 msgid "completed"
-msgstr "gemmenført"
+msgstr "gennemført"
 
 #: challenges/models.py:39
 msgid "declined"
