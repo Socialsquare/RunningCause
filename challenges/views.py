@@ -178,20 +178,60 @@ class FeedbackChallenge(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             feedback_msg = form.cleaned_data['feedback_msg']
+            action = request.POST.get('action')
             if request.user == challenge.runner:
                 challenge.runner_msg = feedback_msg
-                challenge.status = Challenge.COMPLETED
-                msg = _("Congratulations!, Your challenge will be send to"
-                        " the sponsor for the final review.")
+                if action == 'success':
+                    challenge.status = Challenge.COMPLETED
+                    msg = _("Congratulations!, Your update will be send to "
+                            "the sponsor for the final review.")
+                    email_subject = _("%(runner)s completed the "
+                                      "challenge successfully!") % {
+                        'runner': runner.username
+                    }
+                    email_template = 'challenges/emails/challenge_success.html'
+                    email_link = reverse('challenges:feedback_challenge',
+                                         kwargs={'challenge_id': challenge.id})
+                else:
+                    challenge.status = Challenge.DECLINED
+                    msg = _("Too bad. Your sponsor will be notified about the "
+                            "failed challenge.")
+                    email_subject = _("%(runner)s failed to complete the "
+                                      "challenge!") % {
+                        'runner': challenge.runner.username
+                    }
+                    email_template = 'challenges/emails/challenge_failure.html'
+                    email_link = reverse('challenges:challenge_runner',
+                                         kwargs={
+                                            'person_id': challenge.runner.id
+                                         })
+
+                absolute_link = request.build_absolute_uri(email_link)
+                ctx = Context({
+                    'runner': challenge.runner.username,
+                    'challenge_text': challenge.challenge_text,
+                    'runners_message': challenge.runner_msg,
+                    'link': absolute_link,
+                    'BASE_URL': settings.BASE_URL,
+                })
+                email_msg = loader.get_template(email_template).render(ctx)
+                send_mail(email_subject,
+                          '',
+                          settings.DEFAULT_FROM_EMAIL,
+                          [challenge.sponsor.email, ],
+                          html_message=email_msg)
+
                 redirect_url = reverse('profile:user_raised',
                                        kwargs=dict(user_id=request.user.id))
             elif request.user == challenge.sponsor:
                 challenge.sponsor_msg = feedback_msg
                 redirect_url = reverse('profile:user_donated',
                                        kwargs=dict(user_id=request.user.id))
-                if request.POST.get('submit') == 'confirm':
+                if action == 'confirm':
                     challenge.status = Challenge.CONFIRMED
-                    msg = _("You have accepted to pay for the challenge.")
+                    msg = _("You have accepted to pay for the challenge. "
+                            "The money will be charged at the end of the "
+                            "quarter.")
                 else:  # request.POST.get('submit') == 'decline':
                     challenge.status = Challenge.DECLINED
                     msg = _("You have declined to pay for the challenge.")
