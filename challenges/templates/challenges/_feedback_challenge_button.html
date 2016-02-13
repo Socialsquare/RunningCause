@@ -1,5 +1,5 @@
 {% load i18n %}
-{% if user == challenge.runner and challenge.status == 'new' %}
+{% if user == challenge.runner and challenge.status == 'active' %}
     <a class="btn btn-default"
         href="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
         {% trans 'Update' %}

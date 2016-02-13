@@ -153,10 +153,11 @@ class FeedbackChallenge(View):
         if self.request.user not in [challenge.sponsor, challenge.runner]:
             raise PermissionDenied("You cannot update this challenge.")
 
-        if self.request.user == challenge.runner and challenge.status != Challenge.NEW:
+        if self.request.user == challenge.runner and \
+                challenge.status != Challenge.ACTIVE:
                 raise PermissionDenied("Challenge has already been completed.")
 
-        if self.request.user == challenge.sponsor and\
+        if self.request.user == challenge.sponsor and \
                 challenge.status != Challenge.COMPLETED:
             raise PermissionDenied("Challenge is not completed yet.")
 
@@ -256,7 +257,7 @@ def preview_invitation_challenge(request, token=None):
         logout(request)
         return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
-    if challenge_req.status != Challenge.NEW:
+    if challenge_req.status != ChallengeRequest.NEW:
         return HttpResponseForbidden('You cannot preview an invitation that '
                                      'has already been accepted or rejected.')
 

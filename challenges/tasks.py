@@ -22,7 +22,7 @@ def send_challenge_reminder(user_id=None):
     todays = datetime.date.today()
     remind_delta = todays + Challenge.get_remind_date_delta()
     received_ending_soon_challenges = user.challenges_recieved\
-        .filter(status=Challenge.NEW, end_date=remind_delta)
+        .filter(status=Challenge.ACTIVE, end_date=remind_delta)
 
     decision_delta = todays - Challenge.get_decision_date_delta()
     given_completed_challenges = user.challenges_given\
