@@ -19,12 +19,12 @@
 
 </br>
 
-    
+
     <div class = "row">
         <div class = "col-sm-8">
 {% if person.is_public or own_page %}
 
-            </br>    
+            </br>
             <div class="panel panel-default">
             {% if own_page %}
             <div class="panel-heading">{% trans "You are sponsoring" %}</div>
@@ -44,7 +44,7 @@
                 </thead>
                 {% for sponsorship in sponsorships_given %}
                     {% if sponsorship.is_active %}
-                        <tr> 
+                        <tr>
                             <td>{{ sponsorship.runner }}</td>
                             <td>{{ sponsorship.rate }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
@@ -57,7 +57,7 @@
                             </td>
                         </tr>
                     {% else %}
-                        <tr style='opacity:0.6'> 
+                        <tr style='opacity:0.6'>
                             <td>{{ sponsorship.runner }}</td>
                             <td>{{ sponsorship.rate }}</td>
                             <td>{{ sponsorship.max_amount }}</td>
@@ -91,8 +91,8 @@
             <div class="panel-heading">
             {% blocktrans with username=person.username %}Challenges where {{ username }} is sponsoring{% endblocktrans %}</div>
             {% endif %}
-            
-            
+
+
             <table class="table table-hover">
                 <thead>
                     <th>{% trans "Runner" %}</th>
@@ -103,12 +103,12 @@
                     <th>&nbsp;</th>
                 </thead>
             {% for challenge in challenges_given %}
-                    <tr> 
+                    <tr>
                         <td>{{ challenge.runner }}</td>
                         <td>{{ challenge.amount|floatformat:-2|intcomma }}</td>
                         <td>{{ challenge.remind_date }}</td>
                         <td>{{ challenge.challenge_text }}</td>
-                        <td>{{ challenge.status }}</td>
+                        <td>{{ challenge.get_status_display }}</td>
                         <td>
 							{% include 'challenges/_feedback_challenge_button.html'%}
                         </td>
@@ -134,7 +134,7 @@
 
     <div class="btn-group">
         <p>
-            <a class="btn btn-primary btn-block" 
+            <a class="btn btn-primary btn-block"
                href="{% url 'sponsorship:request_sponsorship' person.id %}">
                 {% blocktrans with username=person.username %}
                     Request sponsorship from {{username}}
@@ -142,7 +142,7 @@
             </a>
         </p>
         <p>
-            <a class="btn btn-primary btn-block" 
+            <a class="btn btn-primary btn-block"
                href="{% url 'challenges:invite_sponsor_to_challenge' person.id %}">
                 {% blocktrans with username=person.username %}
                     Invite {{username}} to challenge you
