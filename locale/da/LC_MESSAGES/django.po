@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-13 16:52+0100\n"
-"PO-Revision-Date: 2016-02-13 16:59+0100\n"
+"PO-Revision-Date: 2016-02-13 17:02+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -956,12 +956,12 @@ msgstr "Du har successfuldt afskrevet dig."
 
 #: profile/templates/profile/user_donated.html:30
 msgid "You are sponsoring"
-msgstr "Du sponserer"
+msgstr "Du sponsorerer"
 
 #: profile/templates/profile/user_donated.html:32
 #, python-format
 msgid "%(username)s is sponsoring"
-msgstr "%(username)s sponserer"
+msgstr "%(username)s sponsorerer"
 
 #: profile/templates/profile/user_donated.html:36
 #: profile/templates/profile/user_donated.html:98
@@ -1102,7 +1102,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Sponser %(username)s                  "
+"Sponsér %(username)s                  "
 
 #: profile/templates/profile/user_raised.html:171
 #, python-format
