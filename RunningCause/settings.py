@@ -58,7 +58,7 @@ INSTALLED_APPS = (
     'django_redis',
     'allauth',
     'allauth.account',
-    #'allauth.socialaccount',
+    # 'allauth.socialaccount',
     'django_extensions',
     'bootstrap3',
     'rosetta',
