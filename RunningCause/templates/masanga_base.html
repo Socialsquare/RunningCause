@@ -5,7 +5,6 @@
   <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" id="google-fonts-css"  href="{% static 'css/Lato.css'%}" type="text/css" media="all" />
-    <link rel="stylesheet" id="font-awesome-css"  href="{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
 
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/masanga.css' %}" />
@@ -73,10 +72,10 @@
               </li>
             {% endif %}
           </ul>
-          
+
           <!-- TODO: Make sure that the link is visible on a mobile -->
           <ul class="nav navbar-nav navbar-right">
-            
+
             {% if user.is_authenticated %}
               <li class="dropdown">
                 <a aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -97,7 +96,7 @@
                 {% trans "Log in or create an account" %}</a>
               </li>
             {% endif %}
-            
+
             <li class="divider-vertical"></li>
           </ul>
         </div>
@@ -121,6 +120,6 @@
         </p>
       </div>
     </footer>
-    
+
   </body>
 </html>
