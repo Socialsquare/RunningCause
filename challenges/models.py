@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 def end_date_default():
@@ -27,17 +28,17 @@ class ChallengeManager(models.Manager):
 
 
 class Challenge(models.Model):
-    NEW = 'new'
+    ACTIVE = 'active'
     COMPLETED = 'completed'
     DECLINED = 'declined'
     CONFIRMED = 'confirmed'
     PAID = 'paid'
     STATUS_CHOICES = (
-        (NEW, NEW),
-        (COMPLETED, COMPLETED),
-        (DECLINED, DECLINED),
-        (CONFIRMED, CONFIRMED),
-        (PAID, PAID),
+        (ACTIVE, _('active')),
+        (COMPLETED, _('completed')),
+        (DECLINED, _('declined')),
+        (CONFIRMED, _('confirmed')),
+        (PAID, _('paid')),
     )
     runner = models.ForeignKey(settings.AUTH_USER_MODEL,
                                related_name='challenges_recieved',
@@ -53,8 +54,10 @@ class Challenge(models.Model):
     end_date = models.DateField('End Date', default=end_date_default,
                                 null=False, db_index=True)
 
-    challenge_text = models.CharField('Challenge Text', max_length=500, null=False,
-                                  default='')
+    challenge_text = models.CharField('Challenge Text',
+                                      max_length=500,
+                                      null=False,
+                                      default='')
 
     runner_msg = models.CharField('Feedback message', max_length=500,
                                    null=True, default=None, blank=True)
@@ -62,7 +65,7 @@ class Challenge(models.Model):
     sponsor_msg = models.CharField('Feedback message', max_length=500,
                                    null=True, default=None, blank=True)
 
-    status = models.CharField(choices=STATUS_CHOICES, default=NEW,
+    status = models.CharField(choices=STATUS_CHOICES, default=ACTIVE,
                               max_length=10, null=False, db_index=True)
 
     objects = ChallengeManager()
