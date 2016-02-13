@@ -188,7 +188,7 @@ class FeedbackChallenge(View):
                             "the sponsor for the final review.")
                     email_subject = _("%(runner)s completed the "
                                       "challenge successfully!") % {
-                        'runner': runner.username
+                        'runner': challenge.runner.username
                     }
                     email_template = 'challenges/emails/challenge_success.html'
                     email_link = reverse('challenges:feedback_challenge',
