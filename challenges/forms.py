@@ -49,7 +49,7 @@ class ChallengeForm(forms.ModelForm):
 class ChallengeFeedbackForm(forms.Form):
     feedback_msg = forms.CharField(
         max_length=500, min_length=2,
-        label="Please write a feedback message",
+        label=_("Please write a message"),
         widget=forms.Textarea(attrs={'class': 'form-control'})
     )
 

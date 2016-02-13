@@ -31,7 +31,7 @@
 
 {% if user == challenge.sponsor %}
 	{% blocktrans with runner_username=challenge.runner.username %}
-	Here you can confirm or decline the challenge completed 
+	Here you can confirm or decline the challenge completed
 	by {{runner_username}}.
 	{% endblocktrans %}
 {% endif %}
@@ -47,10 +47,10 @@
 <p>{% blocktrans %}You can leave a feedback message to the runner.{% endblocktrans %}</p>
 {% endif %}
 
-<form class="form-horizontal" method="post"
-		action="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
+<form method="post"
+	action="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
     {% csrf_token %}
-	{% bootstrap_form form layout="form-horizontal" %}
+	{% bootstrap_form form %}
 		{% if user == challenge.runner %}
 		{% buttons %}
 		  <button type="submit" class="btn btn-primary">
@@ -58,14 +58,14 @@
 		  </button>
 		{% endbuttons %}
 		{% endif %}
-	
+
 		{% if user == challenge.sponsor %}
 		{% buttons %}
-		  <button type="submit" name="submit" value="confirm" class="btn btn-primary pull-left">
-		    {% bootstrap_icon "star" %}{% blocktrans %}Confirm{% endblocktrans %}
+		  <button type="submit" name="submit" value="confirm" class="btn btn-success">
+		    {% bootstrap_icon "ok" %} {% trans 'Confirm' %}
 		  </button>
-		  <button type="submit" name="submit" value="decline" class="btn btn-primary pull-right">
-		    {% bootstrap_icon "star" %}{% blocktrans %}Decline{% endblocktrans %}
+		  <button type="submit" name="submit" value="decline" class="btn btn-danger">
+		    {% bootstrap_icon "remove" %} {% trans 'Decline' %}
 		  </button>
 		{% endbuttons %}
 		{% endif %}

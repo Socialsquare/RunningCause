@@ -32,7 +32,7 @@
             {
                 month = "0" + month;
             }
-            
+
             var yearString = year + "-" + month + "-" + day;
             $challengeDatepicker.val(yearString);
         }
@@ -62,7 +62,7 @@
         Fill out these fields to invite {{ username }} to challenge
         you to a challenge. Feel free to leave whatever you want blank. {{ username }}
         will get an email notifying him/her that you requested a challenge,
-        and the values you do fill out will be displayed to him/her. The sponsor can then 
+        and the values you do fill out will be displayed to him/her. The sponsor can then
         choose to challenge you immediately, change or add some values and then
         challenge you, or decline entirely.
         {% endblocktrans %}
@@ -76,8 +76,8 @@
 	    {% csrf_token %}
 		{% bootstrap_form form layout="form-horizontal" %}
 		{% buttons %}
-		  <button type="submit" class="btn btn-primary pull-right">
-		    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+		  <button type="submit" class="btn btn-primary">
+		    {% bootstrap_icon "send" %} {% trans 'Send invitation' %}
 		  </button>
 		{% endbuttons %}
 	</form>
