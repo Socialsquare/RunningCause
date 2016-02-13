@@ -1,7 +1,14 @@
 {% extends 'email_base.html' %}
 {% block message %}
-{{runner}} har inviteret dig til at lave et væddemål på Masanga Runners. 
-Han/hun har foreslået nogle værdier, som du kan acceptere,
-eller ændre og derefter acceptere. Følg linket for at se det 
-foreslåede væddemål {{link}}.
+{{runner}} har inviteret dig til at udfordre sig på Masanga Runners.
+
+Du kan acceptere invitationen som den er, eller justere den først og
+derefter acceptere.
+
+Hvis du ikke ønsker at udfordre {{runner}} og dermed støtte Masanga, kan du
+vælge af afvise invitationen.
+
+<a class="btn" href="{{link}}">
+    Klik for at justere, acceptere eller afvise invitationen
+</a>
 {% endblock %}
