@@ -16,7 +16,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.urlresolvers import reverse
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
 from django.template import loader, Context
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -59,8 +59,9 @@ def challenge_runner(request, person_id):
             link = reverse('challenges:preview_challenge',
                            kwargs={'token': challenge_req.token})
             full_link = request.build_absolute_uri(link)
-            subject = _('%(username)s has challenge you') %\
-                dict(username=sponsor.username)
+            subject = _('%(username)s has challenged you') % {
+                'username': sponsor.username
+            }
             ctx = {
                 'sponsor': sponsor.username,
                 'link': full_link,
@@ -77,8 +78,9 @@ def challenge_runner(request, person_id):
                 fail_silently=True,
                 html_message=html_msg
             )
-            msg = _("You have just challenge %(username)s") %\
-                dict(username=runner.username)
+            msg = _("You have just challenge %(username)s") % {
+                'username': runner.username
+            }
             messages.info(request, msg)
             return redirect('profile:user_page', user_id=runner.id)
 
@@ -247,8 +249,16 @@ def preview_invitation_challenge(request, token=None):
     Sponsor can edit challenge, accept or reject challenge invitation.
     """
     challenge_req = ChallengeRequest.objects.get(token=token)
-    if challenge_req.sponsor != request.user or challenge_req.status != Challenge.NEW:
-        return HttpResponseForbidden()
+    if challenge_req.sponsor != request.user:
+        messages.info(request, _('You have been logged out, because you '
+                                 'visited an invitation to a challenge '
+                                 'that was sent to another user.'))
+        logout(request)
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+    if challenge_req.status != Challenge.NEW:
+        return HttpResponseForbidden('You cannot preview an invitation that '
+                                     'has already been accepted or rejected.')
 
     form = ChallengeForm(json.loads(challenge_req.proposed_challenge))
     if request.method == 'POST':
@@ -256,25 +266,44 @@ def preview_invitation_challenge(request, token=None):
         if form.is_valid():
             if request.POST.get('submit') == 'create':
                 challenge_req.status = ChallengeRequest.ACCEPTED
-                email_msg = _("Sponsor %(username)s has challenge you!") %\
-                              dict(username=challenge_req.sponsor.username)
-                msg = _("You have successfully created a challenge "
-                        "for %(username)s.") %\
-                        dict(username=challenge_req.runner.username)
+                ctx = Context({
+                    'sponsor': challenge_req.sponsor.username,
+                    'challenge_text': form.cleaned_data['challenge_text'],
+                    'amount': form.cleaned_data['amount'],
+                    'BASE_URL': settings.BASE_URL
+                })
+                tmpl = 'challenges/emails/invitation_accepted.html'
+                email_subject = _('%(sponsor)s has challenged you!') % {
+                    'sponsor': challenge_req.sponsor.username
+                }
+                email_msg = loader.get_template(tmpl).render(ctx)
+                msg = _("You have created a challenge for %(username)s.") % {
+                    'username': challenge_req.runner.username
+                }
+
                 Challenge.objects.create_for_challenge(challenge_req,
-                                                   **form.cleaned_data)
-            else: # request.POST.get('submit') == 'reject':
+                                                       **form.cleaned_data)
+            else:  # request.POST.get('submit') == 'reject':
                 challenge_req.status = ChallengeRequest.REJECTED
-                email_msg = _("Sponsor %(username)s has rejected your "
-                              "challenge invitation.") %\
-                              dict(username=challenge_req.sponsor.username)
-                msg = _("You have rejected a challenge invitation "
-                        "from %(username)s.") %\
-                    dict(username=challenge_req.runner.username)
+                ctx = Context({
+                    'sponsor': challenge_req.sponsor.username,
+                    'BASE_URL': settings.BASE_URL
+                })
+                tmpl = 'challenges/emails/invitation_rejected.html'
+                email_subject = _('%(sponsor)s rejected to challenge you.') % {
+                    'sponsor': challenge_req.sponsor.username
+                }
+                email_msg = loader.get_template(tmpl).render(ctx)
+                msg = _("You have rejected to challenge %(runner)s.") % {
+                    'runner': challenge_req.runner.username
+                }
             challenge_req.save()
             messages.info(request, msg)
-            send_mail(email_msg, email_msg, settings.DEFAULT_FROM_EMAIL,
-                      [challenge_req.sponsor.email, ])
+            send_mail(email_subject,
+                      '',
+                      settings.DEFAULT_FROM_EMAIL,
+                      [challenge_req.runner.email, ],
+                      html_message=email_msg)
             return redirect('profile:my_page')
 
     context = {
@@ -282,4 +311,6 @@ def preview_invitation_challenge(request, token=None):
         'form': form
     }
 
-    return render(request, 'challenges/preview_invitation_challenge.html', context)
+    return render(request,
+                  'challenges/preview_invitation_challenge.html',
+                  context)

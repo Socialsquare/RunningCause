@@ -1,0 +1,13 @@
+{% extends 'email_base.html' %}
+{% block message %}
+<p>
+    {{sponsor}} har accepteret din invitation og udfordrer dig til at:<br/>
+</p>
+<p style="
+    white-space: pre-line;
+    background: #eee;
+    padding: 0.7em;">{{challenge_text}}</p>
+<p>
+    Hvis du gennemfører udfordringen modtager Masanga hospitalet {{amount}} kr!
+</p>
+{% endblock %}
