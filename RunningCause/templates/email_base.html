@@ -1,14 +1,15 @@
 {% load staticfiles %}
-<div style="
+<p style="
     background-color: #C90401;
-    color: white;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
 ">
-    <h1>{% if title %}{{ title }}{% else %}Masanga Runners{% endif %}</h1>
-</div>
+    <h1 style="color:#fff;">
+        {% if title %}{{ title }}{% else %}Masanga Runners{% endif %}
+    </h1>
+</p>
 
 {% block message %}
 {% endblock %}
@@ -23,13 +24,14 @@
     ">
 
 
-<p>De bedste løbehilsner</p>
-<p>Masanga Runners</p>
-<p>_________________</p>
-
-<p>Masanga DK</p>
-<p>Dalbergstrøget 7</p>
-<p>2630 Taastrup</p>
-<p>Danmark</p>
-<p>masangarunners@masanga.dk</p>
-<p>{{BASE_URL}}</p>
+<p>
+    De bedste løbehilsner<br/>
+    Masanga Runners<br/>
+    _________________<br/><br/>
+    Masanga DK<br/>
+    Dalbergstrøget 7<br/>
+    2630 Taastrup<br/>
+    Danmark<br/>
+    masangarunners@masanga.dk<br/>
+    {{BASE_URL}}
+</p>
