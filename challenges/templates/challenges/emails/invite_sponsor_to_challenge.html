@@ -1,14 +1,17 @@
 {% extends 'email_base.html' %}
 {% block message %}
-{{runner}} har inviteret dig til at udfordre sig på Masanga Runners.
-
-Du kan acceptere invitationen som den er, eller justere den først og
-derefter acceptere.
-
-Hvis du ikke ønsker at udfordre {{runner}} og dermed støtte Masanga, kan du
-vælge af afvise invitationen.
-
-<a class="btn" href="{{link}}">
-    Klik for at justere, acceptere eller afvise invitationen
-</a>
+<p>
+    {{runner}} har inviteret dig til at udfordre sig på Masanga Runners.
+</p>
+<p>
+    Du kan acceptere invitationen som den er, eller justere den først og
+    derefter acceptere.
+</p>
+<p>
+    Hvis du ikke ønsker at udfordre {{runner}} og dermed støtte Masanga, kan du
+    vælge af afvise invitationen.
+</p>
+<p>
+    {% include "_email_button.html" with link=link text="Klik for at justere, acceptere eller afvise invitationen" %}
+</p>
 {% endblock %}

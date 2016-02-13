@@ -1,57 +1,27 @@
 {% load staticfiles %}
-<style>
-.title {
+<div style="
     background-color: #C90401;
     color: white;
     margin-bottom: 15px;
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-}
-.logo {
-    float: right;
-    height:109px;
-    width:211px;
-}
-.btn {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    color: #ffffff;
-    background-color: #c90401;
-    border-color: #b00301;
-}
-.btn:hover, .btn:active {
-    color: #ffffff;
-    background-color: #960301;
-    border-color: #730201;
-}
-</style>
-
-<div class="title">
+">
     <h1>{% if title %}{{ title }}{% else %}Masanga Runners{% endif %}</h1>
 </div>
 
 {% block message %}
 {% endblock %}
 
-<img src="{{ BASE_URL }}{% static 'img/masanga_logo123.png' %}" alt="Masanga Logo" class="logo">
+<img
+    src="{{ BASE_URL }}{% static 'img/masanga_logo123.png' %}"
+    alt="Masanga Logo"
+    style="
+        float: right;
+        height: 109px;
+        width: 211px;
+    ">
+
 
 <p>De bedste løbehilsner</p>
 <p>Masanga Runners</p>
