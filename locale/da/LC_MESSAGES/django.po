@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-13 18:04+0100\n"
-"PO-Revision-Date: 2016-02-13 18:04+0100\n"
+"POT-Creation-Date: 2016-02-13 18:21+0100\n"
+"PO-Revision-Date: 2016-02-13 18:23+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -602,10 +602,12 @@ msgstr ""
 "Fantastisk! %(sponsor)s har accepteret at betale %(amount)s kr. til Masanga, fordi du gennemførte udfordringen:"
 
 #: challenges/templates/challenges/emails/challenge_confirmed.html:11
+#: challenges/templates/challenges/emails/challenge_rejected.html:11
 msgid "You wrote:"
 msgstr "Du skrev:"
 
 #: challenges/templates/challenges/emails/challenge_confirmed.html:13
+#: challenges/templates/challenges/emails/challenge_rejected.html:13
 #, python-format
 msgid "And %(sponsor)s replied:"
 msgstr "Og %(sponsor)s svarrede:"
@@ -637,6 +639,46 @@ msgstr "Du behøver ikke gøre mere ved denne udfordring, men måske har du lyst
 #: challenges/templates/challenges/emails/challenge_failure.html:16
 msgid "Click to create another challenge"
 msgstr "Klik for at oprette en ny udfordring"
+
+#: challenges/templates/challenges/emails/challenge_rejected.html:5
+#, python-format
+#| msgid ""
+#| "\n"
+#| "        Fantastic! %(sponsor)s agreed to pay DKK %(amount)s to Masanga, "
+#| "because\n"
+#| "        you successfully completed the challenge:\n"
+#| "    "
+msgid ""
+"\n"
+"        %(sponsor)s did not agree to pay DKK %(amount)s to Masanga, for the\n"
+"        challenge:\n"
+"    "
+msgstr ""
+"\n"
+"%(sponsor)s har afvist at betale %(amount)s kr. til Masanga, for udfordringen:"
+
+#: challenges/templates/challenges/emails/challenge_rejected.html:16
+#, python-format
+msgid ""
+"\n"
+"    Tough luck! You might want to ask why %(sponsor)s choose to reject to pay.\n"
+"    "
+msgstr ""
+"\n"
+"Ærgerligt! Du har måske lyst til at spørge hvorfor %(sponsor)s valgte at afvise at betale."
+
+#: challenges/templates/challenges/emails/challenge_rejected.html:21
+#| msgid ""
+#| "\n"
+#| "    Well done! Thank you for being a Masanga Runner.\n"
+#| "    "
+msgid ""
+"\n"
+"    Thank you for being a Masanga Runner.\n"
+"    "
+msgstr ""
+"\n"
+"Tak fordi du er Masanga Runner."
 
 #: challenges/templates/challenges/emails/challenge_success.html:5
 #, python-format
@@ -767,25 +809,25 @@ msgstr ""
 "%(username)s har udfordret dig. Accepterer du udfordringen?"
 
 #: challenges/templates/challenges/preview_challenge.html:30
-#: challenges/templates/challenges/preview_invitation_challenge.html:31
+#: challenges/templates/challenges/preview_invitation_challenge.html:27
 msgid "Accept"
 msgstr "Acceptér"
 
 #: challenges/templates/challenges/preview_challenge.html:33
-#: challenges/templates/challenges/preview_invitation_challenge.html:34
+#: challenges/templates/challenges/preview_invitation_challenge.html:30
 msgid "Reject"
 msgstr "Afvis"
 
-#: challenges/templates/challenges/preview_invitation_challenge.html:14
+#: challenges/templates/challenges/preview_invitation_challenge.html:12
 #, python-format
 msgid ""
 "\n"
-"\t\t%(username)s has invited you to challenge him.\n"
-"\t\tDo you want to create challenge for %(username)s?\n"
-"\t\t"
+"    You have been invited to challenge %(username)s -\n"
+"    do you want to create the challenge?\n"
+"    "
 msgstr ""
 "\n"
-"%(username)s har inviteret dig til at udfordre ham/hende. Ønsker du at oprette en udfordring til %(username)s?"
+"Du er blevet inviteret til at udfordre %(username)s - ønsker du at oprette udfordringen?"
 
 #: challenges/views.py:62
 #, python-format
@@ -825,9 +867,6 @@ msgid "%(runner)s failed to complete the challenge!"
 msgstr "%(runner)s gennemførte desværre ikke udfordringen!"
 
 #: challenges/views.py:233
-#| msgid ""
-#| "You have accepted to pay for the challenge. The money will be charged at "
-#| "the end of the quarter."
 msgid "You have accepted to pay for the challenge. The money will be charged at the end of the quarter. Thank you for making a change in Masanga!"
 msgstr "Du har accepteret at betale for udfordringen. Pengene vil blive opkrævet ved udgangen af dette kvartal. Tak fordi gør en forskel i Masanga!"
 
@@ -1663,6 +1702,16 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid ""
+#~ "\n"
+#~ "\t\t%(username)s has invited you to challenge him.\n"
+#~ "\t\tDo you want to create challenge for %(username)s?\n"
+#~ "\t\t"
+#~ msgstr ""
+#~ "\n"
+#~ "%(username)s har inviteret dig til at udfordre ham/hende. Ønsker du at "
+#~ "oprette en udfordring til %(username)s?"
 
 #~ msgid "Complete"
 #~ msgstr "Gennemfør"

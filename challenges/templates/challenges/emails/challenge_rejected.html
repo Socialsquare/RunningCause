@@ -1,0 +1,25 @@
+{% extends 'email_base.html' %}
+{% load i18n %}
+{% block message %}
+<p>
+    {% blocktrans %}
+        {{sponsor}} did not agree to pay DKK {{amount}} to Masanga, for the
+        challenge:
+    {% endblocktrans %}
+</p>
+{% include "_email_quotation.html" with quote=challenge_text %}
+<p>{% blocktrans %}You wrote:{% endblocktrans %}</p>
+{% include "_email_quotation.html" with quote=runners_message %}
+<p>{% blocktrans %}And {{sponsor}} replied:{% endblocktrans %}</p>
+{% include "_email_quotation.html" with quote=sponsors_message %}
+<p>
+    {% blocktrans %}
+    Tough luck! You might want to ask why {{sponsor}} choose to reject to pay.
+    {% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}
+    Thank you for being a Masanga Runner.
+    {% endblocktrans %}
+</p>
+{% endblock %}

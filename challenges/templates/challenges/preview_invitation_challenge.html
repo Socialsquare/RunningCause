@@ -9,19 +9,15 @@
 {% endblock %}
 
 {% block head %}
-	<div class="row">
-	<div class="col-md-7 col-md-offset-1">
-		{% blocktrans with username=challenge_request.runner.username %}
-		{{username}} has invited you to challenge him.
-		Do you want to create challenge for {{username}}?
-		{% endblocktrans %}
-	</div>
-	</div>
+    {% blocktrans with username=challenge_request.runner.username %}
+    You have been invited to challenge {{username}} -
+    do you want to create the challenge?
+    {% endblocktrans %}
 {% endblock %}
 
 {% block body %}
 
-	<div class="row">
+<div class="row">
 	<div class="col-md-7  col-md-offset-1">
 	<form action="{% url 'challenges:preview_invitation_challenge' token=challenge_request.token %}" method="post">
 	    {% csrf_token %}
