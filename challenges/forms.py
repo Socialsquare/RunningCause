@@ -12,7 +12,7 @@ class ChallengeForm(forms.ModelForm):
                               widget=forms.TextInput(
                                   attrs={'class': 'form-control'}),
                               localize=True, required=True)
-    end_date = forms.DateField(label=_("End date:"),
+    end_date = forms.DateField(label=_("End date"),
                                widget=forms.DateInput(
                                     attrs={'class': 'form-control',
                                            'id': 'challenge_datepicker',
