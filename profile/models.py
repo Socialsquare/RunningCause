@@ -51,8 +51,7 @@ class User(auth.models.AbstractUser):
     @property
     def amount_donated(self):
         given_spships = self.sponsorships_given.all()
-        spship_amount = sum([sp.total_amount for sp in given_spships])
+        spship_amount = sum([sp.amount_paid for sp in given_spships])
         challenges_amount = self.challenges_given.filter(status='paid')\
             .aggregate(a_sum=Sum('amount'))['a_sum'] or 0
         return spship_amount + challenges_amount
-
