@@ -17,7 +17,4 @@ urlpatterns = [
     url(r'^challenge-runner/(?P<person_id>\d+)/$',
         views.challenge_runner,
         name='challenge_runner'),
-
-    url(r'preview-challenge/(?P<token>[a-zA-Z0-9\-]{32,36})/$',
-        views.preview_challenge, name='preview_challenge'),
 ]
