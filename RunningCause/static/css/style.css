@@ -5715,10 +5715,15 @@ a.badge:focus {
     font-size: 63px;
   }
 }
-.thumbnail {
+.user-list .user {
+    position: relative;
+    padding-bottom: 20px;
+}
+.user-list .user .thumbnail {
   display: block;
-  padding: 4px;
-  margin-bottom: 20px;
+  padding: 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
   line-height: 1.42857143;
   background-color: #ffffff;
   border: 1px solid #dddddd;
@@ -5727,19 +5732,29 @@ a.badge:focus {
   -o-transition: border 0.2s ease-in-out;
   transition: border 0.2s ease-in-out;
 }
-.thumbnail > img,
-.thumbnail a > img {
+.user-list .user > img,
+.user-list .user a > img {
   margin-left: auto;
   margin-right: auto;
 }
-a.thumbnail:hover,
-a.thumbnail:focus,
-a.thumbnail.active {
+.user-list .user a.thumbnail:hover,
+.user-list .user a.thumbnail:focus,
+.user-list .user a.thumbnail.active {
   border-color: #222222;
 }
-.thumbnail .caption {
+.user-list .user .caption {
   padding: 9px;
   color: #666666;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.user-list .user .controls {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    right: 0;
 }
 .alert {
   padding: 15px;

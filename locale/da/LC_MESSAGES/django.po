@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-14 15:24+0100\n"
-"PO-Revision-Date: 2016-02-14 15:25+0100\n"
+"POT-Creation-Date: 2016-02-14 15:49+0100\n"
+"PO-Revision-Date: 2016-02-14 15:49+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -583,6 +583,7 @@ msgstr ""
 
 #: challenges/templates/challenges/challenge_runner.html:61
 #: challenges/templates/challenges/preview_invitation_challenge.html:27
+#: profile/templates/profile/users_list.html:29
 msgid "Challenge!"
 msgstr "Udfordr!"
 
@@ -1411,15 +1412,20 @@ msgstr "Tilmeld dig til vores e-mails"
 msgid "Our runners & sponsors"
 msgstr "Vores løbere & sponsorer"
 
-#: profile/templates/profile/users_list.html:28
+#: profile/templates/profile/users_list.html:27
+#| msgid "Sponsor"
+msgid "Sponsor!"
+msgstr "Sponsér!"
+
+#: profile/templates/profile/users_list.html:36
 msgid "Huh, that's weird. We can't find any runners. Check back later."
 msgstr "Hov, det var underligt. Vi kan ikke finde nogle løbere. Kig tilbage senere."
 
-#: profile/templates/profile/users_list.html:33
+#: profile/templates/profile/users_list.html:41
 msgid "Are we missing someone you know?"
 msgstr "Mangler vi en du kender?"
 
-#: profile/templates/profile/users_list.html:37
+#: profile/templates/profile/users_list.html:45
 msgid "Invite a runner or sponsor, to join us!"
 msgstr "Inviter en løber eller sponsor til at være med!"
 
@@ -1535,16 +1541,6 @@ msgstr "Tilføj et løb her!"
 
 #: runs/templates/runs/user_runs.html:95
 #, python-format
-#| msgid ""
-#| "\n"
-#| "            These are all of the runs that %(runner_username)s has "
-#| "synchronized with Masanga Runners. \n"
-#| "            At the end of the quarter, anyone who was sponsoring "
-#| "%(runner_username)s for \n"
-#| "            this period will be billed, depending on their rates, "
-#| "challenges etc., \n"
-#| "            and the money will be sent to Masanga Hospital.\n"
-#| "        "
 msgid ""
 "\n"
 "            These are all of the runs that %(runner_username)s has synchronized with Masanga Runners.\n"
@@ -1675,15 +1671,8 @@ msgstr ""
 "\n"
 "Held og lykke! Og tak fordi du er Masanga Runner."
 
-#: sponsorship/templates/sponsorship/email/request_sponsorship.html:4
+#: sponsorship/templates/sponsorship/email/request_sponsorship.html:5
 #, python-format
-#| msgid ""
-#| "\n"
-#| "        Dear %(sponsor)s,<br>\n"
-#| "        %(runner)s has invited you to be a sponsor - feel free to change "
-#| "the\n"
-#| "        rate, maximum amount, start- and end-date, as you please.\n"
-#| "    "
 msgid ""
 "\n"
 "        Dear %(sponsor)s,<br>\n"
@@ -1695,8 +1684,7 @@ msgstr ""
 "        Kære %(sponsor)s,<br>\n"
 "        %(runner)s har inviteret dig til at være sponsor - du er velkommen til at ændre sats, maksimalt beløb, start- og slutdato."
 
-#: sponsorship/templates/sponsorship/email/request_sponsorship.html:12
-#| msgid "Click here to adjust, accept or decline the invitation"
+#: sponsorship/templates/sponsorship/email/request_sponsorship.html:13
 msgid "Click here see the invitation"
 msgstr "Klik for at se invitationen"
 
@@ -1751,13 +1739,9 @@ msgstr "Du har fået en ny sponsor!"
 msgid "Do you want to sponsor %(runner)s?"
 msgstr "Vil du sponsorere %(runner)s?"
 
-#: sponsorship/views.py:138
+#: sponsorship/views.py:125
 msgid "We have sent your request to sponsor."
 msgstr "Vi har sendt din forespørgsel til sponsoren."
-
-#: sponsorship/views.py:155
-msgid "You are not the intended sponsor, please log in as%127 s."
-msgstr "Du er ikke den forventerede sponsor, log venligst ind som%127 s."
 
 #: tools/templates/tools/overview.html:5
 #: tools/templates/tools/overview.html:7
@@ -1879,6 +1863,9 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid "You are not the intended sponsor, please log in as%127 s."
+#~ msgstr "Du er ikke den forventerede sponsor, log venligst ind som%127 s."
 
 #~ msgid "Masanga Runners sponsorship request"
 #~ msgstr "Masanga Runners sponsorat efterspørgsel"
