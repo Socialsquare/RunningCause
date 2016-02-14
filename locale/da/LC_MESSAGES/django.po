@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-14 13:12+0100\n"
-"PO-Revision-Date: 2016-02-14 13:13+0100\n"
+"POT-Creation-Date: 2016-02-14 13:58+0100\n"
+"PO-Revision-Date: 2016-02-14 13:59+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1000,7 +1000,6 @@ msgstr ""
 #: invitations/templates/invitations/invitation.html:38
 #: runs/templates/runs/input_run.html:46
 #: runs/templates/runs/run_edit.html:48
-#: sponsorship/templates/sponsorship/add_sponsorship.html:70
 #: sponsorship/templates/sponsorship/request_sponsorship.html:75
 msgid "Submit"
 msgstr "Indsend"
@@ -1132,7 +1131,7 @@ msgstr "Løber"
 #: profile/templates/profile/user_donated.html:37
 #: profile/templates/profile/user_raised.html:32
 msgid "Rate(kr/km)"
-msgstr "Rate (kr/km)"
+msgstr "Sats (kr/km)"
 
 #: profile/templates/profile/user_donated.html:38
 #: profile/templates/profile/user_raised.html:33
@@ -1181,7 +1180,7 @@ msgstr "Beløb (dkk)"
 
 #: profile/templates/profile/user_donated.html:100
 #: profile/templates/profile/user_raised.html:125
-#: tools/templates/tools/overview.html:76
+#: tools/templates/tools/overview.html:77
 msgid "End Date"
 msgstr "Slut dato"
 
@@ -1191,6 +1190,7 @@ msgstr "Udfordr"
 
 #: profile/templates/profile/user_donated.html:102
 #: profile/templates/profile/user_raised.html:127
+#: tools/templates/tools/overview.html:73
 msgid "Status"
 msgstr "Status"
 
@@ -1231,6 +1231,7 @@ msgstr "Sponsorater modtaget"
 
 #: profile/templates/profile/user_raised.html:31
 #: profile/templates/profile/user_raised.html:123
+#: sponsorship/templates/sponsorship/add_sponsorship.html:70
 #: tools/templates/tools/overview.html:15
 #: tools/templates/tools/overview.html:71
 msgid "Sponsor"
@@ -1475,7 +1476,7 @@ msgstr "Ændre dit løb"
 
 #: runs/templates/runs/run_edit.html:39
 msgid "Make end date the same as start date if it was a single run."
-msgstr "Sæt slut datoen til det samme som start datoen hvis det var et enkelt løb."
+msgstr "Sæt slut datoen til det samme som startdatoen hvis det var et enkelt løb."
 
 #: runs/templates/runs/user_runs.html:49
 msgid "Date"
@@ -1531,32 +1532,34 @@ msgid "Your runs from RunKeeper are being processed..."
 msgstr "Dine løb fra RunKeeper bliver behandlet..."
 
 #: sponsorship/forms.py:9
-msgid "Rate (kr. pr. km)"
-msgstr "Rate (kr. pr. km)"
+msgid "Rate (DKK per km)"
+msgstr "Sats (kr. pr. km)"
 
 #: sponsorship/forms.py:13
 msgid "Sponsorship start date"
-msgstr "Sponsoratets start dato"
+msgstr "Sponsoratets startdato"
 
-#: sponsorship/forms.py:18
-msgid "Sponsorship end date"
-msgstr "Sponsoratets afslutnings dato"
+#: sponsorship/forms.py:19
+#| msgid "Sponsorship end date"
+msgid "Sponsorship end date (optional)"
+msgstr "Sponsoratets slutdato (valgfri)"
 
-#: sponsorship/forms.py:23
-msgid "Maximum total amount"
-msgstr "Maksimalt muligt beløb"
+#: sponsorship/forms.py:25
+#| msgid "Maximum amount"
+msgid "Maximum amount (optional)"
+msgstr "Maksimalt beløb (valgfri)"
 
-#: sponsorship/forms.py:40
+#: sponsorship/forms.py:43
 msgid "Rate cannot be negative"
 msgstr "Raten kan ikke være negativ"
 
-#: sponsorship/forms.py:44
+#: sponsorship/forms.py:48
 msgid "Max amount cannot be negative"
 msgstr "Maksimalt beløb kan ikke være negativt"
 
-#: sponsorship/forms.py:48
+#: sponsorship/forms.py:53
 msgid "End date cannot be before start date."
-msgstr "Slut datoen kan ikke være før start datoen."
+msgstr "Slut datoen kan ikke være før startdatoen."
 
 #: sponsorship/templates/sponsorship/_end_sponsorship_button.html:2
 msgid "End Sponsorship"
@@ -1570,18 +1573,18 @@ msgstr "Opret nyt sponsorat"
 #, python-format
 msgid ""
 "\n"
-"            Fill out these fields down here to sponsor %(username)s. \n"
-"            Between the dates in start date and end date, any \n"
+"            Fill out these fields down here to sponsor %(username)s.\n"
+"            Between the dates in start date and end date, any\n"
 "            time %(username)s runs, you will agree to donate the\n"
-"             number of dkk in the \"rate\" field to Masanga Hospital. \n"
-"             If you're worried that your runner will run too much, \n"
-"             don't worry too much! You won't be charged more than \n"
-"             the number you put in the \"max amount\" field, no matter \n"
-"             how much they run.\n"
+"            number of dkk in the \"rate\" field to Masanga Hospital.\n"
+"            If you're worried that your runner will run too much,\n"
+"            don't worry too much! You won't be charged more than\n"
+"            the number you put in the \"max amount\" field, no matter\n"
+"            how much they run.\n"
 "        "
 msgstr ""
 "\n"
-"Udfyld disse felter for at sponsorere %(username)s.Imellem start og slut datoerne accepterer du at donere antallet af danske krone per kilometer i \"rate\" feltet til Masanga Hospital, hver gang %(username)s løber.Hvis du er bekymret for at din løber vil løbe for meget, så fortvivl ej. Du vil ikke bliver opkrævet mere end beløbet der står i \"maksimalt beløb\" feltet, uanset hvor meget de løber."
+"Udfyld disse felter for at sponsorere %(username)s. Imellem start- og slutdatoerne accepterer du at donere antallet af danske krone per kilometer i \"sats\" feltet til Masanga Hospital, hver gang %(username)s løber. Er du bekymret for, at din løber vil løbe for meget, så fortvivl ikke. Du vil ikke bliver opkrævet mere end beløbet der står i \"maksimalt beløb\" feltet, uanset hvor meget %(username)s løber."
 
 #: sponsorship/templates/sponsorship/request_sponsorship.html:8
 msgid "Request sponsorship"
@@ -1684,25 +1687,21 @@ msgstr "Sponsoren benytter et kreditkort"
 msgid "All Challenges"
 msgstr "Alle udfordringer"
 
-#: tools/templates/tools/overview.html:73
+#: tools/templates/tools/overview.html:74
 msgid "Amount"
 msgstr "Beløb"
 
-#: tools/templates/tools/overview.html:74
+#: tools/templates/tools/overview.html:75
 msgid "Fulfilled"
 msgstr "Opfyldt"
 
-#: tools/templates/tools/overview.html:75
+#: tools/templates/tools/overview.html:76
 msgid "Paid"
 msgstr "Betalt"
 
-#: tools/templates/tools/overview.html:77
+#: tools/templates/tools/overview.html:78
 msgid "Challenge Text"
 msgstr "Udfordrings tekst"
-
-#: tools/templates/tools/overview.html:78
-msgid "Update Text"
-msgstr "Opdater tekst"
 
 #: tools/templates/tools/overview.html:99
 msgid "All Users"
@@ -1725,7 +1724,6 @@ msgid "Amount Donated"
 msgstr "Beløb doneret"
 
 #: tools/templates/tools/overview.html:107
-#| msgid "Amount Earned"
 msgid "Amount Owed"
 msgstr "Udestående beløb"
 
@@ -1763,6 +1761,9 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid "Update Text"
+#~ msgstr "Opdater tekst"
 
 #~ msgid "Remind Date"
 #~ msgstr "Påmindelses dato"

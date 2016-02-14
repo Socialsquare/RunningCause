@@ -3,7 +3,7 @@ from decimal import Decimal
 from datetime import date
 
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.conf import settings
 from dateutil.relativedelta import relativedelta
 
@@ -62,12 +62,13 @@ class Sponsorship(models.Model):
         and end_date (exclusive), and the total amount for the
         sponsorship is currently less or equal to max_amount.
         """
-        todays = date.today()
-        if todays < self.end_date and \
-                todays >= self.start_date and \
-                self.total_amount <= self.max_amount:
-            return True
-        return False
+        today = date.today()
+        has_started = today >= self.start_date
+        has_not_ended = not self.end_date or today < self.end_date
+        amount_left = not self.max_amount or \
+            self.total_amount <= self.max_amount
+
+        return has_started and has_not_ended and amount_left
 
     @property
     def total_amount(self):
@@ -77,12 +78,18 @@ class Sponsorship(models.Model):
         and returns either the sum of all relevant runs, or max_amount,
         whichever is less.
         """
-        distance = self.runner.runs.filter(
-            start_date__gte=self.start_date,
-            end_date__lte=self.end_date
-        ).aggregate(a_sum=Sum('distance'))['a_sum'] or 0
+        filters = {
+            'start_date__gte': self.start_date
+        }
+        if self.end_date:
+            filters['end_date__lte'] = self.end_date
+        distance = self.runner.runs.filter(**filters) \
+            .aggregate(a_sum=Sum('distance'))['a_sum'] or 0
         amount = self.rate * Decimal(distance)
-        return min(amount, self.max_amount)
+        if self.max_amount:
+            return min(amount, self.max_amount)
+        else:
+            return amount
 
     @property
     def left_to_pay(self):
