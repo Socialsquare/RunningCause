@@ -46,8 +46,7 @@ class Challenge(models.Model):
     amount = models.DecimalField('Amount', default=0, max_digits=10,
                                  decimal_places=2, null=False)
 
-    end_date = models.DateField('End Date', default=end_date_default,
-                                null=False, db_index=True)
+    end_date = models.DateField('End Date', db_index=True)
 
     challenge_text = models.CharField('Challenge Text',
                                       max_length=500,

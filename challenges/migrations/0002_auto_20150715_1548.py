@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from datetime import date
 import challenges.models
 
 
@@ -19,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='challenge',
             name='end_date',
-            field=models.DateField(default=challenges.models.end_date_default, verbose_name=b'End Date', db_index=True),
+            field=models.DateField(default=date.today, verbose_name=b'End Date', db_index=True),
         ),
     ]
