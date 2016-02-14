@@ -24,6 +24,8 @@ from django.utils.translation import ugettext as _
 from django.views.generic import View
 from django.db import transaction
 
+from common.helpers import send_email
+
 from .models import Challenge, ChallengeRequest
 from .forms import ChallengeForm, ChallengeFeedbackForm, ChallengeChallengePreviewForm
 from django.http.response import HttpResponseForbidden, HttpResponseNotFound,\
@@ -62,22 +64,15 @@ def challenge_runner(request, person_id):
             subject = _('%(username)s has challenged you') % {
                 'username': sponsor.username
             }
-            ctx = {
+            email_context = {
                 'sponsor': sponsor.username,
                 'link': full_link,
                 'BASE_URL': settings.BASE_URL,
             }
-            tmpl = 'challenges/emails/challenge_runner.html'
-            html_msg = loader.get_template(tmpl)\
-                .render(Context(ctx))
-            send_mail(
-                subject,
-                '',
-                settings.DEFAULT_FROM_EMAIL,
-                [runner.email],
-                fail_silently=True,
-                html_message=html_msg
-            )
+            send_email([runner.email],
+                       subject,
+                       'challenges/emails/challenge_runner.html',
+                       email_context)
             msg = _("You have just challenge %(username)s") % {
                 'username': runner.username
             }
@@ -118,21 +113,17 @@ def invite_sponsor_to_challenge(request, person_id=None):
             email_url = reverse('challenges:preview_invitation_challenge',
                                 kwargs={'token': challenge_req.token.hex})
             full_link = request.build_absolute_uri(email_url)
-            ctx = {
+
+            email_context = {
                 'runner': runner.username,
                 'link': full_link,
                 'challenge_text': form.cleaned_data['challenge_text'],
                 'BASE_URL': settings.BASE_URL
             }
-            tmpl = 'challenges/emails/invite_sponsor_to_challenge.html'
-            html_msg = loader.get_template(tmpl)\
-                .render(Context(ctx))
-            send_mail(_('Masanga Runners invitation to challenge'),
-                      '',
-                      settings.DEFAULT_FROM_EMAIL,
-                      [sponsor.email],
-                      fail_silently=False,
-                      html_message=html_msg)
+            send_email([sponsor.email],
+                       _('Masanga Runners invitation to challenge'),
+                       'challenges/emails/invite_sponsor_to_challenge.html',
+                       email_context)
 
             messages.info(request, _("You have send invitation"
                                      " to %(username)s to challenge you.") %\
@@ -208,19 +199,17 @@ class FeedbackChallenge(View):
                                          })
 
                 absolute_link = request.build_absolute_uri(email_link)
-                ctx = Context({
+                email_context = {
                     'runner': challenge.runner.username,
                     'challenge_text': challenge.challenge_text,
                     'runners_message': challenge.runner_msg,
                     'link': absolute_link,
                     'BASE_URL': settings.BASE_URL,
-                })
-                email_msg = loader.get_template(email_template).render(ctx)
-                send_mail(email_subject,
-                          '',
-                          settings.DEFAULT_FROM_EMAIL,
-                          [challenge.sponsor.email, ],
-                          html_message=email_msg)
+                }
+                send_email([challenge.sponsor.email],
+                           email_subject,
+                           email_template,
+                           email_context)
 
                 redirect_url = reverse('profile:user_raised',
                                        kwargs=dict(user_id=request.user.id))
@@ -246,20 +235,18 @@ class FeedbackChallenge(View):
                     }
                     email_template = 'challenges/emails/challenge_rejected.html'
 
-                ctx = Context({
+                email_context = {
                     'sponsor': challenge.runner.username,
                     'amount': challenge.amount,
                     'challenge_text': challenge.challenge_text,
                     'runners_message': challenge.runner_msg,
                     'sponsors_message': challenge.sponsor_msg,
                     'BASE_URL': settings.BASE_URL
-                })
-                email_msg = loader.get_template(email_template).render(ctx)
-                send_mail(email_subject,
-                          '',
-                          settings.DEFAULT_FROM_EMAIL,
-                          [challenge.runner.email, ],
-                          html_message=email_msg)
+                }
+                send_email([challenge.runner.email],
+                           email_subject,
+                           email_template,
+                           email_context)
             challenge.save()
             messages.info(request, msg)
             return HttpResponseRedirect(redirect_url)
@@ -332,17 +319,16 @@ def preview_invitation_challenge(request, token=None):
         if form.is_valid():
             if request.POST.get('submit') == 'create':
                 challenge_req.status = ChallengeRequest.ACCEPTED
-                ctx = Context({
+                email_context = {
                     'sponsor': challenge_req.sponsor.username,
                     'challenge_text': form.cleaned_data['challenge_text'],
                     'amount': form.cleaned_data['amount'],
                     'BASE_URL': settings.BASE_URL
-                })
-                tmpl = 'challenges/emails/invitation_accepted.html'
+                }
+                email_template = 'challenges/emails/invitation_accepted.html'
                 email_subject = _('%(sponsor)s has challenged you!') % {
                     'sponsor': challenge_req.sponsor.username
                 }
-                email_msg = loader.get_template(tmpl).render(ctx)
                 msg = _("You have created a challenge for %(username)s.") % {
                     'username': challenge_req.runner.username
                 }
@@ -351,11 +337,11 @@ def preview_invitation_challenge(request, token=None):
                                                        **form.cleaned_data)
             else:  # request.POST.get('submit') == 'reject':
                 challenge_req.status = ChallengeRequest.REJECTED
-                ctx = Context({
+                email_context = {
                     'sponsor': challenge_req.sponsor.username,
                     'BASE_URL': settings.BASE_URL
-                })
-                tmpl = 'challenges/emails/invitation_rejected.html'
+                }
+                email_template = 'challenges/emails/invitation_rejected.html'
                 email_subject = _('%(sponsor)s rejected to challenge you.') % {
                     'sponsor': challenge_req.sponsor.username
                 }
@@ -365,11 +351,10 @@ def preview_invitation_challenge(request, token=None):
                 }
             challenge_req.save()
             messages.info(request, msg)
-            send_mail(email_subject,
-                      '',
-                      settings.DEFAULT_FROM_EMAIL,
-                      [challenge_req.runner.email, ],
-                      html_message=email_msg)
+            send_email([challenge_req.runner.email],
+                       email_subject,
+                       email_template,
+                       email_context)
             return redirect('profile:my_page')
 
     context = {
