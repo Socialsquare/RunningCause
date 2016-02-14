@@ -1,10 +1,15 @@
 {% extends 'email_base.html' %}
+{% load i18n %}
 {% block message %}
-<p>Hej kommende Masanga Sponsor. {{runner.username}} har anmodet dig om at 
-sponsorere sig som Masanga Runner. På den måde kan du være med til at 
-motivere {{runner.username}} og samtidig støtte Masanga Hospitalet som 
-ligger dybt inde i Sierra Leones jungle.</p>
-<p>Lyder det spændende, så klik her: {{link}}. Du kan ved at følge linket se,
-hvor meget {{runner.username}} har løbet indtil nu, og hvor meget
- {{runner.username}} indtil nu har samlet ind.</p>
+<p>
+    {% blocktrans %}
+        Dear {{sponsor}},<br>
+        {{runner}} has invited you to be a sponsor - feel free to change the
+        rate, maximum amount, start and end date, as you please.
+    {% endblocktrans %}
+</p>
+<p>
+
+    {% include "_email_button.html" with link=link text=_("Click here see the invitation") %}
+</p>
 {% endblock %}

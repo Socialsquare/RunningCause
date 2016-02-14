@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-14 15:04+0100\n"
-"PO-Revision-Date: 2016-02-14 15:04+0100\n"
+"POT-Creation-Date: 2016-02-14 15:24+0100\n"
+"PO-Revision-Date: 2016-02-14 15:25+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1207,7 +1207,7 @@ msgstr "Hmm, det ser ikke ud til at der er nogle udfordringer her."
 
 #: profile/templates/profile/user_donated.html:127
 #: profile/templates/profile/user_raised.html:149
-#: runs/templates/runs/user_runs.html:103
+#: runs/templates/runs/user_runs.html:106
 msgid "Sorry, this user has chosen to make their information private."
 msgstr "Beklager, denne bruger har valgt at gøre deres information privat."
 
@@ -1446,7 +1446,6 @@ msgid "Distance (km)"
 msgstr "Distance (km)"
 
 #: runs/forms.py:13
-#| msgid "End date"
 msgid "Run date"
 msgstr "Løbs dato"
 
@@ -1475,11 +1474,11 @@ msgstr "Påmindelse"
 msgid "Input a Run"
 msgstr "Indtast et løb"
 
-#: runs/templates/runs/input_run.html:35
+#: runs/templates/runs/input_run.html:34
 msgid "Add your run"
 msgstr "Tilføj dit løb"
 
-#: runs/templates/runs/input_run.html:44
+#: runs/templates/runs/input_run.html:43
 msgid ""
 "\n"
 "    Here, you can input a run! All your sponsors will have the distance you\n"
@@ -1490,7 +1489,7 @@ msgstr ""
 "\n"
 "Her kan du indtaste et løb. Alle dine sponsorer vil få tilføjet distancen du har løbet til deres regning for deres sponsorater, og de vil blive opkrævet i slutningen af hvert kvartal."
 
-#: runs/templates/runs/input_run.html:56
+#: runs/templates/runs/input_run.html:55
 msgid "Add run"
 msgstr "Tilføj løb"
 
@@ -1530,17 +1529,27 @@ msgstr "Hmm, der ser ikke ud til at være nogle løb her."
 msgid "Total Distance Run:"
 msgstr "Total distance løbet:"
 
-#: runs/templates/runs/user_runs.html:85
+#: runs/templates/runs/user_runs.html:88
 msgid "Add new run here!"
 msgstr "Tilføj et løb her!"
 
-#: runs/templates/runs/user_runs.html:92
+#: runs/templates/runs/user_runs.html:95
 #, python-format
+#| msgid ""
+#| "\n"
+#| "            These are all of the runs that %(runner_username)s has "
+#| "synchronized with Masanga Runners. \n"
+#| "            At the end of the quarter, anyone who was sponsoring "
+#| "%(runner_username)s for \n"
+#| "            this period will be billed, depending on their rates, "
+#| "challenges etc., \n"
+#| "            and the money will be sent to Masanga Hospital.\n"
+#| "        "
 msgid ""
 "\n"
-"            These are all of the runs that %(runner_username)s has synchronized with Masanga Runners. \n"
-"            At the end of the quarter, anyone who was sponsoring %(runner_username)s for \n"
-"            this period will be billed, depending on their rates, challenges etc., \n"
+"            These are all of the runs that %(runner_username)s has synchronized with Masanga Runners.\n"
+"            At the end of the quarter, anyone who was sponsoring %(runner_username)s for\n"
+"            this period will be billed, depending on their rates, challenges etc.,\n"
 "            and the money will be sent to Masanga Hospital.\n"
 "        "
 msgstr ""
@@ -1666,6 +1675,31 @@ msgstr ""
 "\n"
 "Held og lykke! Og tak fordi du er Masanga Runner."
 
+#: sponsorship/templates/sponsorship/email/request_sponsorship.html:4
+#, python-format
+#| msgid ""
+#| "\n"
+#| "        Dear %(sponsor)s,<br>\n"
+#| "        %(runner)s has invited you to be a sponsor - feel free to change "
+#| "the\n"
+#| "        rate, maximum amount, start- and end-date, as you please.\n"
+#| "    "
+msgid ""
+"\n"
+"        Dear %(sponsor)s,<br>\n"
+"        %(runner)s has invited you to be a sponsor - feel free to change the\n"
+"        rate, maximum amount, start and end date, as you please.\n"
+"    "
+msgstr ""
+"\n"
+"        Kære %(sponsor)s,<br>\n"
+"        %(runner)s har inviteret dig til at være sponsor - du er velkommen til at ændre sats, maksimalt beløb, start- og slutdato."
+
+#: sponsorship/templates/sponsorship/email/request_sponsorship.html:12
+#| msgid "Click here to adjust, accept or decline the invitation"
+msgid "Click here see the invitation"
+msgstr "Klik for at se invitationen"
+
 #: sponsorship/templates/sponsorship/request_sponsorship.html:8
 msgid "Request sponsorship"
 msgstr "Efterspørg sponsorat"
@@ -1712,15 +1746,16 @@ msgstr "Dit sponsorat af %(runner)s er blevet oprettet. Der vil blive sendt en e
 msgid "You have a new sponsor!"
 msgstr "Du har fået en ny sponsor!"
 
-#: sponsorship/views.py:111
-msgid "Masanga Runners sponsorship request"
-msgstr "Masanga Runners sponsorat efterspørgsel"
+#: sponsorship/views.py:112
+#, python-format
+msgid "Do you want to sponsor %(runner)s?"
+msgstr "Vil du sponsorere %(runner)s?"
 
-#: sponsorship/views.py:126
+#: sponsorship/views.py:138
 msgid "We have sent your request to sponsor."
 msgstr "Vi har sendt din forespørgsel til sponsoren."
 
-#: sponsorship/views.py:143
+#: sponsorship/views.py:155
 msgid "You are not the intended sponsor, please log in as%127 s."
 msgstr "Du er ikke den forventerede sponsor, log venligst ind som%127 s."
 
@@ -1844,6 +1879,9 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid "Masanga Runners sponsorship request"
+#~ msgstr "Masanga Runners sponsorat efterspørgsel"
 
 #~ msgid "Update Text"
 #~ msgstr "Opdater tekst"

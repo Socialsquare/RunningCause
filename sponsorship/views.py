@@ -4,7 +4,7 @@ from datetime import date
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.mail import send_mail
@@ -64,7 +64,7 @@ def add_sponsorship(request, runner_id=None):
                 'runner': runner.username
             }
             messages.success(request, message)
-            
+
             email_context = {
                 'sponsor': sponsorship.sponsor.username,
                 'rate': sponsorship.rate,
@@ -108,21 +108,20 @@ def request_sponsorship(request, person_id):
             email_url = reverse('sponsorship:add_sponsorship_from_request',
                                 kwargs={'token': sponsor_req.token})
             full_email_url = request.build_absolute_uri(email_url)
-            title = _('Masanga Runners sponsorship request')
-            ctx = {
-                'runner': runner,
-                'link': full_email_url,
-                'BASE_URL': settings.BASE_URL,
-                'title': title,
+
+            email_subject = _("Do you want to sponsor %(runner)s?") % {
+                'runner': runner.username
             }
-            tmpl = 'sponsorship/email/request_sponsorship.html'
-            html_msg = loader.get_template(tmpl).render(Context(ctx))
-            send_mail(title,
-                      "",
-                      settings.DEFAULT_FROM_EMAIL,
-                      [sponsor.email, ],
-                      fail_silently=True,
-                      html_message=html_msg)
+            email_context = {
+                'runner': runner.username,
+                'sponsor': sponsor.username,
+                'link': full_email_url,
+                'BASE_URL': settings.BASE_URL
+            }
+            send_email([sponsor.email],
+                       email_subject,
+                       'sponsorship/email/request_sponsorship.html',
+                       email_context)
             messages.info(request, _("We have sent your request to sponsor."))
             return redirect('profile:user_donated', user_id=person_id)
 
@@ -140,7 +139,8 @@ def add_sponsorship_from_request(request, token=None):
     sp_req = get_object_or_404(SponsorRequest, token=token)
     runner = sp_req.runner
     if sponsor != sp_req.sponsor:
-        return HttpResponseForbidden(_('You are not the intended sponsor, please log in as%127 s.') % sp_req.sponsor.username)
+        logout(request)
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
     form = SponsorForm(json.loads(sp_req.proposed_sponsorship))
     if request.method == "POST":
