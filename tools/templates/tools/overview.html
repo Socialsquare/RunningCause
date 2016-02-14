@@ -30,9 +30,9 @@
                     <td><a href="{{ sponsorship.get_admin_url }}">{{ sponsorship.sponsor }}</td>
                     <td>{{ sponsorship.runner }}</td>
                     <td>{{ sponsorship.rate }}</td>
-                    <td>{{ sponsorship.total_amount }}</td>
-                    <td>{{ sponsorship.amount_paid }}</td>
-                    <td>{{ sponsorship.left_to_pay }}</td>
+                    <td>{{ sponsorship.total_amount|floatformat:2 }}</td>
+                    <td>{{ sponsorship.amount_paid|floatformat:2 }}</td>
+                    <td>{{ sponsorship.left_to_pay|floatformat:2 }}</td>
                     <td>{{ sponsorship.max_amount }}</td>
                     <td>{{ sponsorship.start_date }}</td>
                     <td>{{ sponsorship.end_date }}</td>
@@ -73,8 +73,7 @@
             <th>{% trans "Amount" %}</th>
             <th>{% trans "Fulfilled" %}</th>
             <th>{% trans "Paid" %}</th>
-            <th>{% trans "Remind Date" %}</th>
-            <th>{% trans "Decision Date" %}</th>
+            <th>{% trans "End Date" %}</th>
             <th>{% trans "Challenge Text" %}</th>
             <th>{% trans "Update Text" %}</th>
 
@@ -87,8 +86,7 @@
                     <td>{{ challenge.amount }}</td>
                     <td>{{ challenge.fulfilled }}</td>
                     <td>{{ challenge.paid }}</td>
-                    <td>{{ challenge.remind_date }}</td>
-                    <td>{{ challenge.decision_date }}</td>
+                    <td>{{ challenge.end_date }}</td>
                     <td>{{ challenge.challenge_text }}</td>
                     <td>{{ challenge.update_text }}</td>
                 </tr>
