@@ -1,14 +1,16 @@
 {% extends 'email_base.html' %}
+{% load i18n %}
 {% block message %}
 <p>
-    {{runner}} har inviteret dig til at udfordre sig på Masanga Runners.<br/>
-    Du kan acceptere invitationen som den er, eller justere den først og
-    derefter acceptere.<br/>
-    Hvis du ikke ønsker at udfordre {{runner}} og dermed støtte Masanga, kan du
-    vælge af afvise invitationen.
+    {% blocktrans %}
+    {{runner}} has invited you to challenge him/her at Masanga Runners.<br/>
+    You can accept the invitation as it is, or adjust it first and then accept.
+    If you do not wish to challenge {{runner}} and thereby support Masanga, you
+    can choose to decline the invitation.
+    {% endblocktrans %}
 </p>
 {% include "_email_quotation.html" with quote=challenge_text %}
 <p>
-    {% include "_email_button.html" with link=link text="Klik for at justere, acceptere eller afvise invitationen" %}
+    {% include "_email_button.html" with link=link text=_("Click here to adjust, accept or decline the invitation") %}
 </p>
 {% endblock %}

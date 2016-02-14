@@ -123,15 +123,15 @@
                 <th>{% trans "Sponsor" %}</th>
                 <th>{% trans "Amount (dkk)" %}</th>
                 <th>{% trans "End Date" %}</th>
-                <th>{% trans "Bet" %}</th>
+                <th>{% trans "The challenge" %}</th>
                 <th>{% trans "Status" %}</th>
                 <th>&nbsp;</th>
             </thead>
         {% for challenge in challenges_recieved %}
                 <tr>
                     <td>{{ challenge.sponsor }}</td>
-                    <td>{{ challenge.amount|floatformat:-2|intcomma }}</td>
-                    <td>{{ challenge.remind_date }}</td>
+                    <td>{{ challenge.amount|floatformat:2 }}</td>
+                    <td>{{ challenge.end_date }}</td>
                     <td>{{ challenge.challenge_text }}</td>
                     <td>{{ challenge.get_status_display }}</td>
                     <td class="text-right">
