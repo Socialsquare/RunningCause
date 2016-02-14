@@ -9,11 +9,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
-def end_date_default():
-    return date.today() + relativedelta(months=3)
-remind_date_default = end_date_default
-
-
 class ChallengeManager(models.Manager):
     def create_for_challenge(self, challenge_request, **kwargs):
         proposed = json.loads(challenge_request.proposed_challenge)
@@ -70,30 +65,16 @@ class Challenge(models.Model):
 
     objects = ChallengeManager()
 
-    @staticmethod
-    def get_remind_date_delta():
-        return relativedelta(month=1)
-
-    @property
-    def remind_date(self):
-        if self.end_date:
-            return self.end_date - Challenge.get_remind_date_delta()
-
-    @staticmethod
-    def get_decision_date_delta():
-        return relativedelta(days=1)
-
-    @property
-    def decision_date(self):
-        if self.end_date:
-            return self.end_date + Challenge.get_decision_date_delta()
-
     def get_feedback_url(self):
-        return settings.BASE_URL + reverse('feedback_challenge',
+        return settings.BASE_URL + reverse('challenges:feedback_challenge',
                                            kwargs={'challenge_id': self.id})
 
     def __unicode__(self):
-        return '%s' % self.runner
+        return '%s challenges %s ending %s' % (
+            self.sponsor,
+            self.runner,
+            self.end_date
+        )
 
 
 class ChallengeRequest(models.Model):
