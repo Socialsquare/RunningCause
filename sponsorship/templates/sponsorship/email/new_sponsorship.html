@@ -1,0 +1,33 @@
+{% extends 'email_base.html' %}
+{% load i18n %}
+{% block message %}
+<p>
+    {% blocktrans %}
+        Congratulations! {{sponsor}} has decided to sponsor DKK {{rate}} to
+        Masanga Hospital for every kilometer you run!
+    {% endblocktrans %}
+</p>
+<p>
+    {% if end_date %}
+        {% blocktrans %}
+            The sponsorship starts at {{start_date}} and continues until {{end_date}}.
+        {% endblocktrans %}
+    {% else %}
+        {% blocktrans %}
+            The sponsorship starts at {{start_date}}.
+        {% endblocktrans %}
+    {% endif %}
+</p>
+{% if max_amount %}
+    <p>
+        {% blocktrans %}
+            {{sponsor}} will not pay more than DKK {{max_amount}}.
+        {% endblocktrans %}
+    </p>
+{% endif %}
+<p>
+    {% blocktrans %}
+        Good luck! And thank you for being a Masanga Runner!
+    {% endblocktrans %}
+</p>
+{% endblock %}

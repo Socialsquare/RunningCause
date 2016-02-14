@@ -14,6 +14,8 @@ from django.http import HttpResponseForbidden
 from django.utils.translation import ugettext as _
 from django.core.serializers.json import DjangoJSONEncoder
 
+from common.helpers import send_email
+
 from .models import Sponsorship, SponsorRequest
 from .forms import SponsorForm
 
@@ -57,10 +59,24 @@ def add_sponsorship(request, runner_id=None):
                                       end_date=end_date,
                                       max_amount=max_amount)
             sponsorship.save()
-            messages.success(request,
-                             _("Your sponsorship of %(username)s has "
-                                        "been set up.") % \
-                             dict(username=runner.username))
+            message = _("Your sponsorship of %(runner)s has been set up. "
+                        "An e-mail has been sent to %(runner)s.") % {
+                'runner': runner.username
+            }
+            messages.success(request, message)
+            
+            email_context = {
+                'sponsor': sponsorship.sponsor.username,
+                'rate': sponsorship.rate,
+                'start_date': sponsorship.start_date,
+                'end_date': sponsorship.end_date,
+                'max_amount': sponsorship.max_amount,
+                'BASE_URL': settings.BASE_URL
+            }
+            send_email([runner.email],
+                       _("You have a new sponsor!"),
+                       'sponsorship/email/new_sponsorship.html',
+                       email_context)
             return redirect('profile:user_donated', user_id=sponsor.id)
 
     context = {

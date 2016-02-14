@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-14 13:58+0100\n"
-"PO-Revision-Date: 2016-02-14 13:59+0100\n"
+"POT-Creation-Date: 2016-02-14 14:21+0100\n"
+"PO-Revision-Date: 2016-02-14 14:22+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1231,7 +1231,6 @@ msgstr "Sponsorater modtaget"
 
 #: profile/templates/profile/user_raised.html:31
 #: profile/templates/profile/user_raised.html:123
-#: sponsorship/templates/sponsorship/add_sponsorship.html:70
 #: tools/templates/tools/overview.html:15
 #: tools/templates/tools/overview.html:71
 msgid "Sponsor"
@@ -1540,12 +1539,10 @@ msgid "Sponsorship start date"
 msgstr "Sponsoratets startdato"
 
 #: sponsorship/forms.py:19
-#| msgid "Sponsorship end date"
 msgid "Sponsorship end date (optional)"
 msgstr "Sponsoratets slutdato (valgfri)"
 
 #: sponsorship/forms.py:25
-#| msgid "Maximum amount"
 msgid "Maximum amount (optional)"
 msgstr "Maksimalt beløb (valgfri)"
 
@@ -1586,6 +1583,64 @@ msgstr ""
 "\n"
 "Udfyld disse felter for at sponsorere %(username)s. Imellem start- og slutdatoerne accepterer du at donere antallet af danske krone per kilometer i \"sats\" feltet til Masanga Hospital, hver gang %(username)s løber. Er du bekymret for, at din løber vil løbe for meget, så fortvivl ikke. Du vil ikke bliver opkrævet mere end beløbet der står i \"maksimalt beløb\" feltet, uanset hvor meget %(username)s løber."
 
+#: sponsorship/templates/sponsorship/add_sponsorship.html:70
+msgid "Create sponsorship"
+msgstr "Opret sponsorat"
+
+#: sponsorship/templates/sponsorship/email/new_sponsorship.html:5
+#, python-format
+msgid ""
+"\n"
+"        Congratulations! %(sponsor)s has decided to sponsor DKK %(rate)s to\n"
+"        Masanga Hospital for every kilometer you run!\n"
+"    "
+msgstr ""
+"\n"
+"        Tillykke! %(sponsor)s har besluttet at sponsorere %(rate)s kr. til Masanga hospitalet for hver kilometer du løber!"
+
+#: sponsorship/templates/sponsorship/email/new_sponsorship.html:12
+#, python-format
+msgid ""
+"\n"
+"            The sponsorship starts at %(start_date)s and continues until %(end_date)s.\n"
+"        "
+msgstr ""
+"\n"
+"            Sponsoratet starter d. %(start_date)s og fortsætter indtil %(end_date)s."
+
+#: sponsorship/templates/sponsorship/email/new_sponsorship.html:16
+#, python-format
+msgid ""
+"\n"
+"            The sponsorship starts at %(start_date)s.\n"
+"        "
+msgstr ""
+"\n"
+"Sponsoratet starter d. %(start_date)s."
+
+#: sponsorship/templates/sponsorship/email/new_sponsorship.html:23
+#, python-format
+#| msgid ""
+#| "\n"
+#| "            %(sponsor)s will not pay more than %(max_amount)s.\n"
+#| "        "
+msgid ""
+"\n"
+"            %(sponsor)s will not pay more than DKK %(max_amount)s.\n"
+"        "
+msgstr ""
+"\n"
+"%(sponsor)s vil ikke blive opkrævet mere end %(max_amount)s kr."
+
+#: sponsorship/templates/sponsorship/email/new_sponsorship.html:29
+msgid ""
+"\n"
+"        Good luck! And thank you for being a Masanga Runner!\n"
+"    "
+msgstr ""
+"\n"
+"Held og lykke! Og tak fordi du er Masanga Runner."
+
 #: sponsorship/templates/sponsorship/request_sponsorship.html:8
 msgid "Request sponsorship"
 msgstr "Efterspørg sponsorat"
@@ -1616,28 +1671,32 @@ msgstr ""
 "\n"
 "Du kan udfylde formularen nedenunder for at invitere %(username)s til at sponsorere dig. Udfyld kun de felter du ønsker. %(username)s vil få en email der oplyser ham/hende om at du ønsker at de sponsorerer dig, og de værdier som du har udfyldt vil blive vist. Derefter kan han/hun vælge at sponsorere dig direkte, ændre/tilføje nogle værdier og derefter sponsorere dig eller at afvise helt."
 
-#: sponsorship/views.py:29
+#: sponsorship/views.py:31
 msgid "Sponsorship has been ended."
 msgstr "Sponsoratet er afsluttet."
 
-#: sponsorship/views.py:33
+#: sponsorship/views.py:35
 msgid "You are not a associated with this sponsorship."
 msgstr "Du er ikke i forbindelse med dette sponsorat."
 
-#: sponsorship/views.py:61
+#: sponsorship/views.py:62
 #, python-format
-msgid "Your sponsorship of %(username)s has been set up."
-msgstr "Dit sponsorat af %(username)s er blevet sat op."
+msgid "Your sponsorship of %(runner)s has been set up. An e-mail has been sent to %(runner)s."
+msgstr "Dit sponsorat af %(runner)s er blevet oprettet. Der vil blive sendt en e-mail til %(runner)s."
 
-#: sponsorship/views.py:95
+#: sponsorship/views.py:77
+msgid "You have a new sponsor!"
+msgstr "Du har fået en ny sponsor!"
+
+#: sponsorship/views.py:111
 msgid "Masanga Runners sponsorship request"
 msgstr "Masanga Runners sponsorat efterspørgsel"
 
-#: sponsorship/views.py:110
+#: sponsorship/views.py:126
 msgid "We have sent your request to sponsor."
 msgstr "Vi har sendt din forespørgsel til sponsoren."
 
-#: sponsorship/views.py:127
+#: sponsorship/views.py:143
 msgid "You are not the intended sponsor, please log in as%127 s."
 msgstr "Du er ikke den forventerede sponsor, log venligst ind som%127 s."
 
