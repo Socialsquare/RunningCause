@@ -78,9 +78,9 @@ class Sponsorship(models.Model):
         whichever is less.
         """
         distance = self.runner.runs.filter(
-                start_date__gte=self.start_date,
-                end_date__lt=self.end_date
-            ).aggregate(a_sum=Sum('distance'))['a_sum'] or 0
+            start_date__gte=self.start_date,
+            end_date__lte=self.end_date
+        ).aggregate(a_sum=Sum('distance'))['a_sum'] or 0
         amount = self.rate * Decimal(distance)
         return min(amount, self.max_amount)
 

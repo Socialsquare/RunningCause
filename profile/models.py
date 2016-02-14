@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import auth
 from django.db.models import Sum
+from challenges.models import Challenge
 
 
 class MasangaUserManager(auth.models.UserManager):
@@ -50,8 +51,19 @@ class User(auth.models.AbstractUser):
 
     @property
     def amount_donated(self):
-        given_spships = self.sponsorships_given.all()
-        spship_amount = sum([sp.amount_paid for sp in given_spships])
+        spship_amount = self.sponsorships_given.all()\
+            .aggregate(a_sum=Sum('amount_paid'))['a_sum'] or 0
         challenges_amount = self.challenges_given.filter(status='paid')\
             .aggregate(a_sum=Sum('amount'))['a_sum'] or 0
         return spship_amount + challenges_amount
+
+    @property
+    def amount_owed(self):
+        sponsorships = self.sponsorships_given.all()
+        owed_on_sponsorships = sum([
+            s.total_amount - s.amount_paid
+            for s in sponsorships
+        ])
+        challenges = self.challenges_given.filter(status=Challenge.CONFIRMED)
+        owed_on_challenges = challenges.aggregate(sum=Sum('amount'))['sum'] or 0
+        return owed_on_sponsorships + owed_on_challenges
