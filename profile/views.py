@@ -62,16 +62,22 @@ def user_raised(request, user_id=None):
 def user_donated(request, user_id=None):
     person = get_object_or_404(get_user_model(), pk=user_id)
     sponsorships_given = person.sponsorships_given.all()
-    amount_given = 0
+
+    total_amount = 0
+    total_amount_donated = 0
     for sponsorship in sponsorships_given:
-        amount_given = amount_given + sponsorship.total_amount
+        total_amount += sponsorship.total_amount
+        total_amount_donated += sponsorship.amount_paid
+    total_amount_owed = total_amount - total_amount_donated
 
     challenges_given = person.challenges_given.all().order_by('end_date')
     own_page = request.user.id == person.id
 
     context = {
         'sponsorships_given': sponsorships_given,
-        'amount_given': amount_given,
+        'total_amount': total_amount,
+        'total_amount_donated': total_amount_donated,
+        'total_amount_owed': total_amount_owed,
         'challenges_given': challenges_given,
         'own_page': own_page,
         'person': person,

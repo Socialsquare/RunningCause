@@ -12,8 +12,16 @@
     <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
     <script type=text/javascript>
     $(document).ready(function() {
-        $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
-        $('#end_datepicker').datepicker({format:'yyyy-mm-dd'});
+        $('#start_datepicker').datepicker({
+            format:'yyyy-mm-dd',
+            weekStart: 1,
+            autoclose: true
+        });
+        $('#end_datepicker').datepicker({
+            format:'yyyy-mm-dd',
+            weekStart: 1,
+            autoclose: true
+        });
     });
     </script>
 
@@ -33,8 +41,9 @@
 <div class="col-md-7 col-md-offset-1">
     <p>
     {% blocktrans %}
-    Here, you can input a run! All your sponsors will have the distance you 
-    ran added to tab for their sponsorship, and they'll be billed at the end of the month.
+    Here, you can input a run! All your sponsors will have the distance you
+    ran added to tab for their sponsorship, and they'll be billed at the end
+    of the quarter.
     {% endblocktrans %}
     </p>
 
@@ -43,7 +52,7 @@
 	{% bootstrap_form form layout="form-horizontal" %}
 	{% buttons %}
 	  <button type="submit" class="btn btn-primary">
-	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	    {% bootstrap_icon "plus" %} {% trans 'Add run' %}
 	  </button>
 	{% endbuttons %}
 </form>

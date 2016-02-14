@@ -54,9 +54,9 @@
                     {% endif %}
                 </thead>
                 {% for run in runs %}
-                    <tr> 
+                    <tr>
                         <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
-                        <td>{{ run.distance|floatformat:-2 }}</td>
+                        <td>{{ run.distance|floatformat:2 }}</td>
                         <td>{% if run.recorded_time %}{{ run.recorded_time }}{% else %}unknown{% endif %}</td>
                         {% if own_page %}
                             <td><a href="{% url 'runs:edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
@@ -69,8 +69,11 @@
         {% if runs %}
         <tr>
             <td align='right'>{% trans "Total Distance Run:" %} </td>
-            <td>{{ total_distance|floatformat:-2 }}km</td>
+            <td>{{ total_distance|floatformat:2 }}</td>
             <td></td>
+            {% if own_page %}
+            <td></td>
+            {% endif %}
         <tr>
         {% endif %}
         </table>
@@ -90,9 +93,9 @@
 
     <p>
         {% blocktrans with runner_username=person.username %}
-            These are all of the runs that {{ runner_username }} has synchronized with Masanga Runners. 
-            At the end of the quarter, anyone who was sponsoring {{ runner_username }} for 
-            this period will be billed, depending on their rates, challenges etc., 
+            These are all of the runs that {{ runner_username }} has synchronized with Masanga Runners.
+            At the end of the quarter, anyone who was sponsoring {{ runner_username }} for
+            this period will be billed, depending on their rates, challenges etc.,
             and the money will be sent to Masanga Hospital.
         {% endblocktrans %}
     </p>

@@ -10,20 +10,21 @@ class SponsorRequestAdmin(admin.ModelAdmin):
 
 @admin.register(Sponsorship)
 class SponsorshipAdmin(admin.ModelAdmin):
-    readonly_fields = ('current_amount', 'is_active')
-    list_display = ('id', 'runner', 'sponsor', 'current_amount', 'end_date',
-                    'is_active')
+    readonly_fields = ('total_amount', 'is_active')
+    list_display = ('id', 'runner', 'sponsor', 'total_amount', 'end_date',
+                    'max_amount', 'amount_paid', 'is_active')
     fields = (
-        'runner',
         'sponsor',
+        'runner',
         'rate',
         'end_date',
         'max_amount',
-        'current_amount',
+        'amount_paid',
+        'total_amount',
         'is_active',
     )
 
-    def current_amount(self, obj):
+    def total_amount(self, obj):
         return obj.total_amount
 
     def is_active(self, obj):

@@ -54,6 +54,7 @@ class Sponsorship(models.Model):
     amount_paid = models.DecimalField('Amount Paid', default=0,
                                       max_digits=10, decimal_places=2)
 
+    @property
     def is_active(self):
         """
         This determines whether or not the sponsorship is currently active.
