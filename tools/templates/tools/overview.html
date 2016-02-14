@@ -110,8 +110,8 @@
                     <td><a href="{{ user.get_admin_url }}">{{ user.username }}</a></td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.is_public }}</td>
-                    <td>{{ user.amount_earned }}</td>
-                    <td>{{ user.amount_donated }}</td>
+                    <td>{{ user.amount_earned|floatformat:2 }}</td>
+                    <td>{{ user.amount_donated|floatformat:2 }}</td>
                 </tr>
         {% endfor %}
         </table>
