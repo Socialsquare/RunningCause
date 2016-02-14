@@ -1,7 +1,28 @@
 {% extends 'email_base.html' %}
+{% load i18n %}
 {% block message %}
-{{sponsor}} har lige udfordret dig med et væddemål.  
-Vi går ud fra, at du gerne vil gøre et forsøg, og du skal derfor ikke gøre 
-noget for at acceptere. Du kan se væddemålet ved at følge dette link:<br/><br/>
-{{link}}
+<p>
+    {% blocktrans %}
+        {{sponsor}} has challenged you!
+    {% endblocktrans %}
+</p>
+{% include "_email_quotation.html" with quote=challenge_text %}
+<p>
+    {% blocktrans %}
+        We assume that you want to make an attempt - therefore you don't need
+        to do anything, but getting on your running shoes.
+    {% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}
+        When the challenge ends at {{end_date}} you will receive a mail, asking
+        you to tell if you completed successfully or not. Alternatively you
+        can login and update the challenge whenever you want.
+    {% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}
+        Good luck!
+    {% endblocktrans %}
+</p>
 {% endblock %}

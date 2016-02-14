@@ -49,24 +49,23 @@ def challenge_runner(request, person_id):
     if request.method == "POST":
         form = ChallengeForm(request.POST)
         if form.is_valid():
-            proposed_challenge = json.dumps({
+            print('end date is ', form.cleaned_data['end_date'])
+            challenge_fields = {
+                'runner': runner,
+                'sponsor': sponsor,
                 'amount': form.cleaned_data['amount'],
                 'end_date': form.cleaned_data['end_date'],
-                'challenge_text': form.cleaned_data['challenge_text'],
-                }, cls=DjangoJSONEncoder)
+                'challenge_text': form.cleaned_data['challenge_text']
+            }
+            challenge = Challenge.objects.create(**challenge_fields)
 
-            challenge_req = ChallengeRequest.objects.create(runner=runner,
-                sponsor=sponsor, proposed_challenge=proposed_challenge)
-
-            link = reverse('challenges:preview_challenge',
-                           kwargs={'token': challenge_req.token})
-            full_link = request.build_absolute_uri(link)
             subject = _('%(username)s has challenged you') % {
                 'username': sponsor.username
             }
             email_context = {
                 'sponsor': sponsor.username,
-                'link': full_link,
+                'challenge_text': challenge.challenge_text,
+                'end_date': challenge.end_date,
                 'BASE_URL': settings.BASE_URL,
             }
             send_email([runner.email],
@@ -259,6 +258,7 @@ class FeedbackChallenge(View):
 feedback_challenge = login_required(FeedbackChallenge.as_view())
 
 
+'''
 @login_required
 def preview_challenge(request, token=None):
     """
@@ -294,6 +294,7 @@ def preview_challenge(request, token=None):
         'form': form
     }
     return render(request, 'challenges/preview_challenge.html', context)
+'''
 
 
 @login_required
