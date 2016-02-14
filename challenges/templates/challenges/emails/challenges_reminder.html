@@ -3,19 +3,24 @@
 {% load staticfiles %}
 {% block message %}
 
-{% if given_completed_challenges %}
-<p>The list of completed challenges that need your input:</p>
+<p>
+    {% if ending_challenges|length == 1 %}
+        {% trans 'This challenge ends today.' %}
+    {% elif ending_challenges|length > 1 %}
+        {% trans 'These challenges ends today.' %}
+    {% endif %}
+</p>
 
-{% for challenge in given_completed_challenges %}
-	<li><a href="{{challenge.get_feedback_url|safe}}">{{challenge.challenge_text}}</a></li>
+{% for challenge in ending_challenges %}
+    <p>
+        {% blocktrans with sponsor=challenge.sponsor.username %}
+        {{sponsor}} challenged you to:
+        {% endblocktrans %}
+    </p>
+    {% include "_email_quotation.html" with quote=challenge.challenge_text %}
+    <p>
+        {% include "_email_button.html" with link=challenge.get_feedback_url text=_("Did you make it? Click to update the challenge") %}
+    </p>
 {% endfor %}
-{% endif %}
-
-{% if received_ending_soon_challenges %}
-<p>The list of challenges ending soon:</p>
-{% for challenge in received_ending_soon_challenges %}
-	<li><a href="{{challenge.get_feedback_url|safe}}">{{challenge.challenge_text}}</a></li>
-{% endfor %}
-{% endif %}
 
 {% endblock %}
