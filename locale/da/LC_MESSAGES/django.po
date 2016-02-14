@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-14 14:21+0100\n"
-"PO-Revision-Date: 2016-02-14 14:22+0100\n"
+"POT-Creation-Date: 2016-02-14 14:28+0100\n"
+"PO-Revision-Date: 2016-02-14 14:31+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -861,6 +861,7 @@ msgstr ""
 "Udfyld disse felter for at invitere %(username)s til at udfordre dig. Du kan efterlade de felter du ønsker blanke. %(username)s vil modtage en email der oplyser ham/hende om at du har efterspurgt en udfordring, og de værdier du udfylder vil blive vist til ham/hende. Sponsoren kan så vælge at udfordre dig med det samme, ændre/tilføje nogle værdier og så udfordre dig eller afvise helt at udfordre dig."
 
 #: challenges/templates/challenges/invite_sponsor_to_challenge.html:59
+#: sponsorship/templates/sponsorship/request_sponsorship.html:71
 msgid "Send invitation"
 msgstr "Send invitation"
 
@@ -1000,7 +1001,6 @@ msgstr ""
 #: invitations/templates/invitations/invitation.html:38
 #: runs/templates/runs/input_run.html:46
 #: runs/templates/runs/run_edit.html:48
-#: sponsorship/templates/sponsorship/request_sponsorship.html:75
 msgid "Submit"
 msgstr "Indsend"
 
@@ -1620,10 +1620,6 @@ msgstr ""
 
 #: sponsorship/templates/sponsorship/email/new_sponsorship.html:23
 #, python-format
-#| msgid ""
-#| "\n"
-#| "            %(sponsor)s will not pay more than %(max_amount)s.\n"
-#| "        "
 msgid ""
 "\n"
 "            %(sponsor)s will not pay more than DKK %(max_amount)s.\n"
@@ -1645,31 +1641,46 @@ msgstr ""
 msgid "Request sponsorship"
 msgstr "Efterspørg sponsorat"
 
-#: sponsorship/templates/sponsorship/request_sponsorship.html:49
+#: sponsorship/templates/sponsorship/request_sponsorship.html:47
 #, python-format
+#| msgid ""
+#| "\n"
+#| "\t\tInvite %(username)s to sponsor you.\n"
+#| "\t\t"
 msgid ""
 "\n"
-"\t\tInvite %(username)s to sponsor you.\n"
-"\t\t"
+"\tInvite %(username)s to sponsor you\n"
+"\t"
 msgstr ""
 "\n"
-"Inviter %(username)s til at sponsorere dig.\n"
+"Invitér %(username)s til at sponsorere dig\n"
 "\t"
 
-#: sponsorship/templates/sponsorship/request_sponsorship.html:58
+#: sponsorship/templates/sponsorship/request_sponsorship.html:54
 #, python-format
+#| msgid ""
+#| "\n"
+#| "        You can fill out the form below to invite %(username)s to sponsor "
+#| "you.\n"
+#| "        Feel free to leave whatever you want blank. %(username)s will "
+#| "get \n"
+#| "        an email notifying him/her that you requested him/her as a "
+#| "sponsor, \n"
+#| "        and the values you do fill out will be displayed.\n"
+#| "        They can then choose to sponsor you immediately, change or add \n"
+#| "        some values and then sponsor you, or decline entirely.\n"
+#| "        "
 msgid ""
 "\n"
-"        You can fill out the form below to invite %(username)s to sponsor you.\n"
-"        Feel free to leave whatever you want blank. %(username)s will get \n"
-"        an email notifying him/her that you requested him/her as a sponsor, \n"
-"        and the values you do fill out will be displayed.\n"
-"        They can then choose to sponsor you immediately, change or add \n"
-"        some values and then sponsor you, or decline entirely.\n"
+"        You can fill out the form below to invite %(sponsor)s to sponsor you.\n"
+"        Feel free to leave whatever you want blank. %(sponsor)s will get\n"
+"        an email with your request for a sponsorship, with the values you have\n"
+"        provided. %(sponsor)s can then choose to sponsor you immediately,\n"
+"        change or add some values and then sponsor you, or decline entirely.\n"
 "        "
 msgstr ""
 "\n"
-"Du kan udfylde formularen nedenunder for at invitere %(username)s til at sponsorere dig. Udfyld kun de felter du ønsker. %(username)s vil få en email der oplyser ham/hende om at du ønsker at de sponsorerer dig, og de værdier som du har udfyldt vil blive vist. Derefter kan han/hun vælge at sponsorere dig direkte, ændre/tilføje nogle værdier og derefter sponsorere dig eller at afvise helt."
+"Du kan udfylde formularen nedenunder for at invitere %(sponsor)s til at sponsorere dig. Udfyld kun de felter du ønsker. %(sponsor)s vil få en email der oplyser vedkommende om dit ønske om sponsorat, med de værdier som du har udfyldt. Derefter kan %(sponsor)s vælge at sponsorere dig direkte, ændre/tilføje nogle værdier og derefter sponsorere dig eller at afvise helt."
 
 #: sponsorship/views.py:31
 msgid "Sponsorship has been ended."

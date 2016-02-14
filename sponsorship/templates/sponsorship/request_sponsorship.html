@@ -44,35 +44,31 @@
 {% endblock %}
 
 {% block head %}
-	<div class="row">
-	<div class="col-md-7 col-md-offset-1">
-		{% blocktrans with username=sponsor.username %}
-		Invite {{username}} to sponsor you.
-		{% endblocktrans %}
-	</div>
-	</div>
+	{% blocktrans with username=sponsor.username %}
+	Invite {{username}} to sponsor you
+	{% endblocktrans %}
 {% endblock %}
 
 {% block body %}
     <p>
-        {% blocktrans with username=sponsor.username %}
-        You can fill out the form below to invite {{ username }} to sponsor you.
-        Feel free to leave whatever you want blank. {{ username }} will get 
-        an email notifying him/her that you requested him/her as a sponsor, 
-        and the values you do fill out will be displayed.
-        They can then choose to sponsor you immediately, change or add 
-        some values and then sponsor you, or decline entirely.
+        {% blocktrans with sponsor=sponsor.username %}
+        You can fill out the form below to invite {{sponsor}} to sponsor you.
+        Feel free to leave whatever you want blank. {{sponsor}} will get
+        an email with your request for a sponsorship, with the values you have
+        provided. {{sponsor}} can then choose to sponsor you immediately,
+        change or add some values and then sponsor you, or decline entirely.
         {% endblocktrans %}
     </p>
 
-    <form class="form-horizontal" method="post"
-    action="{% url 'sponsorship:request_sponsorship' sponsor.id %}">
+    <form
+        method="post"
+        action="{% url 'sponsorship:request_sponsorship' sponsor.id %}">
 
     {% csrf_token %}
-	{% bootstrap_form form layout="form-horizontal" %}
+	{% bootstrap_form form %}
 	{% buttons %}
 	  <button type="submit" class="btn btn-primary">
-	    {% bootstrap_icon "star" %}{% blocktrans %}Submit{% endblocktrans %}
+	    {% bootstrap_icon "send" %} {% trans 'Send invitation' %}
 	  </button>
 	{% endbuttons %}
 
