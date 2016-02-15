@@ -49,7 +49,6 @@ def challenge_runner(request, person_id):
     if request.method == "POST":
         form = ChallengeForm(request.POST)
         if form.is_valid():
-            print('end date is ', form.cleaned_data['end_date'])
             challenge_fields = {
                 'runner': runner,
                 'sponsor': sponsor,
@@ -64,6 +63,7 @@ def challenge_runner(request, person_id):
             }
             email_context = {
                 'sponsor': sponsor.username,
+                'amount': challenge.amount,
                 'challenge_text': challenge.challenge_text,
                 'end_date': challenge.end_date,
                 'BASE_URL': settings.BASE_URL,
