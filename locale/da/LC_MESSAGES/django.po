@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-14 16:01+0100\n"
-"PO-Revision-Date: 2016-02-14 16:02+0100\n"
+"POT-Creation-Date: 2016-02-15 19:19+0100\n"
+"PO-Revision-Date: 2016-02-15 19:28+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -671,13 +671,14 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"        %(sponsor)s has challenged you!\n"
+"        %(sponsor)s has challenged you! Masanga Hospital will receive DKK\n"
+"        %(amount)s if you make it!\n"
 "    "
 msgstr ""
 "\n"
-"%(sponsor)s har udfordret dig!"
+"        %(sponsor)s har udfordret dig! Masanga hospitalet ved modtage %(amount)s kr. hvis du klarer den!"
 
-#: challenges/templates/challenges/emails/challenge_runner.html:11
+#: challenges/templates/challenges/emails/challenge_runner.html:12
 msgid ""
 "\n"
 "        We assume that you want to make an attempt - therefore you don't need\n"
@@ -687,7 +688,7 @@ msgstr ""
 "\n"
 "        Vi antager at du gerne vil give udfordringen et forsøg - så du behøver derfor ikke gøre andet end at hoppe i løbeskoene."
 
-#: challenges/templates/challenges/emails/challenge_runner.html:17
+#: challenges/templates/challenges/emails/challenge_runner.html:18
 #, python-format
 msgid ""
 "\n"
@@ -699,7 +700,7 @@ msgstr ""
 "\n"
 "Når udfordringen afsluttes d. %(end_date)s, vil du modtage en e-mail, der spørger dig om du gennemførte udfordringen eller ej. Alternativt kan du logge ind og opdatere udfordringen når du vil."
 
-#: challenges/templates/challenges/emails/challenge_runner.html:24
+#: challenges/templates/challenges/emails/challenge_runner.html:25
 msgid ""
 "\n"
 "        Good luck!\n"
@@ -1862,6 +1863,14 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid ""
+#~ "\n"
+#~ "        %(sponsor)s has challenged you!\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "%(sponsor)s har udfordret dig!"
 
 #~ msgid "You are not the intended sponsor, please log in as%127 s."
 #~ msgstr "Du er ikke den forventerede sponsor, log venligst ind som%127 s."
