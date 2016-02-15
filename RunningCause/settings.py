@@ -110,14 +110,15 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_FORM_CLASS = 'profile.forms.SignupForm'
 
 EMAIL_SUBJECT_PREFIX = '[Masanga Runners] '
-ACCOUNT_EMAIL_SUBJECT_PREFIX = EMAIL_SUBJECT_PREFIX
+# This is a little inconsisten with other e-mails sent from the platform.
+# ACCOUNT_EMAIL_SUBJECT_PREFIX = EMAIL_SUBJECT_PREFIX
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')
 EMAIL_HOST_USER = os.getenv('MAILGUN_SMTP_LOGIN')
 EMAIL_HOST_PASSWORD = os.getenv('MAILGUN_SMTP_PASSWORD')
 EMAIL_PORT = os.getenv('MAILGUN_SMTP_PORT')
-DEFAULT_FROM_EMAIL = 'masangarunners@masanga.dk'
+DEFAULT_FROM_EMAIL = 'Masanga Runners <masangarunners@masanga.dk>'
 
 SOCIALACCOUNT_QUERY_EMAIL = False
 
