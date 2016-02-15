@@ -31,8 +31,7 @@ def send_challenge_reminder(user_id):
 
     email_subject = _('Challenge ends today!')
     email_context = {
-        'ending_challenges': ending_challenges,
-        'BASE_URL': settings.BASE_URL,
+        'ending_challenges': ending_challenges
     }
 
     send_email([user.email],

@@ -6,6 +6,9 @@ from django.utils import translation
 
 def send_email(to_list, subject, message_template, message_context):
     translation.activate(settings.LANGUAGE_CODE)
+    message_context.update({
+        'BASE_URL': settings.BASE_URL
+    })
     context = Context(message_context)
     message = loader.get_template(message_template).render(context)
     sender = settings.DEFAULT_FROM_EMAIL

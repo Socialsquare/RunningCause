@@ -65,8 +65,7 @@ def challenge_runner(request, person_id):
                 'sponsor': sponsor.username,
                 'amount': challenge.amount,
                 'challenge_text': challenge.challenge_text,
-                'end_date': challenge.end_date,
-                'BASE_URL': settings.BASE_URL,
+                'end_date': challenge.end_date
             }
             send_email([runner.email],
                        subject,
@@ -116,8 +115,7 @@ def invite_sponsor_to_challenge(request, person_id=None):
             email_context = {
                 'runner': runner.username,
                 'link': full_link,
-                'challenge_text': form.cleaned_data['challenge_text'],
-                'BASE_URL': settings.BASE_URL
+                'challenge_text': form.cleaned_data['challenge_text']
             }
             send_email([sponsor.email],
                        _('Masanga Runners invitation to challenge'),
@@ -202,8 +200,7 @@ class FeedbackChallenge(View):
                     'runner': challenge.runner.username,
                     'challenge_text': challenge.challenge_text,
                     'runners_message': challenge.runner_msg,
-                    'link': absolute_link,
-                    'BASE_URL': settings.BASE_URL,
+                    'link': absolute_link
                 }
                 send_email([challenge.sponsor.email],
                            email_subject,
@@ -239,8 +236,7 @@ class FeedbackChallenge(View):
                     'amount': challenge.amount,
                     'challenge_text': challenge.challenge_text,
                     'runners_message': challenge.runner_msg,
-                    'sponsors_message': challenge.sponsor_msg,
-                    'BASE_URL': settings.BASE_URL
+                    'sponsors_message': challenge.sponsor_msg
                 }
                 send_email([challenge.runner.email],
                            email_subject,
@@ -323,8 +319,7 @@ def preview_invitation_challenge(request, token=None):
                 email_context = {
                     'sponsor': challenge_req.sponsor.username,
                     'challenge_text': form.cleaned_data['challenge_text'],
-                    'amount': form.cleaned_data['amount'],
-                    'BASE_URL': settings.BASE_URL
+                    'amount': form.cleaned_data['amount']
                 }
                 email_template = 'challenges/emails/invitation_accepted.html'
                 email_subject = _('%(sponsor)s has challenged you!') % {
@@ -339,8 +334,7 @@ def preview_invitation_challenge(request, token=None):
             else:  # request.POST.get('submit') == 'reject':
                 challenge_req.status = ChallengeRequest.REJECTED
                 email_context = {
-                    'sponsor': challenge_req.sponsor.username,
-                    'BASE_URL': settings.BASE_URL
+                    'sponsor': challenge_req.sponsor.username
                 }
                 email_template = 'challenges/emails/invitation_rejected.html'
                 email_subject = _('%(sponsor)s rejected to challenge you.') % {

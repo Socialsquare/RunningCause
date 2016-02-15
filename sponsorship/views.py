@@ -70,8 +70,7 @@ def add_sponsorship(request, runner_id=None):
                 'rate': sponsorship.rate,
                 'start_date': sponsorship.start_date,
                 'end_date': sponsorship.end_date,
-                'max_amount': sponsorship.max_amount,
-                'BASE_URL': settings.BASE_URL
+                'max_amount': sponsorship.max_amount
             }
             send_email([runner.email],
                        _("You have a new sponsor!"),
@@ -115,8 +114,7 @@ def request_sponsorship(request, person_id):
             email_context = {
                 'runner': runner.username,
                 'sponsor': sponsor.username,
-                'link': full_email_url,
-                'BASE_URL': settings.BASE_URL
+                'link': full_email_url
             }
             send_email([sponsor.email],
                        email_subject,
