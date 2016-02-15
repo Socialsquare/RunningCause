@@ -10,9 +10,9 @@
 </p>
 <p>
 	{% blocktrans %}To confirm this is correct:{% endblocktrans %}
-	<a href="{{ activate_url }}">
-		{% blocktrans %}Click here to activate{% endblocktrans %}
-	</a>.
+</p>
+<p>
+    {% include "_email_button.html" with link=activate_url text=_("Click here to activate") %}
 </p>
 {% endautoescape %}
 {% endblock %}
