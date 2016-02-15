@@ -99,6 +99,7 @@ LOGIN_REDIRECT_URL = '/profile/sign_in_landing'
 LOGIN_URL = '/profile/signuporlogin'
 LOGOUT_REDIRECT_URL = '/'
 
+ACCOUNT_ADAPTER = 'RunningCause.allauth.adaptor.AccountAdapter'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
@@ -109,9 +110,7 @@ USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_FORM_CLASS = 'profile.forms.SignupForm'
 
-EMAIL_SUBJECT_PREFIX = '[Masanga Runners] '
-# This is a little inconsisten with other e-mails sent from the platform.
-# ACCOUNT_EMAIL_SUBJECT_PREFIX = EMAIL_SUBJECT_PREFIX
+EMAIL_SUBJECT_PREFIX = ''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.getenv('MAILGUN_SMTP_SERVER')
@@ -193,7 +192,7 @@ TEMPLATE_DIRS = [
     os.path.join(os.path.dirname(__file__), 'templates'),
 ]
 
-CTX_PROCESSORS_TUPLE = (
+TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.i18n",
     "django.contrib.auth.context_processors.auth",
@@ -210,7 +209,7 @@ TEMPLATES = [
             os.path.join(PROJECT_DIR, 'templates'),
         ],
         'OPTIONS': {
-            'context_processors': CTX_PROCESSORS_TUPLE,
+            'context_processors': TEMPLATE_CONTEXT_PROCESSORS,
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
