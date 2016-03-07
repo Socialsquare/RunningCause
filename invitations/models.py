@@ -32,7 +32,8 @@ class EmailInvitation(models.Model):
             'sender': self.created_by.username,
             'link': request.build_absolute_uri(reverse('account_signup'))
         }
-        send_email([self.email],
-                   _('Masanga Runners invitation'),
-                   'invitations/emails/invitation.html',
-                   context)
+        emails_sent = send_email([self.email],
+                                 _('Masanga Runners invitation'),
+                                 'invitations/emails/invitation.html',
+                                 context)
+        return emails_sent == 1
