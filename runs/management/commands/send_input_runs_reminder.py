@@ -7,6 +7,9 @@ from django.core.management.base import BaseCommand
 
 from runs.tasks import send_input_runs_reminder
 
+from django.utils import translation
+from django.conf import settings
+
 
 class Command(BaseCommand):
     help = 'Send input your runs reminder'
@@ -19,8 +22,9 @@ class Command(BaseCommand):
                             help='Force the sending of reminders')
 
     def handle(self, *args, **options):
+        translation.activate(settings.LANGUAGE_CODE)
         todays = datetime.date.today()
-        #last_day = calendar.monthrange(todays.year, todays.month)[1]
+        # last_day = calendar.monthrange(todays.year, todays.month)[1]
         if todays.day == 26 or options.get('forced'):
             emails_sent = send_input_runs_reminder()
             print 'A total of %d reminder emails have been sent' % emails_sent

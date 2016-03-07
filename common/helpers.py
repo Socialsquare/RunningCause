@@ -1,11 +1,9 @@
-from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template import loader, Context
-from django.utils import translation
+from django.conf import settings
 
 
 def send_email(to_list, subject, message_template, message_context):
-    translation.activate(settings.LANGUAGE_CODE)
     message_context.update({
         'BASE_URL': settings.BASE_URL
     })
