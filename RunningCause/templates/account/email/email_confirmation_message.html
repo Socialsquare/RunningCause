@@ -1,18 +1,18 @@
 {% extends 'email_base.html' %}
 {% load account %}
-{% user_display user as user_display %}
 {% load i18n %}
 
 {% block message %}
 {% autoescape off %}
 <p>
-	{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}You're receiving this e-mail because user {{ user_display }} at {{ site_domain }} has given yours as an e-mail address to connect their account.{% endblocktrans %}
+    {% user_display user as user_display %}
+	{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}The user {{ user_display }} has entered this email address on {{ site_domain }}.{% endblocktrans %}
 </p>
 <p>
 	{% blocktrans %}To confirm this is correct:{% endblocktrans %}
 </p>
 <p>
-    {% include "_email_button.html" with link=activate_url text=_("Click here to activate") %}
+    {% include "_email_button.html" with link=activate_url text=_("Click here to activate the account") %}
 </p>
 {% endautoescape %}
 {% endblock %}

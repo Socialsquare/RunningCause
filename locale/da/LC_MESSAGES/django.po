@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-07 23:12+0100\n"
-"PO-Revision-Date: 2016-03-07 23:14+0100\n"
+"POT-Creation-Date: 2016-03-07 23:45+0100\n"
+"PO-Revision-Date: 2016-03-07 23:46+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: RunningCause/settings.py:167
+#: RunningCause/settings.py:169
 msgid "English"
 msgstr "Engelsk"
 
-#: RunningCause/settings.py:168
+#: RunningCause/settings.py:170
 msgid "Danish"
 msgstr "Dansk"
 
@@ -93,16 +93,17 @@ msgstr "Ønsker du virkelig at fjerne den valgte e-mail adresse?"
 
 #: RunningCause/templates/account/email/email_confirmation_message.html:9
 #, python-format
-msgid "You're receiving this e-mail because user %(user_display)s at %(site_domain)s has given yours as an e-mail address to connect their account."
-msgstr "Du modtager denne e-mail fordi brugeren %(user_display)s på %(site_domain)s har tilknyttet denne e-mail adresse som til deres konto."
+msgid "The user %(user_display)s has entered this email address on %(site_domain)s."
+msgstr "Brugeren %(user_display)s har angivet denne email adresse på %(site_domain)s."
 
 #: RunningCause/templates/account/email/email_confirmation_message.html:12
 msgid "To confirm this is correct:"
 msgstr "For at bekræfte at dette er korrekt:"
 
 #: RunningCause/templates/account/email/email_confirmation_message.html:15
-msgid "Click here to activate"
-msgstr "Klik her for at aktivere"
+#| msgid "Click here to activate"
+msgid "Click here to activate the account"
+msgstr "Klik her for at aktivere kontoen"
 
 #: RunningCause/templates/account/email/email_confirmation_subject.txt:3
 msgid "Please Confirm Your E-mail Address"
@@ -1963,6 +1964,14 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid ""
+#~ "You're receiving this e-mail because user %(user_display)s at "
+#~ "%(site_domain)s has given yours as an e-mail address to connect their "
+#~ "account."
+#~ msgstr ""
+#~ "Du modtager denne e-mail fordi brugeren %(user_display)s på %(site_domain)"
+#~ "s har tilknyttet denne e-mail adresse som til deres konto."
 
 #~ msgid "Masanga Runners Reminder"
 #~ msgstr "Masanga Runners påmindelse"
