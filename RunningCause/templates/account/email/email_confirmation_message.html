@@ -6,13 +6,17 @@
 {% autoescape off %}
 <p>
     {% user_display user as user_display %}
-	{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}The user {{ user_display }} has entered this email address on {{ site_domain }}.{% endblocktrans %}
+	{% blocktrans %}
+    This e-mail address has been entered by the user {{ user_display }} on Masanga Runners website.
+    {% endblocktrans %}
 </p>
 <p>
-	{% blocktrans %}To confirm this is correct:{% endblocktrans %}
+    {% include "_email_button.html" with link=activate_url text=_("Click here to confirm") %}
 </p>
 <p>
-    {% include "_email_button.html" with link=activate_url text=_("Click here to activate the account") %}
+	{% blocktrans %}
+    If you haven't entered your email on the Masanga Runners website, you can simply ignore this email.
+    {% endblocktrans %}
 </p>
 {% endautoescape %}
 {% endblock %}

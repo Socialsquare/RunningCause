@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-07 23:45+0100\n"
-"PO-Revision-Date: 2016-03-07 23:46+0100\n"
+"POT-Creation-Date: 2016-03-07 23:56+0100\n"
+"PO-Revision-Date: 2016-03-07 23:57+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: RunningCause/settings.py:169
+#: RunningCause/settings.py:168
 msgid "English"
 msgstr "Engelsk"
 
-#: RunningCause/settings.py:170
+#: RunningCause/settings.py:169
 msgid "Danish"
 msgstr "Dansk"
 
@@ -93,17 +93,27 @@ msgstr "Ønsker du virkelig at fjerne den valgte e-mail adresse?"
 
 #: RunningCause/templates/account/email/email_confirmation_message.html:9
 #, python-format
-msgid "The user %(user_display)s has entered this email address on %(site_domain)s."
-msgstr "Brugeren %(user_display)s har angivet denne email adresse på %(site_domain)s."
+msgid ""
+"\n"
+"    This e-mail address has been entered by the user %(user_display)s on Masanga Runners website.\n"
+"    "
+msgstr ""
+"\n"
+"Denne e-mail adresse er angivet hos brugeren %(user_display)s på Masanga Runners' hjemmeside."
 
-#: RunningCause/templates/account/email/email_confirmation_message.html:12
-msgid "To confirm this is correct:"
-msgstr "For at bekræfte at dette er korrekt:"
+#: RunningCause/templates/account/email/email_confirmation_message.html:14
+#| msgid "Click here to activate the account"
+msgid "Click here to confirm"
+msgstr "Klik her for at bekræfte"
 
-#: RunningCause/templates/account/email/email_confirmation_message.html:15
-#| msgid "Click here to activate"
-msgid "Click here to activate the account"
-msgstr "Klik her for at aktivere kontoen"
+#: RunningCause/templates/account/email/email_confirmation_message.html:17
+msgid ""
+"\n"
+"    If you haven't entered your email on the Masanga Runners website, you can simply ignore this email.\n"
+"    "
+msgstr ""
+"\n"
+"Har du ikke angivet din mail på Masanga Runners' hjemmside, kan du blot ignorere mailen."
 
 #: RunningCause/templates/account/email/email_confirmation_subject.txt:3
 msgid "Please Confirm Your E-mail Address"
@@ -1964,6 +1974,16 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid ""
+#~ "The user %(user_display)s has entered this email address on %(site_domain)"
+#~ "s."
+#~ msgstr ""
+#~ "Brugeren %(user_display)s har angivet denne email adresse på "
+#~ "%(site_domain)s."
+
+#~ msgid "To confirm this is correct:"
+#~ msgstr "For at bekræfte at dette er korrekt:"
 
 #~ msgid ""
 #~ "You're receiving this e-mail because user %(user_display)s at "
