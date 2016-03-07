@@ -3,7 +3,6 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.core.mail import send_mail
 from django.template import loader, Context
 from django.utils.translation import ugettext as _
 
@@ -26,30 +25,21 @@ def invite_via_email(request):
             messages.warning(request, msg)
             return redirect('profile:my_page')
 
-        EmailInvitation.objects.create(
+        invitation = EmailInvitation.objects.create(
             email=email,
             created_by=request.user
         )
 
-        ctx = {
-            'BASE_URL': settings.BASE_URL,
-            'link': settings.BASE_URL,
-            'sender': request.user,
-        }
-        html_msg = loader.get_template('invitations/email/invitation.html')\
-            .render(Context(ctx))
-        send_mail('Masanga Runners invitation',
-                  '',
-                  settings.DEFAULT_FROM_EMAIL,
-                  [email, ],
-                  fail_silently=False,
-                  html_message=html_msg)
-        msg = _("You have just sent invitation to %(email)s") %\
-            dict(email=email)
-        messages.warning(request, msg)
+        invitation_sent = invitation.send(request)
+
+        if invitation_sent:
+            msg = _("You have just sent invitation to %(email)s") % {
+                "email": email
+            }
+            messages.success(request, msg)
+
         return redirect('profile:my_page')
     ctx = {
         'form': form,
     }
     return render(request, 'invitations/invitation.html', ctx)
-

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-15 20:35+0100\n"
-"PO-Revision-Date: 2016-02-15 20:35+0100\n"
+"POT-Creation-Date: 2016-03-07 20:40+0100\n"
+"PO-Revision-Date: 2016-03-07 20:43+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -105,7 +105,6 @@ msgid "Click here to activate"
 msgstr "Klik her for at aktivere"
 
 #: RunningCause/templates/account/email/email_confirmation_subject.txt:3
-#| msgid "Confirm E-mail Address"
 msgid "Please Confirm Your E-mail Address"
 msgstr "Bekræft e-mail adresse"
 
@@ -129,7 +128,6 @@ msgid "In case you forgot, your username is %(username)s."
 msgstr "I tilfælde af at du at glemt dit brugernavn, er det %(username)s."
 
 #: RunningCause/templates/account/email/password_reset_key_subject.txt:3
-#| msgid "Password Reset"
 msgid "Password Reset E-mail"
 msgstr "Nulstil kodeord"
 
@@ -912,84 +910,135 @@ msgstr ""
 "\n"
 "Du er blevet inviteret til at udfordre %(username)s - ønsker du at oprette udfordringen?"
 
-#: challenges/views.py:61
+#: challenges/views.py:60
 #, python-format
 msgid "%(username)s has challenged you"
 msgstr "%(username)s har udfordret dig"
 
-#: challenges/views.py:74
+#: challenges/views.py:73
 #, python-format
 msgid "You have just challenge %(username)s"
 msgstr "Du har netop udfordret %(username)s"
 
-#: challenges/views.py:121
+#: challenges/views.py:120
 msgid "Masanga Runners invitation to challenge"
 msgstr "Masanga Runners invitation til at udfordre"
 
-#: challenges/views.py:125
+#: challenges/views.py:124
 #, python-format
 msgid "You have send invitation to %(username)s to challenge you."
 msgstr "Du har sendt en invitation til at %(username)s udfordrer dig."
 
-#: challenges/views.py:175
+#: challenges/views.py:174
 msgid "Congratulations!, Your update will be send to the sponsor for the final review."
 msgstr "Tillykke! Din opdatering vil blive sendt til sponsoren for endelig gennemgang."
 
-#: challenges/views.py:177
+#: challenges/views.py:176
 #, python-format
 msgid "%(runner)s completed the challenge successfully!"
 msgstr "%(runner)s gennemførte udfordringen!"
 
-#: challenges/views.py:186
+#: challenges/views.py:185
 msgid "Too bad. Your sponsor will be notified about the failed challenge."
 msgstr "Ærgerligt. Din sponsor vil blive informeret om den mislykkede udfordring."
 
-#: challenges/views.py:188
+#: challenges/views.py:187
 #, python-format
 msgid "%(runner)s failed to complete the challenge!"
 msgstr "%(runner)s gennemførte desværre ikke udfordringen!"
 
-#: challenges/views.py:218
+#: challenges/views.py:217
 msgid "You have accepted to pay for the challenge. The money will be charged at the end of the quarter. Thank you for making a change in Masanga!"
 msgstr "Du har accepteret at betale for udfordringen. Pengene vil blive opkrævet ved udgangen af dette kvartal. Tak fordi gør en forskel i Masanga!"
 
-#: challenges/views.py:222
+#: challenges/views.py:221
 #, python-format
 msgid "%(sponsor)s accepted to pay!"
 msgstr "%(sponsor)s har accepteret at betale!"
 
-#: challenges/views.py:228
+#: challenges/views.py:227
 msgid "You have declined to pay for the challenge."
 msgstr "Du har afvist at betale for udfordringen."
 
-#: challenges/views.py:229
+#: challenges/views.py:228
 #, python-format
 msgid "%(sponsor)s rejected to pay!"
 msgstr "%(sponsor)s har afvist at betale!"
 
-#: challenges/views.py:303
+#: challenges/views.py:302
 msgid "You have been logged out, because you visited an invitation to a challenge that was sent to another user."
 msgstr "Du er blevet logget ud, fordi du har besøgt en invitation til en udfordring der var sendt til en anden bruger."
 
-#: challenges/views.py:325
+#: challenges/views.py:324
 #, python-format
 msgid "%(sponsor)s has challenged you!"
 msgstr "%(sponsor)s har udfordret dig!"
 
-#: challenges/views.py:328
+#: challenges/views.py:327
 #, python-format
 msgid "You have created a challenge for %(username)s."
 msgstr "Du har nu udfordret %(username)s."
 
-#: challenges/views.py:340
+#: challenges/views.py:339
 #, python-format
 msgid "%(sponsor)s rejected to challenge you."
 msgstr "%(sponsor)s har afvist at udfordre dig."
 
-#: challenges/views.py:344
+#: challenges/views.py:343
 #, python-format
 msgid "You have rejected to challenge %(runner)s."
 msgstr "Du har afvist at udfordre %(runner)s."
+
+#: invitations/models.py:36
+#| msgid "Masanga Runners invitation to challenge"
+msgid "Masanga Runners invitation"
+msgstr "Masanga Runners invitation"
+
+#: invitations/templates/invitations/emails/invitation.html:5
+#, python-format
+#| msgid ""
+#| "\n"
+#| "    Well done! Thank you for being a Masanga Runner.\n"
+#| "    "
+msgid ""
+"\n"
+"    %(sender)s has invited you to join the Masanga Runners community.\n"
+"    "
+msgstr ""
+"\n"
+"%(sender)s har inviteret dig til at tilslutte sig Masanga Runners fællesskabet."
+
+#: invitations/templates/invitations/emails/invitation.html:10
+msgid ""
+"\n"
+"    If you run, and therefore would like to be a Masanga Runner, or would like\n"
+"    to sponsor a Masanga Runner, and thereby support the Masanga Hospital in\n"
+"    Sierra Leone, you can create a profile:\n"
+"    "
+msgstr ""
+"\n"
+"Hvis du er løber og derfor gerne vil være Masanga Runner, eller gerne vil sponsorere en Masanga Runner, og derigennem støtte Masanga Hospitalet i Sierra Leone, kan du oprette en profil:"
+
+#: invitations/templates/invitations/emails/invitation.html:17
+#| msgid "Click to create another challenge"
+msgid "Click to create a profile!"
+msgstr "Klik for at oprette en profil!"
+
+#: invitations/templates/invitations/emails/invitation.html:23
+msgid ""
+"\n"
+"    Masanga Hospital has since 2006 been under rehabilitation by the Danish\n"
+"    association Masanga DK, which largely focuses on the training of local\n"
+"    staff. The hospital project has come a long way, and is now fully\n"
+"    operational. It carried out 2,891 admissions and 20,000 outpatient\n"
+"    treatments in 2013. However, in 2014 the Ebola epidemic hit the project\n"
+"    hard and therefore it still needs financial support from the outside to get\n"
+"    the project and the public health back at its feet. Read more about the\n"
+"    hospital <a href=\"http://masanga.dk/\">here</a>.\n"
+"    "
+msgstr ""
+"\n"
+"Masanga Hospitalet har siden 2006 været under rehabilitering via den danske forening Masanga DK, som i høj grad fokuserer på uddannelse af lokalt personale. Hospitalsprojektet er nået langt, og der er i dag et fuldt funktionsdygtigt hospital. I 2013 gennemførtes der hele 2.891 indlæggelser, samt over 20.000 ambulante behandlinger. I 2014 ramte ebola epidemien dog projektet hårdt og der er derfor stadig brug for økonomisk støtte udefra, for at få projektet og folkesundheden på benene igen. Læs mere om projektet <a href=\"http://masanga.dk/\">her</a>."
 
 #: invitations/templates/invitations/invitation.html:7
 msgid "Invite someone you know"
@@ -1015,12 +1064,12 @@ msgstr ""
 msgid "Submit"
 msgstr "Indsend"
 
-#: invitations/views.py:24
+#: invitations/views.py:23
 #, python-format
 msgid "You have already send 3 invitation to %(email)s"
 msgstr "Du har allerede sendt 3 invitationer til %(email)s"
 
-#: invitations/views.py:47
+#: invitations/views.py:36
 #, python-format
 msgid "You have just sent invitation to %(email)s"
 msgstr "Du har netop sendt en invitation til %(email)s"

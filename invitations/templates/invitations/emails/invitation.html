@@ -1,0 +1,34 @@
+{% extends 'email_base.html' %}
+{% load i18n %}
+{% block message %}
+<p>
+    {% blocktrans %}
+    {{sender}} has invited you to join the Masanga Runners community.
+    {% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}
+    If you run, and therefore would like to be a Masanga Runner, or would like
+    to sponsor a Masanga Runner, and thereby support the Masanga Hospital in
+    Sierra Leone, you can create a profile:
+    {% endblocktrans %}
+</p>
+<p>
+    {% include "_email_button.html" with link=link text=_("Click to create a profile!") %}
+</p>
+{% endblock %}
+
+{% block post_script %}
+<p style="color:#888;">
+    {% blocktrans %}
+    Masanga Hospital has since 2006 been under rehabilitation by the Danish
+    association Masanga DK, which largely focuses on the training of local
+    staff. The hospital project has come a long way, and is now fully
+    operational. It carried out 2,891 admissions and 20,000 outpatient
+    treatments in 2013. However, in 2014 the Ebola epidemic hit the project
+    hard and therefore it still needs financial support from the outside to get
+    the project and the public health back at its feet. Read more about the
+    hospital <a href="http://masanga.dk/">here</a>.
+    {% endblocktrans %}
+</p>
+{% endblock %}
