@@ -1,6 +1,10 @@
 import uuid
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+
+from common.helpers import send_email
 
 
 class EmailInvitation(models.Model):
@@ -22,3 +26,13 @@ class EmailInvitation(models.Model):
                              editable=False, primary_key=False)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES,
                               default=NEW)
+
+    def send(self, request):
+        context = {
+            'sender': self.created_by.username,
+            'link': request.build_absolute_uri(reverse('account_signup'))
+        }
+        send_email([self.email],
+                   _('Masanga Runners invitation'),
+                   'invitations/emails/invitation.html',
+                   context)
