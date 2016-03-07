@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-07 20:40+0100\n"
-"PO-Revision-Date: 2016-03-07 20:43+0100\n"
+"POT-Creation-Date: 2016-03-07 23:12+0100\n"
+"PO-Revision-Date: 2016-03-07 23:14+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -990,16 +990,11 @@ msgid "You have rejected to challenge %(runner)s."
 msgstr "Du har afvist at udfordre %(runner)s."
 
 #: invitations/models.py:36
-#| msgid "Masanga Runners invitation to challenge"
 msgid "Masanga Runners invitation"
 msgstr "Masanga Runners invitation"
 
 #: invitations/templates/invitations/emails/invitation.html:5
 #, python-format
-#| msgid ""
-#| "\n"
-#| "    Well done! Thank you for being a Masanga Runner.\n"
-#| "    "
 msgid ""
 "\n"
 "    %(sender)s has invited you to join the Masanga Runners community.\n"
@@ -1020,7 +1015,6 @@ msgstr ""
 "Hvis du er løber og derfor gerne vil være Masanga Runner, eller gerne vil sponsorere en Masanga Runner, og derigennem støtte Masanga Hospitalet i Sierra Leone, kan du oprette en profil:"
 
 #: invitations/templates/invitations/emails/invitation.html:17
-#| msgid "Click to create another challenge"
 msgid "Click to create a profile!"
 msgstr "Klik for at oprette en profil!"
 
@@ -1064,12 +1058,16 @@ msgstr ""
 msgid "Submit"
 msgstr "Indsend"
 
-#: invitations/views.py:23
+#: invitations/views.py:29
+msgid "The person you are inviting already has a profile"
+msgstr "Den person du har inviteret har allerede en profil"
+
+#: invitations/views.py:36
 #, python-format
 msgid "You have already send 3 invitation to %(email)s"
 msgstr "Du har allerede sendt 3 invitationer til %(email)s"
 
-#: invitations/views.py:36
+#: invitations/views.py:50
 #, python-format
 msgid "You have just sent invitation to %(email)s"
 msgstr "Du har netop sendt en invitation til %(email)s"
@@ -1139,7 +1137,7 @@ msgid ""
 "continue to our homepage here. We charge quarterly if you choose to sponsor.\n"
 msgstr ""
 "\n"
-"Det er gratisk at registrere dit kort og vi vil ikke opkræve dig nogle penge med mindre du opretter et sponsorat eller en udfordring. Du kan opgive et maksimalt beløb på sponsoraterne og du er den eneste der beslutter om en løber har gennemført en udfordring eller ej. Er du kun interesseret i at være løber, så forsæt til vores side her. Vi opkræver kvartalsvis hvis du vælger at sponsorere.\n"
+"Det er gratis at registrere dit kort og vi vil ikke opkræve dig nogle penge med mindre du opretter et sponsorat eller en udfordring. Du kan opgive et maksimalt beløb på sponsoraterne og du er den eneste der beslutter om en løber har gennemført en udfordring eller ej. Er du kun interesseret i at være løber, så forsæt til vores side her. Vi opkræver kvartalsvis hvis du vælger at sponsorere.\n"
 
 #: profile/templates/profile/credit_card_success.html:14
 msgid "Thank you! Your card has been successfully registered with Masanga Runners."
@@ -1522,18 +1520,61 @@ msgstr "Slut dato (hvis du indtaster flere løb)"
 msgid "Time (HH:MM:SS, optional)"
 msgstr "Tid (TT:MM:SS, valgfri)"
 
-#: runs/tasks.py:43
-#: runs/tasks.py:48
+#: runs/tasks.py:47
+#: runs/tasks.py:52
 msgid "Masanga Runners run-update"
 msgstr "Masanga Runners opdatering"
 
-#: runs/tasks.py:65
-msgid "Masanga Runners Reminder"
-msgstr "Masanga Runners påmindelse"
+#: runs/tasks.py:75
+msgid "It is time to register runs"
+msgstr "Tid til registrering af løb"
 
-#: runs/tasks.py:68
-msgid "Reminder"
-msgstr "Påmindelse"
+#: runs/templates/runs/email/input_runs_reminder.html:5
+msgid ""
+"\n"
+"    Hi Masanga Runner!\n"
+"    "
+msgstr ""
+"\n"
+"Hej Masanga Runner!"
+
+#: runs/templates/runs/email/input_runs_reminder.html:10
+msgid ""
+"\n"
+"    Have you been out running, and have you not registered this manually on\n"
+"    Masanga Runners or automatically via RunKeeper, it might be about time.\n"
+"    "
+msgstr ""
+"\n"
+"Har du været ude og løbe, og har du ikke registreret dette manuelt på Masanga Runners eller via RunKeeper, så er det måske ved at være tid."
+
+#: runs/templates/runs/email/input_runs_reminder.html:16
+msgid "Enter a run"
+msgstr "Tilføj et løb"
+
+#: runs/templates/runs/email/input_runs_reminder.html:17
+msgid "Register with RunKeeper"
+msgstr "Registrer med RunKeeper"
+
+#: runs/templates/runs/email/input_runs_reminder.html:20
+msgid ""
+"\n"
+"    You decide how often you want to register your runs, and whether or not you\n"
+"    want to connect with RunKeeper, but we recommend that you register your\n"
+"    kilometers at least once a month.\n"
+"    "
+msgstr ""
+"\n"
+"Du bestemmer selv, hvor ofte du vil registrere dine kilometer, og om du vilkoble dig op med RunKeeper, men vi anbefaler at du registrerer dine kilometermindst en gang om måneden."
+
+#: runs/templates/runs/email/input_runs_reminder.html:27
+msgid ""
+"\n"
+"    Thank you for running for Masanga!\n"
+"    "
+msgstr ""
+"\n"
+"Tak fordi du er Masanga Runner!"
 
 #: runs/templates/runs/input_run.html:8
 msgid "Input a Run"
@@ -1922,6 +1963,12 @@ msgstr "Beklager, du skal være administrator for at tilgå denne side."
 #: tools/views.py:66
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid "Masanga Runners Reminder"
+#~ msgstr "Masanga Runners påmindelse"
+
+#~ msgid "Reminder"
+#~ msgstr "Påmindelse"
 
 #~ msgid ""
 #~ "\n"

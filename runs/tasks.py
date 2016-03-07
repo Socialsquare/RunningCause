@@ -8,7 +8,11 @@ from django.utils.translation import ugettext as _
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from django.template import loader, Context
+
+
+from common.helpers import send_email
 
 from .runkeeper import create_runs_from_runkeeper
 
@@ -56,18 +60,18 @@ def notify_sponsors_about_run(run_id=None):
 
 @shared_task(ignore_result=True)
 def send_input_runs_reminder():
+    # Find all subscribed users that has entered runs
     subscribed_users = get_user_model().objects.filter(subscribed=True)
-    all_addresses = [juser.email for juser in subscribed_users
-                     if (juser.is_runner and juser.email)]
 
-    tmplfn = 'runs/email/input_runs_reminder.html'
-    ctx = Context({
-        'title': _('Masanga Runners Reminder'),
-        'BASE_URL': settings.BASE_URL,
-    })
-    subject = _('Reminder')
-    tmpl = loader.get_template(tmplfn)
-    html_msg = tmpl.render(ctx)
-    for address in all_addresses:
-        send_mail(subject, '', settings.DEFAULT_FROM_EMAIL, [address],
-                  fail_silently=False, html_message=html_msg)
+    all_addresses = [user.email
+                     for user in subscribed_users
+                     if user.is_runner and user.email]
+
+    email_context = {
+        'enter_run_link': settings.BASE_URL+reverse('runs:input_run'),
+        'runkeeper_link': settings.BASE_URL+reverse('runs:register_runkeeper')
+    }
+    return send_email(all_addresses,
+                      _('It is time to register runs'),
+                      'runs/email/input_runs_reminder.html',
+                      email_context)

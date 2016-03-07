@@ -1,25 +1,31 @@
 {% extends 'email_base.html' %}
+{% load i18n %}
 {% block message %}
-
-<h3>Hej Masanga Runner</h3>
-
 <p>
-Har du været ude og løbe,
-og har du ikke registreret dette manuelt på Masanga 
-Runners eller via RunKeeper, så er det måske ved at være tid.
-</p>
-
-<a href="http://runners.masanga.dk">runners.masanga.dk</a>
-
-<p>
-Du bestemmer selv, hvor ofte du vil registrere dine kilometer, og om du vil
-koble dig op med RunKeeper, men vi anbefaler at du registrerer dine kilometer
-mindst en gang om måneden.
+    {% blocktrans %}
+    Hi Masanga Runner!
+    {% endblocktrans %}
 </p>
 <p>
-Tak fordi du løber for Masanga!
+    {% blocktrans %}
+    Have you been out running, and have you not registered this manually on
+    Masanga Runners or automatically via RunKeeper, it might be about time.
+    {% endblocktrans %}
 </p>
 <p>
-Rigtig god løbelyst.
+    {% include "_email_button.html" with link=enter_run_link text=_("Enter a run") %}
+    {% include "_email_button.html" with link=runkeeper_link text=_("Register with RunKeeper") %}
+</p>
+<p>
+    {% blocktrans %}
+    You decide how often you want to register your runs, and whether or not you
+    want to connect with RunKeeper, but we recommend that you register your
+    kilometers at least once a month.
+    {% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}
+    Thank you for running for Masanga!
+    {% endblocktrans %}
 </p>
 {% endblock %}
