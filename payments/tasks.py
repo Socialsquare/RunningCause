@@ -33,7 +33,7 @@ def charge_user(user_id=None):
     amount_to_pay += sum([challenge.amount for challenge
                           in unpaid_challenges])
     if amount_to_pay == 0:
-        return
+        return True
 
     amount = format_amount_to_pay(amount_to_pay)
     log.info("%s\t%f (%s)...", user.username, amount_to_pay, amount)
@@ -51,8 +51,8 @@ def charge_user(user_id=None):
                 .update(amount_paid=amount_paid + left_to_pay)
         unpaid_challenges.update(status=Challenge.PAID)
 
-        log.info("{0} charged {1}".format(user.username,
-                                          amount))
+        log.info("{0} charged {1}".format(user.username, amount))
+        return True
     else:
         emsg = "ERROR: Stripe returned {0}".format(stripe_status)
         raise Exception(emsg)
