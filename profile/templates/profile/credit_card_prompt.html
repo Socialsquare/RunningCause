@@ -30,7 +30,7 @@ continue to our homepage here. We charge quarterly if you choose to sponsor.
 <script>
   var handler = StripeCheckout.configure({
     key: '{{ stripe_public_key }}',
-    image: '{{BASE_URL}}{% static "img/M.png" %}',
+    image: '{{ BASE_URL }}{% static "img/masanga-logo-square.png" %}',
     currency: 'dkk',
     bitcoin: false,
     email: '{{ email }}',
