@@ -10,11 +10,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as messages_constants
 
 ADMINS = (
-    ('admin', 'pawel+runners-prod@socialsquare.dk'),
+    ('admin', 'kraen+masanga@socialsquare.dk'),
 )
 
 MANAGERS = (
-    ('Pawel Bielecki', 'pawel+runners-prod-manager@socialsquare.dk'),
+    ('Pawel Bielecki', 'kraen+masanga@socialsquare.dk'),
 )
 
 MESSAGE_TAGS = {
