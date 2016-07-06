@@ -14,9 +14,6 @@
 {% endblock %}
 
 {% block body %}
-<h4>{% trans "Either register a credit card, or go to your profile settings " %}
-    <a href={% url 'profile:user_settings' %}>{% trans "here." %}</a></h4>
-</br>
 <p>
 {% blocktrans %}
 It's free to register your card and we won't charge you anything unless you
@@ -26,7 +23,9 @@ completed the challenge or not. Are you only interested in being a runner,
 continue to our homepage here. We charge quarterly if you choose to sponsor.
 {% endblocktrans %}
 </p>
-<button class="btn btn-default" id="registerButton">Register your card with Masanga Runners</button>
+<button class="btn btn-default" id="registerButton">
+  {% trans "Register your card with Masanga Runners" %}
+</button>
 <script>
   var handler = StripeCheckout.configure({
     key: '{{ stripe_public_key }}',
@@ -49,8 +48,9 @@ continue to our homepage here. We charge quarterly if you choose to sponsor.
     // Open Checkout with further options
     handler.open({
       name: 'Masanga Runners',
-      description: 'Register with Masanga Runners!',
-      amount: 0
+      description: '{% trans "We charge automatically every quarter" %}',
+      amount: 0,
+      panelLabel: '{% trans "Register card" %}'
     });
     e.preventDefault();
   });

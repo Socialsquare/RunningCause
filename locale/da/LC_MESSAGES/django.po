@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-06 21:04+0200\n"
-"PO-Revision-Date: 2016-07-06 21:13+0100\n"
+"POT-Creation-Date: 2016-07-07 00:41+0200\n"
+"PO-Revision-Date: 2016-07-07 00:40+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1327,28 +1328,9 @@ msgstr "Jeg ønsker at modtage nyhedsbrevet fra Masanga"
 
 #: profile/templates/profile/credit_card_prompt.html:13
 msgid "Register a Credit Card"
-msgstr "Registrer et kredit kort"
-
-#: profile/templates/profile/credit_card_prompt.html:17
-msgid "Either register a credit card, or go to your profile settings "
-msgstr "Registrer et kredit kort, eller gå til din profil"
+msgstr "Tilknyt et betalingskort"
 
 #: profile/templates/profile/credit_card_prompt.html:18
-msgid "here."
-msgstr "her."
-
-#: profile/templates/profile/credit_card_prompt.html:21
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "It's free to register your card and we won't charge you anything unless "
-#| "you \n"
-#| "create a sponsorship or a challenge. You can put a maximum on the \n"
-#| "sponsorships and you are the only one to decide whether the runner \n"
-#| "completed the challenge or not. Are you only interested in being a "
-#| "runner, \n"
-#| "continue to our homepage here. We charge quarterly if you choose to "
-#| "sponsor.\n"
 msgid ""
 "\n"
 "It's free to register your card and we won't charge you anything unless you\n"
@@ -1365,6 +1347,19 @@ msgstr ""
 "løber har gennemført en udfordring eller ej. Er du kun interesseret i at "
 "være løber, så forsæt til vores side her. Vi opkræver kvartalsvis hvis du "
 "vælger at sponsorere.\n"
+
+#: profile/templates/profile/credit_card_prompt.html:27
+#: profile/templates/profile/user_settings.html:42
+msgid "Register your card with Masanga Runners"
+msgstr "Tilknyt dit kort med Masanga Runners"
+
+#: profile/templates/profile/credit_card_prompt.html:51
+msgid "We charge automatically every quarter"
+msgstr "Vi opkræver automatisk hvert kvartal"
+
+#: profile/templates/profile/credit_card_prompt.html:53
+msgid "Register card"
+msgstr "Tilknyt betalingskort"
 
 #: profile/templates/profile/signup_or_login.html:15
 #, python-format
@@ -1574,7 +1569,7 @@ msgstr "Dine indstillinger"
 
 #: profile/templates/profile/user_settings.html:28
 msgid "Pay with your credit card when you sponsor runners"
-msgstr "Betal med dit kredit kort når du sponsorerer løbere"
+msgstr "Betal med dit betalingskort når du sponsorerer løbere"
 
 #: profile/templates/profile/user_settings.html:33
 msgid ""
@@ -1591,15 +1586,11 @@ msgid ""
 "              "
 msgstr ""
 "\n"
-"Klik på kortet erunder for at registere et kredit kort på Masanga Runners. "
-"Hvis du gør dette, vil du ikke blive opkrævet noget med det samme. Herefter "
-"vil dit kreditkort automatisk blive opkrevet hver gang du accepterer at "
-"betale en udfordring, eller når en løber du sponsorerer løber, uden at du "
-"behøver at gøre noget!"
-
-#: profile/templates/profile/user_settings.html:42
-msgid "Register your card with Masanga Runners"
-msgstr "Registrer dit kort med Masanga Runners"
+"Klik på kortet herunder for at registere et betalingskort på Masanga "
+"Runners. Hvis du gør dette, vil du ikke blive opkrævet noget med det samme. "
+"Herefter vil dit betalingskort automatisk blive opkrevet hver gang du "
+"accepterer at betale en udfordring, eller når en løber du sponsorerer løber, "
+"uden at du behøver at gøre noget!"
 
 #: profile/templates/profile/user_settings.html:46
 msgid ""
@@ -2177,7 +2168,7 @@ msgstr "Ændre totalt beløb betalt"
 
 #: tools/templates/tools/overview.html:58
 msgid "The sponsor is using a card"
-msgstr "Sponsoren benytter et kreditkort"
+msgstr "Sponsoren benytter et betalingskort"
 
 #: tools/templates/tools/overview.html:68
 msgid "All Challenges"
@@ -2235,18 +2226,14 @@ msgid "Sorry, you need to be an admin to access this page."
 msgstr "Beklager, du skal være administrator for at tilgå denne side."
 
 #: tools/templates/tools/payment_transactions.html:8
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\tChallenge %(username)s.\n"
-#| "\t\t"
+#, python-format
 msgid ""
 "\n"
 "  Payments: %(username)s\n"
 "  "
 msgstr ""
 "\n"
-"Udfordr %(username)s."
+"Betalinger: %(username)s."
 
 #: tools/templates/tools/payment_transactions.html:17
 #, python-format
@@ -2283,44 +2270,30 @@ msgid "Amount Owed"
 msgstr "Udestående beløb"
 
 #: tools/templates/tools/payments.html:19
-#, fuzzy
-#| msgid "Donations"
 msgid "Transactions"
-msgstr "Donationer"
+msgstr "Transaktioner"
 
 #: tools/templates/tools/payments.html:20
-#, fuzzy
-#| msgid "Charge users"
 msgid "Charge"
-msgstr "Opkræve brugere"
+msgstr "Opkræv"
 
 #: tools/templates/tools/payments.html:32
 msgid "See transactions"
 msgstr "Se transaktioner"
 
 #: tools/templates/tools/payments.html:37
-#, fuzzy
-#| msgid "Charge user now"
 msgid "Charge now"
-msgstr "Opkræv bruger nu"
+msgstr "Opkræv nu"
 
 #: tools/templates/tools/payments.html:42
 msgid "The user has no credit card associated"
-msgstr "Brugeren har intet kreditkort tilknyttet"
+msgstr "Brugeren har intet betalingskort tilknyttet"
 
 #: tools/templates/tools/payments.html:52
 msgid "Charge users"
 msgstr "Opkræve brugere"
 
 #: tools/templates/tools/payments.html:55
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "            <p>The users sponsoring on the page is automatically charged "
-#| "on a periodically basis.</p>\n"
-#| "            <p>If you want to extraordinarily settle up and issue "
-#| "payments for all sponsors owing money, please click the button to:</p>\n"
-#| "            "
 msgid ""
 "\n"
 "        <p>The users sponsoring on the page is automatically charged on a "
@@ -2353,6 +2326,12 @@ msgstr "Der skete en fejl da %s skulle opkræves!"
 #: tools/views.py:81
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid "Either register a credit card, or go to your profile settings "
+#~ msgstr "Tilknyt et betalingskort eller gå til din profil"
+
+#~ msgid "here."
+#~ msgstr "her."
 
 #~ msgid "Is public"
 #~ msgstr "Er offentlig"
