@@ -95,29 +95,6 @@
         </table>
     </div>
 
-        <div class="panel panel-default">
-        <div class="panel-heading"><h4>{% trans "All Users" %}</h4></div>
-        <table class="table table-hover">
-        <thead>
-            <th>{% trans "Username" %}</th>
-            <th>{% trans "Email" %}</th>
-            <th>{% trans "Is public" %}</th>
-            <th>{% trans "Amount Earned" %}</th>
-            <th>{% trans "Amount Donated" %}</th>
-            <th>{% trans "Amount Owed" %}</th>
-        </thead>
-        {% for user in all_users %}
-                <tr>
-                    <td><a href="{{ user.get_admin_url }}">{{ user.username }}</a></td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.is_public }}</td>
-                    <td>{{ user.amount_earned|floatformat:2 }}</td>
-                    <td>{{ user.amount_donated|floatformat:2 }}</td>
-                    <td>{{ user.amount_owed|floatformat:2 }}</td>
-                </tr>
-        {% endfor %}
-        </table>
-    </div>
     <div class="panel panel-default">
     <div class="panel-heading"><h4>{% trans "All email addresses" %}</h4></div>
     <table class="table table-hover">
@@ -152,16 +129,15 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            {% trans "Charge users" %}
+            {% trans "Payments" %}
         </div>
         <div class="panel-body">
             {% blocktrans %}
-            <p>The users sponsoring on the page is automatically charged on a periodically basis.</p>
-            <p>If you want to extraordinarily settle up and issue payments for all sponsors owing money, please click the button to:</p>
+            <p>To get an overview on what is owed by the individual users and request payments from them, use the Payments page.</p>
             {% endblocktrans %}
-            <a href="{% url 'tools:charge_users_now' %}"
+            <a href="{% url 'tools:payments' %}"
                class="btn btn-default">
-              {% trans "Charge user now" %}
+              {% trans "Go to the Payments page" %}
             </a>
         </div>
     </div>

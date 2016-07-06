@@ -1,0 +1,65 @@
+{% extends "masanga_base.html" %}
+{% load i18n %}
+
+
+{% block title %}{% blocktrans %}Payments{% endblocktrans %}{% endblock %}
+
+{% block head %}{% blocktrans %}Payments{% endblocktrans %}{% endblock %}
+
+{% block body %}
+<div class="panel panel-default">
+  <div class="panel-heading"><h4>{% trans "All Users" %}</h4></div>
+  <table class="table table-hover">
+    <thead>
+      <th>{% trans "Username" %}</th>
+      <th>{% trans "Email" %}</th>
+      <th>{% trans "Amount Earned" %}</th>
+      <th>{% trans "Amount Donated" %}</th>
+      <th>{% trans "Amount Owed" %}</th>
+      <th>{% trans "Transactions" %}</th>
+      <th>{% trans "Charge" %}</th>
+    </thead>
+    {% for user in all_users %}
+      <tr>
+          <td><a href="{% url 'profile:user_page' user.id %}">{{ user.username }}</a></td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.amount_earned|floatformat:2 }}</td>
+          <td>{{ user.amount_donated|floatformat:2 }}</td>
+          <td>{{ user.amount_owed|floatformat:2 }}</td>
+          {% if user.stripe_customer_id %}
+            <td>
+              <a href="{% url 'tools:payment_transactions' user.id %}" class="btn btn-default">
+                {% trans "See transactions" %}
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'tools:charge_user' user.id %}" class="btn btn-default">
+                {% trans "Charge now" %}
+              </a>
+            </td>
+          {% else %}
+            <td colspan="2">
+              {% trans "The user has no credit card associated" %}
+            </td>
+          {% endif %}
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {% trans "Charge users" %}
+    </div>
+    <div class="panel-body">
+        {% blocktrans %}
+        <p>The users sponsoring on the page is automatically charged on a periodically basis.</p>
+        <p>If you want to extraordinarily settle up and issue payments for all sponsors owing money, please click the button to:</p>
+        {% endblocktrans %}
+        <a href="{% url 'tools:charge_all_users' %}"
+           class="btn btn-default">
+          {% trans "Charge user now" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

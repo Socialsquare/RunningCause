@@ -12,6 +12,7 @@ from profile.models import User
 from sponsorship.models import Sponsorship
 from challenges.models import Challenge
 from runs.models import Run
+from payments.models import PaymentLog
 
 from .forms import PaidForm
 
@@ -42,11 +43,25 @@ def info_widget(request):
 
 @user_passes_test(lambda u: u.is_staff)
 @login_required
-def charge_users_now(request):
+def charge_all_users(request):
     from payments.tasks import charge_users
     charge_users()
     messages.success(request, "all users have been charged!")
-    return redirect('tools:overview')
+    return redirect('tools:payments')
+
+
+@user_passes_test(lambda u: u.is_staff)
+@login_required
+def charge_user(request, user_id):
+    from payments.tasks import charge_user
+    user = User.objects.get(pk=user_id)
+    success = charge_user(user.id)
+    if success:
+        messages.success(request, _("%s was charged!") % user.username)
+    else:
+        messages.error(request, _("Error charging %s!") % user.username)
+    return redirect('tools:payments')
+
 
 @user_passes_test(lambda u: u.is_staff)
 @login_required
@@ -75,7 +90,6 @@ def overview(request):
 
     context = {
         'sponsorships': sponsorships,
-        'all_users': all_users,
         'all_emails': all_emails,
         'all_challenges': all_challenges,
         'newsletter_emails': newsletter_emails,
@@ -83,3 +97,24 @@ def overview(request):
     }
     return render(request, 'tools/overview.html', context)
 
+
+@user_passes_test(lambda u: u.is_staff)
+@login_required
+def payments(request):
+    all_users = User.objects.order_by('username')
+    context = {
+        'all_users': all_users
+    }
+    return render(request, 'tools/payments.html', context)
+
+
+@user_passes_test(lambda u: u.is_staff)
+@login_required
+def payment_transactions(request, user_id):
+    user = User.objects.get(id=user_id)
+    transactions = PaymentLog.objects.filter(user=user)
+    context = {
+        'user': user,
+        'transactions': transactions
+    }
+    return render(request, 'tools/payment_transactions.html', context)

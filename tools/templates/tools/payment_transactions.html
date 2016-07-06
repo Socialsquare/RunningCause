@@ -1,0 +1,35 @@
+{% extends "masanga_base.html" %}
+{% load i18n %}
+
+
+{% block title %}{% blocktrans %}Payments{% endblocktrans %}{% endblock %}
+
+{% block head %}
+  {% blocktrans with username=user.username %}
+  Payments: {{username}}
+  {% endblocktrans %}
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>
+      {% blocktrans with username=user.username %}
+      All payments made by {{username}}
+      {% endblocktrans %}
+    </h4>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <th>{% trans "Amount" %}</th>
+      <th>{% trans "When" %}</th>
+    </thead>
+    {% for transaction in transactions %}
+      <tr>
+          <td>{{ transaction.amount|floatformat:2 }}</td>
+          <td>{{ transaction.created_dt }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
