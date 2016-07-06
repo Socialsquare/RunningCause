@@ -1,5 +1,5 @@
 import sys
-from .settings import *
+from .base import *
 
 
 STATICFILES_STORAGE = ''

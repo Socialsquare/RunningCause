@@ -10,18 +10,18 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.messages import constants as messages_constants
 
 ADMINS = (
-    ('admin', 'kraen+masanga@socialsquare.dk'),
+    ('Kraen Hansen', 'kraen+masanga@socialsquare.dk'),
 )
 
 MANAGERS = (
-    ('Pawel Bielecki', 'kraen+masanga@socialsquare.dk'),
+    ('Kraen Hansen', 'kraen+masanga@socialsquare.dk'),
 )
 
 MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
 }
 
-PROJECT_DIR = dirname(abspath(__file__))
+PROJECT_DIR = dirname(dirname(abspath(__file__)))
 BASE_DIR = dirname(PROJECT_DIR)
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
