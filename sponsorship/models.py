@@ -39,7 +39,7 @@ class Sponsorship(models.Model):
     # (end date is exclusive!)
     end_date = models.DateField('End Date',
                                 default=get_default_end_date,
-                                null=True, db_index=True)
+                                null=True, db_index=True, blank=True)
 
     # The maximum possible amount of money for the sponsorship.
     # No more runs are counted once this
