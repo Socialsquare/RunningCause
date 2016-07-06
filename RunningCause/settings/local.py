@@ -20,3 +20,6 @@ CACHES = {
 
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_widECDRawLUD2VTdAGWAjv2i')
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_xo9viXx96fMhQ4HaNYvPIT86')
+
+SITE_DOMAIN = 'localhost:8000'
+BASE_URL = 'http://' + SITE_DOMAIN
