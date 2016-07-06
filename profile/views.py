@@ -162,7 +162,8 @@ def register_customer(request):
                                       email=request.user.email)
     request.user.stripe_customer_id = customer.id
     request.user.save()
-    return render(request, 'profile/credit_card_success.html', {})
+    messages.success(request, _("Thank you! Your card has been successfully registered with Masanga Runners."))
+    return redirect('profile:user_settings')
 
 
 @login_required
@@ -192,7 +193,8 @@ def unregister_card(request):
         user.save()
     except Exception as exc:
         raise
-    return render(request, 'profile/deregister_success.html', {})
+    messages.success(request, _("You have successfully deregistered your card."))
+    return redirect('profile:user_settings')
 
 
 def user_page(request, user_id):
