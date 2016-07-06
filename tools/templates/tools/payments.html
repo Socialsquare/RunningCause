@@ -53,12 +53,12 @@
     </div>
     <div class="panel-body">
         {% blocktrans %}
-        <p>The users sponsoring on the page is automatically charged on a periodically basis.</p>
-        <p>If you want to extraordinarily settle up and issue payments for all sponsors owing money, please click the button to:</p>
+        <p>The users sponsoring are automatically charged periodically.</p>
+        <p>If you want to extraordinarily settle up and issue payments for all sponsors owing money, please click this button to:</p>
         {% endblocktrans %}
         <a href="{% url 'tools:charge_all_users' %}"
            class="btn btn-default">
-          {% trans "Charge user now" %}
+          {% trans "Charge all users who owes donations" %}
         </a>
     </div>
 </div>
