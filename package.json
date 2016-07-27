@@ -4,7 +4,8 @@
   "description": "A django project to provide runners an easy to use interface to gather money from sponsors when running for a good cause.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "gulp sass js"
   },
   "repository": {
     "type": "git",
