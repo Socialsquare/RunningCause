@@ -91,7 +91,7 @@
                    <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
                 </ul>
               {% else %}
-                <a href="{% url 'profile:signup_or_login' %}">
+                <a class="nav-link" href="{% url 'profile:signup_or_login' %}">
                 {% trans "Log in or create an account" %}</a>
               {% endif %}
             </li>
@@ -101,11 +101,9 @@
     </nav>
 
     <div class="container">
-      {% if head %}
-        <!-- head start -->
-        <h2>{% block head %}{% endblock %}</h2>
-        <!-- head end -->
-      {% endif %}
+      <!-- head start -->
+      <h1>{% block head %}{% endblock %}</h1>
+      <!-- head end -->
       <!-- body start -->
       {% block body %}{% endblock %}
       <!-- body end -->
