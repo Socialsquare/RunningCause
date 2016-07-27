@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import auth
 from django.db.models import Sum
 from challenges.models import Challenge
+from cloudinary.models import CloudinaryField
 
 
 class MasangaUserManager(auth.models.UserManager):
@@ -27,6 +28,8 @@ class User(auth.models.AbstractUser):
                                           db_index=True)
 
     greeted = models.BooleanField('Greeted?', default=False)
+
+    image = CloudinaryField('image', null=True, blank=True, default=None)
 
     objects = MasangaUserManager()
 
