@@ -17,7 +17,9 @@ from django.contrib.auth import get_user_model, REDIRECT_FIELD_NAME
 from django.utils.http import is_safe_url
 
 from allauth.account.forms import LoginForm, SignupForm
+import cloudinary
 
+from .forms import UserProfileForm
 from .models import User
 # TODO: I wonder if there is a better way that makes the apps
 # more decoupled.
@@ -214,7 +216,20 @@ def user_page(request, user_id):
 
 @login_required
 def user_settings(request):
+    if request.user and request.user.is_authenticated():
+        user = User.objects.get(pk=request.user.pk)
+    else:
+        user = None
+
+    if request.method == 'POST':
+        user_profile_form = UserProfileForm(request.POST, instance=user)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
+    else:
+        user_profile_form = UserProfileForm(instance=user)
+
     ctx = {
+        'user_profile_form': user_profile_form,
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
     }
     return render(request, 'profile/user_settings.html', ctx)

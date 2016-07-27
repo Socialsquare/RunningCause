@@ -2,12 +2,31 @@
 {% load staticfiles %}
 {% load humanize %}
 {% load i18n %}
+{% load cloudinary %}
 
 {% block imports %}
-<script src="https://checkout.stripe.com/checkout.js"></script>
-<form id="payment-form" action="{% url 'profile:register_customer' %}" method="POST">
-{% csrf_token %}
-</form>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <form id="payment-form" action="{% url 'profile:register_customer' %}" method="POST">
+  {% csrf_token %}
+  </form>
+  {% cloudinary_includes %}
+  {% cloudinary_js_config %}
+  <script>
+  $(function() {
+    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+    $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+      var imageSrc = $.cloudinary.url(data.result.public_id, {
+        version: data.result.version,
+        crop: 'fill',
+        width: 100,
+        height: 100
+      });
+      $('.profile-image-preview').attr('src', imageSrc);
+      return true;
+    });
+  });
+  </script>
+
 {% endblock %}
 
 {% block title %}
@@ -23,6 +42,27 @@
 
   <div class="row">
     <div class="col-sm-8">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {% trans "Profile image" %}
+        </div>
+        <div class="panel-body">
+          <p>
+            {% blocktrans %}
+            To make it easier for others to recognize you, you can upload an
+            image to your profile.
+            {% endblocktrans %}
+          </p>
+          <form action="{% url 'profile:user_settings' %}" method="post">
+            {% csrf_token %}
+            <div>{% cloudinary user_profile_form.instance.image width=100 height=100 crop="fill" class="profile-image-preview" %}</div>
+            {{ user_profile_form }}
+            <input type="submit" value="{% trans "Save" %}" />
+          </form>
+        </div>
+      </div>
+
       <div class="panel panel-default">
         <div class="panel-heading">
           {% trans "Pay with your credit card when you sponsor runners" %}
@@ -31,7 +71,7 @@
           {% if not user.stripe_customer_id %}
             <p>
               {% blocktrans %}
-              Click the card below to register a credit card with Masanga Runners. 
+              Click the card below to register a credit card with Masanga Runners.
               If you do this, you won't be charged anything initially. From then on,
               whenever you agree to pay out a challenge, or a runner you're sponsoring
               runs, you card will be automatically charged, without having to
@@ -62,7 +102,7 @@
           <p>
             {% blocktrans %}
             You can connect your Masanga Runners account to your Runkeeper account!
-            Runkeeper is a mobile app that makes it easy to keep track of your runs. 
+            Runkeeper is a mobile app that makes it easy to keep track of your runs.
             If you connect your accounts, your runs will automatically show up on
             Masanga Runners every day.
             {% endblocktrans %}
@@ -72,7 +112,7 @@
           </a>
         </div>
       </div>
-      
+
       <div class="panel panel-default">
         <div class="panel-heading">
           {% trans "Public profile, visible to the world" %}

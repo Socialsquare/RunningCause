@@ -2,6 +2,9 @@
 
 from django import forms
 from django.utils.translation import ugettext as _
+import cloudinary
+
+from profile.models import User
 
 
 class SignupForm(forms.Form):
@@ -19,3 +22,10 @@ class SignupForm(forms.Form):
         user.is_public = self.cleaned_data['public_info']
         user.newsletter = self.cleaned_data['newsletter']
         user.save()
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['image', ]
+    image = cloudinary.forms.CloudinaryJsFileField()
