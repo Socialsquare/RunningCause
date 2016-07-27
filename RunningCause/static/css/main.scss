@@ -32,12 +32,12 @@
 // @import "node_modules/bootstrap/scss/pager";
 // @import "node_modules/bootstrap/scss/labels";
 // @import "node_modules/bootstrap/scss/jumbotron";
-// @import "node_modules/bootstrap/scss/alert";
+@import "node_modules/bootstrap/scss/alert";
 // @import "node_modules/bootstrap/scss/progress";
 // @import "node_modules/bootstrap/scss/media";
 // @import "node_modules/bootstrap/scss/list-group";
 // @import "node_modules/bootstrap/scss/responsive-embed";
-// @import "node_modules/bootstrap/scss/close";
+@import "node_modules/bootstrap/scss/close";
 
 // Components w/ JavaScript
 // @import "node_modules/bootstrap/scss/modal";
@@ -54,6 +54,7 @@
 
 // Custom components
 @import "sass/footer";
+@import "sass/messages";
 @import "sass/user-list";
 
 

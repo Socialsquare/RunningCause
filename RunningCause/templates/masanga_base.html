@@ -101,7 +101,6 @@
     </nav>
 
     <div class="container">
-      {% include "includes/_messages.html" %}
       {% if head %}
         <!-- head start -->
         <h2>{% block head %}{% endblock %}</h2>
@@ -117,6 +116,8 @@
         Developed by <a href="http://socialsquare.dk">Socialsquare</a>
       </p>
     </footer>
+
+    {% include "includes/_messages.html" %}
 
   </body>
 </html>
