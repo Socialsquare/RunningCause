@@ -102,11 +102,9 @@
 
     <div class="container">
       {% include "includes/_messages.html" %}
-      {% if head %}
-        <!-- head start -->
-        <h2>{% block head %}{% endblock %}</h2>
-        <!-- head end -->
-      {% endif %}
+      <!-- head start -->
+      <h1>{% block head %}{% endblock %}</h1>
+      <!-- head end -->
       <!-- body start -->
       {% block body %}{% endblock %}
       <!-- body end -->
