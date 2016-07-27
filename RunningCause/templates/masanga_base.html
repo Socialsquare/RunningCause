@@ -15,7 +15,7 @@
     </title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.min.css' %}" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 
     <script type="text/javascript">
       // use by sharethis(?)
@@ -37,12 +37,16 @@
     <nav class="navbar navbar-dark bg-primary">
       <div class="container">
         <div>
-          <a href="{% url 'home' %}">
+          <a href="{% url 'pages:frontpage' %}">
             <img
-              src="{% static 'img/masanga_logo_header.png' %}"
+              src="{% static 'img/logo.png' %}"
               alt="Masanga Logo"
-              class="m-y-1">
+              class="m-y-1 navbar__logo">
           </a>
+          <img
+            src="{% static 'img/logo-runners.png' %}"
+            alt="Masanga Runners"
+            class="m-y-1 navbar__logo pull-xs-right">
         </div>
         <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
           ☰
@@ -72,10 +76,10 @@
               </li>
             {% endif %}
           </ul>
-          <ul class="pull-xs-right">
-            {% if user.is_authenticated %}
-              <li class="dropdown">
-                <a aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <ul class="nav navbar-nav pull-xs-right">
+            <li class="nav-item dropdown">
+              {% if user.is_authenticated %}
+                <a aria-expanded="true" href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   {% blocktrans with username=user.username %}
                     Hello, {{ username }}!
                   {% endblocktrans %}
@@ -86,13 +90,11 @@
                    <li><a href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a></li>
                    <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
                 </ul>
-              </li>
-            {% else %}
-              <li class="dropdown">
+              {% else %}
                 <a href="{% url 'profile:signup_or_login' %}">
                 {% trans "Log in or create an account" %}</a>
-              </li>
-            {% endif %}
+              {% endif %}
+            </li>
           </ul>
         </div>
       </div>

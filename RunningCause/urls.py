@@ -6,9 +6,6 @@ from django.views.generic import RedirectView
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(pattern_name='pages:why_join_us'),
-        name='home'),
-
     url(r'^account/logout/$', 'django.contrib.auth.views.logout',
         {'next_page': '/'}),
 
@@ -21,7 +18,7 @@ urlpatterns = [
     url(r'^sponsorship/', include('sponsorship.urls',
                                   namespace='sponsorship')),
     url(r'^tools/', include('tools.urls', namespace='tools')),
-    url(r'^pages/', include('pages.urls', namespace='pages')),
+    url(r'^', include('pages.urls', namespace='pages')),
     url(r'^info_widget/',
         RedirectView.as_view(pattern_name='tools:info_widget')),
 

@@ -60,3 +60,29 @@
 html {
   font-weight: $body-font-weight;
 }
+
+.navbar {
+  &__logo {
+    max-height: $line-height * $font-size-base * 2;
+  }
+}
+
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+.container-escape {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.header {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+}
