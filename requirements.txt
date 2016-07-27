@@ -1,3 +1,4 @@
+cloudinary==1.4.0
 Django==1.8.3
 Pillow==2.7.0
 dj-database-url==0.3.0

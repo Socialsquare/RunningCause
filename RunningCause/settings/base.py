@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'rosetta',
     'courriers',
+    'cloudinary',
 
     'profile',
     'runs',
@@ -322,4 +323,11 @@ LOGGING = {
             'level': 'INFO',
         },
     }
+}
+
+# Cloudinary settings
+CLOUDINARY = {
+  'cloud_name': 'masanga-runners',
+  'api_key': '183456335578974',
+  'api_secret': os.environ.get('CLOUDINARY_API_SECRET', '')
 }
