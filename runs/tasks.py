@@ -71,7 +71,10 @@ def send_input_runs_reminder():
         'enter_run_link': settings.BASE_URL+reverse('runs:input_run'),
         'runkeeper_link': settings.BASE_URL+reverse('runs:register_runkeeper')
     }
-    return send_email(all_addresses,
-                      _('It is time to register runs'),
-                      'runs/email/input_runs_reminder.html',
-                      email_context)
+    emails_sent = 0
+    for email in all_addresses:
+        emails_sent += send_email(email,
+                                  _('It is time to register runs'),
+                                  'runs/email/input_runs_reminder.html',
+                                  email_context)
+    return emails_sent
