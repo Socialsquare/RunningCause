@@ -1,0 +1,44 @@
+.user-list .user {
+  position: relative;
+  padding-bottom: 20px;
+  height: 200px;
+  .thumbnail {
+    display: block;
+    line-height: 1.42857143;
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: 50% 50%;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    height: 100%;
+  }
+  a {
+    position: relative;
+    > img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &.thumbnail {
+      &:hover, &:focus, &.active {
+        border-color: #222222;
+      }
+    }
+  }
+  .caption {
+    padding: 9px;
+    color: $brand-primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: rgba($gray-lightest, 0.66);
+  }
+  .controls {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+}

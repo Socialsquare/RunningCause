@@ -15,12 +15,14 @@
       <div class="row user-list">
       {% for person in sublist %}
         <div class="col-sm-3 user">
-          <a href="{% url 'profile:user_page' user_id=person.id %}" class="thumbnail">
-            {% if person.image %}
-              {% cloudinary person.image crop="fill" width="250" height="250" %}
-            {% else %}
-              <img src="{% static 'img/sports_running-4_simple-black-gradient_128x128.png' %}" />
-            {% endif %}
+          <a href="{% url 'profile:user_page' user_id=person.id %}"
+            class="thumbnail"
+            style="background-image: url('{{ person.image.url }}');">
+            {#% if person.image %#}
+              {#% cloudinary person.image crop="fill" width="250" height="250" %#}
+            {#% else %#}
+              {#<img src="{% static 'img/sports_running-4_simple-black-gradient_128x128.png' %}" />#}
+            {#% endif %#}
             <div class="caption text-center">
               <!--a href="{% url 'profile:user_page' user_id=person.id %}">{{ person.name }}</a-->
               {{ person.username }}
@@ -29,9 +31,9 @@
           {% if user != person %}
               <div class="controls text-center">
                   <a href="{% url 'sponsorship:add_sponsorship' person.id %}"
-                    class="btn btn-primary btn-xs">{% trans 'Sponsor!' %}</a>
+                    class="btn btn-primary btn-sm">{% trans 'Sponsor!' %}</a>
                   <a href="{% url 'challenges:challenge_runner' person.id %}"
-                    class="btn btn-primary btn-xs">{% trans 'Challenge!' %}</a>
+                    class="btn btn-primary btn-sm">{% trans 'Challenge!' %}</a>
               </div>
           {% endif %}
         </div>
