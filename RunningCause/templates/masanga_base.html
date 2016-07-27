@@ -101,12 +101,14 @@
     </nav>
 
     <div class="container">
-      <!-- head start -->
-      <h1>{% block head %}{% endblock %}</h1>
-      <!-- head end -->
-      <!-- body start -->
-      {% block body %}{% endblock %}
-      <!-- body end -->
+      {% block content %}
+        <!-- head start -->
+        <h1>{% block head %}{% endblock %}</h1>
+        <!-- head end -->
+        <!-- body start -->
+        {% block body %}{% endblock %}
+        <!-- body end -->
+      {% endblock %}
     </div>
 
     <footer>
