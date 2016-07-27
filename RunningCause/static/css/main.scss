@@ -36,7 +36,7 @@
 // @import "node_modules/bootstrap/scss/progress";
 // @import "node_modules/bootstrap/scss/media";
 // @import "node_modules/bootstrap/scss/list-group";
-// @import "node_modules/bootstrap/scss/responsive-embed";
+@import "node_modules/bootstrap/scss/responsive-embed";
 @import "node_modules/bootstrap/scss/close";
 
 // Components w/ JavaScript
@@ -89,14 +89,26 @@ html {
   color: $white;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   &-frontpage {
     background-image: url('/static/img/frontpage-header.jpg');
-    background-color: rgba($black, 0.3);
+    background-color: rgba($black, 0.5);
     background-blend-mode: multiply;
   }
 
   h1 {
     max-width: 34rem;
   }
+
+  &__call-to-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.btn {
+  white-space: inherit;
 }
