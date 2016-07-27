@@ -3,7 +3,7 @@
     {% if user == sponsorship.sponsor or user == sponsorship.runner %}
         <a
             href="{% url 'sponsorship:end_sponsorship' sponsorship.id %}"
-            class="btn btn-default">
+            class="btn btn-secondary">
             {% trans "End Sponsorship" %}
         </a>
     {% endif %}

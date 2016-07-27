@@ -45,7 +45,7 @@
                             <div class="input-group" value="{{ sponsorship.amount_paid }}">
                                 {{ form.amount|default:sponsorship.amount_paid }}
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">
+                                    <button class="btn btn-secondary" type="submit">
                                         Submit
                                     </button>
                                 </span>
@@ -136,7 +136,7 @@
             <p>To get an overview on what is owed by the individual users and request payments from them, use the Payments page.</p>
             {% endblocktrans %}
             <a href="{% url 'tools:payments' %}"
-               class="btn btn-default">
+               class="btn btn-secondary">
               {% trans "Go to the Payments page" %}
             </a>
         </div>

@@ -28,12 +28,12 @@
           <td>{{ user.amount_owed|floatformat:2 }}</td>
           {% if user.stripe_customer_id %}
             <td>
-              <a href="{% url 'tools:payment_transactions' user.id %}" class="btn btn-default">
+              <a href="{% url 'tools:payment_transactions' user.id %}" class="btn btn-secondary">
                 {% trans "See transactions" %}
               </a>
             </td>
             <td>
-              <a href="{% url 'tools:charge_user' user.id %}" class="btn btn-default">
+              <a href="{% url 'tools:charge_user' user.id %}" class="btn btn-secondary">
                 {% trans "Charge now" %}
               </a>
             </td>
@@ -57,7 +57,7 @@
         <p>If you want to extraordinarily settle up and issue payments for all sponsors owing money, please click this button to:</p>
         {% endblocktrans %}
         <a href="{% url 'tools:charge_all_users' %}"
-           class="btn btn-default">
+           class="btn btn-secondary">
           {% trans "Charge all users who owes donations" %}
         </a>
     </div>

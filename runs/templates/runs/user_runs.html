@@ -59,7 +59,7 @@
                         <td>{{ run.distance|floatformat:2 }}</td>
                         <td>{% if run.recorded_time %}{{ run.recorded_time }}{% else %}unknown{% endif %}</td>
                         {% if own_page %}
-                            <td><a href="{% url 'runs:edit_run' run.id %}" class="btn btn-default">{% trans "Edit Run Details" %}</a></td>
+                            <td><a href="{% url 'runs:edit_run' run.id %}" class="btn btn-secondary">{% trans "Edit Run Details" %}</a></td>
                         {% endif %}
 
                     </tr>

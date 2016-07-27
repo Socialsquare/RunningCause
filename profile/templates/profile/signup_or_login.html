@@ -70,7 +70,7 @@
           <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
               <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a></br></br>
-              <button type="submit" class="btn btn-default">{% trans "Sign In" %}</button>
+              <button type="submit" class="btn btn-secondary">{% trans "Sign In" %}</button>
             </div>
           </div>
           
@@ -140,7 +140,7 @@
 
           <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
-              <button type="submit" class="btn btn-default">{% trans "Sign Up" %}</button>
+              <button type="submit" class="btn btn-secondary">{% trans "Sign Up" %}</button>
               {% if redirect_field_value %}
               <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
               {% endif %}

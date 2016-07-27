@@ -1,11 +1,11 @@
 {% load i18n %}
 {% if user == challenge.runner and challenge.status == 'active' %}
-    <a class="btn btn-default btn-sm"
+    <a class="btn btn-secondary btn-sm"
         href="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
         {% trans 'Update' %}
     </a>
 {% elif user == challenge.sponsor and challenge.status == 'completed' %}
-    <a class="btn btn-default btn-sm"
+    <a class="btn btn-secondary btn-sm"
         href="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
         {% trans 'Confirm or decline' %}
     </a>
