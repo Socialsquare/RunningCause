@@ -3,11 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-    <link rel="stylesheet" id="google-fonts-css"  href="{% static 'css/Lato.css'%}" type="text/css" media="all" />
-
-    <link rel="stylesheet" type="text/css" href="{% static 'css/masanga.css' %}" />
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +13,9 @@
     Masanga Runners
     {% endblock %}
     </title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.min.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,600" rel="stylesheet">
 
     <script type="text/javascript">
       // use by sharethis(?)
@@ -39,7 +37,7 @@
         <img
           src="{% static 'img/masanga_logo_header.png' %}"
           alt="Masanga Logo"
-          class="header-logo">
+          class="m-y-1">
       </a>
     </div>
     <nav class="navbar navbar-default main-menu">
@@ -112,11 +110,9 @@
     </div>
 
     <footer>
-      <div class="panel-footer text-center">
-        <p class="muted credit">
-          Developed by <a href="http://socialsquare.dk">Socialsquare</a>
-        </p>
-      </div>
+      <p class="text-xs-center m-y-2">
+        Developed by <a href="http://socialsquare.dk">Socialsquare</a>
+      </p>
     </footer>
 
   </body>
