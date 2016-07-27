@@ -59,6 +59,7 @@ target/
 
 # Virtual Environment
 *.venv
+venv
 
 # Node stuff
 node_modules/

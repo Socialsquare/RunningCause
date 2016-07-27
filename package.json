@@ -1,0 +1,38 @@
+{
+  "name": "runningcause",
+  "version": "1.0.0",
+  "description": "A django project to provide runners an easy to use interface to gather money from sponsors when running for a good cause.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Socialsquare/RunningCause.git"
+  },
+  "author": "Socialsquare",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Socialsquare/RunningCause/issues"
+  },
+  "homepage": "https://github.com/Socialsquare/RunningCause#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.2",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify": "0.0.12",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-svgmin": "^1.2.2",
+    "gulp-svgstore": "^6.0.0",
+    "gulp-watch": "^4.3.5",
+    "run-sequence": "^1.2.1",
+    "svg4everybody": "^2.1.0"
+  }
+}

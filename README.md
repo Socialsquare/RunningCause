@@ -9,7 +9,7 @@ following.
 
 ## Python 2.7 and virtualenv
 
-Make sure you have both python 2.7 and the virtualenv tool installed.
+Make sure you have both python 2.7 and the virtualenv tool installed.  
 
 ## Install the postgresql dependency
 
@@ -19,16 +19,26 @@ Make sure you have both python 2.7 and the virtualenv tool installed.
 
 	pip install -r requirements.txt
 
-# Requirements
+# Developing on 
+
+`cd` into the project root dir  
+`virtualenv -p python2.7 venv` *initialise python 3 virtual environment*  
+`. venv/bin/activate` *start the virtual environment*  
+`pip install -r requirements.txt` *install required python modules*  
+`./manage.py migrate` *initialise the database*  
+`./manage.py createsuperuser` *create admin user*  
+`./manage.py runserver` *start the app*  
+
+# Production requirements (on heroku)
 
  * redis
  * celery
  * postgresql
 
-# celery
+## celery
 
 	celery -A RunningCause worker --loglevel=debug
 
-# Deployment
+## Deployment
 A webhook is placed on GitHub that asks Heroku to deploy the site whenever
 changes are pushed to the ´development´ branch.
