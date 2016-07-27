@@ -34,8 +34,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-primary">
-      <div class="container">
+    <div class="bg-primary">
+      <nav class="navbar navbar-dark container">
         <div>
           <a href="{% url 'pages:frontpage' %}">
             <img
@@ -46,10 +46,10 @@
           <img
             src="{% static 'img/logo-runners.png' %}"
             alt="Masanga Runners"
-            class="m-y-1 navbar__logo pull-xs-right">
+            class="m-y-1 hidden-xs-down navbar__logo pull-xs-right">
         </div>
         <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
-          ☰
+          ☰ Menu
         </button>
         <div class="collapse navbar-toggleable-xs" id="navbar-header">
           <ul class="nav navbar-nav">
@@ -58,6 +58,13 @@
                 {% trans "RUNNERS &amp; SPONSORS" %}
               </a>
             </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile:my_page' %}">
+                {% trans "MY PAGE" %}
+              </a>
+            </li>
+            {% else %}
             <li class="nav-item">
               <a href="{% url 'pages:why_join_us' %}" class="nav-link">
                 {% trans "WHY JOIN US?" %}
@@ -68,6 +75,7 @@
                 {% trans "ABOUT MASANGA HOSPITAL" %}
               </a>
             </li>
+            {% endif %}
             {% if perms.contains.is_staff %}
               <li class="nav-item">
                 <a href="{% url 'tools:overview' %}" class="nav-link">
@@ -85,11 +93,10 @@
                   {% endblocktrans %}
                   <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu">
-                   <li><a href="{% url 'profile:my_page' %}">{% trans "MY PAGE" %}</a></li>
-                   <li><a href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a></li>
-                   <li><a href="{% url 'account_logout' %}">{% trans "Log out" %}</a></li>
-                </ul>
+                <div class="dropdown-menu">
+                   <a class="dropdown-item" href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a>
+                   <a class="dropdown-item" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
+                </div>
               {% else %}
                 <a class="nav-link" href="{% url 'profile:signup_or_login' %}">
                 {% trans "Log in or create an account" %}</a>
@@ -97,8 +104,8 @@
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
 
     <div class="container">
       {% block content %}

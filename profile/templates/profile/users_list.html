@@ -10,7 +10,7 @@
 {% block body %}
 <div class="row">
   <div class="col-sm-9">
-    <h2>{% trans "Our runners & sponsors" %}</h2>
+    <h1>{% trans "Our runners & sponsors" %}</h1>
     {% for sublist in user_list|partition:"4" %}
       <div class="row user-list">
       {% for person in sublist %}
