@@ -67,7 +67,6 @@ html {
   }
 }
 
-
 .navbar-dark .navbar-nav .nav-link {
   color: white;
 }
@@ -82,7 +81,21 @@ html {
 }
 
 .header {
+  background-size: cover;
+  background-position: center center;
   height: 60vh;
   display: flex;
+  color: $white;
   align-items: center;
+  justify-content: center;
+
+  &-frontpage {
+    background-image: url('/static/img/frontpage-header.jpg');
+    background-color: rgba($black, 0.3);
+    background-blend-mode: multiply;
+  }
+
+  h1 {
+    max-width: 34rem;
+  }
 }
