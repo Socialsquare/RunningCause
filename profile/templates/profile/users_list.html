@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load partition_slice %}
+{% load cloudinary %}
 
 {% block head %}
 {% endblock %}
@@ -15,7 +16,11 @@
       {% for person in sublist %}
         <div class="col-sm-3 user">
           <a href="{% url 'profile:user_page' user_id=person.id %}" class="thumbnail">
-            <img src="{% static 'img/sports_running-4_simple-black-gradient_128x128.png' %}" />
+            {% if person.image %}
+              {% cloudinary person.image crop="fill" width="250" height="250" %}
+            {% else %}
+              <img src="{% static 'img/sports_running-4_simple-black-gradient_128x128.png' %}" />
+            {% endif %}
             <div class="caption text-center">
               <!--a href="{% url 'profile:user_page' user_id=person.id %}">{{ person.name }}</a-->
               {{ person.username }}
