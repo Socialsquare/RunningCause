@@ -15,14 +15,16 @@
     </title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.min.css' %}" />
-    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet">
 
     <script type="text/javascript">
       // use by sharethis(?)
       var switchTo5x=true;
     </script>
+
+    <script type="text/javascript" src="{% static 'js/main.min.js' %}" async></script>
+
     <script type="text/javascript" src="{% static 'js/jquery-1.9.min.js' %}" ></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" async></script>
     <script type="text/javascript" src="{% static 'js/eldarion-ajax.min.js' %}" async></script>
     {% block imports %}
     {% endblock %}
@@ -32,46 +34,45 @@
   </head>
 
   <body>
-    <div class="container">
-      <a href="{% url 'home' %}">
-        <img
-          src="{% static 'img/masanga_logo_header.png' %}"
-          alt="Masanga Logo"
-          class="m-y-1">
-      </a>
-    </div>
-    <nav class="navbar navbar-default main-menu">
-      <div class="navbar-inner">
-        <div class="container">
-
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container">
+        <div>
+          <a href="{% url 'home' %}">
+            <img
+              src="{% static 'img/masanga_logo_header.png' %}"
+              alt="Masanga Logo"
+              class="m-y-1">
+          </a>
+        </div>
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
+          ☰
+        </button>
+        <div class="collapse navbar-toggleable-xs" id="navbar-header">
           <ul class="nav navbar-nav">
-            <li>
-              <a href="{% url 'profile:users_list' %}" style="font-size: 120%; font-weight: 600;">
+            <li class="nav-item">
+              <a href="{% url 'profile:users_list' %}" class="nav-link">
                 {% trans "RUNNERS &amp; SPONSORS" %}
               </a>
             </li>
-            <li>
-              <a href="{% url 'pages:why_join_us' %}" style="font-size: 120%; font-weight: 600;">
+            <li class="nav-item">
+              <a href="{% url 'pages:why_join_us' %}" class="nav-link">
                 {% trans "WHY JOIN US?" %}
               </a>
             </li>
-            <li>
-              <a href="http://www.masanga.dk" style="font-size: 120%; font-weight: 600;" target="_newtab">
+            <li class="nav-item">
+              <a href="http://www.masanga.dk" class="nav-link" target="_newtab">
                 {% trans "ABOUT MASANGA HOSPITAL" %}
               </a>
             </li>
             {% if perms.contains.is_staff %}
-              <li>
-                <a href="{% url 'tools:overview' %}" style="font-size: 120%; font-weight: 600;">
+              <li class="nav-item">
+                <a href="{% url 'tools:overview' %}" class="nav-link">
                   {% trans "OVERVIEW" %}
                 </a>
               </li>
             {% endif %}
           </ul>
-
-          <!-- TODO: Make sure that the link is visible on a mobile -->
-          <ul class="nav navbar-nav navbar-right">
-
+          <ul class="pull-xs-right">
             {% if user.is_authenticated %}
               <li class="dropdown">
                 <a aria-expanded="true" href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -92,8 +93,6 @@
                 {% trans "Log in or create an account" %}</a>
               </li>
             {% endif %}
-
-            <li class="divider-vertical"></li>
           </ul>
         </div>
       </div>
