@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load staticfiles %}
 {% load humanize %}
 {% load i18n %}
@@ -18,10 +18,10 @@
       var imageSrc = $.cloudinary.url(data.result.public_id, {
         version: data.result.version,
         crop: 'fill',
-        width: 100,
-        height: 100
+        width: 200,
+        height: 200
       });
-      $('.profile-image-preview').attr('src', imageSrc);
+      $('.profile-image .preview').attr('src', imageSrc);
       return true;
     });
   });
@@ -33,143 +33,120 @@
 {% trans "Your Settings" %}
 {% endblock %}
 
-{% block head %}
-{% trans "Your Settings" %}
-{% endblock %}
-
-
 {% block body %}
+<h1>{% trans "Your Settings" %}</h1>
 
-  <div class="row">
-    <div class="col-sm-8">
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          {% trans "Profile image" %}
-        </div>
-        <div class="panel-body">
-          <p>
-            {% blocktrans %}
-            To make it easier for others to recognize you, you can upload an
-            image to your profile.
-            {% endblocktrans %}
-          </p>
-          <form action="{% url 'profile:user_settings' %}" method="post">
-            {% csrf_token %}
-            <div>{% cloudinary user_profile_form.instance.image width=100 height=100 crop="fill" class="profile-image-preview" %}</div>
-            {{ user_profile_form }}
-            <input type="submit" value="{% trans "Save" %}" />
-          </form>
-        </div>
+<div class="m-b-3">
+  <h2>{% trans "Profile image" %}</h2>
+  <p>
+    {% blocktrans %}
+    To make it easier for others to recognize you, you can upload an
+    image to your profile.
+    {% endblocktrans %}
+  </p>
+  <form action="{% url 'profile:user_settings' %}" method="post">
+    {% csrf_token %}
+    <p>
+      <div class="profile-image">
+        {% cloudinary user_profile_form.instance.image width=200 height=200 crop="fill" class="preview" %}
+        {{ user_profile_form.image }}
+        {# TODO: Create helper texts #}
+        {#% trans "Register your card with Masanga Runners" %#}
       </div>
+    </p>
+    <input type="submit" value="{% trans "Save" %}" />
+  </form>
+</div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          {% trans "Pay with your credit card when you sponsor runners" %}
-        </div>
-        <div class="panel-body">
-          {% if not user.stripe_customer_id %}
-            <p>
-              {% blocktrans %}
-              Click the card below to register a credit card with Masanga Runners.
-              If you do this, you won't be charged anything initially. From then on,
-              whenever you agree to pay out a challenge, or a runner you're sponsoring
-              runs, you card will be automatically charged, without having to
-              do anything!
-              {% endblocktrans %}
-            </p>
-            <a href="{% url 'profile:credit_card_prompt' %}" class="btn btn-default">
-              {% trans "Register your card with Masanga Runners" %}
-            </a>
-          {% else %}
-            <p>
-              {% blocktrans %}
-              Click the button below if you want to have Masanga Runners forget your card.
-              {% endblocktrans %}
-            </p>
-            <a href="{% url 'profile:unregister_card' %}" class="btn btn-default">
-              {% trans "Forget my card" %}
-            </a>
-          {% endif %}
-        </div>
-      </div>
+<div class="m-b-3">
+  <h2>{% trans "Pay with your credit card when you sponsor runners" %}</h2>
+  {% if not user.stripe_customer_id %}
+    <p>
+      {% blocktrans %}
+      Click the card below to register a credit card with Masanga Runners.
+      If you do this, you won't be charged anything initially. From then on,
+      whenever you agree to pay out a challenge, or a runner you're sponsoring
+      runs, you card will be automatically charged, without having to
+      do anything!
+      {% endblocktrans %}
+    </p>
+    <a href="{% url 'profile:credit_card_prompt' %}" class="btn btn-secondary">
+      {% trans "Register your card with Masanga Runners" %}
+    </a>
+  {% else %}
+    <p>
+      {% blocktrans %}
+      Click the button below if you want to have Masanga Runners forget your card.
+      {% endblocktrans %}
+    </p>
+    <a href="{% url 'profile:unregister_card' %}" class="btn btn-secondary">
+      {% trans "Forget my card" %}
+    </a>
+  {% endif %}
+</div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          {% trans "Automatically track your runs with Runkeeper" %}
-        </div>
-        <div class="panel-body">
-          <p>
-            {% blocktrans %}
-            You can connect your Masanga Runners account to your Runkeeper account!
-            Runkeeper is a mobile app that makes it easy to keep track of your runs.
-            If you connect your accounts, your runs will automatically show up on
-            Masanga Runners every day.
-            {% endblocktrans %}
-          </p>
-          <a href="{% url 'runs:register_runkeeper' %}" class="btn btn-default">
-            {% trans "Register with runkeeper!" %}
-          </a>
-        </div>
-      </div>
+<div class="m-b-3">
+  <h2>{% trans "Automatically track your runs with Runkeeper" %}</h2>
+  <p>
+    {% blocktrans %}
+    You can connect your Masanga Runners account to your Runkeeper account!
+    Runkeeper is a mobile app that makes it easy to keep track of your runs.
+    If you connect your accounts, your runs will automatically show up on
+    Masanga Runners every day.
+    {% endblocktrans %}
+  </p>
+  <a href="{% url 'runs:register_runkeeper' %}" class="btn btn-secondary">
+    {% trans "Register with runkeeper!" %}
+  </a>
+</div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          {% trans "Public profile, visible to the world" %}
-        </div>
-        <div class="panel-body">
-          {% if user.is_public %}
-            <p>
-              {% blocktrans %}
-              Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and challenges, click the button below to make your page private.
-              {% endblocktrans %}
-            </p>
+<div class="m-b-3">
+  <h2>{% trans "Public profile, visible to the world" %}</h2>
+  {% if user.is_public %}
+    <p>
+      {% blocktrans %}
+      Right now, anyone can see your page. This will help potential sponsors to find out about you and decide whether or not to sponsor you. If you don't want anyone except for yourself to see your sponsorships, runs, and challenges, click the button below to make your page private.
+      {% endblocktrans %}
+    </p>
 
-            <a href="{% url 'profile:make_profile_private' %}?next={{ request.path }}" class="btn btn-default">
-              {% trans "Click here to make your page private." %}
-            </a>
-          {% else %}
-              <p>
-              {% blocktrans %}
-              Right now, no one can see your page. Potential sponsors won't be able to see information on you when they're trying to decide whether or not to sponsor you. If you want people to be able to see your information, click the button below to make your page public.
-              {% endblocktrans %}
-              </p>
+    <a href="{% url 'profile:make_profile_private' %}?next={{ request.path }}" class="btn btn-secondary">
+      {% trans "Click here to make your page private." %}
+    </a>
+  {% else %}
+      <p>
+      {% blocktrans %}
+      Right now, no one can see your page. Potential sponsors won't be able to see information on you when they're trying to decide whether or not to sponsor you. If you want people to be able to see your information, click the button below to make your page public.
+      {% endblocktrans %}
+      </p>
 
-              <a href="{% url 'profile:make_profile_public' %}?next={{ request.path }}" class="btn btn-default">
-                  {% trans "Click here to make your page public." %}
-              </a>
-          {% endif %}
-        </div>
-      </div>
+      <a href="{% url 'profile:make_profile_public' %}?next={{ request.path }}" class="btn btn-secondary">
+          {% trans "Click here to make your page public." %}
+      </a>
+  {% endif %}
+</div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          {% trans "Mails and reminders" %}
-        </div>
-        <div class="panel-body">
-          {% if user.subscribed %}
-            <p>
-              {% blocktrans %}
-              Click the button below if you want to unsubscribe from all reminder emails from us.
-              {% endblocktrans %}
-            </p>
-            <a href="{% url 'profile:unsubscribe' %}" class="btn btn-default">
-              {% trans "Unsubscribe from our emails" %}
-            </a>
-          {% else %}
-            <p>
-              {% blocktrans %}
-              Click the button below if you want to subscribe to reminder emails.
-              {% endblocktrans %}
-            </p>
-            <a href="{% url 'profile:subscribe' %}" class="btn btn-default">
-              {% trans "Subscribe to our emails" %}
-            </a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="m-b-3">
+  <h2>{% trans "Mails and reminders" %}</h2>
+  {% if user.subscribed %}
+    <p>
+      {% blocktrans %}
+      Click the button below if you want to unsubscribe from all reminder emails from us.
+      {% endblocktrans %}
+    </p>
+    <a href="{% url 'profile:unsubscribe' %}" class="btn btn-secondary">
+      {% trans "Unsubscribe from our emails" %}
+    </a>
+  {% else %}
+    <p>
+      {% blocktrans %}
+      Click the button below if you want to subscribe to reminder emails.
+      {% endblocktrans %}
+    </p>
+    <a href="{% url 'profile:subscribe' %}" class="btn btn-secondary">
+      {% trans "Subscribe to our emails" %}
+    </a>
+  {% endif %}
+</div>
 
 
 {% endblock %}

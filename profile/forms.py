@@ -28,4 +28,4 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['image', ]
-    image = cloudinary.forms.CloudinaryJsFileField()
+    image = cloudinary.forms.CloudinaryJsFileField(label=_('Image'))
