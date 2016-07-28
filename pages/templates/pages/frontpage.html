@@ -36,20 +36,20 @@
           <div class="card-block card-flex">
             <div>
               <h2>
-                {% with total_raised=total.raised|intcomma %}
+                {% with total_raised=total.raised|floatformat:"0"|intcomma %}
                   {% blocktrans %}{{total_raised}}<span class="font-weight-normal"> in total</span>{% endblocktrans %}
                 {% endwith %}
               </h2>
               <p class="card-text">
-                {% with total_outstanding=total.outstanding|intcomma %}
+                {% with total_outstanding=total.outstanding|floatformat:"0"|intcomma %}
                   {% blocktrans %}<span class="font-weight-bold">{{total_outstanding}}</span> outstanding{% endblocktrans %}
                 {% endwith %}
                 <br />
-                {% with previous_12_months_raised=previous_12_months.raised|intcomma %}
+                {% with previous_12_months_raised=previous_12_months.raised|floatformat:"0"|intcomma %}
                   {% blocktrans %}<span class="font-weight-bold">{{previous_12_months_raised}}</span> previous 12 months{% endblocktrans %}
                 {% endwith %}
                 <br />
-                {% with previous_3_months_raised=previous_3_months.raised|intcomma %}
+                {% with previous_3_months_raised=previous_3_months.raised|floatformat:"0"|intcomma %}
                   {% blocktrans %}<span class="font-weight-bold">{{previous_3_months_raised}}</span> previous 3 months{% endblocktrans %}
                 {% endwith %}
               </p>
@@ -62,7 +62,7 @@
         <div class="card card-dark card-distance">
           <div class="card-block card-flex">
             <h2 class="card__big-title">
-              {% with total_distance=total_distance|intcomma %}
+              {% with total_distance=total_distance|floatformat:"0"|intcomma %}
                 {{total_distance}}
               {% endwith %}
             </h2>
