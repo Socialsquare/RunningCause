@@ -1137,6 +1137,11 @@ msgstr "%(sponsor)s har afvist at udfordre dig."
 msgid "You have rejected to challenge %(runner)s."
 msgstr "Du har afvist at udfordre %(runner)s."
 
+#: invitations/forms.py:6
+#| msgid "All email addresses"
+msgid "Friend's email address"
+msgstr "Din ven's e-mail adresse"
+
 #: invitations/models.py:36
 msgid "Masanga Runners invitation"
 msgstr "Masanga Runners invitation"
@@ -1199,20 +1204,18 @@ msgstr ""
 msgid "Invite someone you know"
 msgstr "Inviter en du kender"
 
-#: invitations/templates/invitations/invitation.html:16
+#: invitations/templates/invitations/invitation.html:14
 msgid "Invite someone you know!"
 msgstr "Inviter en du kender!"
 
-#: invitations/templates/invitations/invitation.html:25
+#: invitations/templates/invitations/invitation.html:17
 msgid ""
 "\n"
-"        Fill out these fields below to invite someone who doesn't "
-"currently \n"
-"        have a Masanga account. This could be either a runner or a "
-"potencial\n"
-"        sponsor. He/she will get an email with an invitation to create an "
+"    Fill out these fields below to invite someone who doesn't currently\n"
+"    have a Masanga account. This could be either a runner or a potencial\n"
+"    sponsor. He/she will get an email with an invitation to create an "
 "account.\n"
-"        "
+"    "
 msgstr ""
 "\n"
 "Udfyld disse felter nedenfor for at invitere en der ikke på nuværende "
@@ -1220,7 +1223,7 @@ msgstr ""
 "eller en potentiel sponsor. Han/hun vil få en e-mail med en invitation til "
 "at oprette en konto."
 
-#: invitations/templates/invitations/invitation.html:38
+#: invitations/templates/invitations/invitation.html:29
 #: runs/templates/runs/run_edit.html:48
 msgid "Submit"
 msgstr "Indsend"
