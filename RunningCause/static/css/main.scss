@@ -19,7 +19,7 @@
 @import "node_modules/bootstrap/scss/buttons";
 
 // Components
-// @import "node_modules/bootstrap/scss/animation";
+@import "node_modules/bootstrap/scss/animation";
 @import "node_modules/bootstrap/scss/dropdown";
 // @import "node_modules/bootstrap/scss/button-group";
 // @import "node_modules/bootstrap/scss/input-group";
@@ -84,6 +84,6 @@
 
 .call-to-action {
   .btn:not(:first-child) {
-    margin-left: $spacer / 2; 
+    margin-left: $spacer / 2;
   }
 }
