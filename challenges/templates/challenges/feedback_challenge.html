@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load bootstrap3 %}
@@ -8,91 +8,84 @@
 {% trans "Update your challenge" %}
 {% endblock %}
 
-{% block head %}
-<div class="row">
-<div class="col-md-7 col-md-offset-1">
-	{% blocktrans %}
-	Update the challenge!
-	{% endblocktrans %}
-</div>
-</div>
-{% endblock %}
-
 {% block body %}
-<div class="row">
-<div class="col-md-7 col-md-offset-1">
+	<h1>
+		{% blocktrans %}
+		Update the challenge!
+		{% endblocktrans %}
+	</h1>
 
-    <blockquote>
-        <p style="white-space: pre-line;">{{challenge.challenge_text}}</p>
-    </blockquote>
+  <blockquote class="blockquote">
+      <p style="white-space: pre-line;">{{challenge.challenge_text}}</p>
+  </blockquote>
+	{% if user == challenge.runner %}
+		<p>
+		{% blocktrans %}
+		Here you can mark your challenge as completed and
+		leave a feedback message to your sponsor.
+		{% endblocktrans %}
+		</p>
+	{% endif %}
 
-{% if user == challenge.runner %}
-	{% blocktrans %}
-	Here you can mark your challenge as completed and
-	leave a feedback message to your sponsor.
-	{% endblocktrans %}
-{% endif %}
+	{% if user == challenge.sponsor %}
+		<p>
+		{% blocktrans with runner_username=challenge.runner.username %}
+		Here you can confirm or decline the challenge completed
+		by {{runner_username}}.
+		{% endblocktrans %}
+		</p>
+	{% endif %}
 
-{% if user == challenge.sponsor %}
-	{% blocktrans with runner_username=challenge.runner.username %}
-	Here you can confirm or decline the challenge completed
-	by {{runner_username}}.
-	{% endblocktrans %}
-{% endif %}
+	{% if challenge.runner_msg %}
+	<p>
+	    {% blocktrans with runner=challenge.runner.username %}
+	        {{runner}} has left a message:
+	    {% endblocktrans %}
+	</p>
 
-{% if challenge.runner_msg%}
-<p>
-    {% blocktrans with runner=challenge.runner.username %}
-        {{runner}} has left a message:
-    {% endblocktrans %}
-</p>
-<blockquote>
-	<p style="white-space: pre-line;">{{challenge.runner_msg}}</p>
-</blockquote>
-{% endif %}
+	<blockquote class="blockquote">
+		<p style="white-space: pre-line;">{{challenge.runner_msg}}</p>
+	</blockquote>
+	{% endif %}
 
-{% if user == challenge.sponsor %}
-    <p>
-        {% blocktrans with runner=challenge.runner.username %}
-            You can leave a feedback message to {{runner}}.
-        {% endblocktrans %}
-    </p>
-{% endif %}
+	{% if user == challenge.sponsor %}
+	    <p>
+	        {% blocktrans with runner=challenge.runner.username %}
+	        You can leave a feedback message to {{runner}}.
+	        {% endblocktrans %}
+	    </p>
+	{% endif %}
 
-<form method="post"
-	action="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}">
-    {% csrf_token %}
-	{% bootstrap_form form %}
+	<form action="{% url 'challenges:feedback_challenge' challenge_id=challenge.id %}" method="post">
+	  {% csrf_token %}
+		{% bootstrap_form form %}
 		{% if user == challenge.runner %}
-		{% buttons %}
-		  <button type="submit"
-            class="btn btn-success"
-            name="action"
-            value="success">
-		    {% bootstrap_icon "thumbs-up" %} {% trans 'I did it!' %}
-		  </button>
-  		  <button type="submit"
-            class="btn btn-danger"
-            name="action"
-            value="failure">
-  		    {% bootstrap_icon "thumbs-down" %} {% trans 'I did not make it' %}
-  		  </button>
-		{% endbuttons %}
+			{% buttons %}
+			  <button type="submit"
+	        class="btn btn-success"
+	        name="action"
+	        value="success">
+			  	{% bootstrap_icon "thumbs-up" %} {% trans 'I did it!' %}
+			  </button>
+	  		<button type="submit"
+	        class="btn btn-danger"
+	        name="action"
+	        value="failure">
+			    {% bootstrap_icon "thumbs-down" %} {% trans 'I did not make it' %}
+			  </button>
+			{% endbuttons %}
 		{% endif %}
 
-		{% if user == challenge.sponsor %}
-		{% buttons %}
-		  <button type="submit" name="action" value="confirm" class="btn btn-success">
-		    {% bootstrap_icon "ok" %} {% blocktrans with amount=challenge.amount %}Confirm and pay {{amount}} DKK{% endblocktrans %}
-		  </button>
-		  <button type="submit" name="action" value="decline" class="btn btn-danger">
-		    {% bootstrap_icon "remove" %} {% trans 'Decline' %}
-		  </button>
-		{% endbuttons %}
+	 	{% if user == challenge.sponsor %}
+			{% buttons %}
+			  <button type="submit" name="action" value="confirm" class="btn btn-success">
+			    {% bootstrap_icon "ok" %} {% blocktrans with amount=challenge.amount %}Confirm and pay {{amount}} DKK{% endblocktrans %}
+			  </button>
+			  <button type="submit" name="action" value="decline" class="btn btn-danger">
+			    {% bootstrap_icon "remove" %} {% trans 'Decline' %}
+			  </button>
+			{% endbuttons %}
 		{% endif %}
-</form>
-
-</div>
-</div>
+	</form>
 
 {% endblock %}

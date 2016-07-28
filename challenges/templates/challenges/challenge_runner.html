@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load humanize %}
 {% load i18n %}
 {% load staticfiles %}
@@ -22,46 +22,31 @@
 {% trans "Challenge runner" %}
 {% endblock %}
 
-{% block head %}
-	<div class="row">
-	<div class="col-md-7 col-md-offset-1">
-		{% blocktrans with username=runner.username %}
-		Challenge {{username}}.
-		{% endblocktrans %}
-	</div>
-	</div>
-{% endblock %}
-
 {% block body %}
+  <h1>
+    {% blocktrans with username=runner.username %}
+    Challenge {{username}}
+    {% endblocktrans %}
+  </h1>
+  <p>
+      {% blocktrans with username=runner.username %}
+      Fill in these fields to challenge {{ username }}.
+      This works like a bet, if he/she completes
+       whatever you specify the by the time and date you specified,
+       then you agree to pay the amount listed in the amount field, in dkk.
+       Worried he/she will cheat?
+       No need to fret! At the end of the time period, you're the only one
+       who gets to make the call about whether or not you pay.
+      {% endblocktrans %}
+  </p>
 
-	<div class="row">
-	<div class="col-md-7 col-md-offset-1">
-    <p>
-        {% blocktrans with username=runner.username %}
-        Fill in these fields to challenge {{ username }}.
-        This works like a bet, if he/she completes
-         whatever you specify the by the time and date you specified,
-         then you agree to pay the amount listed in the amount field, in dkk.
-         Worried he/she will cheat?
-         No need to fret! At the end of the time period, you're the only one
-         who gets to make the call about whether or not you pay.
-        {% endblocktrans %}
-    </p>
-    </p>
-    </div>
-	</div>
-
-	<div class="row">
-	<div class="col-md-7  col-md-offset-1">
-	<form action="{% url 'challenges:challenge_runner' person_id=runner.id %}" method="post">
-	    {% csrf_token %}
-		{% bootstrap_form form layout="form-horizontal" %}
-		{% buttons %}
-		  <button type="submit" class="btn btn-primary">
-		    {% trans 'Challenge!' %}
-		  </button>
-		{% endbuttons %}
-	</form>
-	</div>
-	</div>
+  <form action="{% url 'challenges:challenge_runner' person_id=runner.id %}" method="post">
+      {% csrf_token %}
+  	{% bootstrap_form form layout="form-horizontal" %}
+  	{% buttons %}
+  	  <button type="submit" class="btn btn-primary">
+  	    {% trans 'Challenge!' %}
+  	  </button>
+  	{% endbuttons %}
+  </form>
 {% endblock %}

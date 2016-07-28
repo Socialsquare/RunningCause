@@ -74,7 +74,7 @@ def challenge_runner(request, person_id):
                 'username': runner.username
             }
             messages.info(request, msg)
-            return redirect('profile:user_page', user_id=runner.id)
+            return redirect('profile:overview', user_id=runner.id)
 
     context = {
         'runner': runner,
@@ -124,7 +124,7 @@ def invite_sponsor_to_challenge(request, person_id=None):
             messages.info(request, _("You have send invitation"
                                      " to %(username)s to challenge you.") %\
                           dict(username=challenge_req.sponsor.username))
-            return redirect('profile:user_page', user_id=sponsor.id)
+            return redirect('profile:overview', user_id=sponsor.id)
     context = {
         'person': sponsor,
         'form': form
@@ -251,45 +251,6 @@ class FeedbackChallenge(View):
         }
         return render(request, self.template_name, ctx)
 feedback_challenge = login_required(FeedbackChallenge.as_view())
-
-
-'''
-@login_required
-def preview_challenge(request, token=None):
-    """
-    Runner can either accept or reject the challenge.
-    """
-    challenge_req = ChallengeRequest.objects.get(token=token)
-    if challenge_req.runner != request.user or\
-            challenge_req.status != ChallengeRequest.NEW:
-        return HttpResponseForbidden()
-
-    proposed = json.loads(challenge_req.proposed_challenge)
-    form = ChallengeChallengePreviewForm(proposed)
-    if request.method == 'POST':
-        if request.POST.get('submit') == 'accept':
-            challenge_req.status = ChallengeRequest.ACCEPTED
-            email_msg = _("Runner %(username)s has accepted your challenge") %\
-                dict(username=challenge_req.runner.username)
-            msg = _("You have accepted a challenge.")
-            Challenge.objects.create_for_challenge(challenge_req)
-        else:  # request.POST.get('submit') == 'reject':
-            challenge_req.status = ChallengeRequest.REJECTED
-            email_msg = _("Runner %(username)s has rejected your challenge") %\
-                dict(username=challenge_req.runner.username)
-            msg = _("You have rejected a challenge.")
-        challenge_req.save()
-        messages.info(request, msg)
-        send_mail(email_msg, email_msg, settings.DEFAULT_FROM_EMAIL,
-                  [challenge_req.sponsor.email, ])
-        return redirect('profile:my_page')
-
-    context = {
-        'challenge_req': challenge_req,
-        'form': form
-    }
-    return render(request, 'challenges/preview_challenge.html', context)
-'''
 
 
 @login_required

@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load humanize %}
 {% load staticfiles %}
 {% load i18n %}
@@ -43,34 +43,29 @@
     </script>
 {% endblock %}
 
-{% block head %}
-	{% blocktrans with username=sponsor.username %}
-	Invite {{username}} to sponsor you
-	{% endblocktrans %}
-{% endblock %}
-
 {% block body %}
-    <p>
-        {% blocktrans with sponsor=sponsor.username %}
-        You can fill out the form below to invite {{sponsor}} to sponsor you.
-        Feel free to leave whatever you want blank. {{sponsor}} will get
-        an email with your request for a sponsorship, with the values you have
-        provided. {{sponsor}} can then choose to sponsor you immediately,
-        change or add some values and then sponsor you, or decline entirely.
-        {% endblocktrans %}
-    </p>
+  <h1>
+    {% blocktrans with username=sponsor.username %}
+    Invite {{username}} to sponsor you
+    {% endblocktrans %}
+  </h1>
+  <p>
+      {% blocktrans with sponsor=sponsor.username %}
+      You can fill out the form below to invite {{sponsor}} to sponsor you.
+      Feel free to leave whatever you want blank. {{sponsor}} will get
+      an email with your request for a sponsorship, with the values you have
+      provided. {{sponsor}} can then choose to sponsor you immediately,
+      change or add some values and then sponsor you, or decline entirely.
+      {% endblocktrans %}
+  </p>
 
-    <form
-        method="post"
-        action="{% url 'sponsorship:request_sponsorship' sponsor.id %}">
-
+  <form action="{% url 'sponsorship:request_sponsorship' sponsor.id %}" method="post">
     {% csrf_token %}
-	{% bootstrap_form form %}
-	{% buttons %}
-	  <button type="submit" class="btn btn-primary">
-	    {% bootstrap_icon "send" %} {% trans 'Send invitation' %}
-	  </button>
-	{% endbuttons %}
-
-    </form>
+  	{% bootstrap_form form %}
+  	{% buttons %}
+  	  <button type="submit" class="btn btn-primary">
+  	    {% bootstrap_icon "send" %} {% trans 'Send invitation' %}
+  	  </button>
+  	{% endbuttons %}
+  </form>
 {% endblock %}

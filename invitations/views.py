@@ -28,7 +28,7 @@ def invite_via_email(request):
         if existing_user:
             msg = _('The person you are inviting already has a profile')
             messages.warning(request, msg)
-            return redirect('profile:user_page', user_id=existing_user.id)
+            return redirect('profile:overview', user_id=existing_user.id)
 
         invitations = EmailInvitation.objects.filter(email=email,
                                                      created_by=request.user)

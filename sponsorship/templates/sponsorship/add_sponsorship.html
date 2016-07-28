@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load bootstrap3 %}
@@ -45,33 +45,29 @@ Sponsor Runner {{runner}}
     </script>
 {% endblock %}
 
-{% block head %}
-{% trans "Create a new Sponsorship" %}
-{% endblock %}
-
 {% block body %}
-    <p>
-        {% blocktrans with username=runner.username %}
-            Fill out these fields down here to sponsor {{ username }}.
-            Between the dates in start date and end date, any
-            time {{ username }} runs, you will agree to donate the
-            number of dkk in the "rate" field to Masanga Hospital.
-            If you're worried that your runner will run too much,
-            don't worry too much! You won't be charged more than
-            the number you put in the "max amount" field, no matter
-            how much they run.
-        {% endblocktrans %}
-    </p>
+  <h1>{% trans "Create a new Sponsorship" %}</h1>
+  <p>
+    {% blocktrans with username=runner.username %}
+    Fill out these fields down here to sponsor {{ username }}.
+    Between the dates in start date and end date, any
+    time {{ username }} runs, you will agree to donate the
+    number of dkk in the "rate" field to Masanga Hospital.
+    If you're worried that your runner will run too much,
+    don't worry too much! You won't be charged more than
+    the number you put in the "max amount" field, no matter
+    how much they run.
+    {% endblocktrans %}
+  </p>
 
-<form method="post"
-	action="{% url 'sponsorship:add_sponsorship' runner_id=runner.id %}">
-    {% csrf_token %}
-	{% bootstrap_form form %}
-	{% buttons %}
-	  <button type="submit" class="btn btn-primary">
-	    {% trans 'Create sponsorship' %}
-	  </button>
-	{% endbuttons %}
-</form>
-
+  <form method="post"
+  	action="{% url 'sponsorship:add_sponsorship' runner_id=runner.id %}">
+      {% csrf_token %}
+  	{% bootstrap_form form %}
+  	{% buttons %}
+  	  <button type="submit" class="btn btn-primary">
+  	    {% trans 'Create sponsorship' %}
+  	  </button>
+  	{% endbuttons %}
+  </form>
 {% endblock %}

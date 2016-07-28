@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 15:03+0200\n"
-"PO-Revision-Date: 2016-07-28 15:03+0100\n"
+"POT-Creation-Date: 2016-07-28 15:31+0200\n"
+"PO-Revision-Date: 2016-07-28 15:31+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -463,20 +463,27 @@ msgstr "Udfordr & sponsorér"
 msgid "You have to make your page public before you can share it."
 msgstr "Du bliver nødt til at gøre din profil offentlig før du kan dele den."
 
-#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:6
-#: profile/templates/profile/users_list.html:40
-msgid "My page"
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:7
+msgid "My Page"
 msgstr "Min side"
 
-#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:12
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:9
+#: tools/templates/tools/overview.html:5 tools/templates/tools/overview.html:7
+msgid "Overview"
+msgstr "Overblik"
+
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:16
+#: profile/templates/profile/overview.html:16
 msgid "Runs"
 msgstr "Løb"
 
-#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:18
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:22
+#: profile/templates/profile/overview.html:41
 msgid "Money Raised"
 msgstr "Penge optjent"
 
-#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:24
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:28
+#: profile/templates/profile/overview.html:76
 msgid "Donations"
 msgstr "Donationer"
 
@@ -668,30 +675,28 @@ msgstr "Bekræft eller afvis"
 msgid "Challenge runner"
 msgstr "Udfordr løber"
 
-#: challenges/templates/challenges/challenge_runner.html:28
+#: challenges/templates/challenges/challenge_runner.html:27
 #, python-format
 msgid ""
 "\n"
-"\t\tChallenge %(username)s.\n"
-"\t\t"
+"    Challenge %(username)s\n"
+"    "
 msgstr ""
 "\n"
-"Udfordr %(username)s."
+"Udfordr %(username)s"
 
-#: challenges/templates/challenges/challenge_runner.html:40
+#: challenges/templates/challenges/challenge_runner.html:32
 #, python-format
 msgid ""
 "\n"
-"        Fill in these fields to challenge %(username)s.\n"
-"        This works like a bet, if he/she completes\n"
-"         whatever you specify the by the time and date you specified,\n"
-"         then you agree to pay the amount listed in the amount field, in "
-"dkk.\n"
-"         Worried he/she will cheat?\n"
-"         No need to fret! At the end of the time period, you're the only "
-"one\n"
-"         who gets to make the call about whether or not you pay.\n"
-"        "
+"      Fill in these fields to challenge %(username)s.\n"
+"      This works like a bet, if he/she completes\n"
+"       whatever you specify the by the time and date you specified,\n"
+"       then you agree to pay the amount listed in the amount field, in dkk.\n"
+"       Worried he/she will cheat?\n"
+"       No need to fret! At the end of the time period, you're the only one\n"
+"       who gets to make the call about whether or not you pay.\n"
+"      "
 msgstr ""
 "\n"
 "        Udfyld disse felter for at udfordre %(username)s.\n"
@@ -704,8 +709,8 @@ msgstr ""
 "eneste \n"
 "         der får lov til at afgøre om du skal betale eller ej."
 
-#: challenges/templates/challenges/challenge_runner.html:61
-#: challenges/templates/challenges/preview_invitation_challenge.html:27
+#: challenges/templates/challenges/challenge_runner.html:48
+#: challenges/templates/challenges/preview_invitation_challenge.html:23
 #: profile/templates/profile/users_list.html:37
 msgid "Challenge!"
 msgstr "Udfordr!"
@@ -909,72 +914,72 @@ msgstr "Klik for at justere, acceptere eller afvise invitationen"
 msgid "Update your challenge"
 msgstr "Opdatér din udfordring"
 
-#: challenges/templates/challenges/feedback_challenge.html:14
+#: challenges/templates/challenges/feedback_challenge.html:13
 msgid ""
 "\n"
-"\tUpdate the challenge!\n"
-"\t"
+"\t\tUpdate the challenge!\n"
+"\t\t"
 msgstr ""
 "\n"
-"Opdater udfordringen"
+"Opdater udfordringen!"
 
-#: challenges/templates/challenges/feedback_challenge.html:30
+#: challenges/templates/challenges/feedback_challenge.html:23
 msgid ""
 "\n"
-"\tHere you can mark your challenge as completed and\n"
-"\tleave a feedback message to your sponsor.\n"
-"\t"
+"\t\tHere you can mark your challenge as completed and\n"
+"\t\tleave a feedback message to your sponsor.\n"
+"\t\t"
 msgstr ""
 "\n"
 "Her kan du markere en udfordring som gennemført og efterlade en "
 "tilbagemelding til din sponsor."
 
-#: challenges/templates/challenges/feedback_challenge.html:37
+#: challenges/templates/challenges/feedback_challenge.html:32
 #, python-format
 msgid ""
 "\n"
-"\tHere you can confirm or decline the challenge completed\n"
-"\tby %(runner_username)s.\n"
-"\t"
+"\t\tHere you can confirm or decline the challenge completed\n"
+"\t\tby %(runner_username)s.\n"
+"\t\t"
 msgstr ""
 "\n"
 "Her kan du bekræfte eller afvise at udfordringen er gennemført af "
 "%(runner_username)s."
 
-#: challenges/templates/challenges/feedback_challenge.html:45
+#: challenges/templates/challenges/feedback_challenge.html:41
 #, python-format
 msgid ""
 "\n"
-"        %(runner)s has left a message:\n"
-"    "
+"\t        %(runner)s has left a message:\n"
+"\t    "
 msgstr ""
 "\n"
 "%(runner)s har skrevet en besked:"
 
-#: challenges/templates/challenges/feedback_challenge.html:56
+#: challenges/templates/challenges/feedback_challenge.html:53
 #, python-format
 msgid ""
 "\n"
-"            You can leave a feedback message to %(runner)s.\n"
-"        "
+"\t        You can leave a feedback message to %(runner)s.\n"
+"\t        "
 msgstr ""
 "\n"
 "Du kan efterlade en tilbagemelding til %(runner)s."
 
-#: challenges/templates/challenges/feedback_challenge.html:72
+#: challenges/templates/challenges/feedback_challenge.html:68
 msgid "I did it!"
 msgstr "Jeg gjorde det!"
 
-#: challenges/templates/challenges/feedback_challenge.html:78
+#: challenges/templates/challenges/feedback_challenge.html:74
 msgid "I did not make it"
 msgstr "Jeg klarede den ikke"
 
-#: challenges/templates/challenges/feedback_challenge.html:86
+#: challenges/templates/challenges/feedback_challenge.html:82
 #, python-format
 msgid "Confirm and pay %(amount)s DKK"
 msgstr "Bekræft og betal %(amount)s kr"
 
-#: challenges/templates/challenges/feedback_challenge.html:89
+#: challenges/templates/challenges/feedback_challenge.html:85
 msgid "Decline"
 msgstr "Afvis"
 
@@ -982,30 +987,30 @@ msgstr "Afvis"
 msgid "Request challenge"
 msgstr "Efterspørg udfordring"
 
-#: challenges/templates/challenges/invite_sponsor_to_challenge.html:28
+#: challenges/templates/challenges/invite_sponsor_to_challenge.html:27
 #, python-format
 msgid ""
 "\n"
-"\t\tInvite %(username)s to challenge you.\n"
+"\t\tInvite %(username)s to challenge you\n"
 "\t\t"
 msgstr ""
 "\n"
 "Invitér %(username)s til at udfordre dig."
 
-#: challenges/templates/challenges/invite_sponsor_to_challenge.html:40
+#: challenges/templates/challenges/invite_sponsor_to_challenge.html:32
 #, python-format
 msgid ""
 "\n"
-"        Fill out these fields to invite %(username)s to challenge\n"
-"        you to a challenge. Feel free to leave whatever you want blank. "
+"      Fill out these fields to invite %(username)s to challenge\n"
+"      you to a challenge. Feel free to leave whatever you want blank. "
 "%(username)s\n"
-"        will get an email notifying him/her that you requested a challenge,\n"
-"        and the values you do fill out will be displayed to him/her. The "
+"      will get an email notifying him/her that you requested a challenge,\n"
+"      and the values you do fill out will be displayed to him/her. The "
 "sponsor can then\n"
-"        choose to challenge you immediately, change or add some values and "
+"      choose to challenge you immediately, change or add some values and "
 "then\n"
-"        challenge you, or decline entirely.\n"
-"        "
+"      challenge you, or decline entirely.\n"
+"      "
 msgstr ""
 "\n"
 "Udfyld disse felter for at invitere %(username)s til at udfordre dig. Du kan "
@@ -1015,46 +1020,29 @@ msgstr ""
 "dig med det samme, ændre/tilføje nogle værdier og så udfordre dig eller "
 "afvise helt at udfordre dig."
 
-#: challenges/templates/challenges/invite_sponsor_to_challenge.html:59
-#: sponsorship/templates/sponsorship/request_sponsorship.html:71
+#: challenges/templates/challenges/invite_sponsor_to_challenge.html:47
+#: sponsorship/templates/sponsorship/request_sponsorship.html:67
 msgid "Send invitation"
 msgstr "Send invitation"
 
-#: challenges/templates/challenges/preview_challenge.html:8
 #: challenges/templates/challenges/preview_invitation_challenge.html:8
 msgid "Do you accept the challenge?"
 msgstr "Accepterer du udfordringen?"
 
-#: challenges/templates/challenges/preview_challenge.html:14
+#: challenges/templates/challenges/preview_invitation_challenge.html:13
 #, python-format
 msgid ""
 "\n"
-"\t\t%(username)s has challenge you. Do you accept the challenge?\n"
-"\t\t"
-msgstr ""
-"\n"
-"%(username)s har udfordret dig. Accepterer du udfordringen?"
-
-#: challenges/templates/challenges/preview_challenge.html:30
-msgid "Accept"
-msgstr "Acceptér"
-
-#: challenges/templates/challenges/preview_challenge.html:33
-#: challenges/templates/challenges/preview_invitation_challenge.html:30
-msgid "Reject"
-msgstr "Afvis"
-
-#: challenges/templates/challenges/preview_invitation_challenge.html:12
-#, python-format
-msgid ""
-"\n"
-"    You have been invited to challenge %(username)s -\n"
-"    do you want to create the challenge?\n"
+"    You have been invited to challenge %(username)s - would you like to do "
+"that?\n"
 "    "
 msgstr ""
 "\n"
-"Du er blevet inviteret til at udfordre %(username)s - ønsker du at oprette "
-"udfordringen?"
+"Du er blevet inviteret til at udfordre %(username)s - ønsker du at gøre det?"
+
+#: challenges/templates/challenges/preview_invitation_challenge.html:26
+msgid "Reject"
+msgstr "Afvis"
 
 #: challenges/views.py:60
 #, python-format
@@ -1120,7 +1108,7 @@ msgstr "Du har afvist at betale for udfordringen."
 msgid "%(sponsor)s rejected to pay!"
 msgstr "%(sponsor)s har afvist at betale!"
 
-#: challenges/views.py:302
+#: challenges/views.py:263
 msgid ""
 "You have been logged out, because you visited an invitation to a challenge "
 "that was sent to another user."
@@ -1128,22 +1116,22 @@ msgstr ""
 "Du er blevet logget ud, fordi du har besøgt en invitation til en udfordring "
 "der var sendt til en anden bruger."
 
-#: challenges/views.py:324
+#: challenges/views.py:285
 #, python-format
 msgid "%(sponsor)s has challenged you!"
 msgstr "%(sponsor)s har udfordret dig!"
 
-#: challenges/views.py:327
+#: challenges/views.py:288
 #, python-format
 msgid "You have created a challenge for %(username)s."
 msgstr "Du har nu udfordret %(username)s."
 
-#: challenges/views.py:339
+#: challenges/views.py:300
 #, python-format
 msgid "%(sponsor)s rejected to challenge you."
 msgstr "%(sponsor)s har afvist at udfordre dig."
 
-#: challenges/views.py:343
+#: challenges/views.py:304
 #, python-format
 msgid "You have rejected to challenge %(runner)s."
 msgstr "Du har afvist at udfordre %(runner)s."
@@ -1412,6 +1400,101 @@ msgstr "Vi opkræver automatisk hvert kvartal"
 msgid "Register card"
 msgstr "Tilknyt betalingskort"
 
+#: profile/templates/profile/overview.html:20
+#: runs/templates/runs/input_run.html:55
+msgid "Add run"
+msgstr "Tilføj løb"
+
+#: profile/templates/profile/overview.html:23
+msgid "See all your runs"
+msgstr "Se alle dine løb"
+
+#: profile/templates/profile/overview.html:28
+#, python-format
+msgid ""
+"\n"
+"          See all runs by %(username)s\n"
+"        "
+msgstr ""
+"\n"
+"Se alle %(username)s's løb"
+
+#: profile/templates/profile/overview.html:46
+msgid ""
+"\n"
+"            Request sponsorship\n"
+"          "
+msgstr ""
+"\n"
+"Spørg om et sponsorat"
+
+#: profile/templates/profile/overview.html:52
+msgid ""
+"\n"
+"            Request challenge\n"
+"          "
+msgstr ""
+"\n"
+"Spørg om en udfordring"
+
+#: profile/templates/profile/overview.html:59
+#, python-format
+msgid ""
+"\n"
+"            Sponsor %(username)s\n"
+"          "
+msgstr ""
+"\n"
+"Sponsér %(username)s"
+
+#: profile/templates/profile/overview.html:65
+#, python-format
+msgid ""
+"\n"
+"            Challenge %(username)s\n"
+"          "
+msgstr ""
+"\n"
+"Udfordr %(username)s"
+
+#: profile/templates/profile/overview.html:81
+msgid ""
+"\n"
+"            Sponsor a friend\n"
+"          "
+msgstr ""
+"\n"
+"Sponsér en ven"
+
+#: profile/templates/profile/overview.html:87
+msgid ""
+"\n"
+"            Challenge a friend\n"
+"          "
+msgstr ""
+"\n"
+"Udfordr en ven"
+
+#: profile/templates/profile/overview.html:94
+#, python-format
+msgid ""
+"\n"
+"            Request sponsorship from %(username)s\n"
+"          "
+msgstr ""
+"\n"
+"Spørg om et sponsorat fra %(username)s"
+
+#: profile/templates/profile/overview.html:100
+#, python-format
+msgid ""
+"\n"
+"            Invite %(username)s to challenge you\n"
+"          "
+msgstr ""
+"\n"
+"Invitér %(username)s til at udfordre dig"
+
 #: profile/templates/profile/signup_or_login.html:15
 #, python-format
 msgid ""
@@ -1627,13 +1710,13 @@ msgstr "Udfordringen"
 #: profile/templates/profile/user_raised.html:153
 msgid ""
 "\n"
-"              Request Challenge\n"
+"              Request challenge\n"
 "            "
 msgstr ""
 "\n"
 "Spørg om en udfordring"
 
-#: profile/templates/profile/user_raised.html:161
+#: profile/templates/profile/user_raised.html:160
 #, python-format
 msgid ""
 "\n"
@@ -1837,6 +1920,10 @@ msgstr "Inviter en løber eller sponsor til at være med!"
 msgid "Sponsor!"
 msgstr "Sponsér!"
 
+#: profile/templates/profile/users_list.html:40
+msgid "My page"
+msgstr "Min side"
+
 #: profile/templates/profile/users_list.html:50
 msgid "Huh, that's weird. We can't find any runners. Check back later."
 msgstr ""
@@ -1964,10 +2051,6 @@ msgstr ""
 "har løbet til deres regning for deres sponsorater, og de vil blive opkrævet "
 "i slutningen af hvert kvartal."
 
-#: runs/templates/runs/input_run.html:55
-msgid "Add run"
-msgstr "Tilføj løb"
-
 #: runs/templates/runs/run_edit.html:7
 msgid ""
 "\n"
@@ -2079,19 +2162,19 @@ msgstr "Afslut sponsorat"
 msgid "Create a new Sponsorship"
 msgstr "Opret nyt sponsorat"
 
-#: sponsorship/templates/sponsorship/add_sponsorship.html:54
+#: sponsorship/templates/sponsorship/add_sponsorship.html:51
 #, python-format
 msgid ""
 "\n"
-"            Fill out these fields down here to sponsor %(username)s.\n"
-"            Between the dates in start date and end date, any\n"
-"            time %(username)s runs, you will agree to donate the\n"
-"            number of dkk in the \"rate\" field to Masanga Hospital.\n"
-"            If you're worried that your runner will run too much,\n"
-"            don't worry too much! You won't be charged more than\n"
-"            the number you put in the \"max amount\" field, no matter\n"
-"            how much they run.\n"
-"        "
+"    Fill out these fields down here to sponsor %(username)s.\n"
+"    Between the dates in start date and end date, any\n"
+"    time %(username)s runs, you will agree to donate the\n"
+"    number of dkk in the \"rate\" field to Masanga Hospital.\n"
+"    If you're worried that your runner will run too much,\n"
+"    don't worry too much! You won't be charged more than\n"
+"    the number you put in the \"max amount\" field, no matter\n"
+"    how much they run.\n"
+"    "
 msgstr ""
 "\n"
 "Udfyld disse felter for at sponsorere %(username)s. Imellem start- og "
@@ -2101,7 +2184,7 @@ msgstr ""
 "bliver opkrævet mere end beløbet der står i \"maksimalt beløb\" feltet, "
 "uanset hvor meget %(username)s løber."
 
-#: sponsorship/templates/sponsorship/add_sponsorship.html:72
+#: sponsorship/templates/sponsorship/add_sponsorship.html:69
 msgid "Create sponsorship"
 msgstr "Opret sponsorat"
 
@@ -2181,30 +2264,28 @@ msgstr "Klik for at se invitationen"
 msgid "Request sponsorship"
 msgstr "Efterspørg sponsorat"
 
-#: sponsorship/templates/sponsorship/request_sponsorship.html:47
+#: sponsorship/templates/sponsorship/request_sponsorship.html:48
 #, python-format
 msgid ""
 "\n"
-"\tInvite %(username)s to sponsor you\n"
-"\t"
+"    Invite %(username)s to sponsor you\n"
+"    "
 msgstr ""
 "\n"
 "Invitér %(username)s til at sponsorere dig\n"
 "\t"
 
-#: sponsorship/templates/sponsorship/request_sponsorship.html:54
+#: sponsorship/templates/sponsorship/request_sponsorship.html:53
 #, python-format
 msgid ""
 "\n"
-"        You can fill out the form below to invite %(sponsor)s to sponsor "
-"you.\n"
-"        Feel free to leave whatever you want blank. %(sponsor)s will get\n"
-"        an email with your request for a sponsorship, with the values you "
+"      You can fill out the form below to invite %(sponsor)s to sponsor you.\n"
+"      Feel free to leave whatever you want blank. %(sponsor)s will get\n"
+"      an email with your request for a sponsorship, with the values you "
 "have\n"
-"        provided. %(sponsor)s can then choose to sponsor you immediately,\n"
-"        change or add some values and then sponsor you, or decline "
-"entirely.\n"
-"        "
+"      provided. %(sponsor)s can then choose to sponsor you immediately,\n"
+"      change or add some values and then sponsor you, or decline entirely.\n"
+"      "
 msgstr ""
 "\n"
 "Du kan udfylde formularen nedenunder for at invitere %(sponsor)s til at "
@@ -2242,10 +2323,6 @@ msgstr "Vil du sponsorere %(runner)s?"
 #: sponsorship/views.py:123
 msgid "We have sent your request to sponsor."
 msgstr "Vi har sendt din forespørgsel til sponsoren."
-
-#: tools/templates/tools/overview.html:5 tools/templates/tools/overview.html:7
-msgid "Overview"
-msgstr "Overblik"
 
 #: tools/templates/tools/overview.html:12
 msgid "All sponsorships"
@@ -2439,6 +2516,17 @@ msgstr "Der skete en fejl da %s skulle opkræves!"
 #: tools/views.py:81
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid ""
+#~ "\n"
+#~ "\t\t%(username)s has challenge you. Do you accept the challenge?\n"
+#~ "\t\t"
+#~ msgstr ""
+#~ "\n"
+#~ "%(username)s har udfordret dig. Accepterer du udfordringen?"
+
+#~ msgid "Accept"
+#~ msgstr "Acceptér"
 
 #~ msgid ""
 #~ "\n"

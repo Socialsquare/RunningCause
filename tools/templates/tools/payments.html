@@ -21,7 +21,7 @@
     </thead>
     {% for user in all_users %}
       <tr>
-          <td><a href="{% url 'profile:user_page' user.id %}">{{ user.username }}</a></td>
+          <td><a href="{% url 'profile:overview' user.id %}">{{ user.username }}</a></td>
           <td>{{ user.email }}</td>
           <td>{{ user.amount_earned|floatformat:2 }}</td>
           <td>{{ user.amount_donated|floatformat:2 }}</td>

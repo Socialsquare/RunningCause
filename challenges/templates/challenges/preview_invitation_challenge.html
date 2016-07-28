@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load humanize %}
 {% load i18n %}
 {% load staticfiles %}
@@ -8,19 +8,15 @@
 {% trans "Do you accept the challenge?" %}
 {% endblock %}
 
-{% block head %}
-    {% blocktrans with username=challenge_request.runner.username %}
-    You have been invited to challenge {{username}} -
-    do you want to create the challenge?
-    {% endblocktrans %}
-{% endblock %}
-
 {% block body %}
+  <h1>
+    {% blocktrans with username=challenge_request.runner.username %}
+    You have been invited to challenge {{username}} - would you like to do that?
+    {% endblocktrans %}
+  </h1>
 
-<div class="row">
-	<div class="col-md-7  col-md-offset-1">
 	<form action="{% url 'challenges:preview_invitation_challenge' token=challenge_request.token %}" method="post">
-	    {% csrf_token %}
+	  {% csrf_token %}
 		{% bootstrap_form form layout="form-horizontal" %}
 		{% buttons %}
 		  <button type="submit" name="submit" value="create" class="btn btn-success">
@@ -31,6 +27,4 @@
 		  </button>
 		{% endbuttons %}
 	</form>
-	</div>
-	</div>
 {% endblock %}
