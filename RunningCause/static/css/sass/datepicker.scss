@@ -1,0 +1,24 @@
+.datepicker {
+  text-align: center !important;
+  padding: $spacer / 2;
+
+  .table-condensed {
+    width: 100%;
+    font-size: 90%;
+  }
+
+  th {
+    text-align: center;
+    padding: $spacer / 4;
+  }
+
+  tbody td, thead tr:first-of-type th {
+    cursor: pointer;
+  }
+
+  .month, .year {
+    &:not(:first-child) {
+      padding-left: $spacer / 4;
+    }
+  }
+}

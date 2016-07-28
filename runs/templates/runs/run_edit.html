@@ -14,11 +14,19 @@ Edit Run
     <script type=text/javascript>
     $(document).ready(function() {
         $('#start_datepicker')
-        	.val('{{form.instance.start_date|date:"Y-m-d"}}')
-        	.datepicker({format:'yyyy-mm-dd'});
+          .val('{{form.instance.start_date|date:"Y-m-d"}}')
+          .datepicker({
+            format:'yyyy-mm-dd',
+            weekStart: 1,
+            autoclose: true
+          });
         $('#end_datepicker')
-        	.val('{{form.instance.end_date|date:"Y-m-d"}}')
-        	.datepicker({format:'yyyy-mm-dd'});
+          .val('{{form.instance.end_date|date:"Y-m-d"}}')
+          .datepicker({
+            format:'yyyy-mm-dd',
+            weekStart: 1,
+            autoclose: true
+          });
     });
     </script>
 
