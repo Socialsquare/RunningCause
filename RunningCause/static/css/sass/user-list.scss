@@ -2,6 +2,10 @@
   .card-img-top {
     width: 100%;
   }
+  .card-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   a.person {
     color: $body-color;
     text-decoration: none;
