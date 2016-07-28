@@ -31,11 +31,17 @@
     <div class="row p-y-2">
       <div class="col-md-6">
         <h2>{% trans "Raised" %}</h2>
-        <div>Til kræn</div>
+        <div class="card raised">
+          <div class="card-block">
+            {#% blocktrans %}{{ raised_total }#}
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
         <h2>{% trans "Run" %}</h2>
-        <div>Til kræn</div>
+        <div class="card run">
+          <div class="card-block"></div>
+        </div>
       </div>
     </div>
     <div class="row p-y-2">
