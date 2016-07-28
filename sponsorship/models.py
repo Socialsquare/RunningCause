@@ -79,14 +79,33 @@ class Sponsorship(models.Model):
         and returns either the sum of all relevant runs, or max_amount,
         whichever is less.
         """
-        filters = {
-            'start_date__gte': self.start_date
-        }
-        if self.end_date:
+        return self.total_amount_in_interval()
+
+    def total_amount_in_interval(self, start_date=None, end_date=None):
+        """
+        Calculates how much money has been raised under the current
+        sponsorship. Finds all relevant runs (within a start and end date),
+        and returns either the sum of all relevant runs, or max_amount,
+        whichever is less.
+        """
+        filters = {}
+
+        if self.start_date and start_date:
+            filters['start_date__gte'] = max(self.start_date, start_date)
+        elif self.start_date:
+            filters['start_date__gte'] = self.start_date
+
+        if self.end_date and end_date:
+            filters['end_date__lte'] = min(self.end_date, end_date)
+        elif self.end_date:
             filters['end_date__lte'] = self.end_date
+        elif end_date:
+            filters['end_date__lte'] = end_date
+
         distance = self.runner.runs.filter(**filters) \
             .aggregate(a_sum=Sum('distance'))['a_sum'] or 0
         amount = self.rate * Decimal(distance)
+
         if self.max_amount:
             return min(amount, self.max_amount)
         else:

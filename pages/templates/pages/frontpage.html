@@ -1,6 +1,7 @@
 {% extends "masanga_base.html" %}
 {% load i18n %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <div class="row">
@@ -33,14 +34,39 @@
         <h2>{% trans "Raised" %}</h2>
         <div class="card raised">
           <div class="card-block">
-            {#% blocktrans %}{{ raised_total }#}
+            <h2>
+              {% with total_raised=total.raised|intcomma %}
+                {% blocktrans %}{{total_raised}} DKK in total{% endblocktrans %}
+              {% endwith %}
+            </h2>
+            <p class="card-text">
+              {% with total_outstanding=total.outstanding|intcomma %}
+                {% blocktrans %}{{total_outstanding}} DKK outstanding{% endblocktrans %}
+              {% endwith %}
+            </p>
+            <p class="card-text">
+              {% with previous_12_months_raised=previous_12_months.raised|intcomma %}
+                {% blocktrans %}{{previous_12_months_raised}} DKK previous 12 months{% endblocktrans %}
+              {% endwith %}
+            </p>
+            <p class="card-text">
+              {% with previous_3_months_raised=previous_3_months.raised|intcomma %}
+                {% blocktrans %}{{previous_3_months_raised}} DKK previous 3 months{% endblocktrans %}
+              {% endwith %}
+            </p>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <h2>{% trans "Run" %}</h2>
-        <div class="card run">
-          <div class="card-block"></div>
+        <div class="card distance">
+          <div class="card-block">
+            <h2>
+              {% with total_distance=total_distance|intcomma %}
+                {% blocktrans %}{{total_distance}} KM{% endblocktrans %}
+              {% endwith %}
+            </h2>
+          </div>
         </div>
       </div>
     </div>
