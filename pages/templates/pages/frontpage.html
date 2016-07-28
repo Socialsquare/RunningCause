@@ -7,56 +7,48 @@
   <div class="col-lg-10 col-lg-offset-1">
     <div class="container-escape">
       <div class="header header-frontpage text-xs-center m-b-2">
-        <h1>{% trans "We are running money in to" %}</h1>
+        <h1>{% trans "We raise money for Masanga Hospital by running" %}</h1>
         <div class="header__call-to-action p-b-2">
-          <a href="#" class="btn btn-primary btn-lg">{% trans "Sign up" %}</a>
-          <a href="#" class="btn btn-primary btn-lg">{% trans "Register run" %}</a>
-          <a href="#" class="btn btn-primary btn-lg">{% trans "Challenge and sponsor" %}</a>
+          {% include "includes/_fp_call_to_action.html" %}
         </div>
       </div>
     </div>
     <div class="row p-y-2">
       <div class="col-md-6">
-        <h2>{% trans "The concept" %}</h2>
-        <p>
-          Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.
-          <br /><br />
-          The idea behind Masanga Runners is that many runners and sponsors together can create a huge difference for the hospital in Masanga by running and donating small amounts.
-          <br /><br />
-          ”I am a Masanga Runner because it’s a form of motivation to get outside. As a Masanga Runner I know that it’s not just me getting something out of my runs,” says Søren Bo Steendahl, who has been a Masanga Runner since Fall 2014.
-        </p>
+        {% blocktrans %}<h2>Why Masanga?</h2>
+        <p>Being Masanga Runner is not only an easy solution to tie those shoe laces on your running shoes. It is also an easy and healthy way to support the Masanga hospital. When you are a Masanga Runner you earn money for the Masanga Hospital in Sierra Leone. In this way you are helping supporting projects like education and healthcare at and surrounding the hospital.
+        </p><p>To earn money you have to get some sponsors. They chose to donate a certain amount of money per kilometer you run. This actually means that you and your sponsor both are helping the project. And like one of our Masanga Runners sums up:
+        </p><p>“I am Masanga Runnner because it sort of motivates me for running the extra mile. In this way I know that I am not the only one benefitting from me running.” – Søren Bo Steendahl, who has been a Masanga Runner since 2014.</p>{% endblocktrans %}
       </div>
       <div class="col-md-6">
-        <h2>Sådan gør du</h2>
-        <p>
-          As a runner, you find one or more sponsors, who support Masanga with a small amount for each kilometre you run. Furthermore the sponsor can support Masanga with a bigger amount, for an example by making a challenge, in connection to you achieving one of your running goals.
-    <br /><br />
-          It could be to complete a half marathon or a DHL race. Depending on how far you run throughout the year, and if you reach your goals, your sponsor pays x amount of money, which will go to the Masanga Hospital.
-    <br /><br />
-          On this website, you can create an account and be a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make challenges about your performance on runs – you’re only limited by your imagination!    </p>
+        {% blocktrans %}<h2>This is how you do</h2>
+        <p>If you wish to be a Masanga Runner you need one or more sponsors who are willing to donate a certain amount per kilometer you run. They can also challenge you to complete a 5k run at a time below 25 minutes, as an example, challenge you to make a new personal best at 10k. The sky is the limit.
+        </p><p>When you complete and achieve your goals and challenges, you are not the only winner. The hospital wins too!
+        </p><p>On this web page you can create your own account. Here you can invite your friends to be your sponsor and share your page on social media. That way, you can find sponsors and tell about the hospital project.
+        </p>{% endblocktrans %}
       </div>
     </div>
     <div class="row p-y-2">
       <div class="col-md-6">
-        <h2>Indsamlet</h2>
-        <div class="graphic"></div>
+        <h2>{% trans "Raised" %}</h2>
+        <div>Til kræn</div>
       </div>
       <div class="col-md-6">
-        <h2>Løbet</h2>
-        <div class="graphic"></div>
+        <h2>{% trans "Run" %}</h2>
+        <div>Til kræn</div>
       </div>
     </div>
     <div class="row p-y-2">
-      <div class="col-md-6">
+      <div class="col-xs-12">
         <h2>@masangarunners</h2>
-        <div class="graphic"></div>
+        <ul id="instafeed" class="instagram-feed"></ul>
       </div>
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <h2>#masangarunners</h2>
         <div class="graphic"></div>
-      </div>
+      </div> -->
     </div>
-    <div class="p-y-2">
+    <!-- <div class="p-y-2">
       <h2>What is</h2>
       <p>
         Aenean eu faucibus leo, eget vehicula nulla. Proin accumsan gravida neque vitae lacinia. Phasellus aliquet ornare tellus nec vestibulum.
@@ -64,10 +56,9 @@
       <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Ic99AgpIjQA?rel=0&amp;showinfo=0" allowfullscreen></iframe>
       </div>
-    </div>
+    </div> -->
     <div class="p-y-2 text-xs-center">
-      <button class="btn btn-primary btn-lg">Tilmeld dig</button>
-      <button class="btn btn-primary btn-lg">Dine udfordringer &amp; sponsorater</button>
+      {% include "includes/_fp_call_to_action.html" %}
     </div>
   </div>
 </div>

@@ -7,21 +7,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-07 01:02+0200\n"
-"PO-Revision-Date: 2016-07-07 01:02+0100\n"
+"POT-Creation-Date: 2016-07-28 09:42+0200\n"
+"PO-Revision-Date: 2016-07-28 09:51+0200\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.4\n"
 
-#: RunningCause/settings/base.py:168
+#: RunningCause/settings/base.py:169
 msgid "English"
 msgstr "Engelsk"
 
-#: RunningCause/settings/base.py:169
+#: RunningCause/settings/base.py:170
 msgid "Danish"
 msgstr "Dansk"
 
@@ -217,6 +218,7 @@ msgstr ""
 
 #: RunningCause/templates/account/login.html:25
 #: profile/templates/profile/signup_or_login.html:25
+#: venv/lib/python2.7/site-packages/django/utils/text.py:248
 msgid "or"
 msgstr "eller"
 
@@ -446,6 +448,18 @@ msgstr ""
 "<strong>Vær opmærksom:</strong> du kan stadigvæk <a href=\"%(email_url)s"
 "\">ændre din e-mail adresse</a>."
 
+#: RunningCause/templates/includes/_fp_call_to_action.html:3
+msgid "Sign up"
+msgstr "Opret bruger"
+
+#: RunningCause/templates/includes/_fp_call_to_action.html:4
+msgid "Register run"
+msgstr "Registrér løb"
+
+#: RunningCause/templates/includes/_fp_call_to_action.html:5
+msgid "Challenge and sponsor"
+msgstr "Udfordr & sponsorér"
+
 #: RunningCause/templates/includes/_share_it_buttons.html:13
 msgid "You have to make your page public before you can share it."
 msgstr "Du bliver nødt til at gøre din profil offentlig før du kan dele den."
@@ -463,23 +477,34 @@ msgstr "Penge optjent"
 msgid "Donations"
 msgstr "Donationer"
 
-#: RunningCause/templates/masanga_base.html:52
+#: RunningCause/templates/masanga_base.html:59
+msgid "MY PAGE"
+msgstr "MIN SIDE"
+
+#: RunningCause/templates/masanga_base.html:64
+#: RunningCause/templates/masanga_base.html:85
 msgid "RUNNERS &amp; SPONSORS"
 msgstr "LØBERE &amp; SPONSORER"
 
-#: RunningCause/templates/masanga_base.html:57
-msgid "WHY JOIN US?"
-msgstr "HVORFOR BLIVE MEDLEM?"
+#: RunningCause/templates/masanga_base.html:69
+msgid "ABOUT"
+msgstr "OM"
 
-#: RunningCause/templates/masanga_base.html:62
+#: RunningCause/templates/masanga_base.html:75
+#: RunningCause/templates/masanga_base.html:95
+msgid "CONTACT"
+msgstr "KONTAKT"
+
+#: RunningCause/templates/masanga_base.html:78
+#: RunningCause/templates/masanga_base.html:90
 msgid "ABOUT MASANGA HOSPITAL"
 msgstr "OM MASANGA HOSPITAL"
 
-#: RunningCause/templates/masanga_base.html:68
+#: RunningCause/templates/masanga_base.html:102
 msgid "OVERVIEW"
 msgstr "OVERBLIK"
 
-#: RunningCause/templates/masanga_base.html:80
+#: RunningCause/templates/masanga_base.html:111
 #, python-format
 msgid ""
 "\n"
@@ -489,19 +514,15 @@ msgstr ""
 "\n"
 "Hej, %(username)s!"
 
-#: RunningCause/templates/masanga_base.html:86
-msgid "MY PAGE"
-msgstr "MIN SIDE"
-
-#: RunningCause/templates/masanga_base.html:87
+#: RunningCause/templates/masanga_base.html:117
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: RunningCause/templates/masanga_base.html:88
+#: RunningCause/templates/masanga_base.html:118
 msgid "Log out"
 msgstr "Log ud"
 
-#: RunningCause/templates/masanga_base.html:94
+#: RunningCause/templates/masanga_base.html:122
 msgid "Log in or create an account"
 msgstr "Log ind eller opret en konto"
 
@@ -678,7 +699,7 @@ msgstr ""
 
 #: challenges/templates/challenges/challenge_runner.html:61
 #: challenges/templates/challenges/preview_invitation_challenge.html:27
-#: profile/templates/profile/users_list.html:29
+#: profile/templates/profile/users_list.html:36
 msgid "Challenge!"
 msgstr "Udfordr!"
 
@@ -1222,6 +1243,80 @@ msgstr "Du har allerede sendt 3 invitationer til %(email)s"
 msgid "You have just sent invitation to %(email)s"
 msgstr "Du har netop sendt en invitation til %(email)s"
 
+#: pages/templates/pages/frontpage.html:10
+msgid "We raise money for Masanga Hospital by running"
+msgstr "Vi løber penge ind til Masanga hospitalet i Sierra Leone"
+
+#: pages/templates/pages/frontpage.html:18
+msgid ""
+"<h2>Why Masanga?</h2>\n"
+"        <p>Being Masanga Runner is not only an easy solution to tie those "
+"shoe laces on your running shoes. It is also an easy and healthy way to "
+"support the Masanga hospital. When you are a Masanga Runner you earn money "
+"for the Masanga Hospital in Sierra Leone. In this way you are helping "
+"supporting projects like education and healthcare at and surrounding the "
+"hospital.\n"
+"        </p><p>To earn money you have to get some sponsors. They chose to "
+"donate a certain amount of money per kilometer you run. This actually means "
+"that you and your sponsor both are helping the project. And like one of our "
+"Masanga Runners sums up:\n"
+"        </p><p>“I am Masanga Runnner because it sort of motivates me for "
+"running the extra mile. In this way I know that I am not the only one "
+"benefitting from me running.” – Søren Bo Steendahl, who has been a Masanga "
+"Runner since 2014.</p>"
+msgstr ""
+"<h2>Ideen bag</h2>\n"
+"        <p>At være Masanga Runner er ikke blot en nem måde at komme i "
+"løbeskoene på. Det er også en nem og sund måde at støtte Masanga-hospitalet. "
+"Som Masanga Runner løber du penge ind til Masanga hospitalet, og på den måde "
+"er du med til at støtte projekter som uddannelse og pleje i og omkring "
+"hospitalet.\n"
+"        </p><p>Du løber penge ind ved at skaffe sponsorerer, som vælger at "
+"donere et beløb per kilometer, du løber. På den måde er du og dine sponsorer "
+"sammen om projektet. Og som én af vores Masanga Runners opsummerer:\n"
+"        </p><p>”Jeg er Masanga Runner, fordi det motiverer mig til at komme "
+"ud og løbe den ekstra kilometer. På den måde ved jeg, at det ikke kun er "
+"mig, der får noget ud af mine løbeture.” – Søren Bo Steendahl, Masanga "
+"Runner siden 2014.</p>"
+
+#: pages/templates/pages/frontpage.html:24
+msgid ""
+"<h2>This is how you do</h2>\n"
+"        <p>If you wish to be a Masanga Runner you need one or more sponsors "
+"who are willing to donate a certain amount per kilometer you run. They can "
+"also challenge you to complete a 5k run at a time below 25 minutes, as an "
+"example, challenge you to make a new personal best at 10k. The sky is the "
+"limit.\n"
+"        </p><p>When you complete and achieve your goals and challenges, you "
+"are not the only winner. The hospital wins too!\n"
+"        </p><p>On this web page you can create your own account. Here you "
+"can invite your friends to be your sponsor and share your page on social "
+"media. That way, you can find sponsors and tell about the hospital project.\n"
+"        </p>"
+msgstr ""
+"<h2> Sådan gør du </h2>\n"
+"        <p>For at være Masanga Runner skal du finde en eller flere "
+"sponsorer, som er villige til at donere et beløb for hver kilometer, du "
+"løber. Dine sponsorer kan også vælge at udfordre dig til at klare "
+"eksempelvis 5 kilometer på under 25 minutter, eller udfordre dig til at "
+"sætte en ny personlig rekord på 10 kilometer. Kun fantasien sætter grænser.\n"
+"        </p><p> Når du gennemfører dine udfordringer, så vinder både du og "
+"din sponsor på, at du kunne klare sponsorens udfordring, og pengene går "
+"direkte til Masanga hospitalet.\n"
+"        </p><p> Her på siden kan du oprette dig som Masanga Runner. Det er "
+"også her, du kan invitere dine venner til at sponsorere dig. Du kan også "
+"dele din side på Facebook, for på den måde at finde sponsorer og fortælle om "
+"hospitals-projektet.\n"
+"        </p>"
+
+#: pages/templates/pages/frontpage.html:33
+msgid "Raised"
+msgstr "Indsamlet"
+
+#: pages/templates/pages/frontpage.html:37
+msgid "Run"
+msgstr "Løbet"
+
 #: pages/templates/pages/why_join_us.html:41
 msgid ""
 "\n"
@@ -1317,13 +1412,18 @@ msgstr ""
 "velkommen til at kontakte os på mail: masangarunners@masanga.dk eller på "
 "telefon +45 29 80 30 73.</p>"
 
-#: profile/forms.py:8
+#: profile/forms.py:11
 msgid "I want my sponsorships to be publicly visible"
 msgstr "Jeg ønsker at mine sponsorater bliver offentligt tilgængelige"
 
-#: profile/forms.py:13
+#: profile/forms.py:16
 msgid "I would like to recieve the Masanga newsletter"
 msgstr "Jeg ønsker at modtage nyhedsbrevet fra Masanga"
+
+#: profile/forms.py:31 profile/models.py:35
+#: venv/lib/python2.7/site-packages/django/db/models/fields/files.py:389
+msgid "Image"
+msgstr "Billede"
 
 #: profile/templates/profile/credit_card_prompt.html:13
 msgid "Register a Credit Card"
@@ -1348,7 +1448,7 @@ msgstr ""
 "vælger at sponsorere.\n"
 
 #: profile/templates/profile/credit_card_prompt.html:27
-#: profile/templates/profile/user_settings.html:42
+#: profile/templates/profile/user_settings.html:74
 msgid "Register your card with Masanga Runners"
 msgstr "Tilknyt dit kort med Masanga Runners"
 
@@ -1561,28 +1661,55 @@ msgstr ""
 "\n"
 "Udfordr %(username)s!"
 
-#: profile/templates/profile/user_settings.html:14
-#: profile/templates/profile/user_settings.html:18
+#: profile/templates/profile/user_settings.html:33
+#: profile/templates/profile/user_settings.html:37
 msgid "Your Settings"
 msgstr "Dine indstillinger"
 
-#: profile/templates/profile/user_settings.html:28
+#: profile/templates/profile/user_settings.html:40
+msgid "Profile image"
+msgstr "Profil image"
+
+#: profile/templates/profile/user_settings.html:42
+msgid ""
+"\n"
+"    To make it easier for others to recognize you, you can upload an\n"
+"    image to your profile.\n"
+"    "
+msgstr ""
+
+#: profile/templates/profile/user_settings.html:57
+msgid "Save"
+msgstr ""
+
+#: profile/templates/profile/user_settings.html:62
 msgid "Pay with your credit card when you sponsor runners"
 msgstr "Betal med dit betalingskort når du sponsorerer løbere"
 
-#: profile/templates/profile/user_settings.html:33
+#: profile/templates/profile/user_settings.html:65
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "              Click the card below to register a credit card with Masanga "
+#| "Runners. \n"
+#| "              If you do this, you won't be charged anything initially. "
+#| "From then on,\n"
+#| "              whenever you agree to pay out a challenge, or a runner "
+#| "you're sponsoring\n"
+#| "              runs, you card will be automatically charged, without "
+#| "having to\n"
+#| "              do anything!\n"
+#| "              "
 msgid ""
 "\n"
-"              Click the card below to register a credit card with Masanga "
-"Runners. \n"
-"              If you do this, you won't be charged anything initially. From "
-"then on,\n"
-"              whenever you agree to pay out a challenge, or a runner you're "
+"      Click the card below to register a credit card with Masanga Runners.\n"
+"      If you do this, you won't be charged anything initially. From then "
+"on,\n"
+"      whenever you agree to pay out a challenge, or a runner you're "
 "sponsoring\n"
-"              runs, you card will be automatically charged, without having "
-"to\n"
-"              do anything!\n"
-"              "
+"      runs, you card will be automatically charged, without having to\n"
+"      do anything!\n"
+"      "
 msgstr ""
 "\n"
 "Klik på kortet herunder for at registere et betalingskort på Masanga "
@@ -1591,36 +1718,51 @@ msgstr ""
 "accepterer at betale en udfordring, eller når en løber du sponsorerer løber, "
 "uden at du behøver at gøre noget!"
 
-#: profile/templates/profile/user_settings.html:46
+#: profile/templates/profile/user_settings.html:78
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "              Click the button below if you want to have Masanga Runners "
+#| "forget your card.\n"
+#| "              "
 msgid ""
 "\n"
-"              Click the button below if you want to have Masanga Runners "
-"forget your card.\n"
-"              "
+"      Click the button below if you want to have Masanga Runners forget your "
+"card.\n"
+"      "
 msgstr ""
 "\n"
 "Klik på knappen nedenunder hvis du ønsker at Masanga Runners glemmer dit "
 "kort."
 
-#: profile/templates/profile/user_settings.html:51
+#: profile/templates/profile/user_settings.html:83
 msgid "Forget my card"
 msgstr "Glem mit kort"
 
-#: profile/templates/profile/user_settings.html:59
+#: profile/templates/profile/user_settings.html:89
 msgid "Automatically track your runs with Runkeeper"
 msgstr "Indlæs automatisk dine løb med RunKeeper"
 
-#: profile/templates/profile/user_settings.html:63
+#: profile/templates/profile/user_settings.html:91
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "            You can connect your Masanga Runners account to your "
+#| "Runkeeper account!\n"
+#| "            Runkeeper is a mobile app that makes it easy to keep track of "
+#| "your runs. \n"
+#| "            If you connect your accounts, your runs will automatically "
+#| "show up on\n"
+#| "            Masanga Runners every day.\n"
+#| "            "
 msgid ""
 "\n"
-"            You can connect your Masanga Runners account to your Runkeeper "
-"account!\n"
-"            Runkeeper is a mobile app that makes it easy to keep track of "
-"your runs. \n"
-"            If you connect your accounts, your runs will automatically show "
-"up on\n"
-"            Masanga Runners every day.\n"
-"            "
+"    You can connect your Masanga Runners account to your Runkeeper account!\n"
+"    Runkeeper is a mobile app that makes it easy to keep track of your "
+"runs.\n"
+"    If you connect your accounts, your runs will automatically show up on\n"
+"    Masanga Runners every day.\n"
+"    "
 msgstr ""
 "\n"
 "Forbind din Masanga Runners konto til din RunKeeper konto! RunKeeper er en "
@@ -1628,22 +1770,31 @@ msgstr ""
 "forbinder dine konti, vil dine løb automatisk blive dukke op på Masanga "
 "Runners hver dag."
 
-#: profile/templates/profile/user_settings.html:71
+#: profile/templates/profile/user_settings.html:99
 msgid "Register with runkeeper!"
 msgstr "Registrer med RunKeeper!"
 
-#: profile/templates/profile/user_settings.html:78
+#: profile/templates/profile/user_settings.html:104
 msgid "Public profile, visible to the world"
 msgstr "Offentlig profil, synlig for verdenen"
 
-#: profile/templates/profile/user_settings.html:83
+#: profile/templates/profile/user_settings.html:107
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "              Right now, anyone can see your page. This will help "
+#| "potential sponsors to find out about you and decide whether or not to "
+#| "sponsor you. If you don't want anyone except for yourself to see your "
+#| "sponsorships, runs, and challenges, click the button below to make your "
+#| "page private.\n"
+#| "              "
 msgid ""
 "\n"
-"              Right now, anyone can see your page. This will help potential "
-"sponsors to find out about you and decide whether or not to sponsor you. If "
-"you don't want anyone except for yourself to see your sponsorships, runs, "
-"and challenges, click the button below to make your page private.\n"
-"              "
+"      Right now, anyone can see your page. This will help potential sponsors "
+"to find out about you and decide whether or not to sponsor you. If you don't "
+"want anyone except for yourself to see your sponsorships, runs, and "
+"challenges, click the button below to make your page private.\n"
+"      "
 msgstr ""
 "\n"
 "Lige nu kan alle se din side. Dette vil hjælpe mulige sponsorer med at finde "
@@ -1651,18 +1802,26 @@ msgstr ""
 "end dig selv kan se dine sponsorater, løb og udfordringer, så klik på "
 "knappen nedenunder for at gøre din profil privat."
 
-#: profile/templates/profile/user_settings.html:89
+#: profile/templates/profile/user_settings.html:113
 msgid "Click here to make your page private."
 msgstr "Klik her for at gøre din side privat."
 
-#: profile/templates/profile/user_settings.html:93
+#: profile/templates/profile/user_settings.html:117
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "              Right now, no one can see your page. Potential sponsors "
+#| "won't be able to see information on you when they're trying to decide "
+#| "whether or not to sponsor you. If you want people to be able to see your "
+#| "information, click the button below to make your page public.\n"
+#| "              "
 msgid ""
 "\n"
-"              Right now, no one can see your page. Potential sponsors won't "
-"be able to see information on you when they're trying to decide whether or "
-"not to sponsor you. If you want people to be able to see your information, "
-"click the button below to make your page public.\n"
-"              "
+"      Right now, no one can see your page. Potential sponsors won't be able "
+"to see information on you when they're trying to decide whether or not to "
+"sponsor you. If you want people to be able to see your information, click "
+"the button below to make your page public.\n"
+"      "
 msgstr ""
 "\n"
 "Lige nu er der ingen der kan se din side. Potentielle sponsorer vil ikke "
@@ -1670,88 +1829,99 @@ msgstr ""
 "de ønsker at sponsorere dig eller ej. Hvis du ønsker at folk kan se din "
 "information, så klik på knappen nedenunder for at gøre din side offentlig."
 
-#: profile/templates/profile/user_settings.html:99
+#: profile/templates/profile/user_settings.html:123
 msgid "Click here to make your page public."
 msgstr "Klik her for at gøre din side offentlig."
 
-#: profile/templates/profile/user_settings.html:107
+#: profile/templates/profile/user_settings.html:129
 msgid "Mails and reminders"
 msgstr "Mails og påmindelser"
 
-#: profile/templates/profile/user_settings.html:112
+#: profile/templates/profile/user_settings.html:132
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "              Click the button below if you want to unsubscribe from all "
+#| "reminder emails from us.\n"
+#| "              "
 msgid ""
 "\n"
-"              Click the button below if you want to unsubscribe from all "
-"reminder emails from us.\n"
-"              "
+"      Click the button below if you want to unsubscribe from all reminder "
+"emails from us.\n"
+"      "
 msgstr ""
 "\n"
 "Klik på knappen nedenunder hvis du ønsker at afmelde dig fra alle "
 "påmindelses e-mails fra os."
 
-#: profile/templates/profile/user_settings.html:117
+#: profile/templates/profile/user_settings.html:137
 msgid "Unsubscribe from our emails"
 msgstr "Afmeld dig fra vores e-mails"
 
-#: profile/templates/profile/user_settings.html:121
+#: profile/templates/profile/user_settings.html:141
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "              Click the button below if you want to subscribe to reminder "
+#| "emails.\n"
+#| "              "
 msgid ""
 "\n"
-"              Click the button below if you want to subscribe to reminder "
-"emails.\n"
-"              "
+"      Click the button below if you want to subscribe to reminder emails.\n"
+"      "
 msgstr ""
 "\n"
 "Klik på knappen nedenunder hvis du ønsker at tilmelde dig påmindelses e-"
 "mails.\n"
 "              "
 
-#: profile/templates/profile/user_settings.html:126
+#: profile/templates/profile/user_settings.html:146
 msgid "Subscribe to our emails"
 msgstr "Tilmeld dig til vores e-mails"
 
-#: profile/templates/profile/users_list.html:12
+#: profile/templates/profile/users_list.html:13
 msgid "Our runners & sponsors"
 msgstr "Vores løbere & sponsorer"
 
-#: profile/templates/profile/users_list.html:27
+#: profile/templates/profile/users_list.html:34
 msgid "Sponsor!"
 msgstr "Sponsér!"
 
-#: profile/templates/profile/users_list.html:36
+#: profile/templates/profile/users_list.html:43
 msgid "Huh, that's weird. We can't find any runners. Check back later."
 msgstr ""
 "Hov, det var underligt. Vi kan ikke finde nogle løbere. Kig tilbage senere."
 
-#: profile/templates/profile/users_list.html:41
+#: profile/templates/profile/users_list.html:48
 msgid "Are we missing someone you know?"
 msgstr "Mangler vi en du kender?"
 
-#: profile/templates/profile/users_list.html:45
+#: profile/templates/profile/users_list.html:52
 msgid "Invite a runner or sponsor, to join us!"
 msgstr "Inviter en løber eller sponsor til at være med!"
 
-#: profile/views.py:122
+#: profile/views.py:124
 msgid "The email has been successfully subscribed"
 msgstr "Din e-mail blev tilmeldt"
 
-#: profile/views.py:125
+#: profile/views.py:127
 msgid "That email is already subscribed to the list"
 msgstr "Denne e-mail modtager allerede nyhedsbrevet."
 
-#: profile/views.py:129
+#: profile/views.py:131
 msgid "An error occurred while subscribing to mailing list."
 msgstr "En fejl opstod da du skulle tilmeldes nyhedsbrevet."
 
-#: profile/views.py:165
+#: profile/views.py:167
 msgid ""
 "Thank you! Your card has been successfully registered with Masanga Runners."
 msgstr "Tak! Dit kort blev tilknyttet din profil på Masanga Runners."
 
-#: profile/views.py:196
+#: profile/views.py:198
 msgid "You have successfully deregistered your card."
 msgstr "Du har successfuldt afmeldt dig kort."
 
-#: profile/views.py:233 profile/views.py:241
+#: profile/views.py:248 profile/views.py:256
 msgid "Your settings has been saved."
 msgstr "Dine indstillinger blev gemt."
 
@@ -1775,7 +1945,7 @@ msgstr "Tid (TT:MM:SS, valgfri)"
 msgid "Masanga Runners run-update"
 msgstr "Masanga Runners opdatering"
 
-#: runs/tasks.py:75
+#: runs/tasks.py:77
 msgid "It is time to register runs"
 msgstr "Tid til registrering af løb"
 
@@ -1878,6 +2048,7 @@ msgid "Date"
 msgstr "Dato"
 
 #: runs/templates/runs/user_runs.html:51
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2180
 msgid "Time"
 msgstr "Tid"
 
@@ -2326,6 +2497,1307 @@ msgstr "Der skete en fejl da %s skulle opkræves!"
 #: tools/views.py:81
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#: venv/lib/python2.7/site-packages/cloudinary/forms.py:50
+#: venv/lib/python2.7/site-packages/cloudinary/forms.py:102
+msgid "No file selected!"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
+msgid "Messages"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/contrib/sitemaps/apps.py:7
+msgid "Site Maps"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/contrib/staticfiles/apps.py:7
+msgid "Static Files"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/contrib/syndication/apps.py:7
+#, fuzzy
+#| msgid "Send invitation"
+msgid "Syndication"
+msgstr "Send invitation"
+
+#: venv/lib/python2.7/site-packages/django/contrib/webdesign/apps.py:7
+msgid "Web Design"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:20
+msgid "Enter a valid value."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:87
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:712
+msgid "Enter a valid URL."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:130
+msgid "Enter a valid integer."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:141
+#, fuzzy
+#| msgid "All email addresses"
+msgid "Enter a valid email address."
+msgstr "Alle e-mail adresser"
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:215
+msgid ""
+"Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:220
+#: venv/lib/python2.7/site-packages/django/core/validators.py:239
+msgid "Enter a valid IPv4 address."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:225
+#: venv/lib/python2.7/site-packages/django/core/validators.py:240
+msgid "Enter a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:235
+#: venv/lib/python2.7/site-packages/django/core/validators.py:238
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:263
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1144
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:272
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:298
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:305
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:314
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/core/validators.py:325
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/base.py:1106
+#: venv/lib/python2.7/site-packages/django/forms/models.py:722
+msgid "and"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/base.py:1108
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:107
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:108
+msgid "This field cannot be null."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:109
+msgid "This field cannot be blank."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:110
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
+#. Eg: "Title must be unique for pub_date year"
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:114
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:132
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:922
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1832
+msgid "Integer"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:926
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1830
+#, python-format
+msgid "'%(value)s' value must be an integer."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1001
+#, python-format
+msgid "'%(value)s' value must be either True or False."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1003
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1078
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1139
+msgid "Comma-separated integers"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1188
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1190
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1340
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1193
+msgid "Date (without time)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1338
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1342
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1346
+msgid "Date (with time)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1498
+#, python-format
+msgid "'%(value)s' value must be a decimal number."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1500
+msgid "Decimal number"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1651
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in [DD] [HH:[MM:]]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1654
+#, fuzzy
+#| msgid "Donations"
+msgid "Duration"
+msgstr "Donationer"
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1705
+#, fuzzy
+#| msgid "E-mail Addresses"
+msgid "Email address"
+msgstr "E-mail adresser"
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1729
+msgid "File path"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1796
+#, python-format
+msgid "'%(value)s' value must be a float."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1798
+msgid "Floating point number"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1899
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1914
+msgid "IPv4 address"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1950
+msgid "IP address"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2029
+#, python-format
+msgid "'%(value)s' value must be either None, True or False."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2031
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2091
+msgid "Positive integer"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2103
+msgid "Positive small integer"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2116
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2145
+msgid "Small integer"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2152
+msgid "Text"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2175
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2177
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2308
+msgid "URL"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2331
+msgid "Raw binary data"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:2375
+#, python-format
+msgid "'%(value)s' is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/files.py:239
+msgid "File"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/related.py:1807
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/related.py:1809
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/related.py:2039
+msgid "One-to-one relationship"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/db/models/fields/related.py:2129
+msgid "Many-to-many relationship"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:64
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:237
+msgid "Enter a whole number."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:280
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:317
+#, fuzzy
+#| msgid "Enter a run"
+msgid "Enter a number."
+msgstr "Tilføj et løb"
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:319
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:323
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:327
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:438
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:1193
+msgid "Enter a valid date."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:462
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:1194
+msgid "Enter a valid time."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:484
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:525
+msgid "Enter a valid duration."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:591
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:592
+msgid "No file was submitted."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:593
+msgid "The submitted file is empty."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:595
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:598
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:660
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:827
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:921
+#: venv/lib/python2.7/site-packages/django/forms/models.py:1238
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:922
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:1037
+#: venv/lib/python2.7/site-packages/django/forms/models.py:1237
+msgid "Enter a list of values."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:1038
+msgid "Enter a complete value."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/fields.py:1264
+msgid "Enter a valid UUID."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: venv/lib/python2.7/site-packages/django/forms/forms.py:129
+msgid ":"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/forms.py:214
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: venv/lib/python2.7/site-packages/django/forms/forms.py:659
+msgid ":?.!"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:96
+msgid "ManagementForm data is missing or has been tampered with"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:333
+#, python-format
+msgid "Please submit %d or fewer forms."
+msgid_plural "Please submit %d or fewer forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:340
+#, python-format
+msgid "Please submit %d or more forms."
+msgid_plural "Please submit %d or more forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:368
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:370
+msgid "Order"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:372
+msgid "Delete"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/models.py:716
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/models.py:720
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/models.py:726
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/models.py:734
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/models.py:1057
+msgid "The inline foreign key did not match the parent instance primary key."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/models.py:1123
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/models.py:1240
+#, python-format
+msgid "\"%(pk)s\" is not a valid value for a primary key."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/utils.py:165
+#, python-format
+msgid ""
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/widgets.py:345
+msgid "Currently"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
+msgid "Change"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/widgets.py:347
+msgid "Clear"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/widgets.py:555
+msgid "Unknown"
+msgstr "Ukendt"
+
+#: venv/lib/python2.7/site-packages/django/forms/widgets.py:556
+msgid "Yes"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/forms/widgets.py:557
+#, fuzzy
+#| msgid "Note"
+msgid "No"
+msgstr "Note"
+
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:865
+msgid "yes,no,maybe"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:894
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:906
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:908
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:910
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:912
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:914
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:916
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dateformat.py:61
+msgid "p.m."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dateformat.py:62
+msgid "a.m."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dateformat.py:67
+msgid "PM"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dateformat.py:68
+msgid "AM"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dateformat.py:151
+msgid "midnight"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dateformat.py:153
+msgid "noon"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Monday"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Tuesday"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Wednesday"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Thursday"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Friday"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:7
+msgid "Saturday"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:7
+msgid "Sunday"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Mon"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Tue"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Wed"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Thu"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Fri"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:11
+#, fuzzy
+#| msgid "Status"
+msgid "Sat"
+msgstr "Status"
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:11
+msgid "Sun"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "January"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "February"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "March"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "April"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "May"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "June"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "July"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "August"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "September"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "October"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "November"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:20
+msgid "December"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "jan"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "feb"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:23
+#, fuzzy
+#| msgid "Primary"
+msgid "mar"
+msgstr "Primær"
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "apr"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:23
+#, fuzzy
+#| msgid "Primary"
+msgid "may"
+msgstr "Primær"
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "jun"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "jul"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "aug"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "sep"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "oct"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "nov"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "dec"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:31
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:32
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:33
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:34
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:35
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:36
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:37
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:38
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:39
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:40
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:41
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:42
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:45
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:46
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:47
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:48
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:49
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:50
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:51
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:52
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:53
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:54
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:55
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/dates.py:56
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/ipv6.py:10
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/text.py:79
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s..."
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: venv/lib/python2.7/site-packages/django/utils/text.py:267
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:58
+msgid ", "
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:14
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:15
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python2.7/site-packages/django/utils/timesince.py:47
+msgid "0 minutes"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/csrf.py:107
+msgid "Forbidden"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/csrf.py:108
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/csrf.py:112
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer "
+"header' to be sent by your Web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/csrf.py:117
+msgid ""
+"If you have configured your browser to disable 'Referer' headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for 'same-"
+"origin' requests."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/csrf.py:122
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/csrf.py:127
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for 'same-origin' requests."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/csrf.py:132
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/debug.py:583
+msgid "Welcome to Django"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/debug.py:584
+msgid "It worked!"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/debug.py:585
+msgid "Congratulations on your first Django-powered page."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/debug.py:586
+msgid ""
+"Of course, you haven't actually done any work yet. Next, start your first "
+"app by running <code>python manage.py startapp [app_label]</code>."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/debug.py:588
+msgid ""
+"You're seeing this message because you have <code>DEBUG = True</code> in "
+"your Django settings file and you haven't configured any URLs. Get to work!"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:48
+msgid "No year specified"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:104
+msgid "No month specified"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:163
+msgid "No day specified"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:219
+msgid "No week specified"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:378
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:406
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:660
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/dates.py:694
+#, python-format
+msgid "Invalid date string '%(datestr)s' given format '%(format)s'"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/detail.py:55
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/list.py:76
+msgid "Page is not 'last', nor can it be converted to an int."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/list.py:81
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/generic/list.py:172
+#, python-format
+msgid "Empty list and '%(class_name)s.allow_empty' is False."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/static.py:58
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/static.py:60
+#, python-format
+msgid "\"%(path)s\" does not exist"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django/views/static.py:100
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/formwizard/templates/formwizard/wizard_form.html:14
+msgid "first step"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/formwizard/templates/formwizard/wizard_form.html:15
+msgid "prev step"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/formwizard/templates/formwizard/wizard_form.html:17
+#, fuzzy
+#| msgid "Submit"
+msgid "submit"
+msgstr "Indsend"
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:313
+msgid "usage: "
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:821
+msgid ".__call__() not defined"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1105
+#, python-format
+msgid "unknown parser %r (choices: %s)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1146
+#, python-format
+msgid "argument \"-\" with mode %r"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1349
+#, python-format
+msgid "cannot merge actions - two groups are named %r"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1387
+msgid "'required' is an invalid argument for positionals"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1407
+#, python-format
+msgid "invalid option string %r: must start with a character %r"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1428
+#, python-format
+msgid "dest= is required for options like %r"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1445
+#, python-format
+msgid "invalid conflict_resolution value: %r"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1463
+#, python-format
+msgid "conflicting option string(s): %s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1526
+msgid "mutually exclusive arguments must be optional"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1596
+msgid "positional arguments"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1597
+msgid "optional arguments"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1615
+msgid "show this help message and exit"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1621
+msgid "show program's version number and exit"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1653
+msgid "cannot have multiple subparser arguments"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1705
+#, python-format
+msgid "unrecognized arguments: %s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1802
+#, python-format
+msgid "not allowed with argument %s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1848
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1862
+#, python-format
+msgid "ignored explicit argument %r"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1952
+msgid "too few arguments"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1959
+#, python-format
+msgid "argument %s is required"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:1973
+#, python-format
+msgid "one of the arguments %s is required"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2019
+msgid "expected one argument"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2020
+msgid "expected at most one argument"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2021
+msgid "expected at least one argument"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2023
+#, python-format
+msgid "expected %s argument(s)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2080
+#, python-format
+msgid "ambiguous option: %s could match %s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2142
+#, python-format
+msgid "unexpected option string: %s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2243
+#, python-format
+msgid "%r is not callable"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2259
+#, python-format
+msgid "invalid %s value: %r"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2269
+#, python-format
+msgid "invalid choice: %r (choose from %s)"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/gunicorn/argparse_compat.py:2362
+#, python-format
+msgid "%s: error: %s\n"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:12
+#, fuzzy
+#| msgid "Username"
+msgid "name"
+msgstr "Brugernavn"
+
+#: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:20
+msgid "queue"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:21
+msgid "queues"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:28
+msgid "payload"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:37
+msgid "message"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:38
+msgid "messages"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/qpid.py:1295
+#, python-format
+msgid "Attempting to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/qpid.py:1300
+#, python-format
+msgid "Connected to qpid with SASL mechanism %s"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/kombu/transport/qpid.py:1318
+#, python-format
+msgid "Unable to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#~ msgid "WHY JOIN US?"
+#~ msgstr "HVORFOR BLIVE MEDLEM?"
 
 #~ msgid "Charge user now"
 #~ msgstr "Opkræv bruger nu"
