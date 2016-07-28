@@ -248,7 +248,7 @@ def user_settings(request):
 
 @login_required
 def my_page(request):
-    url = reverse('profile:user_page', kwargs={'user_id': request.user.id})
+    url = reverse('profile:overview', kwargs={'user_id': request.user.id})
     return HttpResponseRedirect(url)
 
 
