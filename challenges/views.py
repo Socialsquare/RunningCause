@@ -35,74 +35,80 @@ log = logging.getLogger(__name__)
 
 
 @login_required
-def challenge_runner(request, person_id):
+def challenge_runner(request, runner_id=None):
     """
     Sponsor creates a challenge for a runner with person_id.
     """
-    sponsor = request.user
-    runner = get_object_or_404(get_user_model(), pk=person_id)
-    if runner == sponsor:
-        return HttpResponseForbidden()
-
-    form = ChallengeForm()
     if request.method == "POST":
         form = ChallengeForm(request.POST)
         if form.is_valid():
             challenge_fields = {
-                'runner': runner,
-                'sponsor': sponsor,
+                'runner': form.cleaned_data['runner'],
+                'sponsor': request.user,
                 'amount': form.cleaned_data['amount'],
                 'end_date': form.cleaned_data['end_date'],
                 'challenge_text': form.cleaned_data['challenge_text']
             }
+
+            # TODO: Turn this into a contraint on the model instead
+            if challenge_fields['runner'] == challenge_fields['sponsor']:
+                return HttpResponseForbidden()
+
             challenge = Challenge.objects.create(**challenge_fields)
 
             subject = _('%(username)s has challenged you') % {
-                'username': sponsor.username
+                'username': challenge.sponsor.username
             }
             email_context = {
-                'sponsor': sponsor.username,
+                'sponsor': challenge.sponsor.username,
                 'amount': challenge.amount,
                 'challenge_text': challenge.challenge_text,
                 'end_date': challenge.end_date
             }
-            send_email([runner.email],
+            send_email(challenge.runner.email,
                        subject,
                        'challenges/emails/challenge_runner.html',
                        email_context)
             msg = _("You have just challenge %(username)s") % {
-                'username': runner.username
+                'username': challenge.runner.username
             }
             messages.info(request, msg)
-            return redirect('profile:overview', user_id=runner.id)
+            return redirect('profile:overview', user_id=challenge.runner.id)
+    else:
+        if runner_id:
+            runner = get_object_or_404(get_user_model(), pk=runner_id)
+        else:
+            runner = None
+
+        form = ChallengeForm(initial={
+            'runner': runner
+        })
+
+    # When adding a sponsorship, the sponser is always the current user
+    del form.fields['sponsor']
 
     context = {
-        'runner': runner,
-        'form': form,
+        'form': form
     }
     return render(request, 'challenges/challenge_runner.html', context)
 
 
 @login_required
-def invite_sponsor_to_challenge(request, person_id=None):
+def invite_sponsor_to_challenge(request, sponsor_id=None):
     """
     Invites a user with person_id to sponsor a challenge for the user
     currently logged in.
     """
-    runner = request.user
-    sponsor = get_object_or_404(get_user_model(), pk=person_id)
-    if runner == sponsor:
-        return HttpResponseForbidden()
-
-    form = ChallengeForm()
     if request.method == "POST":
         form = ChallengeForm(request.POST)
         if form.is_valid():
+            runner = request.user
+            sponsor = form.cleaned_data['sponsor']
             proposed_challenge = json.dumps({
                 'amount': form.cleaned_data['amount'],
                 'end_date': form.cleaned_data['end_date'],
                 'challenge_text': form.cleaned_data['challenge_text'],
-                }, cls=DjangoJSONEncoder)
+            }, cls=DjangoJSONEncoder)
 
             challenge_req = ChallengeRequest.objects.create(runner=runner,
                 sponsor=sponsor, proposed_challenge=proposed_challenge)
@@ -110,6 +116,9 @@ def invite_sponsor_to_challenge(request, person_id=None):
             email_url = reverse('challenges:preview_invitation_challenge',
                                 kwargs={'token': challenge_req.token.hex})
             full_link = request.build_absolute_uri(email_url)
+
+            if runner == sponsor:
+                return HttpResponseForbidden()
 
             email_context = {
                 'runner': runner.username,
@@ -125,8 +134,20 @@ def invite_sponsor_to_challenge(request, person_id=None):
                                      " to %(username)s to challenge you.") %\
                           dict(username=challenge_req.sponsor.username))
             return redirect('profile:overview', user_id=sponsor.id)
+    else:
+        if sponsor_id:
+            sponsor = get_object_or_404(get_user_model(), pk=sponsor_id)
+        else:
+            sponsor = None
+
+        form = ChallengeForm(initial={
+            'sponsor': sponsor
+        })
+
+        # When requesting a challenge, the runner is always the current user
+        del form.fields['runner']
+
     context = {
-        'person': sponsor,
         'form': form
     }
     return render(request, 'challenges/invite_sponsor_to_challenge.html', context)

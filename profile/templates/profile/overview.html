@@ -42,13 +42,13 @@
     </h2>
     {% if own_page %}
       <a class="btn btn-primary"
-         href="{% url 'sponsorship:request_sponsorship' person.id %}">
+         href="{% url 'sponsorship:request_sponsorship' %}">
           {% blocktrans %}
             Request sponsorship
           {% endblocktrans %}
       </a>
       <a class="btn btn-primary"
-         href="{% url 'challenges:challenge_runner' person.id %}">
+         href="{% url 'challenges:invite_sponsor_to_challenge' %}">
           {% blocktrans %}
             Request challenge
           {% endblocktrans %}
@@ -77,13 +77,13 @@
     </h2>
     {% if own_page %}
       <a class="btn btn-primary"
-         href="{% url 'sponsorship:request_sponsorship' person.id %}">
+         href="{% url 'sponsorship:add_sponsorship' %}">
           {% blocktrans with username=person.username %}
             Sponsor a friend
           {% endblocktrans %}
       </a>
       <a class="btn btn-primary"
-         href="{% url 'challenges:invite_sponsor_to_challenge' person.id %}">
+         href="{% url 'challenges:challenge_runner' %}">
           {% blocktrans with username=person.username %}
             Challenge a friend
           {% endblocktrans %}

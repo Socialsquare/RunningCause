@@ -5,9 +5,16 @@ from datetime import date
 from django import forms
 from .models import Challenge
 from django.utils.translation import ugettext as _
+from django.contrib.auth import get_user_model
 
 
 class ChallengeForm(forms.ModelForm):
+    runner = forms.ModelChoiceField(label=_("Runner"),
+                                    queryset=get_user_model().objects.all(),
+                                    required=False)
+    sponsor = forms.ModelChoiceField(label=_("Sponsor"),
+                                     queryset=get_user_model().objects.all(),
+                                     required=False)
     amount = forms.FloatField(label=_("Amount (kr)"),
                               widget=forms.TextInput(
                                   attrs={'class': 'form-control'}),
@@ -26,7 +33,7 @@ class ChallengeForm(forms.ModelForm):
 
     class Meta:
         model = Challenge
-        fields = ['amount', 'end_date', 'challenge_text']
+        fields = ['runner', 'sponsor', 'amount', 'end_date', 'challenge_text']
 
     def is_valid(self):
 

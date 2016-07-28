@@ -5,7 +5,15 @@
 
 
 {% block title %}
-Sponsor Runner {{runner}}
+  {% if form.runner.value %}
+    {% blocktrans with username=form.runner.value %}
+    Sponsor {{username}}
+    {% endblocktrans %}
+  {% else %}
+    {% blocktrans %}
+    Sponsor someone
+    {% endblocktrans %}
+  {% endif %}
 {% endblock %}
 
 {% block imports %}
@@ -62,8 +70,9 @@ Sponsor Runner {{runner}}
 
   <form method="post"
   	action="{% url 'sponsorship:add_sponsorship' runner_id=runner.id %}">
-      {% csrf_token %}
+    {% csrf_token %}
   	{% bootstrap_form form %}
+    {{ form.errors }}
   	{% buttons %}
   	  <button type="submit" class="btn btn-primary">
   	    {% trans 'Create sponsorship' %}

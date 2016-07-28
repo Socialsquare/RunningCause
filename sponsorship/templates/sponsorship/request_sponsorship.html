@@ -45,9 +45,15 @@
 
 {% block body %}
   <h1>
-    {% blocktrans with username=sponsor.username %}
-    Invite {{username}} to sponsor you
-    {% endblocktrans %}
+    {% if form.sponsor.value %}
+      {% blocktrans with username=form.sponsor.value.username %}
+      Invite {{username}} to sponsor you
+      {% endblocktrans %}
+    {% else %}
+      {% blocktrans %}
+      Invite someone to sponsor you
+      {% endblocktrans %}
+    {% endif %}
   </h1>
   <p>
       {% blocktrans with sponsor=sponsor.username %}

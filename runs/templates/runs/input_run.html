@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load bootstrap3 %}
@@ -9,54 +9,40 @@
 {% endblock %}
 
 {% block imports %}
-    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-    <script type=text/javascript>
-    $(document).ready(function() {
-        $('#start_datepicker').datepicker({
-            format:'yyyy-mm-dd',
-            weekStart: 1,
-            autoclose: true
-        });
-        $('#end_datepicker').datepicker({
-            format:'yyyy-mm-dd',
-            weekStart: 1,
-            autoclose: true
-        });
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+<script type=text/javascript>
+$(document).ready(function() {
+    $('#start_datepicker').datepicker({
+        format:'yyyy-mm-dd',
+        weekStart: 1,
+        autoclose: true
     });
-    </script>
-
-{% endblock %}
-
-
-{% block head %}
-<div class="row">
-<div class="col-md-7 col-md-offset-1">
-   <h1>{% trans "Add your run" %}</h1>
-</div>
-</div>
+    $('#end_datepicker').datepicker({
+        format:'yyyy-mm-dd',
+        weekStart: 1,
+        autoclose: true
+    });
+});
+</script>
 {% endblock %}
 
 {% block body %}
-<div class="row">
-<div class="col-md-7 col-md-offset-1">
-    <p>
+  <h1>{% trans "Add your run" %}</h1>
+  <p>
     {% blocktrans %}
     Here, you can input a run! All your sponsors will have the distance you
     ran added to tab for their sponsorship, and they'll be billed at the end
     of the quarter.
     {% endblocktrans %}
-    </p>
+  </p>
 
-<form action="{% url 'runs:input_run' %}" method="post">
-    {% csrf_token %}
-	{% bootstrap_form form layout="form-horizontal" %}
-	{% buttons %}
-	  <button type="submit" class="btn btn-primary">
-	    {% bootstrap_icon "plus" %} {% trans 'Add run' %}
-	  </button>
-	{% endbuttons %}
-</form>
-
-</div>
-</div>
+  <form action="{% url 'runs:input_run' %}" method="post">
+      {% csrf_token %}
+  	{% bootstrap_form form layout="form-horizontal" %}
+  	{% buttons %}
+  	  <button type="submit" class="btn btn-primary">
+  	    {% bootstrap_icon "plus" %} {% trans 'Add run' %}
+  	  </button>
+  	{% endbuttons %}
+  </form>
 {% endblock %}

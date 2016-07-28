@@ -24,9 +24,15 @@
 
 {% block body %}
   <h1>
-    {% blocktrans with username=runner.username %}
-    Challenge {{username}}
-    {% endblocktrans %}
+    {% if form.runner.value %}
+      {% blocktrans with username=form.runner.value.username %}
+      Challenge {{username}}
+      {% endblocktrans %}
+    {% else %}
+      {% blocktrans %}
+      Challenge someone
+      {% endblocktrans %}
+    {% endif %}
   </h1>
   <p>
       {% blocktrans with username=runner.username %}
@@ -40,8 +46,8 @@
       {% endblocktrans %}
   </p>
 
-  <form action="{% url 'challenges:challenge_runner' person_id=runner.id %}" method="post">
-      {% csrf_token %}
+  <form action="{% url 'challenges:challenge_runner' %}" method="post">
+    {% csrf_token %}
   	{% bootstrap_form form layout="form-horizontal" %}
   	{% buttons %}
   	  <button type="submit" class="btn btn-primary">

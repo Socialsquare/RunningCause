@@ -1,11 +1,18 @@
 # coding: utf8
 from django import forms
+from django.contrib.auth import get_user_model
+from django.utils.translation import ugettext as _
 
 from .models import Sponsorship, SponsorRequest
-from django.utils.translation import ugettext as _
 
 
 class SponsorForm(forms.ModelForm):
+    runner = forms.ModelChoiceField(label=_("Runner"),
+                                    queryset=get_user_model().objects.all(),
+                                    required=False)
+    sponsor = forms.ModelChoiceField(label=_("Sponsor"),
+                                     queryset=get_user_model().objects.all(),
+                                     required=False)
     rate = forms.FloatField(label=_("Rate (DKK per km)"),
                             widget=forms.TextInput(
                                 attrs={'class': 'form-control'}),
@@ -30,7 +37,7 @@ class SponsorForm(forms.ModelForm):
 
     class Meta:
         model = Sponsorship
-        fields = ['rate', 'start_date', 'end_date', 'max_amount']
+        fields = ['runner', 'sponsor', 'rate', 'start_date', 'end_date', 'max_amount']
 
     def is_valid(self):
 

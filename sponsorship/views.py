@@ -42,18 +42,17 @@ def add_sponsorship(request, runner_id=None):
     Create a sponsorship from a person currently logged in (sponsor),
     to a runner with given runner_id (user id).
     """
-    runner = get_object_or_404(get_user_model(), pk=runner_id)
-    sponsor = request.user
-    form = SponsorForm()
+
     if request.method == "POST":
         form = SponsorForm(request.POST)
         if form.is_valid():
+            runner = form.cleaned_data['runner']
             rate = form.cleaned_data['rate']
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
             max_amount = form.cleaned_data['max_amount']
             sponsorship = Sponsorship(runner=runner,
-                                      sponsor=sponsor,
+                                      sponsor=request.user,
                                       rate=rate,
                                       start_date=start_date,
                                       end_date=end_date,
@@ -76,23 +75,33 @@ def add_sponsorship(request, runner_id=None):
                        _("You have a new sponsor!"),
                        'sponsorship/email/new_sponsorship.html',
                        email_context)
-            return redirect('profile:user_donated', user_id=sponsor.id)
+            return redirect('profile:user_donated', user_id=sponsorship.sponsor.id)
+    else:
+        if runner_id:
+            runner = get_object_or_404(get_user_model(), pk=runner_id)
+        else:
+            runner = None
+
+        form = SponsorForm(initial={
+            'runner': runner
+        })
+
+    # When adding a sponsorship, the sponser is always the current user
+    del form.fields['sponsor']
 
     context = {
-        'runner': runner,
-        'form': form,
+        'form': form
     }
     return render(request, 'sponsorship/add_sponsorship.html', context)
 
 
 @login_required
-def request_sponsorship(request, person_id):
-    sponsor = get_object_or_404(get_user_model(), id=person_id)
-    runner = request.user
-    form = SponsorForm()
+def request_sponsorship(request, sponsor_id=None):
     if request.method == "POST":
         form = SponsorForm(request.POST)
         if form.is_valid():
+            runner = request.user
+            sponsor = form.cleaned_data['sponsor']
             proposed = json.dumps({
                 'rate': form.cleaned_data['rate'],
                 'start_date': form.cleaned_data['start_date'],
@@ -116,17 +125,27 @@ def request_sponsorship(request, person_id):
                 'sponsor': sponsor.username,
                 'link': full_email_url
             }
-            send_email([sponsor.email],
+            send_email(sponsor.email,
                        email_subject,
                        'sponsorship/email/request_sponsorship.html',
                        email_context)
-            messages.info(request, _("We have sent your request to sponsor."))
-            return redirect('profile:user_donated', user_id=person_id)
+            messages.info(request, _("We have sent your request to %s") % sponsor.username)
+            return redirect('profile:user_donated', user_id=sponsor.id)
+    else:
+        if sponsor_id:
+            sponsor = get_object_or_404(get_user_model(), pk=sponsor_id)
+        else:
+            sponsor = None
+
+        form = SponsorForm(initial={
+            'sponsor': sponsor
+        })
+
+    # When adding a sponsorship, the sponser is always the current user
+    del form.fields['runner']
 
     ctx = {
-        'form': form,
-        'runner': runner,
-        'sponsor': sponsor,
+        'form': form
     }
     return render(request, 'sponsorship/request_sponsorship.html', ctx)
 
