@@ -53,26 +53,46 @@
         </button>
         <div class="collapse navbar-toggleable-xs" id="navbar-header">
           <ul class="nav navbar-nav">
-            <li class="nav-item">
-              <a href="{% url 'profile:users_list' %}" class="nav-link">
-                {% trans "RUNNERS &amp; SPONSORS" %}
-              </a>
-            </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'profile:my_page' %}">
                 {% trans "MY PAGE" %}
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{% url 'profile:users_list' %}" class="nav-link">
+                {% trans "RUNNERS &amp; SPONSORS" %}
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a aria-expanded="true" href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                {% trans "ABOUT" %}
+                <span class="caret"></span>
+              </a>
+              <div class="dropdown-menu">
+                <!-- TODO change to pages:contact -->
+                <a href="{% url 'pages:why_join_us' %}" class="dropdown-item">
+                  {% trans "CONTACT" %}
+                </a>
+                <a href="http://www.masanga.dk" class="dropdown-item" target="_newtab">
+                  {% trans "ABOUT MASANGA HOSPITAL" %}
+                </a>
+              </div>
+            </li>
             {% else %}
             <li class="nav-item">
-              <a href="{% url 'pages:why_join_us' %}" class="nav-link">
-                {% trans "WHY JOIN US?" %}
+              <a href="{% url 'profile:users_list' %}" class="nav-link">
+                {% trans "RUNNERS &amp; SPONSORS" %}
               </a>
             </li>
             <li class="nav-item">
               <a href="http://www.masanga.dk" class="nav-link" target="_newtab">
                 {% trans "ABOUT MASANGA HOSPITAL" %}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'pages:why_join_us' %}" class="nav-link">
+                {% trans "CONTACT" %}
               </a>
             </li>
             {% endif %}

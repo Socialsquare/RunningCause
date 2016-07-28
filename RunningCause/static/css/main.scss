@@ -86,6 +86,7 @@ html {
   background-size: cover;
   background-position: center center;
   height: 60vh;
+  min-height: 25rem;
   display: flex;
   color: $white;
   align-items: center;
@@ -96,6 +97,7 @@ html {
     background-image: url('/static/img/frontpage-header.jpg');
     background-color: rgba($black, 0.5);
     background-blend-mode: multiply;
+    margin-top: -.5rem;
   }
 
   h1 {
@@ -112,4 +114,9 @@ html {
 
 .btn {
   white-space: inherit;
+}
+
+.graphic {
+  height: 14rem;
+  background-color: rgba($brand-primary, .5);
 }

@@ -2,24 +2,22 @@
 {% load i18n %}
 {% load static %}
 
-{% block head %}
-{% endblock %}
-
 {% block body %}
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1">
     <div class="container-escape">
       <div class="header header-frontpage text-xs-center m-b-2">
-        <h1>Vi løber penge ind til Masanga hospitalet i Sierra Leone</h1>
+        <h1>{% trans "We are running money in to" %}</h1>
         <div class="header__call-to-action p-b-2">
-          <button class="btn btn-primary btn-lg">Tilmeld dig</button>
-          <button class="btn btn-primary btn-lg">Dine udfordringer &amp; sponsorater</button>
+          <a href="#" class="btn btn-primary btn-lg">{% trans "Sign up" %}</a>
+          <a href="#" class="btn btn-primary btn-lg">{% trans "Register run" %}</a>
+          <a href="#" class="btn btn-primary btn-lg">{% trans "Challenge and sponsor" %}</a>
         </div>
       </div>
     </div>
     <div class="row p-y-2">
       <div class="col-md-6">
-        <h2>Idéen bag</h2>
+        <h2>{% trans "The concept" %}</h2>
         <p>
           Masanga Runners is not just a fun way to support a good project. It’s also a great way to make it easier to get in to your running shoes! With Masanga Runner, you can sponsor your running friends, but also get family and friends involved in your runs and the world’s best hospital project.
           <br /><br />
@@ -38,25 +36,38 @@
           On this website, you can create an account and be a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make challenges about your performance on runs – you’re only limited by your imagination!    </p>
       </div>
     </div>
-    <div class="p-y-2">
-      <h2>What is</h2>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Ic99AgpIjQA?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+    <div class="row p-y-2">
+      <div class="col-md-6">
+        <h2>Indsamlet</h2>
+        <div class="graphic"></div>
+      </div>
+      <div class="col-md-6">
+        <h2>Løbet</h2>
+        <div class="graphic"></div>
       </div>
     </div>
     <div class="row p-y-2">
       <div class="col-md-6">
-        <h2>Indsamlet i år</h2>
+        <h2>@masangarunners</h2>
+        <div class="graphic"></div>
       </div>
       <div class="col-md-6">
-        <h2>Sådan gør du</h2>
-        <p>
-          As a runner, you find one or more sponsors, who support Masanga with a small amount for each kilometre you run. Furthermore the sponsor can support Masanga with a bigger amount, for an example by making a challenge, in connection to you achieving one of your running goals.
-    <br /><br />
-          It could be to complete a half marathon or a DHL race. Depending on how far you run throughout the year, and if you reach your goals, your sponsor pays x amount of money, which will go to the Masanga Hospital.
-    <br /><br />
-          On this website, you can create an account and be a part of the Masanga Runners community. You can invite your friends to sponsor you, share your page on social media, and make challenges about your performance on runs – you’re only limited by your imagination!    </p>
+        <h2>#masangarunners</h2>
+        <div class="graphic"></div>
       </div>
+    </div>
+    <div class="p-y-2">
+      <h2>What is</h2>
+      <p>
+        Aenean eu faucibus leo, eget vehicula nulla. Proin accumsan gravida neque vitae lacinia. Phasellus aliquet ornare tellus nec vestibulum.
+      </p>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Ic99AgpIjQA?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="p-y-2 text-xs-center">
+      <button class="btn btn-primary btn-lg">Tilmeld dig</button>
+      <button class="btn btn-primary btn-lg">Dine udfordringer &amp; sponsorater</button>
     </div>
   </div>
 </div>
