@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postpublish": "gulp sass js"
+    "postinstall": "gulp sass js"
   },
   "repository": {
     "type": "git",
