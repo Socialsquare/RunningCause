@@ -9,5 +9,102 @@
 
 {% block body %}
 {% include "includes/_user_head.html" %}
-Hej Kræn
+
+<div class="card m-y-3">
+  <div class="card-block">
+    <h2 class="h4">
+      {% trans "Runs" %}
+    </h2>
+    {% if own_page %}
+      <a class="btn btn-primary" href="{% url 'runs:input_run' %}">
+        {% trans 'Add run' %}</a>
+      <a class="btn btn-secondary"
+      href="{% url 'runs:user_runs' user_id=person.id %}">
+        {% trans 'See all your runs' %}
+      </a>
+    {% else %}
+      <a class="btn btn-secondary"
+      href="{% url 'runs:user_runs' user_id=person.id %}">
+        {% blocktrans with username=person.username %}
+          See all runs by {{username}}
+        {% endblocktrans %}
+      </a>
+    {% endif %}
+
+  </div>
+</div>
+
+
+<div class="card m-y-3">
+  <div class="card-block">
+    <h2 class="h4">
+      {% trans "Money Raised" %}
+    </h2>
+    {% if own_page %}
+      <a class="btn btn-primary"
+         href="{% url 'sponsorship:request_sponsorship' person.id %}">
+          {% blocktrans %}
+            Request sponsorship
+          {% endblocktrans %}
+      </a>
+      <a class="btn btn-primary"
+         href="{% url 'challenges:challenge_runner' person.id %}">
+          {% blocktrans %}
+            Request challenge
+          {% endblocktrans %}
+      </a>
+    {% else %}
+      <a class="btn btn-primary"
+         href="{% url 'sponsorship:add_sponsorship' person.id %}">
+          {% blocktrans with username=person.username %}
+            Sponsor {{username}}
+          {% endblocktrans %}
+      </a>
+      <a class="btn btn-primary"
+         href="{% url 'challenges:challenge_runner' person.id %}">
+          {% blocktrans with username=person.username %}
+            Challenge {{username}}
+          {% endblocktrans %}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card m-y-3">
+  <div class="card-block">
+    <h2 class="h4">
+      {% trans "Donations" %}
+    </h2>
+    {% if own_page %}
+      <a class="btn btn-primary"
+         href="{% url 'sponsorship:request_sponsorship' person.id %}">
+          {% blocktrans with username=person.username %}
+            Sponsor a friend
+          {% endblocktrans %}
+      </a>
+      <a class="btn btn-primary"
+         href="{% url 'challenges:invite_sponsor_to_challenge' person.id %}">
+          {% blocktrans with username=person.username %}
+            Challenge a friend
+          {% endblocktrans %}
+      </a>
+    {% else %}
+      <a class="btn btn-primary"
+         href="{% url 'sponsorship:request_sponsorship' person.id %}">
+          {% blocktrans with username=person.username %}
+            Request sponsorship from {{username}}
+          {% endblocktrans %}
+      </a>
+      <a class="btn btn-primary"
+         href="{% url 'challenges:invite_sponsor_to_challenge' person.id %}">
+          {% blocktrans with username=person.username %}
+            Invite {{username}} to challenge you
+          {% endblocktrans %}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+
+</div> <!-- trailing div from user head -->
 {% endblock %}
