@@ -83,25 +83,33 @@ html {
 }
 
 .header {
-  background-size: cover;
-  background-position: center center;
   height: 60vh;
   min-height: 25rem;
   display: flex;
-  color: $white;
   align-items: center;
   justify-content: center;
   position: relative;
 
   &-frontpage {
-    background-image: url('/static/img/frontpage-header.jpg');
-    background-color: rgba($black, 0.5);
-    background-blend-mode: multiply;
     margin-top: -.5rem;
+    &::before {
+      content: ' ';
+      background-size: cover;
+      background-position: center center;
+      background-image: url('/static/img/frontpage-header.jpg');
+      position: absolute;
+      opacity: .5;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+    }
   }
 
   h1 {
     max-width: 34rem;
+    color: $black;
   }
 
   &__call-to-action {

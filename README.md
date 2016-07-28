@@ -27,7 +27,8 @@ Make sure you have both python 2.7 and the virtualenv tool installed.
 `pip install -r requirements.txt` *install required python modules*  
 `./manage.py migrate` *initialise the database*  
 `./manage.py createsuperuser` *create admin user*  
-`./manage.py runserver` *start the app*  
+`./manage.py runserver` *start the app*
+`./manage.py makemessages` *update translations*
 
 # Production requirements (on heroku)
 
