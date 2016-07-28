@@ -126,17 +126,19 @@
       </nav>
     </div>
 
-    <div class="container body-container">
-      {% block content %}
-        <div class="m-t-3">
-          <!-- head start -->
-          <h1>{% block head %}{% endblock %}</h1>
-          <!-- head end -->
-          <!-- body start -->
-          {% block body %}{% endblock %}
-          <!-- body end -->
-        </div>
-      {% endblock %}
+    <div class="body-wrapper">
+      <div class="container">
+        {% block content %}
+          <div class="m-t-3">
+            <!-- head start -->
+            <h1>{% block head %}{% endblock %}</h1>
+            <!-- head end -->
+            <!-- body start -->
+            {% block body %}{% endblock %}
+            <!-- body end -->
+          </div>
+        {% endblock %}
+      </div>
     </div>
 
     <footer>
