@@ -36,7 +36,8 @@
                 <a href="{% url 'challenges:challenge_runner' person.id %}"
                   class="card-link">{% trans 'Challenge!' %}</a>
               {% else %}
-                <span>{% trans "This is you" %}</span>
+                <a href="{% url 'profile:overview' person.id %}"
+                  class="card-link">{% trans 'My page' %}</a>
               {% endif %}
             </div>
           </div>

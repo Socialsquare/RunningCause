@@ -76,7 +76,7 @@
       <div class="profile-image {% if user_profile_form.instance.picture %}photo{% else %}no-photo{% endif %}">
         {% cloudinary user_profile_form.instance.picture width=200 height=200 crop="fill" class="preview" %}
         <div class="states">
-          <p class="no-photo">{% trans "Click here to a picture to your profile" %}</p>
+          <p class="no-photo">{% trans "Click here to add a picture to your profile" %}</p>
           <p class="uploading">{% trans "Uploading ..." %}</p>
           <p class="photo">{% trans "Click here to change your picture" %}</p>
           <p class="failed">{% trans "Something went wrong - try agian" %}</p>

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 11:35+0200\n"
-"PO-Revision-Date: 2016-07-28 11:38+0100\n"
+"POT-Creation-Date: 2016-07-28 15:03+0200\n"
+"PO-Revision-Date: 2016-07-28 15:03+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -463,18 +463,26 @@ msgstr "Udfordr & sponsorér"
 msgid "You have to make your page public before you can share it."
 msgstr "Du bliver nødt til at gøre din profil offentlig før du kan dele den."
 
-#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:5
-#: runs/templates/runs/user_runs.html:45
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:6
+#: profile/templates/profile/users_list.html:40
+msgid "My page"
+msgstr "Min side"
+
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:12
 msgid "Runs"
 msgstr "Løb"
 
-#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:10
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:18
 msgid "Money Raised"
 msgstr "Penge optjent"
 
-#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:15
+#: RunningCause/templates/includes/_tabs_runs_raised_donated.html:24
 msgid "Donations"
 msgstr "Donationer"
+
+#: RunningCause/templates/includes/_user_not_public.html:4
+msgid "Sorry, this user has chosen to make their information private."
+msgstr "Beklager, denne bruger har valgt at gøre deres information privat."
 
 #: RunningCause/templates/masanga_base.html:58
 msgid "MY PAGE"
@@ -1242,11 +1250,27 @@ msgstr "Du har allerede sendt 3 invitationer til %(email)s"
 msgid "You have just sent invitation to %(email)s"
 msgstr "Du har netop sendt en invitation til %(email)s"
 
-#: pages/templates/pages/frontpage.html:10
+#: pages/templates/pages/contact.html:10
+msgid ""
+"\n"
+"  \t<h1>Contact us</h1>\n"
+"  \t<p>If you have any questions or comments regarding Masanga Runners, "
+"you’re welcome to contact us by email at <a href=\"mailto:"
+"masangarunners@masanga.dk\">masangarunners@masanga.dk</a>.</p>\n"
+"\t"
+msgstr ""
+"\n"
+"  \t<h1>Kontakt os</h1>\n"
+"  \t<p>Hvis du har spørgsmål eller kommentarer i forhold til Masanga Runners "
+"er du velkommen til at kontakte os via email på <a href=\"mailto:"
+"masangarunners@masanga.dk\">masangarunners@masanga.dk</a>.</p>\n"
+"\t"
+
+#: pages/templates/pages/frontpage.html:11
 msgid "We raise money for Masanga Hospital by running"
 msgstr "Vi løber penge ind til Masanga hospitalet i Sierra Leone"
 
-#: pages/templates/pages/frontpage.html:18
+#: pages/templates/pages/frontpage.html:19
 msgid ""
 "<h2>Why Masanga?</h2>\n"
 "        <p>Being Masanga Runner is not only an easy solution to tie those "
@@ -1278,7 +1302,7 @@ msgstr ""
 "mig, der får noget ud af mine løbeture.” – Søren Bo Steendahl, Masanga "
 "Runner siden 2014.</p>"
 
-#: pages/templates/pages/frontpage.html:24
+#: pages/templates/pages/frontpage.html:25
 msgid ""
 "<h2>This is how you do</h2>\n"
 "        <p>If you wish to be a Masanga Runner you need one or more sponsors "
@@ -1308,108 +1332,38 @@ msgstr ""
 "hospitals-projektet.\n"
 "        </p>"
 
-#: pages/templates/pages/frontpage.html:33
+#: pages/templates/pages/frontpage.html:34
 msgid "Raised"
 msgstr "Indsamlet"
 
-#: pages/templates/pages/frontpage.html:37
+#: pages/templates/pages/frontpage.html:39
+#, python-format
+msgid "%(total_raised)s DKK in total"
+msgstr "%(total_raised)s DKK totalt"
+
+#: pages/templates/pages/frontpage.html:44
+#, python-format
+msgid "%(total_outstanding)s DKK outstanding"
+msgstr "%(total_outstanding)s DKK udestående"
+
+#: pages/templates/pages/frontpage.html:49
+#, python-format
+msgid "%(previous_12_months_raised)s DKK previous 12 months"
+msgstr "%(previous_12_months_raised)s DKK de seneste 12 måneder"
+
+#: pages/templates/pages/frontpage.html:54
+#, python-format
+msgid "%(previous_3_months_raised)s DKK previous 3 months"
+msgstr "%(previous_3_months_raised)s DKK de seneste 3 måneder"
+
+#: pages/templates/pages/frontpage.html:61
 msgid "Run"
 msgstr "Løbet"
 
-#: pages/templates/pages/why_join_us.html:41
-msgid ""
-"\n"
-"  \t<h3>Every Step Makes a Difference</h3>\n"
-"  \t<p>Masanga Runners is not just a fun way to support a good project. It’s "
-"also a great way to make it easier to get in to your running shoes! With "
-"Masanga Runner, you can sponsor your running friends, but also get family "
-"and friends involved in your runs and the world’s best hospital project.</"
-"p>\n"
-"  \t<p>The idea behind Masanga Runners is that many runners and sponsors "
-"together can create a huge difference for the hospital in Masanga by running "
-"and donating small amounts.</p>\n"
-"  \t<p>As a runner, you find one or more sponsors, who support Masanga with "
-"a small amount for each kilometre you run. Furthermore the sponsor can "
-"support Masanga with a bigger amount, for an example by making a challenge, "
-"in connection to you achieving one of your running goals.</p>\n"
-"  \t<p>It could be to complete a half marathon or a DHL race. Depending on "
-"how far you run throughout the year, and if you reach your goals, your "
-"sponsor pays x amount of money, which will go to the Masanga Hospital.</p>\n"
-"  \t<p>”I am a Masanga Runner because it’s a form of motivation to get "
-"outside. As a Masanga Runner I know that it’s not just me getting something "
-"out of my runs,” says Søren Bo Steendahl, who has been a Masanga Runner "
-"since Fall 2014.</p>\n"
-"  \t<p>On this website, you can create an account and be a part of the "
-"Masanga Runners community. You can invite your friends to sponsor you, share "
-"your page on social media, and make challenges about your performance on "
-"runs – you’re only limited by your imagination! </p>\n"
-"  \t<h4>Tax Credits</h4>\n"
-"  \t<p>Masanga Hospital Rehabilitation Project is approved as a charitable "
-"organisation, so you can receive tax credits for your donations – all the "
-"way up to DKK 15,200. Masanga Runners sends out an email once a year to "
-"everyone who’s donated, asking them if they’re interested in the tax "
-"credits. You only need to provide your CPR number or your CVR number.</p>\n"
-"  \t<h4>Sponsorship Termination</h4>\n"
-"  \t<p>You can end your sponsorships at any time, both as a runner and as a "
-"sponsor. You do this by clicking the ”end sponsorship” button by the "
-"relevant sponsorship.</p>\n"
-"  \t<h4>Masanga Runners t-shirt</h4>\n"
-"  \t<p>You can advertise your good work by buying a nice Masanga Runners t-"
-"shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" "
-"style=\"text-decoration:underline;\">here</a>! It costs 250 kr., 50 of which "
-"go directly to Masanga. The rest goes to shipping, handling, and the t-shirt "
-"itself.</p>\n"
-"  \t<h4>Contact</h4>\n"
-"  \t<p>If you have any questions or comments regarding Masanga Runners, "
-"you’re welcome to contact us by email at masangarunners@masanga.dk.</p>\n"
-"\t"
-msgstr ""
-"\n"
-"<h3>You Never Run Alone, You Never Run For Nothing</h3>\n"
-"<p>Masanga Runners er ikke bare en nem måde at støtte et godt projekt på. "
-"Det er også med til at gøre det lidt sjovere at hoppe i løbeskoene. Med "
-"Masanga Runners kan du udfordre dine løbevenner, men også involvere familie "
-"og venner i dine løbeture og verdens bedste hospitalsprojekt.</p>\n"
-"<p>Idéen bag Masanga Runners er, at mange løbere og sponsorer sammen kan "
-"gøre en kæmpe forskel for hospitalet i Masanga ved at donere og løbe "
-"forholdsvis små beløb ind.</p>\n"
-"<p>Som løber finder du en eller flere sponsorer, der støtter Masanga med et "
-"øre- eller kronebeløb for hver kilometer du løber om året – eksempelvis 50 "
-"øre eller 1 krone. Herudover kan sponsoren støtte Masanga med et lidt større "
-"beløb, eksempelvis ved at lave en udfordring, i forbindelse med, at du opnår "
-"en af dine løbe-målsætninger. Det kunne være at gennemføre et halvmaraton "
-"eller en DHL-stafet. Afhængig af hvor langt du løber i løbet af året, og om "
-"du når dine mål, betaler din sponsor x antal kroner, som går til Masanga "
-"Hospitalet.</p>\n"
-"<p>”Jeg er Masanga Runner, fordi det er en form for motivation til at komme "
-"afsted. Som Masanga Runner ved jeg, at det ikke kun er mig, der får noget ud "
-"af min løbetur”, siger Søren Bo Steendahl, der har været Masanga Runner "
-"siden efteråret 2014.</p><p>Her på siden kan du med få oplysninger oprette "
-"en bruger og blive en del af Masanga Runners fællesskabet. Du kan invitere "
-"dine venner til at sponsorere dig, dele din side på diverse sociale medier "
-"og lave væddemål om deltagelse i et løb - det er kun fantasien, der sætter "
-"grænser!</p>\n"
-"<h4>Skattefradrag</h4>\n"
-"<p>Masanga Hospital Rehabilitation Project er godkendt som en "
-"almenvelgørende forening, og du kan derfor opnå skattefradrag for dine "
-"donationer – helt op til 15.200 kr. Masanga Runners udsender ved udgangen af "
-"året en mail til alle, der har doneret penge og spørger, om de er "
-"interesseret i et sådant fradrag. Det eneste du skal oplyse til den tid er "
-"dit cpr. nummer eller CVR-nummer. Det er helt enkelt og sikkert.</p>\n"
-"<h4>Opsigelse</h4>\n"
-"<p>Du kan til enhver tid afslutte dine sponsorater – både som løber og "
-"sponsor.  Det gør du ved at trykke på ”slut sponsoraftale” ud for den givne "
-"aftale.</p>\n"
-"<h4>Masanga Runners t-shirt</h4>\n"
-"<p>Du kan reklamere for den gode sag ved at købe en lækker Masanga Runners t-"
-"shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-shirt/\" "
-"style=\"text-decoration:underline;\">her</a>! Den koster 250 kr. og 50 af "
-"dem går direkte til Masanga. Resten går til tryk, forsendelse og selve t-"
-"shirten.</p>\n"
-"<h4>Kontakt</h4>\n"
-"<p>Har du spørgsmål eller lignende vedrørende Masanga Runners, er du "
-"velkommen til at kontakte os på mail: masangarunners@masanga.dk eller på "
-"telefon +45 29 80 30 73.</p>"
+#: pages/templates/pages/frontpage.html:66
+#, python-format
+msgid "%(total_distance)s KM"
+msgstr "%(total_distance)s KM"
 
 #: profile/forms.py:11
 msgid "I want my sponsorships to be publicly visible"
@@ -1483,181 +1437,211 @@ msgstr "Du har successfuldt skrevet dig op."
 msgid "You have successfully unsubscribed."
 msgstr "Du har successfuldt afskrevet dig."
 
-#: profile/templates/profile/user_donated.html:30
+#: profile/templates/profile/user_donated.html:22
 msgid "You are sponsoring"
 msgstr "Du sponsorerer"
 
-#: profile/templates/profile/user_donated.html:32
+#: profile/templates/profile/user_donated.html:24
 #, python-format
 msgid "%(username)s is sponsoring"
 msgstr "%(username)s sponsorerer"
 
-#: profile/templates/profile/user_donated.html:36
-#: profile/templates/profile/user_donated.html:101
+#: profile/templates/profile/user_donated.html:29
+#: profile/templates/profile/user_donated.html:114
 #: tools/templates/tools/overview.html:16
 #: tools/templates/tools/overview.html:72
 msgid "Runner"
 msgstr "Løber"
 
-#: profile/templates/profile/user_donated.html:37
-#: profile/templates/profile/user_raised.html:32
+#: profile/templates/profile/user_donated.html:30
+#: profile/templates/profile/user_raised.html:23
 msgid "Rate(kr/km)"
 msgstr "Sats (kr/km)"
 
-#: profile/templates/profile/user_donated.html:38
-#: profile/templates/profile/user_raised.html:33
+#: profile/templates/profile/user_donated.html:31
+#: profile/templates/profile/user_raised.html:24
 msgid "Maximum Possible Amount (kr)"
 msgstr "Maksimalt muligt beløb (kr)"
 
-#: profile/templates/profile/user_donated.html:39
-#: profile/templates/profile/user_raised.html:34
+#: profile/templates/profile/user_donated.html:32
+#: profile/templates/profile/user_raised.html:25
 #: tools/templates/tools/overview.html:22
 msgid "Started"
 msgstr "Startet"
 
-#: profile/templates/profile/user_donated.html:40
-#: profile/templates/profile/user_raised.html:35
+#: profile/templates/profile/user_donated.html:33
+#: profile/templates/profile/user_raised.html:26
 #: tools/templates/tools/overview.html:23
 msgid "Continues Until"
 msgstr "Forsættes indtil"
 
-#: profile/templates/profile/user_donated.html:41
+#: profile/templates/profile/user_donated.html:34
 msgid "Amount (DKK)"
 msgstr "Beløb (kr.)"
 
-#: profile/templates/profile/user_donated.html:71
-#: profile/templates/profile/user_raised.html:93
+#: profile/templates/profile/user_donated.html:64
+#: profile/templates/profile/user_raised.html:79
 msgid "Hmm, there don't seem to be any sponsorships here."
 msgstr "Hmm, det ser ikke ud til at der er nogle sponsorater her."
 
-#: profile/templates/profile/user_donated.html:76
+#: profile/templates/profile/user_donated.html:70
 msgid "Total amount:"
 msgstr "Totalt beløb:"
 
-#: profile/templates/profile/user_donated.html:80
+#: profile/templates/profile/user_donated.html:74
 msgid "Total amount donated:"
 msgstr "Totalt beløb doneret:"
 
-#: profile/templates/profile/user_donated.html:84
+#: profile/templates/profile/user_donated.html:78
 msgid "Total amount owed:"
 msgstr "Totalt beløb udestående:"
 
-#: profile/templates/profile/user_donated.html:92
+#: profile/templates/profile/user_donated.html:86
+msgid ""
+"\n"
+"              Sponsor a friend\n"
+"            "
+msgstr ""
+"\n"
+"Sponsér en ven"
+
+#: profile/templates/profile/user_donated.html:93
+#, python-format
+msgid ""
+"\n"
+"              Request sponsorship from %(username)s\n"
+"            "
+msgstr ""
+"\n"
+"Spørg om et sponsorat fra %(username)s                 "
+
+#: profile/templates/profile/user_donated.html:105
 msgid "Challenges where you are sponsoring"
 msgstr "Udfordringer hvor du sponsorerer"
 
-#: profile/templates/profile/user_donated.html:95
+#: profile/templates/profile/user_donated.html:107
 #, python-format
 msgid "Challenges where %(username)s is sponsoring"
 msgstr "Udfordringer hvor %(username)s sponsorerer"
 
-#: profile/templates/profile/user_donated.html:102
-#: profile/templates/profile/user_raised.html:124
+#: profile/templates/profile/user_donated.html:115
+#: profile/templates/profile/user_raised.html:127
 msgid "Amount (dkk)"
 msgstr "Beløb (dkk)"
 
-#: profile/templates/profile/user_donated.html:103
-#: profile/templates/profile/user_raised.html:125
+#: profile/templates/profile/user_donated.html:116
+#: profile/templates/profile/user_raised.html:128
 #: tools/templates/tools/overview.html:77
 msgid "End Date"
 msgstr "Slut dato"
 
-#: profile/templates/profile/user_donated.html:104
+#: profile/templates/profile/user_donated.html:117
 msgid "Challenge"
 msgstr "Udfordr"
 
-#: profile/templates/profile/user_donated.html:105
-#: profile/templates/profile/user_raised.html:127
+#: profile/templates/profile/user_donated.html:118
+#: profile/templates/profile/user_raised.html:130
 #: tools/templates/tools/overview.html:73
 msgid "Status"
 msgstr "Status"
 
-#: profile/templates/profile/user_donated.html:120
-#: profile/templates/profile/user_raised.html:142
+#: profile/templates/profile/user_donated.html:133
+#: profile/templates/profile/user_raised.html:146
 msgid "Hmm, there don't seem to be any challenges here."
 msgstr "Hmm, det ser ikke ud til at der er nogle udfordringer her."
 
-#: profile/templates/profile/user_donated.html:127
-#: profile/templates/profile/user_raised.html:149
-#: runs/templates/runs/user_runs.html:106
-msgid "Sorry, this user has chosen to make their information private."
-msgstr "Beklager, denne bruger har valgt at gøre deres information privat."
-
-#: profile/templates/profile/user_donated.html:142
-#, python-format
+#: profile/templates/profile/user_donated.html:140
 msgid ""
 "\n"
-"                    Request sponsorship from %(username)s\n"
-"                "
+"              Challenge a friend\n"
+"            "
 msgstr ""
 "\n"
-"Spørg om et sponsorat fra %(username)s                  "
+"Udfordr en ven"
 
-#: profile/templates/profile/user_donated.html:150
+#: profile/templates/profile/user_donated.html:147
 #, python-format
 msgid ""
 "\n"
-"                    Invite %(username)s to challenge you\n"
-"                "
+"              Invite %(username)s to challenge you\n"
+"            "
 msgstr ""
 "\n"
 "Invitér %(username)s til at udfordre dig"
 
-#: profile/templates/profile/user_raised.html:27
+#: profile/templates/profile/user_raised.html:17
 msgid "Sponsorships Recieved"
 msgstr "Sponsorater modtaget"
 
-#: profile/templates/profile/user_raised.html:31
-#: profile/templates/profile/user_raised.html:123
+#: profile/templates/profile/user_raised.html:22
+#: profile/templates/profile/user_raised.html:126
 #: tools/templates/tools/overview.html:15
 #: tools/templates/tools/overview.html:71
 msgid "Sponsor"
 msgstr "Sponsor"
 
-#: profile/templates/profile/user_raised.html:36
+#: profile/templates/profile/user_raised.html:27
 msgid "Amount Earned (kr)"
 msgstr "Beløb optjent (kr)"
 
-#: profile/templates/profile/user_raised.html:71
+#: profile/templates/profile/user_raised.html:57
 msgid "Anonymous Sponsor"
 msgstr "Anonym sponsor"
 
-#: profile/templates/profile/user_raised.html:101
+#: profile/templates/profile/user_raised.html:89
 msgid "Total Amount Earned:"
 msgstr "Totalt beløb optjent:"
 
-#: profile/templates/profile/user_raised.html:113
+#: profile/templates/profile/user_raised.html:99
+msgid ""
+"\n"
+"              Request sponsorship\n"
+"            "
+msgstr ""
+"\n"
+"Spørg om et sponsorat"
+
+#: profile/templates/profile/user_raised.html:106
+#, python-format
+msgid ""
+"\n"
+"              Sponsor %(username)s\n"
+"            "
+msgstr ""
+"\n"
+"Sponsér %(username)s"
+
+#: profile/templates/profile/user_raised.html:119
 msgid "Challenges where you are running"
 msgstr "Udfordringer hvor du løber"
 
-#: profile/templates/profile/user_raised.html:115
+#: profile/templates/profile/user_raised.html:121
 #, python-format
 msgid "Challenges where %(username)s is running"
 msgstr "Udfordringer hvor %(username)s løber"
 
-#: profile/templates/profile/user_raised.html:126
+#: profile/templates/profile/user_raised.html:129
 msgid "The challenge"
 msgstr "Udfordringen"
 
-#: profile/templates/profile/user_raised.html:163
-#, python-format
+#: profile/templates/profile/user_raised.html:153
 msgid ""
 "\n"
-"                    Sponsor %(username)s\n"
-"                "
+"              Request Challenge\n"
+"            "
 msgstr ""
 "\n"
-"Sponsér %(username)s                  "
+"Spørg om en udfordring"
 
-#: profile/templates/profile/user_raised.html:171
+#: profile/templates/profile/user_raised.html:161
 #, python-format
 msgid ""
 "\n"
-"                    Challenge %(username)s\n"
-"                "
+"                Challenge %(username)s\n"
+"            "
 msgstr ""
 "\n"
-"Udfordr %(username)s!"
+"Udfordr %(username)s"
 
 #: profile/templates/profile/user_settings.html:47
 msgid "Your Settings"
@@ -1680,20 +1664,16 @@ msgstr ""
 
 # ..
 #: profile/templates/profile/user_settings.html:79
-#, fuzzy
-#| msgid "Click here to reset your password."
-msgid "Click here to a picture to your profile"
-msgstr "Klik her for at nulstille dit kodeord."
+msgid "Click here to add a picture to your profile"
+msgstr "Klik her for at tilføje et billede til din profil"
 
 #: profile/templates/profile/user_settings.html:80
 msgid "Uploading ..."
 msgstr "Uploader ..."
 
 #: profile/templates/profile/user_settings.html:81
-#, fuzzy
-#| msgid "Click here to make your page private."
 msgid "Click here to change your picture"
-msgstr "Klik her for at gøre din side privat."
+msgstr "Klik her for at ændre dit billede"
 
 #: profile/templates/profile/user_settings.html:82
 msgid "Something went wrong - try agian"
@@ -1708,19 +1688,6 @@ msgid "Pay with your credit card when you sponsor runners"
 msgstr "Betal med dit betalingskort når du sponsorerer løbere"
 
 #: profile/templates/profile/user_settings.html:101
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "              Click the card below to register a credit card with Masanga "
-#| "Runners. \n"
-#| "              If you do this, you won't be charged anything initially. "
-#| "From then on,\n"
-#| "              whenever you agree to pay out a challenge, or a runner "
-#| "you're sponsoring\n"
-#| "              runs, you card will be automatically charged, without "
-#| "having to\n"
-#| "              do anything!\n"
-#| "              "
 msgid ""
 "\n"
 "      Click the card below to register a credit card with Masanga Runners.\n"
@@ -1740,12 +1707,6 @@ msgstr ""
 "uden at du behøver at gøre noget!"
 
 #: profile/templates/profile/user_settings.html:114
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "              Click the button below if you want to have Masanga Runners "
-#| "forget your card.\n"
-#| "              "
 msgid ""
 "\n"
 "      Click the button below if you want to have Masanga Runners forget your "
@@ -1765,17 +1726,6 @@ msgid "Automatically track your runs with Runkeeper"
 msgstr "Indlæs automatisk dine løb med RunKeeper"
 
 #: profile/templates/profile/user_settings.html:127
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "            You can connect your Masanga Runners account to your "
-#| "Runkeeper account!\n"
-#| "            Runkeeper is a mobile app that makes it easy to keep track of "
-#| "your runs. \n"
-#| "            If you connect your accounts, your runs will automatically "
-#| "show up on\n"
-#| "            Masanga Runners every day.\n"
-#| "            "
 msgid ""
 "\n"
 "    You can connect your Masanga Runners account to your Runkeeper account!\n"
@@ -1800,15 +1750,6 @@ msgid "Public profile, visible to the world"
 msgstr "Offentlig profil, synlig for verdenen"
 
 #: profile/templates/profile/user_settings.html:143
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "              Right now, anyone can see your page. This will help "
-#| "potential sponsors to find out about you and decide whether or not to "
-#| "sponsor you. If you don't want anyone except for yourself to see your "
-#| "sponsorships, runs, and challenges, click the button below to make your "
-#| "page private.\n"
-#| "              "
 msgid ""
 "\n"
 "      Right now, anyone can see your page. This will help potential sponsors "
@@ -1828,14 +1769,6 @@ msgid "Click here to make your page private."
 msgstr "Klik her for at gøre din side privat."
 
 #: profile/templates/profile/user_settings.html:153
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "              Right now, no one can see your page. Potential sponsors "
-#| "won't be able to see information on you when they're trying to decide "
-#| "whether or not to sponsor you. If you want people to be able to see your "
-#| "information, click the button below to make your page public.\n"
-#| "              "
 msgid ""
 "\n"
 "      Right now, no one can see your page. Potential sponsors won't be able "
@@ -1859,12 +1792,6 @@ msgid "Mails and reminders"
 msgstr "Mails og påmindelser"
 
 #: profile/templates/profile/user_settings.html:168
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "              Click the button below if you want to unsubscribe from all "
-#| "reminder emails from us.\n"
-#| "              "
 msgid ""
 "\n"
 "      Click the button below if you want to unsubscribe from all reminder "
@@ -1880,12 +1807,6 @@ msgid "Unsubscribe from our emails"
 msgstr "Afmeld dig fra vores e-mails"
 
 #: profile/templates/profile/user_settings.html:177
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "              Click the button below if you want to subscribe to reminder "
-#| "emails.\n"
-#| "              "
 msgid ""
 "\n"
 "      Click the button below if you want to subscribe to reminder emails.\n"
@@ -1916,41 +1837,37 @@ msgstr "Inviter en løber eller sponsor til at være med!"
 msgid "Sponsor!"
 msgstr "Sponsér!"
 
-#: profile/templates/profile/users_list.html:39
-msgid "This is you"
-msgstr "Her er du"
-
-#: profile/templates/profile/users_list.html:49
+#: profile/templates/profile/users_list.html:50
 msgid "Huh, that's weird. We can't find any runners. Check back later."
 msgstr ""
 "Hov, det var underligt. Vi kan ikke finde nogle løbere. Kig tilbage senere."
 
-#: profile/views.py:124
+#: profile/views.py:148
 msgid "The email has been successfully subscribed"
 msgstr "Din e-mail blev tilmeldt"
 
-#: profile/views.py:127
+#: profile/views.py:151
 msgid "That email is already subscribed to the list"
 msgstr "Denne e-mail modtager allerede nyhedsbrevet."
 
-#: profile/views.py:131
+#: profile/views.py:155
 msgid "An error occurred while subscribing to mailing list."
 msgstr "En fejl opstod da du skulle tilmeldes nyhedsbrevet."
 
-#: profile/views.py:167
+#: profile/views.py:191
 msgid ""
 "Thank you! Your card has been successfully registered with Masanga Runners."
 msgstr "Tak! Dit kort blev tilknyttet din profil på Masanga Runners."
 
-#: profile/views.py:198
+#: profile/views.py:222
 msgid "You have successfully deregistered your card."
 msgstr "Du har successfuldt afmeldt dig kort."
 
-#: profile/views.py:250 profile/views.py:258
+#: profile/views.py:259 profile/views.py:267
 msgid "Your settings has been saved."
 msgstr "Dine indstillinger blev gemt."
 
-#: runs/forms.py:10 runs/templates/runs/user_runs.html:50
+#: runs/forms.py:10 runs/templates/runs/user_runs.html:49
 msgid "Distance (km)"
 msgstr "Distance (km)"
 
@@ -2068,48 +1985,51 @@ msgid "Make end date the same as start date if it was a single run."
 msgstr ""
 "Sæt slut datoen til det samme som startdatoen hvis det var et enkelt løb."
 
-#: runs/templates/runs/user_runs.html:49
-msgid "Date"
-msgstr "Dato"
-
-#: runs/templates/runs/user_runs.html:51
-msgid "Time"
-msgstr "Tid"
-
-#: runs/templates/runs/user_runs.html:62
-msgid "Edit Run Details"
-msgstr "Ændre løbs detaljer"
-
-#: runs/templates/runs/user_runs.html:67
-msgid "Hmm, there don't seem to be any runs here."
-msgstr "Hmm, der ser ikke ud til at være nogle løb her."
-
-#: runs/templates/runs/user_runs.html:71
-msgid "Total Distance Run:"
-msgstr "Total distance løbet:"
-
-#: runs/templates/runs/user_runs.html:88
+#: runs/templates/runs/user_runs.html:31
 msgid "Add new run here!"
 msgstr "Tilføj et løb her!"
 
-#: runs/templates/runs/user_runs.html:95
+#: runs/templates/runs/user_runs.html:35
 #, python-format
 msgid ""
 "\n"
-"            These are all of the runs that %(runner_username)s has "
-"synchronized with Masanga Runners.\n"
-"            At the end of the quarter, anyone who was sponsoring "
-"%(runner_username)s for\n"
-"            this period will be billed, depending on their rates, challenges "
-"etc.,\n"
-"            and the money will be sent to Masanga Hospital.\n"
-"        "
+"    These are all of the runs that %(runner_username)s has synchronized with "
+"Masanga Runners.\n"
+"    At the end of the quarter, anyone who was sponsoring %(runner_username)s "
+"for\n"
+"    this period will be billed, depending on their rates, challenges etc.,\n"
+"    and the money will be sent to Masanga Hospital.\n"
+"    "
 msgstr ""
 "\n"
 "Dette er alle de løb som %(runner_username)s har synkroniseret med Masanga "
 "Runners. I slutningen af hvert kvartal bliver enhver der har sponsoreret "
 "%(runner_username)s i perioden opkrævet afhængigt af sponsoraternes rater, "
 "udfordringer, osv. og pengene vil blive sendt til Masanga Hospital."
+
+#: runs/templates/runs/user_runs.html:48
+msgid "Date"
+msgstr "Dato"
+
+#: runs/templates/runs/user_runs.html:50
+msgid "Time"
+msgstr "Tid"
+
+#: runs/templates/runs/user_runs.html:59
+msgid "unknown"
+msgstr "ukendt"
+
+#: runs/templates/runs/user_runs.html:63
+msgid "Edit Run Details"
+msgstr "Ændre løbs detaljer"
+
+#: runs/templates/runs/user_runs.html:70
+msgid "Hmm, there don't seem to be any runs here."
+msgstr "Hmm, der ser ikke ud til at være nogle løb her."
+
+#: runs/templates/runs/user_runs.html:75
+msgid "Total Distance Run:"
+msgstr "Total distance løbet:"
 
 #: runs/views.py:43
 msgid "Your run has been added"
@@ -2484,10 +2404,8 @@ msgid "The user has no credit card associated"
 msgstr "Brugeren har intet betalingskort tilknyttet"
 
 #: tools/templates/tools/payments.html:52
-#, fuzzy
-#| msgid "Charge users"
 msgid "Charge all users"
-msgstr "Opkræv betaling fra alle brugere"
+msgstr "Opkræv alle brugere"
 
 #: tools/templates/tools/payments.html:55
 msgid ""
@@ -2521,6 +2439,106 @@ msgstr "Der skete en fejl da %s skulle opkræves!"
 #: tools/views.py:81
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid ""
+#~ "\n"
+#~ "  \t<h3>Every Step Makes a Difference</h3>\n"
+#~ "  \t<p>Masanga Runners is not just a fun way to support a good project. "
+#~ "It’s also a great way to make it easier to get in to your running shoes! "
+#~ "With Masanga Runner, you can sponsor your running friends, but also get "
+#~ "family and friends involved in your runs and the world’s best hospital "
+#~ "project.</p>\n"
+#~ "  \t<p>The idea behind Masanga Runners is that many runners and sponsors "
+#~ "together can create a huge difference for the hospital in Masanga by "
+#~ "running and donating small amounts.</p>\n"
+#~ "  \t<p>As a runner, you find one or more sponsors, who support Masanga "
+#~ "with a small amount for each kilometre you run. Furthermore the sponsor "
+#~ "can support Masanga with a bigger amount, for an example by making a "
+#~ "challenge, in connection to you achieving one of your running goals.</p>\n"
+#~ "  \t<p>It could be to complete a half marathon or a DHL race. Depending "
+#~ "on how far you run throughout the year, and if you reach your goals, your "
+#~ "sponsor pays x amount of money, which will go to the Masanga Hospital.</"
+#~ "p>\n"
+#~ "  \t<p>”I am a Masanga Runner because it’s a form of motivation to get "
+#~ "outside. As a Masanga Runner I know that it’s not just me getting "
+#~ "something out of my runs,” says Søren Bo Steendahl, who has been a "
+#~ "Masanga Runner since Fall 2014.</p>\n"
+#~ "  \t<p>On this website, you can create an account and be a part of the "
+#~ "Masanga Runners community. You can invite your friends to sponsor you, "
+#~ "share your page on social media, and make challenges about your "
+#~ "performance on runs – you’re only limited by your imagination! </p>\n"
+#~ "  \t<h4>Tax Credits</h4>\n"
+#~ "  \t<p>Masanga Hospital Rehabilitation Project is approved as a "
+#~ "charitable organisation, so you can receive tax credits for your "
+#~ "donations – all the way up to DKK 15,200. Masanga Runners sends out an "
+#~ "email once a year to everyone who’s donated, asking them if they’re "
+#~ "interested in the tax credits. You only need to provide your CPR number "
+#~ "or your CVR number.</p>\n"
+#~ "  \t<h4>Sponsorship Termination</h4>\n"
+#~ "  \t<p>You can end your sponsorships at any time, both as a runner and as "
+#~ "a sponsor. You do this by clicking the ”end sponsorship” button by the "
+#~ "relevant sponsorship.</p>\n"
+#~ "  \t<h4>Masanga Runners t-shirt</h4>\n"
+#~ "  \t<p>You can advertise your good work by buying a nice Masanga Runners "
+#~ "t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-runners-t-"
+#~ "shirt/\" style=\"text-decoration:underline;\">here</a>! It costs 250 kr., "
+#~ "50 of which go directly to Masanga. The rest goes to shipping, handling, "
+#~ "and the t-shirt itself.</p>\n"
+#~ "  \t<h4>Contact</h4>\n"
+#~ "  \t<p>If you have any questions or comments regarding Masanga Runners, "
+#~ "you’re welcome to contact us by email at masangarunners@masanga.dk.</p>\n"
+#~ "\t"
+#~ msgstr ""
+#~ "\n"
+#~ "<h3>You Never Run Alone, You Never Run For Nothing</h3>\n"
+#~ "<p>Masanga Runners er ikke bare en nem måde at støtte et godt projekt på. "
+#~ "Det er også med til at gøre det lidt sjovere at hoppe i løbeskoene. Med "
+#~ "Masanga Runners kan du udfordre dine løbevenner, men også involvere "
+#~ "familie og venner i dine løbeture og verdens bedste hospitalsprojekt.</"
+#~ "p>\n"
+#~ "<p>Idéen bag Masanga Runners er, at mange løbere og sponsorer sammen kan "
+#~ "gøre en kæmpe forskel for hospitalet i Masanga ved at donere og løbe "
+#~ "forholdsvis små beløb ind.</p>\n"
+#~ "<p>Som løber finder du en eller flere sponsorer, der støtter Masanga med "
+#~ "et øre- eller kronebeløb for hver kilometer du løber om året – "
+#~ "eksempelvis 50 øre eller 1 krone. Herudover kan sponsoren støtte Masanga "
+#~ "med et lidt større beløb, eksempelvis ved at lave en udfordring, i "
+#~ "forbindelse med, at du opnår en af dine løbe-målsætninger. Det kunne være "
+#~ "at gennemføre et halvmaraton eller en DHL-stafet. Afhængig af hvor langt "
+#~ "du løber i løbet af året, og om du når dine mål, betaler din sponsor x "
+#~ "antal kroner, som går til Masanga Hospitalet.</p>\n"
+#~ "<p>”Jeg er Masanga Runner, fordi det er en form for motivation til at "
+#~ "komme afsted. Som Masanga Runner ved jeg, at det ikke kun er mig, der får "
+#~ "noget ud af min løbetur”, siger Søren Bo Steendahl, der har været Masanga "
+#~ "Runner siden efteråret 2014.</p><p>Her på siden kan du med få oplysninger "
+#~ "oprette en bruger og blive en del af Masanga Runners fællesskabet. Du kan "
+#~ "invitere dine venner til at sponsorere dig, dele din side på diverse "
+#~ "sociale medier og lave væddemål om deltagelse i et løb - det er kun "
+#~ "fantasien, der sætter grænser!</p>\n"
+#~ "<h4>Skattefradrag</h4>\n"
+#~ "<p>Masanga Hospital Rehabilitation Project er godkendt som en "
+#~ "almenvelgørende forening, og du kan derfor opnå skattefradrag for dine "
+#~ "donationer – helt op til 15.200 kr. Masanga Runners udsender ved udgangen "
+#~ "af året en mail til alle, der har doneret penge og spørger, om de er "
+#~ "interesseret i et sådant fradrag. Det eneste du skal oplyse til den tid "
+#~ "er dit cpr. nummer eller CVR-nummer. Det er helt enkelt og sikkert.</p>\n"
+#~ "<h4>Opsigelse</h4>\n"
+#~ "<p>Du kan til enhver tid afslutte dine sponsorater – både som løber og "
+#~ "sponsor.  Det gør du ved at trykke på ”slut sponsoraftale” ud for den "
+#~ "givne aftale.</p>\n"
+#~ "<h4>Masanga Runners t-shirt</h4>\n"
+#~ "<p>Du kan reklamere for den gode sag ved at købe en lækker Masanga "
+#~ "Runners t-shirt <a href=\"http://masanga.dk/masangarunners/masanga-"
+#~ "runners-t-shirt/\" style=\"text-decoration:underline;\">her</a>! Den "
+#~ "koster 250 kr. og 50 af dem går direkte til Masanga. Resten går til tryk, "
+#~ "forsendelse og selve t-shirten.</p>\n"
+#~ "<h4>Kontakt</h4>\n"
+#~ "<p>Har du spørgsmål eller lignende vedrørende Masanga Runners, er du "
+#~ "velkommen til at kontakte os på mail: masangarunners@masanga.dk eller på "
+#~ "telefon +45 29 80 30 73.</p>"
+
+#~ msgid "This is you"
+#~ msgstr "Her er du"
 
 #~ msgid "Image"
 #~ msgstr "Billede"
