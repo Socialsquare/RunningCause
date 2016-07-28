@@ -1,0 +1,13 @@
+{% extends "narrow_base.html" %}
+{% load humanize %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+{{ person.username }}
+{% endblock %}
+
+{% block body %}
+{% include "includes/_user_head.html" %}
+Hej Kræn
+{% endblock %}

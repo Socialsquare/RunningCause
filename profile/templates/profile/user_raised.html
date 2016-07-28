@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load humanize %}
 {% load i18n %}
 {% load static %}
@@ -7,180 +7,167 @@
 {{ person.username }}
 {% endblock %}
 
-{% block head %}
-{{ person.username }}
-<div style="float:right">
-{%include "includes/_share_it_buttons.html"%}
-</div>
-{% endblock %}
-
 {% block body %}
+{% include "includes/_user_head.html" %}
 
-{% include "includes/_tabs_runs_raised_donated.html" %}
-
-<div class ="row">
-<div class="col-sm-8">
 {% if person.is_public or own_page%}
+  <div class="card m-y-3">
+    <div class="card-block">
+      <h2 class="h4">
+        {% trans "Sponsorships Recieved" %}
+      </h2>
 
-        </br>
-        <div class="panel panel-default">
-        <div class="panel-heading">{% trans "Sponsorships Recieved" %}</div>
+      <table class="table table-hover">
+        <thead>
+          <th>{% trans "Sponsor" %}</th>
+          <th>{% trans "Rate(kr/km)" %}</th>
+          <th>{% trans "Maximum Possible Amount (kr)" %}</th>
+          <th>{% trans "Started" %}</th>
+          <th>{% trans "Continues Until" %}</th>
+          <th>{% trans "Amount Earned (kr)" %}</th>
+          <th>&nbsp;</th>
+        </thead>
 
-        <table class="table table-hover">
-            <thead>
-                <th>{% trans "Sponsor" %}</th>
-                <th>{% trans "Rate(kr/km)" %}</th>
-                <th>{% trans "Maximum Possible Amount (kr)" %}</th>
-                <th>{% trans "Started" %}</th>
-                <th>{% trans "Continues Until" %}</th>
-                <th>{% trans "Amount Earned (kr)" %}</th>
-                <th>&nbsp;</th>
-            </thead>
-
-            {% for sponsorship in sponsorships %}
-                {% if sponsorship.sponsor.is_public or own_page or sponsorship.sponsor == accessor %}
-                    {% if sponsorship.is_active %}
-                        <tr>
-                            <td>{{ sponsorship.sponsor }}</td>
-                            <td>{{ sponsorship.rate }}</td>
-                            <td>{{ sponsorship.max_amount }}</td>
-                            <td>{{ sponsorship.start_date }}</td>
-                            <td>{{ sponsorship.end_date }}</td>
-                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-
-							<td>
-							{% include "sponsorship/_end_sponsorship_button.html" %}
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr style='opacity:0.6'>
-                            <td>{{ sponsorship.sponsor }}</td>
-                            <td>{{ sponsorship.rate }}</td>
-                            <td>{{ sponsorship.max_amount }}</td>
-                            <td>{{ sponsorship.start_date }}</td>
-                            <td>{{ sponsorship.end_date }}</td>
-                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                            <td></td>
-                        </tr>
-                    {% endif %}
-
-                {% else %}
-                    {% if sponsorship.is_active %}
-
-                        <tr>
-                            <td>{% trans "Anonymous Sponsor" %}</td>
-                            <td>{{ sponsorship.rate }}</td>
-                            <td>{{ sponsorship.max_amount }}</td>
-                            <td>{{ sponsorship.start_date }}</td>
-                            <td>{{ sponsorship.end_date }}</td>
-                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                            <td></td>
-                        </tr>
-                    {% else %}
-                        <tr style='opacity:0.6'>
-                            <td>{{ sponsorship.sponsor }}</td>
-                            <td>{{ sponsorship.rate }}</td>
-                            <td>{{ sponsorship.max_amount }}</td>
-                            <td>{{ sponsorship.start_date }}</td>
-                            <td>{{ sponsorship.end_date }}</td>
-                            <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                        </td>
-                        </tr>
-                    {% endif %}
-                {% endif %}
-
-            {% empty %}
-                <tr><td>{% trans "Hmm, there don't seem to be any sponsorships here." %}</td></tr>
-            {% endfor %}
-            {% if sponsorships %}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td align='right'>{% trans "Total Amount Earned:" %} </td>
-                    <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
-                    <td></td>
-                </tr>
+        {% for sponsorship in sponsorships %}
+          {% if sponsorship.sponsor.is_public or own_page or sponsorship.sponsor == accessor %}
+            {% if sponsorship.is_active %}
+              <tr>
+                <td>{{ sponsorship.sponsor }}</td>
+                <td>{{ sponsorship.rate }}</td>
+                <td>{{ sponsorship.max_amount }}</td>
+                <td>{{ sponsorship.start_date }}</td>
+                <td>{{ sponsorship.end_date }}</td>
+                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                <td>{% include "sponsorship/_end_sponsorship_button.html" %}</td>
+              </tr>
+            {% else %}
+              <tr style='opacity:0.6'>
+                <td>{{ sponsorship.sponsor }}</td>
+                <td>{{ sponsorship.rate }}</td>
+                <td>{{ sponsorship.max_amount }}</td>
+                <td>{{ sponsorship.start_date }}</td>
+                <td>{{ sponsorship.end_date }}</td>
+                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                <td></td>
+              </tr>
             {% endif %}
-        </table>
-        </div>
-
-        </br>
-
-        <div class="panel panel-default">
-        {% if own_page %}
-        <div class="panel-heading">{% trans "Challenges where you are running" %}</div>
-        {% else %}
-        <div class="panel-heading">{% blocktrans with username=person.username %}Challenges where {{ username }} is running{% endblocktrans %}</div>
-        {% endif %}
-
-
-
-        <table class="table table-hover">
-        <table class="table table-hover">
-            <thead>
-                <th>{% trans "Sponsor" %}</th>
-                <th>{% trans "Amount (dkk)" %}</th>
-                <th>{% trans "End Date" %}</th>
-                <th>{% trans "The challenge" %}</th>
-                <th>{% trans "Status" %}</th>
-                <th>&nbsp;</th>
-            </thead>
-        {% for challenge in challenges_recieved %}
-                <tr>
-                    <td>{{ challenge.sponsor }}</td>
-                    <td>{{ challenge.amount|floatformat:2 }}</td>
-                    <td>{{ challenge.end_date }}</td>
-                    <td>{{ challenge.challenge_text }}</td>
-                    <td>{{ challenge.get_status_display }}</td>
-                    <td class="text-right">
-                    {% include 'challenges/_feedback_challenge_button.html'%}
-                    </td>
-                </tr>
+          {% else %}
+            {% if sponsorship.is_active %}
+              <tr>
+                <td>{% trans "Anonymous Sponsor" %}</td>
+                <td>{{ sponsorship.rate }}</td>
+                <td>{{ sponsorship.max_amount }}</td>
+                <td>{{ sponsorship.start_date }}</td>
+                <td>{{ sponsorship.end_date }}</td>
+                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                <td></td>
+              </tr>
+            {% else %}
+              <tr style='opacity:0.6'>
+                <td>{{ sponsorship.sponsor }}</td>
+                <td>{{ sponsorship.rate }}</td>
+                <td>{{ sponsorship.max_amount }}</td>
+                <td>{{ sponsorship.start_date }}</td>
+                <td>{{ sponsorship.end_date }}</td>
+                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+              </tr>
+            {% endif %}
+          {% endif %}
         {% empty %}
-        <tr><td>{% trans "Hmm, there don't seem to be any challenges here." %}</td></tr>
+          <tr>
+            <td colspan="7">
+              {% trans "Hmm, there don't seem to be any sponsorships here." %}
+            </td>
+          </tr>
         {% endfor %}
-        </table>
-        </div>
-
-{% else %}
-</br>
-<h4>{% trans "Sorry, this user has chosen to make their information private." %}</h4>
-
-{% endif %}
-</div>
-<div class="col-sm-4">
-</br>
-{% if own_page %}
-
-{% else %}
-
-    <div class="btn-group">
-        <p>
-            <a class="btn btn-primary btn-block"
-               href="{% url 'sponsorship:add_sponsorship' person.id %}">
-                {% blocktrans with username=person.username %}
-                    Sponsor {{username}}
-                {% endblocktrans %}
-            </a>
-        </p>
-        <p>
-            <a class="btn btn-primary btn-block"
-               href="{% url 'challenges:challenge_runner' person.id %}">
-                {% blocktrans with username=person.username %}
-                    Challenge {{username}}
-                {% endblocktrans %}
-            </a>
-        </p>
+        {% if sponsorships %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align='right'>{% trans "Total Amount Earned:" %} </td>
+            <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
+            <td></td>
+          </tr>
+        {% endif %}
+      </table>
+      {% if own_page %}
+        <!-- TODO skal så fungere med at man vælger - så person.id er optional -->
+        <a class="btn btn-primary"
+           href="{% url 'sponsorship:request_sponsorship' person.id %}">
+            {% blocktrans %}
+              Request sponsorship
+            {% endblocktrans %}
+        </a>
+      {% else %}
+        <a class="btn btn-primary"
+           href="{% url 'sponsorship:add_sponsorship' person.id %}">
+            {% blocktrans with username=person.username %}
+              Sponsor {{username}}
+            {% endblocktrans %}
+        </a>
+      {% endif %}
     </div>
+  </div>
 
 
+  <div class="card m-y-3">
+    <div class="card-block">
+      <h2 class="h4">
+        {% if own_page %}
+          {% trans "Challenges where you are running" %}
+        {% else %}
+          {% blocktrans with username=person.username %}Challenges where {{ username }} is running{% endblocktrans %}
+        {% endif %}
+      </h2>
+      <table class="table table-hover">
+        <thead>
+          <th>{% trans "Sponsor" %}</th>
+          <th>{% trans "Amount (dkk)" %}</th>
+          <th>{% trans "End Date" %}</th>
+          <th>{% trans "The challenge" %}</th>
+          <th>{% trans "Status" %}</th>
+          <th>&nbsp;</th>
+        </thead>
+        {% for challenge in challenges_recieved %}
+          <tr>
+            <td>{{ challenge.sponsor }}</td>
+            <td>{{ challenge.amount|floatformat:2 }}</td>
+            <td>{{ challenge.end_date }}</td>
+            <td>{{ challenge.challenge_text }}</td>
+            <td>{{ challenge.get_status_display }}</td>
+            <td class="text-right">
+            {% include 'challenges/_feedback_challenge_button.html'%}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td>{% trans "Hmm, there don't seem to be any challenges here." %}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% if own_page %}
+        <a class="btn btn-primary"
+           href="{% url 'challenges:challenge_runner' person.id %}">
+            {% blocktrans %}
+              Request Challenge
+            {% endblocktrans %}
+        </a>
 
+      {% else %}
+        <a class="btn btn-primary"
+           href="{% url 'challenges:challenge_runner' person.id %}">
+            {% blocktrans with username=person.username %}
+                Challenge {{username}}
+            {% endblocktrans %}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+{% else %}
+  {% include "includes/_user_not_public.html" %}
 {% endif %}
-</div>
 
-
-
-</div>
+  </div> <!-- trailing div from user head -->
 {% endblock %}

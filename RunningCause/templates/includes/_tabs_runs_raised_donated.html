@@ -1,8 +1,8 @@
 {% load i18n %}
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
-		<a class="nav-link {% if tab_name == 'mypage' %}active{% endif %}"
-    href="{% url 'runs:user_runs' user_id=person.id %}">
+		<a class="nav-link {% if tab_name == 'overview' %}active{% endif %}"
+    href="{% url 'profile:overview' user_id=person.id %}">
 			{% trans 'My page' %}
 		</a>
 	</li>

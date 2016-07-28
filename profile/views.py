@@ -37,6 +37,30 @@ def users_list(request):
     return render(request, 'profile/users_list.html', context)
 
 
+def overview(request, user_id=None):
+    person = get_object_or_404(get_user_model(), id=user_id)
+    sponsorships = person.sponsorships_recieved.all()
+    amount_earned = 0
+    for sponsorship in sponsorships:
+        amount_earned = amount_earned + sponsorship.total_amount
+
+    challenges_recieved = person.challenges_recieved.all().order_by('end_date')
+
+    own_page = False
+    if request.user.is_authenticated():
+        own_page = request.user == person
+
+    context = {
+        'sponsorships': sponsorships,
+        'amount_earned': amount_earned,
+        'challenges_recieved': challenges_recieved,
+        'own_page': own_page,
+        'person': person,
+        'tab_name': 'overview',
+    }
+    return render(request, 'profile/overview.html', context)
+
+
 def user_raised(request, user_id=None):
     person = get_object_or_404(get_user_model(), id=user_id)
     sponsorships = person.sponsorships_recieved.all()
@@ -197,21 +221,6 @@ def unregister_card(request):
         raise
     messages.success(request, _("You have successfully deregistered your card."))
     return redirect('profile:user_settings')
-
-
-def user_page(request, user_id):
-    """
-    Redirects to a page for a specific user, displaying their username and all
-    their sponsorships.
-    """
-    user = get_object_or_404(User, pk=user_id)
-    if (request.user.is_authenticated() and
-            int(user.id) == int(request.user.id)) or \
-            user.is_public:
-        url = reverse('runs:user_runs', kwargs={'user_id': user_id})
-    else:
-        url = reverse('profile:user_raised', kwargs={'user_id': user_id})
-    return HttpResponseRedirect(url)
 
 
 @login_required
