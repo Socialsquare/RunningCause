@@ -2,8 +2,9 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
+  background-color: $gray-lighter;
   .preview {
-
+    border: 1px solid $gray-light;
   }
   input[type=file] {
     position: absolute;
@@ -12,5 +13,47 @@
     left: 0;
     right: 0;
     opacity: 0;
+  }
+  .states {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p {
+      background-color: rgba($gray-lighter, 0.5);
+      text-align: center;
+      margin: 0.5em;
+      padding: 0.5em;
+      display: none;
+    }
+  }
+  &.no-photo .states .no-photo {
+    display: block;
+  }
+  &.uploading .states .uploading {
+    display: block;
+  }
+  &.photo .states .photo {
+    display: block;
+  }
+}
+
+form.user-profile {
+  label {
+    display: block;
+  }
+  .field {
+    margin-bottom: 1em;
+  }
+  .hint {
+    font-size: 80%;
+  }
+  .errors ul {
+    list-style: none;
+    padding-left: 0;
   }
 }

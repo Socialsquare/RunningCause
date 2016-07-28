@@ -13,8 +13,19 @@
   {% cloudinary_js_config %}
   <script>
   $(function() {
-    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
-    $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+    function updateState(newStateClass) {
+        $('.profile-image').removeClass('no-photo photo uploading failed').addClass(newStateClass);
+    }
+
+    $('input.cloudinary-fileupload[type=file]').cloudinary_fileupload();
+    // Register events to change the UI when it uploads
+    $('.cloudinary-fileupload')
+    .bind('fileuploadsend', function(e, data) {
+      updateState('uploading');
+    })
+    .bind('cloudinarydone', function(e, data) {
+      updateState('photo');
+      console.log('data', data);
       var imageSrc = $.cloudinary.url(data.result.public_id, {
         version: data.result.version,
         crop: 'fill',
@@ -23,6 +34,9 @@
       });
       $('.profile-image .preview').attr('src', imageSrc);
       return true;
+    })
+    .bind('fileuploadfail', function(e, data) {
+      updateState('failed');
     });
   });
   </script>
@@ -34,27 +48,49 @@
 {% endblock %}
 
 {% block body %}
-<h1>{% trans "Your Settings" %}</h1>
 
 <div class="m-b-3">
-  <h2>{% trans "Profile image" %}</h2>
-  <p>
-    {% blocktrans %}
-    To make it easier for others to recognize you, you can upload an
-    image to your profile.
-    {% endblocktrans %}
-  </p>
-  <form action="{% url 'profile:user_settings' %}" method="post">
+  <h1 class="h2">{% trans "Your profile" %}</h1>
+  <form action="{% url 'profile:user_settings' %}" method="post" class="user-profile">
     {% csrf_token %}
-    <p>
-      <div class="profile-image">
-        {% cloudinary user_profile_form.instance.image width=200 height=200 crop="fill" class="preview" %}
-        {{ user_profile_form.image }}
-        {# TODO: Create helper texts #}
-        {#% trans "Register your card with Masanga Runners" %#}
+
+    <div class="field">
+      <label>{{ user_profile_form.username.label }}</label>
+      {{ user_profile_form.username }}
+      {% if user_profile_form.username.errors %}
+        <div class="errors alert alert-danger m-t-1" role="alert">
+          {{ user_profile_form.username.errors }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="field">
+      <label>{{ user_profile_form.picture.label }}</label>
+      <p class="hint">
+        {# TODO: Turn this into a field hint instead #}
+        {% blocktrans %}
+        To make it easier for others to recognize you, you can upload an
+        image to your profile.
+        {% endblocktrans %}
+      </p>
+      <div class="profile-image {% if user_profile_form.instance.picture %}photo{% else %}no-photo{% endif %}">
+        {% cloudinary user_profile_form.instance.picture width=200 height=200 crop="fill" class="preview" %}
+        <div class="states">
+          <p class="no-photo">{% trans "Click here to a picture to your profile" %}</p>
+          <p class="uploading">{% trans "Uploading ..." %}</p>
+          <p class="photo">{% trans "Click here to change your picture" %}</p>
+          <p class="failed">{% trans "Something went wrong - try agian" %}</p>
+        </div>
+        {{ user_profile_form.picture }}
       </div>
-    </p>
-    <input type="submit" value="{% trans "Save" %}" />
+      {% if user_profile_form.picture.errors %}
+        <div class="errors alert alert-danger m-t-1" role="alert">
+          {{ user_profile_form.picture.errors }}
+        </div>
+      {% endif %}
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="{% trans "Save" %}" />
   </form>
 </div>
 

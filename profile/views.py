@@ -225,6 +225,8 @@ def user_settings(request):
         user_profile_form = UserProfileForm(request.POST, instance=user)
         if user_profile_form.is_valid():
             user_profile_form.save()
+            # Let's redirect as the username may have changed
+            return HttpResponseRedirect(reverse('profile:user_settings'))
     else:
         user_profile_form = UserProfileForm(instance=user)
 
