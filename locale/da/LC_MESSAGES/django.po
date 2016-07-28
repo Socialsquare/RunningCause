@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 15:36+0200\n"
-"PO-Revision-Date: 2016-07-28 15:37+0100\n"
+"POT-Creation-Date: 2016-07-28 17:19+0200\n"
+"PO-Revision-Date: 2016-07-28 17:22+0100\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -615,27 +615,41 @@ msgstr ""
 "Du skal til at benytte din %(provider_name)s konto til at logge ind på\n"
 "%(site_name)s. Udfyld venligst denne formular som det sidste:"
 
-#: challenges/forms.py:11
+#: challenges/forms.py:12 profile/templates/profile/user_donated.html:29
+#: profile/templates/profile/user_donated.html:114 sponsorship/forms.py:10
+#: tools/templates/tools/overview.html:16
+#: tools/templates/tools/overview.html:72
+msgid "Runner"
+msgstr "Løber"
+
+#: challenges/forms.py:15 profile/templates/profile/user_raised.html:22
+#: profile/templates/profile/user_raised.html:126 sponsorship/forms.py:13
+#: tools/templates/tools/overview.html:15
+#: tools/templates/tools/overview.html:71
+msgid "Sponsor"
+msgstr "Sponsor"
+
+#: challenges/forms.py:18
 msgid "Amount (kr)"
 msgstr "Beløb (dkk)"
 
-#: challenges/forms.py:15
+#: challenges/forms.py:22
 msgid "End date"
 msgstr "Afslutnings dato"
 
-#: challenges/forms.py:22
+#: challenges/forms.py:29
 msgid "What is the challenge?"
 msgstr "Hvad er udfordringen?"
 
-#: challenges/forms.py:39
+#: challenges/forms.py:46
 msgid "Amount cannot be negative"
 msgstr "Beløbet kan ikke være negativt"
 
-#: challenges/forms.py:43
+#: challenges/forms.py:50
 msgid "End date cannot be in the past"
 msgstr "Slut datoen kan ikke være i fortiden."
 
-#: challenges/forms.py:52
+#: challenges/forms.py:59
 msgid "Please write a message"
 msgstr "Skriv venligst en besked"
 
@@ -675,17 +689,34 @@ msgstr "Bekræft eller afvis"
 msgid "Challenge runner"
 msgstr "Udfordr løber"
 
-#: challenges/templates/challenges/challenge_runner.html:27
+#: challenges/templates/challenges/challenge_runner.html:28
 #, python-format
+#| msgid ""
+#| "\n"
+#| "    Challenge %(username)s\n"
+#| "    "
 msgid ""
 "\n"
-"    Challenge %(username)s\n"
-"    "
+"      Challenge %(username)s\n"
+"      "
 msgstr ""
 "\n"
 "Udfordr %(username)s"
 
 #: challenges/templates/challenges/challenge_runner.html:32
+#| msgid ""
+#| "\n"
+#| "    Challenge %(username)s\n"
+#| "    "
+msgid ""
+"\n"
+"      Challenge someone\n"
+"      "
+msgstr ""
+"\n"
+"Udfordr nogen"
+
+#: challenges/templates/challenges/challenge_runner.html:38
 #, python-format
 msgid ""
 "\n"
@@ -709,7 +740,7 @@ msgstr ""
 "eneste \n"
 "         der får lov til at afgøre om du skal betale eller ej."
 
-#: challenges/templates/challenges/challenge_runner.html:48
+#: challenges/templates/challenges/challenge_runner.html:54
 #: challenges/templates/challenges/preview_invitation_challenge.html:23
 #: profile/templates/profile/users_list.html:37
 msgid "Challenge!"
@@ -1021,7 +1052,7 @@ msgstr ""
 "afvise helt at udfordre dig."
 
 #: challenges/templates/challenges/invite_sponsor_to_challenge.html:47
-#: sponsorship/templates/sponsorship/request_sponsorship.html:67
+#: sponsorship/templates/sponsorship/request_sponsorship.html:73
 msgid "Send invitation"
 msgstr "Send invitation"
 
@@ -1044,26 +1075,26 @@ msgstr ""
 msgid "Reject"
 msgstr "Afvis"
 
-#: challenges/views.py:60
+#: challenges/views.py:59
 #, python-format
 msgid "%(username)s has challenged you"
 msgstr "%(username)s har udfordret dig"
 
-#: challenges/views.py:73
+#: challenges/views.py:72
 #, python-format
 msgid "You have just challenge %(username)s"
 msgstr "Du har netop udfordret %(username)s"
 
-#: challenges/views.py:120
+#: challenges/views.py:129
 msgid "Masanga Runners invitation to challenge"
 msgstr "Masanga Runners invitation til at udfordre"
 
-#: challenges/views.py:124
+#: challenges/views.py:133
 #, python-format
 msgid "You have send invitation to %(username)s to challenge you."
 msgstr "Du har sendt en invitation til at %(username)s udfordrer dig."
 
-#: challenges/views.py:174
+#: challenges/views.py:195
 msgid ""
 "Congratulations!, Your update will be send to the sponsor for the final "
 "review."
@@ -1071,22 +1102,22 @@ msgstr ""
 "Tillykke! Din opdatering vil blive sendt til sponsoren for endelig "
 "gennemgang."
 
-#: challenges/views.py:176
+#: challenges/views.py:197
 #, python-format
 msgid "%(runner)s completed the challenge successfully!"
 msgstr "%(runner)s gennemførte udfordringen!"
 
-#: challenges/views.py:185
+#: challenges/views.py:206
 msgid "Too bad. Your sponsor will be notified about the failed challenge."
 msgstr ""
 "Ærgerligt. Din sponsor vil blive informeret om den mislykkede udfordring."
 
-#: challenges/views.py:187
+#: challenges/views.py:208
 #, python-format
 msgid "%(runner)s failed to complete the challenge!"
 msgstr "%(runner)s gennemførte desværre ikke udfordringen!"
 
-#: challenges/views.py:217
+#: challenges/views.py:238
 msgid ""
 "You have accepted to pay for the challenge. The money will be charged at the "
 "end of the quarter. Thank you for making a change in Masanga!"
@@ -1094,21 +1125,21 @@ msgstr ""
 "Du har accepteret at betale for udfordringen. Pengene vil blive opkrævet ved "
 "udgangen af dette kvartal. Tak fordi gør en forskel i Masanga!"
 
-#: challenges/views.py:221
+#: challenges/views.py:242
 #, python-format
 msgid "%(sponsor)s accepted to pay!"
 msgstr "%(sponsor)s har accepteret at betale!"
 
-#: challenges/views.py:227
+#: challenges/views.py:248
 msgid "You have declined to pay for the challenge."
 msgstr "Du har afvist at betale for udfordringen."
 
-#: challenges/views.py:228
+#: challenges/views.py:249
 #, python-format
 msgid "%(sponsor)s rejected to pay!"
 msgstr "%(sponsor)s har afvist at betale!"
 
-#: challenges/views.py:263
+#: challenges/views.py:284
 msgid ""
 "You have been logged out, because you visited an invitation to a challenge "
 "that was sent to another user."
@@ -1116,28 +1147,27 @@ msgstr ""
 "Du er blevet logget ud, fordi du har besøgt en invitation til en udfordring "
 "der var sendt til en anden bruger."
 
-#: challenges/views.py:285
+#: challenges/views.py:306
 #, python-format
 msgid "%(sponsor)s has challenged you!"
 msgstr "%(sponsor)s har udfordret dig!"
 
-#: challenges/views.py:288
+#: challenges/views.py:309
 #, python-format
 msgid "You have created a challenge for %(username)s."
 msgstr "Du har nu udfordret %(username)s."
 
-#: challenges/views.py:300
+#: challenges/views.py:321
 #, python-format
 msgid "%(sponsor)s rejected to challenge you."
 msgstr "%(sponsor)s har afvist at udfordre dig."
 
-#: challenges/views.py:304
+#: challenges/views.py:325
 #, python-format
 msgid "You have rejected to challenge %(runner)s."
 msgstr "Du har afvist at udfordre %(runner)s."
 
 #: invitations/forms.py:6
-#| msgid "All email addresses"
 msgid "Friend's email address"
 msgstr "Din ven's e-mail adresse"
 
@@ -1324,37 +1354,45 @@ msgstr ""
 "        </p>"
 
 #: pages/templates/pages/frontpage.html:34
-msgid "Raised"
-msgstr "Indsamlet"
+msgid "Raised (in DKK)"
+msgstr ""
 
-#: pages/templates/pages/frontpage.html:39
+#: pages/templates/pages/frontpage.html:40
 #, python-format
-msgid "%(total_raised)s DKK in total"
-msgstr "%(total_raised)s DKK totalt"
+msgid "%(total_raised)s<span class=\"font-weight-normal\"> in total</span>"
+msgstr ""
 
-#: pages/templates/pages/frontpage.html:44
+#: pages/templates/pages/frontpage.html:45
 #, python-format
-msgid "%(total_outstanding)s DKK outstanding"
-msgstr "%(total_outstanding)s DKK udestående"
+#| msgid "%(total_outstanding)s DKK outstanding"
+msgid ""
+"<span class=\"font-weight-bold\">%(total_outstanding)s</span> outstanding"
+msgstr ""
+"<span class=\"font-weight-bold\">%(total_outstanding)s</span> udestående"
 
 #: pages/templates/pages/frontpage.html:49
 #, python-format
-msgid "%(previous_12_months_raised)s DKK previous 12 months"
-msgstr "%(previous_12_months_raised)s DKK de seneste 12 måneder"
+#| msgid "%(previous_12_months_raised)s DKK previous 12 months"
+msgid ""
+"<span class=\"font-weight-bold\">%(previous_12_months_raised)s</span> "
+"previous 12 months"
+msgstr ""
+"<span class=\"font-weight-bold\">%(previous_12_months_raised)s</span> DKK de "
+"seneste 12 måneder"
 
-#: pages/templates/pages/frontpage.html:54
+#: pages/templates/pages/frontpage.html:53
 #, python-format
-msgid "%(previous_3_months_raised)s DKK previous 3 months"
-msgstr "%(previous_3_months_raised)s DKK de seneste 3 måneder"
+#| msgid "%(previous_3_months_raised)s DKK previous 3 months"
+msgid ""
+"<span class=\"font-weight-bold\">%(previous_3_months_raised)s</span> "
+"previous 3 months"
+msgstr ""
+"<span class=\"font-weight-bold\">%(previous_3_months_raised)s</span> de "
+"seneste 3 måneder"
 
 #: pages/templates/pages/frontpage.html:61
-msgid "Run"
-msgstr "Løbet"
-
-#: pages/templates/pages/frontpage.html:66
-#, python-format
-msgid "%(total_distance)s KM"
-msgstr "%(total_distance)s KM"
+msgid "Kilometers Run"
+msgstr "Kilometre løbet"
 
 #: profile/forms.py:11
 msgid "I want my sponsorships to be publicly visible"
@@ -1404,7 +1442,7 @@ msgid "Register card"
 msgstr "Tilknyt betalingskort"
 
 #: profile/templates/profile/overview.html:20
-#: runs/templates/runs/input_run.html:55
+#: runs/templates/runs/input_run.html:44
 msgid "Add run"
 msgstr "Tilføj løb"
 
@@ -1532,13 +1570,6 @@ msgstr "Du sponsorerer"
 msgid "%(username)s is sponsoring"
 msgstr "%(username)s sponsorerer"
 
-#: profile/templates/profile/user_donated.html:29
-#: profile/templates/profile/user_donated.html:114
-#: tools/templates/tools/overview.html:16
-#: tools/templates/tools/overview.html:72
-msgid "Runner"
-msgstr "Løber"
-
 #: profile/templates/profile/user_donated.html:30
 #: profile/templates/profile/user_raised.html:23
 msgid "Rate(kr/km)"
@@ -1658,13 +1689,6 @@ msgstr ""
 #: profile/templates/profile/user_raised.html:17
 msgid "Sponsorships Recieved"
 msgstr "Sponsorater modtaget"
-
-#: profile/templates/profile/user_raised.html:22
-#: profile/templates/profile/user_raised.html:126
-#: tools/templates/tools/overview.html:15
-#: tools/templates/tools/overview.html:71
-msgid "Sponsor"
-msgstr "Sponsor"
 
 #: profile/templates/profile/user_raised.html:27
 msgid "Amount Earned (kr)"
@@ -1973,6 +1997,11 @@ msgstr "Slut dato (hvis du indtaster flere løb)"
 msgid "Time (HH:MM:SS, optional)"
 msgstr "Tid (TT:MM:SS, valgfri)"
 
+#: runs/models.py:30
+#| msgid "Distance (km)"
+msgid "Distance in kilometres"
+msgstr "Distance i kilometre"
+
 #: runs/tasks.py:47 runs/tasks.py:52
 msgid "Masanga Runners run-update"
 msgstr "Masanga Runners opdatering"
@@ -2036,11 +2065,11 @@ msgstr ""
 msgid "Input a Run"
 msgstr "Indtast et løb"
 
-#: runs/templates/runs/input_run.html:34
+#: runs/templates/runs/input_run.html:30
 msgid "Add your run"
 msgstr "Tilføj dit løb"
 
-#: runs/templates/runs/input_run.html:43
+#: runs/templates/runs/input_run.html:32
 msgid ""
 "\n"
 "    Here, you can input a run! All your sponsors will have the distance you\n"
@@ -2129,31 +2158,31 @@ msgstr "Du er ikke ejeren af dette løb."
 msgid "Your runs from RunKeeper are being processed..."
 msgstr "Dine løb fra RunKeeper bliver behandlet..."
 
-#: sponsorship/forms.py:9
+#: sponsorship/forms.py:16
 msgid "Rate (DKK per km)"
 msgstr "Sats (kr. pr. km)"
 
-#: sponsorship/forms.py:13
+#: sponsorship/forms.py:20
 msgid "Sponsorship start date"
 msgstr "Sponsoratets startdato"
 
-#: sponsorship/forms.py:19
+#: sponsorship/forms.py:26
 msgid "Sponsorship end date (optional)"
 msgstr "Sponsoratets slutdato (valgfri)"
 
-#: sponsorship/forms.py:25
+#: sponsorship/forms.py:32
 msgid "Maximum amount (optional)"
 msgstr "Maksimalt beløb (valgfri)"
 
-#: sponsorship/forms.py:43
+#: sponsorship/forms.py:50
 msgid "Rate cannot be negative"
 msgstr "Raten kan ikke være negativ"
 
-#: sponsorship/forms.py:48
+#: sponsorship/forms.py:55
 msgid "Max amount cannot be negative"
 msgstr "Maksimalt beløb kan ikke være negativt"
 
-#: sponsorship/forms.py:53
+#: sponsorship/forms.py:60
 msgid "End date cannot be before start date."
 msgstr "Slut datoen kan ikke være før startdatoen."
 
@@ -2161,11 +2190,38 @@ msgstr "Slut datoen kan ikke være før startdatoen."
 msgid "End Sponsorship"
 msgstr "Afslut sponsorat"
 
-#: sponsorship/templates/sponsorship/add_sponsorship.html:49
+#: sponsorship/templates/sponsorship/add_sponsorship.html:9
+#, python-format
+#| msgid ""
+#| "\n"
+#| "            Sponsor %(username)s\n"
+#| "          "
+msgid ""
+"\n"
+"    Sponsor %(username)s\n"
+"    "
+msgstr ""
+"\n"
+"Sponsér %(username)s"
+
+#: sponsorship/templates/sponsorship/add_sponsorship.html:13
+#| msgid ""
+#| "\n"
+#| "            Sponsor %(username)s\n"
+#| "          "
+msgid ""
+"\n"
+"    Sponsor someone\n"
+"    "
+msgstr ""
+"\n"
+"Sponsér nogen"
+
+#: sponsorship/templates/sponsorship/add_sponsorship.html:57
 msgid "Create a new Sponsorship"
 msgstr "Opret nyt sponsorat"
 
-#: sponsorship/templates/sponsorship/add_sponsorship.html:51
+#: sponsorship/templates/sponsorship/add_sponsorship.html:59
 #, python-format
 msgid ""
 "\n"
@@ -2187,7 +2243,7 @@ msgstr ""
 "bliver opkrævet mere end beløbet der står i \"maksimalt beløb\" feltet, "
 "uanset hvor meget %(username)s løber."
 
-#: sponsorship/templates/sponsorship/add_sponsorship.html:69
+#: sponsorship/templates/sponsorship/add_sponsorship.html:78
 msgid "Create sponsorship"
 msgstr "Opret sponsorat"
 
@@ -2267,18 +2323,36 @@ msgstr "Klik for at se invitationen"
 msgid "Request sponsorship"
 msgstr "Efterspørg sponsorat"
 
-#: sponsorship/templates/sponsorship/request_sponsorship.html:48
+#: sponsorship/templates/sponsorship/request_sponsorship.html:49
 #, python-format
+#| msgid ""
+#| "\n"
+#| "    Invite %(username)s to sponsor you\n"
+#| "    "
 msgid ""
 "\n"
-"    Invite %(username)s to sponsor you\n"
-"    "
+"      Invite %(username)s to sponsor you\n"
+"      "
 msgstr ""
 "\n"
 "Invitér %(username)s til at sponsorere dig\n"
 "\t"
 
 #: sponsorship/templates/sponsorship/request_sponsorship.html:53
+#| msgid ""
+#| "\n"
+#| "    Invite %(username)s to sponsor you\n"
+#| "    "
+msgid ""
+"\n"
+"      Invite someone to sponsor you\n"
+"      "
+msgstr ""
+"\n"
+"Invitér nogen til at sponsorere dig\n"
+"\t"
+
+#: sponsorship/templates/sponsorship/request_sponsorship.html:59
 #, python-format
 msgid ""
 "\n"
@@ -2305,7 +2379,7 @@ msgstr "Sponsoratet er afsluttet."
 msgid "You are not a associated with this sponsorship."
 msgstr "Du er ikke i forbindelse med dette sponsorat."
 
-#: sponsorship/views.py:62
+#: sponsorship/views.py:61
 #, python-format
 msgid ""
 "Your sponsorship of %(runner)s has been set up. An e-mail has been sent to "
@@ -2314,18 +2388,20 @@ msgstr ""
 "Dit sponsorat af %(runner)s er blevet oprettet. Der vil blive sendt en e-"
 "mail til %(runner)s."
 
-#: sponsorship/views.py:76
+#: sponsorship/views.py:75
 msgid "You have a new sponsor!"
 msgstr "Du har fået en ny sponsor!"
 
-#: sponsorship/views.py:111
+#: sponsorship/views.py:120
 #, python-format
 msgid "Do you want to sponsor %(runner)s?"
 msgstr "Vil du sponsorere %(runner)s?"
 
-#: sponsorship/views.py:123
-msgid "We have sent your request to sponsor."
-msgstr "Vi har sendt din forespørgsel til sponsoren."
+#: sponsorship/views.py:132
+#, python-format
+#| msgid "We have sent your request to sponsor."
+msgid "We have sent your request to %s"
+msgstr "Vi har sendt din forespørgsel til %s"
 
 #: tools/templates/tools/overview.html:12
 msgid "All sponsorships"
@@ -2519,6 +2595,18 @@ msgstr "Der skete en fejl da %s skulle opkræves!"
 #: tools/views.py:81
 msgid "sponsorship has been changed"
 msgstr "sponsoratet er blevet ændret"
+
+#~ msgid "Raised"
+#~ msgstr "Indsamlet"
+
+#~ msgid "%(total_raised)s DKK in total"
+#~ msgstr "%(total_raised)s DKK totalt"
+
+#~ msgid "Run"
+#~ msgstr "Løbet"
+
+#~ msgid "%(total_distance)s KM"
+#~ msgstr "%(total_distance)s KM"
 
 #~ msgid ""
 #~ "\n"
