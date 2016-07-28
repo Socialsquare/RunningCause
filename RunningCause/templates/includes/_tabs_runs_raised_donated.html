@@ -1,17 +1,26 @@
 {% load i18n %}
 <ul class="nav nav-tabs" role="tablist">
-	<li class="{% if tab_name == 'runs' %}active{% endif %}">
-		<a href="{% url 'runs:user_runs' user_id=person.id %}">
+  <li class="nav-item">
+		<a class="nav-link {% if tab_name == 'overview' %}active{% endif %}"
+    href="{% url 'profile:overview' user_id=person.id %}">
+			{% trans 'My page' %}
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link {% if tab_name == 'runs' %}active{% endif %}"
+    href="{% url 'runs:user_runs' user_id=person.id %}">
 			{% trans 'Runs' %}
 		</a>
 	</li>
-	<li class="{% if tab_name == 'raised' %}active{% endif %}">
-		<a href="{% url 'profile:user_raised' user_id=person.id %}">
+	<li class="nav-item">
+		<a class="nav-link {% if tab_name == 'raised' %}active{% endif %}"
+    href="{% url 'profile:user_raised' user_id=person.id %}">
 			{% trans 'Money Raised' %}
 		</a>
 	</li>
-	<li class="{% if tab_name == 'donations' %}active{% endif %}">
-		<a href="{% url 'profile:user_donated' user_id=person.id %}">
+	<li class="nav-item">
+		<a class="nav-link {% if tab_name == 'donations' %}active{% endif %}"
+    href="{% url 'profile:user_donated' user_id=person.id %}">
 			{% trans 'Donations' %}
 		</a>
 	</li>

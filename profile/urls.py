@@ -3,9 +3,10 @@ from profile import views
 
 
 urlpatterns = [
-    url(r'^(?P<user_id>\d+)/$', views.user_page, name='user_page'),
     url(r'^my-page/$', views.my_page, name='my_page'),
     url(r'^users-list/$', views.users_list, name='users_list'),
+    url(r'^(?P<user_id>\d+)/$', views.overview,
+        name='overview'),
     url(r'^(?P<user_id>\d+)/raised/$', views.user_raised,
         name='user_raised'),
     url(r'^(?P<user_id>\d+)/donated/$', views.user_donated,

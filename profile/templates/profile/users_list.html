@@ -24,7 +24,7 @@
   <div class="row user-list">
   {% for person in sublist %}
     <div class="col-sm-3">
-      <a class="person" href="{% url 'profile:user_page' user_id=person.id %}">
+      <a class="person" href="{% url 'profile:overview' user_id=person.id %}">
         <div class="card">
           <img class="card-img-top" src="{{ person.picture_url }}" alt="A picture of {{ person.username }}">
           <div class="card-block">
