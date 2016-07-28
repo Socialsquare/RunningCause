@@ -37,5 +37,8 @@
     "spectragram": "^1.0.3",
     "svg4everybody": "^2.1.0",
     "tether": "^1.3.3"
+  },
+  "engine": {
+    "node": "6.2.2"
   }
 }
