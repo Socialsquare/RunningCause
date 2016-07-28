@@ -39,7 +39,10 @@ var files = {
     paths.css + '**/*.scss'
   ],
   js: [
-    'node_modules/bootstrap/dist/js/bootstrap.min.js'
+    'node_modules/spectragram/spectragram.js',
+    'node_modules/tether/dist/js/tether.js',
+    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    paths.js + 'instagram-feed.js'
     // 'node_modules/svg4everybody/dist/svg4everybody.js',
     // 'src/js/*.js'
   ],
