@@ -3,6 +3,7 @@ import datetime
 from django.utils import timezone
 from django.db import models
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 
 class RunkeeperToken(models.Model):
@@ -26,7 +27,8 @@ class Run(models.Model):
 
     runner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='runs')
 
-    distance = models.FloatField('Distance', default=1)
+    distance = models.DecimalField(_('Distance in kilometres'),
+                                   decimal_places=2, max_digits=6)
 
     # Either the date of the run, or the start of the period over which
     # the runs took place.
