@@ -1,0 +1,34 @@
+.card {
+  &-dark {
+    color: $white;
+    background-color: $body-color;
+    border-radius: 0;
+  }
+
+  &-flex {
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-distance, &-raised {
+    background-size: cover;
+    background-position: center center;
+    background-color: rgba($black, 0.2);
+    background-blend-mode: multiply;
+  }
+
+  &-distance {
+    background-image: url('/static/img/card-distance.jpg');
+  }
+
+  &-raised {
+    background-image: url('/static/img/card-raised.jpg');
+  }
+
+  &__big-title {
+    font-size: 4rem;
+  }
+}
