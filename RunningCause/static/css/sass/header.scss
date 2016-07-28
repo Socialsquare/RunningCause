@@ -47,7 +47,11 @@
   color: white;
 }
 
-@include media-breakpoint-down(xs) {
+.navbar-toggler:focus {
+  outline: 0;
+}
+
+@include media-breakpoint-down(md) {
   .nav-item {
     width: 100%;
     margin-left: 0 !important;

@@ -64,6 +64,16 @@
 @import "sass/social";
 @import "sass/datepicker";
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.02em;
+}
+
+h1, h2, h3 {
+  letter-spacing: 0;
+}
+
 .btn {
   white-space: inherit;
 }

@@ -37,23 +37,20 @@
   </head>
 
   <body>
-    <div class="bg-primary">
-      <nav class="navbar navbar-dark container">
-        <div>
-          <a href="{% url 'pages:frontpage' %}">
-            <img
-              src="{% static 'img/logo.png' %}"
-              alt="Masanga Logo"
-              class="m-y-1 navbar__logo">
-          </a>
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container">
+        <a href="{% url 'pages:frontpage' %}">
           <img
-            src="{% static 'img/logo-runners.png' %}"
-            alt="Masanga Runners"
-            class="m-y-1 navbar__logo pull-xs-right">
-        </div>
-        <button class="navbar-toggler hidden-sm-up p-l-0" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
-          ☰ Menu
-        </button>
+            src="{% static 'img/logo.png' %}"
+            alt="Masanga Logo"
+            class="m-y-1 navbar__logo">
+        </a>
+        <img
+          src="{% static 'img/logo-runners.png' %}"
+          alt="Masanga Runners"
+          class="m-y-1 navbar__logo pull-xs-right">
+      </div>
+      <div class="container">
         <ul class="nav navbar-nav pull-xs-right">
           <li class="nav-item dropdown">
             {% if user.is_authenticated %}
@@ -78,7 +75,10 @@
             {% endif %}
           </li>
         </ul>
-        <div class="collapse navbar-toggleable-xs" id="navbar-header">
+        <button class="navbar-toggler hidden-lg-up p-l-0" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
+          ☰ Menu
+        </button>
+        <div class="collapse navbar-toggleable-md" id="navbar-header">
           <ul class="nav navbar-nav">
             {% if user.is_authenticated %}
             <li class="nav-item">
@@ -125,8 +125,8 @@
             {% endif %}
           </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
 
     <div class="body-wrapper">
       <div class="container">
