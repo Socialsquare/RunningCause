@@ -27,5 +27,5 @@ class SignupForm(forms.Form):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['image', ]
-    image = cloudinary.forms.CloudinaryJsFileField(label=_('Image'))
+        fields = ['username', 'picture']
+    picture = cloudinary.forms.CloudinaryJsFileField(label=_('Picture'), required=False)

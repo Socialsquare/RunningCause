@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import auth
 from django.db.models import Sum
 from django.utils.translation import ugettext as _
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from cloudinary.models import CloudinaryField
 
@@ -32,7 +33,7 @@ class User(auth.models.AbstractUser):
 
     greeted = models.BooleanField('Greeted?', default=False)
 
-    image = CloudinaryField(_('Image'), null=True, blank=True, default=None)
+    picture = CloudinaryField(_('Picture'), null=True, blank=True, default=None)
 
     objects = MasangaUserManager()
 
@@ -73,3 +74,16 @@ class User(auth.models.AbstractUser):
         challenges = self.challenges_given.filter(status=Challenge.CONFIRMED)
         owed_on_challenges = challenges.aggregate(sum=Sum('amount'))['sum'] or 0
         return owed_on_sponsorships + owed_on_challenges
+
+    @property
+    def picture_url(self, **options):
+        default_options = dict({
+            'width': 250,
+            'height': 250,
+            'crop': 'fill'
+        })
+        options = dict(default_options.items() + options.items())
+        if self.picture:
+            return self.picture.build_url(**options)
+        else:
+            return static('img/sports_running-4_simple-black-gradient_128x128.png')
