@@ -70,7 +70,7 @@
               </a>
               <div class="dropdown-menu">
                 <!-- TODO change to pages:contact -->
-                <a href="{% url 'pages:why_join_us' %}" class="dropdown-item">
+                <a href="{% url 'pages:contact' %}" class="dropdown-item">
                   {% trans "CONTACT" %}
                 </a>
                 <a href="http://www.masanga.dk" class="dropdown-item" target="_newtab">
@@ -90,7 +90,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'pages:why_join_us' %}" class="nav-link">
+              <a href="{% url 'pages:contact' %}" class="nav-link">
                 {% trans "CONTACT" %}
               </a>
             </li>
@@ -126,7 +126,7 @@
       </nav>
     </div>
 
-    <div class="container">
+    <div class="container body-container">
       {% block content %}
         <div class="m-t-3">
           <!-- head start -->

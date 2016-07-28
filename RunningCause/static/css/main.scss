@@ -65,6 +65,16 @@ html {
   font-weight: $body-font-weight;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.body-container {
+  flex-grow: 2;
+}
+
 .navbar {
   &__logo {
     max-height: $line-height * $font-size-base * 2;
