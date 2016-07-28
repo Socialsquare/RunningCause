@@ -99,13 +99,6 @@
               </a>
             </li>
             {% endif %}
-            {% if perms.contains.is_staff %}
-              <li class="nav-item">
-                <a href="{% url 'tools:overview' %}" class="nav-link">
-                  {% trans "OVERVIEW" %}
-                </a>
-              </li>
-            {% endif %}
           </ul>
           <ul class="nav navbar-nav pull-xs-right">
             <li class="nav-item dropdown">
@@ -118,6 +111,11 @@
                 </a>
                 <div class="dropdown-menu">
                    <a class="dropdown-item" href="{% url 'profile:user_settings' %}">{% trans "Settings" %}</a>
+                   {% if perms.contains.is_staff %}
+                     <a class="dropdown-item" href="{% url 'tools:overview' %}" class="nav-link">
+                       {% trans "overview" %}
+                     </a>
+                   {% endif %}
                    <a class="dropdown-item" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
                 </div>
               {% else %}
@@ -145,7 +143,7 @@
       </div>
     </div>
 
-    <footer>
+    <footer class="m-t-3">
       <p class="text-xs-center m-y-2">
         Follow <a href="https://www.instagram.com/masangarunners/">@massangarunners</a> on instagram.
         Developed by <a href="http://socialsquare.dk">Socialsquare</a>.

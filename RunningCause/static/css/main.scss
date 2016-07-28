@@ -81,3 +81,9 @@
   width: 2rem;
   height: 2rem;
 }
+
+.call-to-action {
+  .btn:not(:first-child) {
+    margin-left: $spacer / 2; 
+  }
+}

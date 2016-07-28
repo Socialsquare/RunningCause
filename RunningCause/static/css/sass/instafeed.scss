@@ -1,21 +1,19 @@
 .instagram-feed {
-  padding: 0;
-  li {
-    list-style-type: none;
-    display: inline;
-  }
+  line-height: 0;
+
   a {
-    position: relative;
-    width: 25%;
-    height: 0;
-    padding-bottom: 25%;
-    display: inline-block;
-    overflow: hidden;
-  }
-  img {
-    position: absolute;
-    object-fit: cover;
     width: 100%;
+    height: 0;
+    position: relative;
+    padding-bottom: 100%;
+    display: inline-block;
+    margin-bottom: 28px;
+  }
+
+  img {
     height: 100%;
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
   }
 }

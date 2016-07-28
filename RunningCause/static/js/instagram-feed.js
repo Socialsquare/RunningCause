@@ -8,7 +8,8 @@ $(function() {
 
       $('#instafeed').spectragram('getUserFeed',{
         max: 8,
-        query: 'masangarunners'
+        query: 'masangarunners',
+        wrapEachWith: '<div class="col-md-3 col-xs-6"></div>'
       });
     }
   }

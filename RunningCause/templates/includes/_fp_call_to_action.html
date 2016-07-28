@@ -1,8 +1,10 @@
 {% load i18n %}
 
-{% if user.is_authenticated %}
-{% else %}
-<a href="{% url 'profile:signup_or_login' %}" class="btn btn-primary btn-lg">{% trans "Sign up" %}</a>
-{% endif %}
-<a href="{% url 'runs:input_run' %}" class="btn btn-primary btn-lg">{% trans "Register run" %}</a>
-<a href="{% url 'profile:my_page' %}" class="btn btn-primary btn-lg">{% trans "Challenge and sponsor" %}</a>
+<div class="call-to-action">
+  {% if user.is_authenticated %}
+  {% else %}
+  <a href="{% url 'profile:signup_or_login' %}" class="btn btn-primary">{% trans "Sign up" %}</a>
+  {% endif %}
+  <a href="{% url 'runs:input_run' %}" class="btn btn-primary">{% trans "Register run" %}</a>
+  <a href="{% url 'profile:my_page' %}" class="btn btn-primary">{% trans "Challenge and sponsor" %}</a>
+</div>
