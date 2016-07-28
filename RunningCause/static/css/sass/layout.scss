@@ -1,0 +1,23 @@
+html {
+  font-weight: $body-font-weight;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.body-wrapper {
+  flex-grow: 2;
+  width: 100%;
+}
+
+.container-escape {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}

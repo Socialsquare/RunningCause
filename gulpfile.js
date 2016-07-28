@@ -117,7 +117,7 @@ gulp.task('js', function() {
 //
 gulp.task('watch', function() {
   gulp.watch(files.sassWatch, ['sass']);
-  gulp.watch(files.jsWatch, ['js']);
+  // gulp.watch(files.jsWatch, ['js']);
 
   // Watch svg
   // gulp.watch(paths.svg, ['svg-sprite']);

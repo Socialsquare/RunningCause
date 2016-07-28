@@ -53,85 +53,14 @@
 
 
 // Custom components
+@import "sass/layout";
+@import "sass/header";
 @import "sass/footer";
 @import "sass/messages";
 @import "sass/user-list";
 @import "sass/user-settings";
-@import "sass/frontpage";
 @import "sass/instafeed";
-
-
-html {
-  font-weight: $body-font-weight;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.body-wrapper {
-  flex-grow: 2;
-  width: 100%;
-}
-
-.navbar {
-  &__logo {
-    max-height: $line-height * $font-size-base * 2;
-  }
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: white;
-}
-
-.container-escape {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
-
-.header {
-  height: 60vh;
-  min-height: 25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-
-  &-frontpage {
-    margin-top: -.5rem;
-    &::before {
-      content: ' ';
-      background-size: cover;
-      background-position: center center;
-      background-image: url('/static/img/frontpage-header.jpg');
-      position: absolute;
-      opacity: .5;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: -1;
-    }
-  }
-
-  h1 {
-    max-width: 34rem;
-    color: $black;
-  }
-
-  &__call-to-action {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-}
+@import "sass/cards";
 
 .btn {
   white-space: inherit;
