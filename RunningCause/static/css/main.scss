@@ -71,8 +71,9 @@ body {
   flex-direction: column;
 }
 
-.body-container {
+.body-wrapper {
   flex-grow: 2;
+  width: 100%;
 }
 
 .navbar {
