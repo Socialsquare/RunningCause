@@ -1,0 +1,32 @@
+$socials: (
+  facebook:    #3b5998,
+  twitter:     #55acee,
+);
+
+.social {
+  a {
+    margin    : .2rem;
+    transition: 0.5s ease;
+    height    : 2rem;
+    width     : 2rem;
+    display   : inline-block;
+    &:hover {
+      cursor: pointer;
+    }
+    svg {
+      height: 100%;
+      width : 100%;
+      fill  : white;
+    }
+  }
+}
+
+@each $social, $color in $socials {
+  .#{$social} {
+    background: $color;
+    &:focus,
+    &:hover {
+      background: darken($color,10%);
+    }
+  }
+}

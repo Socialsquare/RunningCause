@@ -1,4 +1,4 @@
-{% extends "narrow_base.html" %}
+{% extends "masanga_base.html" %}
 {% load humanize %}
 {% load i18n %}
 {% load static %}
@@ -7,13 +7,13 @@
   <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
   <script type=text/javascript>
   $(document).ready(function() {
-      $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
-      $('#end_datepicker').datepicker({format:'yyyy-mm-dd'});
+    $('#start_datepicker').datepicker({format:'yyyy-mm-dd'});
+    $('#end_datepicker').datepicker({format:'yyyy-mm-dd'});
 
-      $('#reveal-button').click(function () {
-          $('#hidden-fields').fadeIn('slow');
-          return false;
-      });
+    $('#reveal-button').click(function () {
+      $('#hidden-fields').fadeIn('slow');
+      return false;
+    });
   });
   </script>
 {% endblock %}

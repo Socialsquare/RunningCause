@@ -1,14 +1,29 @@
 {% load staticfiles %}
 {% load i18n %}
 {% if own_page or person.is_public %}
-	<script type="text/javascript" src="{% static 'js/share-button.js' %}"></script>
-    <span class='st_facebook_large' displayText='Facebook'></span>
-    <span class='st_googleplus_large' displayText='Google +'></span>
-    <span class='st_twitter_large' displayText='Tweet'></span>
-    <span class='st_reddit_large' displayText='Reddit'></span>
-    <span class='st_stumbleupon_large' displayText='StumbleUpon'></span>
-    <span class='st_email_large' displayText='Email'></span>
-</br>
+<div class="social">
+  <a class="facebook" id="facebook-share">
+    <svg viewBox="0 0 800 800">
+      <path d="M445 643h-90V419h-75v-87h75v-64q0-55 32-86 30-29 80-29 28 0 67 3v78h-47q-42 0-42 38v60h86l-11 87h-75v224z" />
+    </svg>
+  </a>
+  <a class="twitter" id="twitter-share">
+    <svg viewBox="0 0 800 800">
+      <path d="M679 239s-21 34-55 57c7 156-107 329-314 329-103 0-169-50-169-50s81 17 163-45c-83-5-103-77-103-77s23 6 50-2c-93-23-89-110-89-110s23 14 50 14c-84-65-34-148-34-148s76 107 228 116c-22-121 117-177 188-101 37-6 71-27 71-27s-12 41-49 61c30-2 63-17 63-17z"/>
+    </svg>
+  </a>
+</div>
+<script>
+  $(function() {
+    window.onload = function() {
+      var currentUrl   = encodeURIComponent(location.href);
+      var facebookLink = 'http://www.facebook.com/share.php?u=' + currentUrl;
+      var twitterLink  = 'https://twitter.com/intent/tweet?text=+%23massangarunners&url=' + currentUrl;
+      $('#facebook-share').attr("href", facebookLink);
+      $('#twitter-share').attr("href", twitterLink);
+    }
+  });
+</script>
 {% elif own_page and not request.user.is_public %}
-   <h4>{% trans "You have to make your page public before you can share it." %}</h4>
+  <h4>{% trans "You have to make your page public before you can share it." %}</h4>
 {% endif %}
