@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load humanize %}
 {% load i18n %}
 {% load static %}
@@ -16,98 +16,82 @@
         });
     });
     </script>
-
-
 {% endblock %}
 
-{% block title %}
-{{ person.username }}
-{% endblock %}
 
-{% block head %}
-{{ person.username }}
-<div style="float:right">
-{%include "includes/_share_it_buttons.html"%}
-</div>
-{% endblock %}
 
 {% block body %}
-<div class="tabbable">
-{% include "includes/_tabs_runs_raised_donated.html" %}
+  <div style="float:right">
+  {%include "includes/_share_it_buttons.html"%}
+  </div>
+  <h1>{{ person.username }}</h1>
 
-</br>
+  <div class="tabbable">
+  {% include "includes/_tabs_runs_raised_donated.html" %}
 
+  {% if own_page %}
+    <p class="m-y-1">
+      <a class="btn btn-primary" href="{% url 'runs:input_run' %}">
+    {% trans 'Add new run here!' %}</a>
+    </p>
+  {% else %}
+    <p>
+    {% blocktrans with runner_username=person.username %}
+    These are all of the runs that {{ runner_username }} has synchronized with Masanga Runners.
+    At the end of the quarter, anyone who was sponsoring {{ runner_username }} for
+    this period will be billed, depending on their rates, challenges etc.,
+    and the money will be sent to Masanga Hospital.
+    {% endblocktrans %}
+    </p>
+  {% endif %}
 
-<div class = "row">
-    <div class = "col-sm-8">
-        {% if person.is_public or own_page%}
-            <div class="panel panel-default">
-            <div class="panel-heading">{% trans "Runs" %}</div>
-            <table class="table table-hover">
-            <table class="table table-hover">
-                <thead>
-                    <th>{% trans "Date" %}</th>
-                    <th>{% trans "Distance (km)" %}</th>
-                    <th>{% trans "Time" %}</th>
-                    {% if own_page %}
-                    <th></th>
-                    {% endif %}
-                </thead>
-                {% for run in runs %}
-                    <tr>
-                        <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
-                        <td>{{ run.distance|floatformat:2 }}</td>
-                        <td>{% if run.recorded_time %}{{ run.recorded_time }}{% else %}unknown{% endif %}</td>
-                        {% if own_page %}
-                            <td><a href="{% url 'runs:edit_run' run.id %}" class="btn btn-secondary">{% trans "Edit Run Details" %}</a></td>
-                        {% endif %}
-
-                    </tr>
-        {% empty %}
-        <tr><td>{% trans "Hmm, there don't seem to be any runs here." %}</td></tr>
-        {% endfor %}
-        {% if runs %}
-        <tr>
-            <td align='right'>{% trans "Total Distance Run:" %} </td>
-            <td>{{ total_distance|floatformat:2 }}</td>
-            <td></td>
-            {% if own_page %}
-            <td></td>
-            {% endif %}
-        <tr>
+  {% if person.is_public or own_page%}
+    <div class="panel panel-default m-t-1">
+      <table class="table table-hover">
+      <thead>
+        <th>{% trans "Date" %}</th>
+        <th>{% trans "Distance (km)" %}</th>
+        <th>{% trans "Time" %}</th>
+        {% if own_page %}
+        <th></th>
         {% endif %}
-        </table>
-    </div>
-</div>
-<div class="col-sm-4">
+      </thead>
+      {% for run in runs %}
+        <tr>
+          <td>{{ run.start_date }}{% if run.end_date != run.start_date %} - {{ run.end_date }} {% endif %}</td>
+          <td>{{ run.distance|floatformat:2 }}</td>
+          <td>{% if run.recorded_time %}{{ run.recorded_time }}{% else %}unknown{% endif %}</td>
+          {% if own_page %}
+          <td><a href="{% url 'runs:edit_run' run.id %}"
+            class="btn btn-secondary pull-xs-right">
+            {% trans "Edit Run Details" %}</a>
+          </td>
+          {% endif %}
 
-    {% if own_page %}
+        </tr>
+        {% empty %}
+        <tr>
+          <td>{% trans "Hmm, there don't seem to be any runs here." %}</td>
+        </tr>
+      {% endfor %}
+      {% if runs %}
+        <tr>
+          <td align='right'>{% trans "Total Distance Run:" %} </td>
+          <td>{{ total_distance|floatformat:2 }}</td>
+          <td></td>
+          {% if own_page %}
+            <td></td>
+          {% endif %}
+        <tr>
+      {% endif %}
+    </table>
 
-    <p>
-        <a class="btn btn-primary" href="{% url 'runs:input_run' %}">
-            {% trans 'Add new run here!' %}
-        </a>
-    </p>
-
-    {% else %}
-
-    <p>
-        {% blocktrans with runner_username=person.username %}
-            These are all of the runs that {{ runner_username }} has synchronized with Masanga Runners.
-            At the end of the quarter, anyone who was sponsoring {{ runner_username }} for
-            this period will be billed, depending on their rates, challenges etc.,
-            and the money will be sent to Masanga Hospital.
-        {% endblocktrans %}
-    </p>
-    {% endif %}
-
-    {% else %}
+  {% else %}
 
     <h4>{% trans "Sorry, this user has chosen to make their information private." %}</h4>
 
-    {% endif %}
+  {% endif %}<!-- person.is_public or own_page -->
 
-
-</div>
-</div>
+    </div>
+  </div>
 {% endblock %}
