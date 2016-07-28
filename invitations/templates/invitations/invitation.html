@@ -1,4 +1,4 @@
-{% extends "masanga_base.html" %}
+{% extends "narrow_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% load bootstrap3 %}
@@ -10,28 +10,19 @@
 {% block imports %}
 {% endblock %}
 
-{% block head %}
-	<div class="row">
-	<div class="col-md-7 col-md-offset-1">
-{% trans 'Invite someone you know!' %}
-	</div>
-	</div>
-{% endblock %}
-
 {% block body %}
-	<div class="row">
-	<div class="col-md-7 col-md-offset-1">
-    <p>
-        {% blocktrans %}
-        Fill out these fields below to invite someone who doesn't currently 
-        have a Masanga account. This could be either a runner or a potencial
-        sponsor. He/she will get an email with an invitation to create an account.
-        {% endblocktrans %}
-    </p>
-    
-    
+	<h1>{% trans 'Invite someone you know!' %}</h1>
+
+  <p>
+    {% blocktrans %}
+    Fill out these fields below to invite someone who doesn't currently
+    have a Masanga account. This could be either a runner or a potencial
+    sponsor. He/she will get an email with an invitation to create an account.
+    {% endblocktrans %}
+  </p>
+
 	<form action="{% url 'invitations:invite_via_email' %}" method="post">
-	    {% csrf_token %}
+	  {% csrf_token %}
 		{% bootstrap_form form layout="form-horizontal" %}
 		{% buttons %}
 		  <button type="submit" class="btn btn-primary">
@@ -39,8 +30,4 @@
 		  </button>
 		{% endbuttons %}
 	</form>
-    
-    
-	</div>
-	</div>
 {% endblock %}
