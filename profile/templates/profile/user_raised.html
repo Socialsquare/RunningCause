@@ -17,81 +17,83 @@
         {% trans "Sponsorships Recieved" %}
       </h2>
 
-      <table class="table table-hover">
-        <thead>
-          <th>{% trans "Sponsor" %}</th>
-          <th>{% trans "Rate(kr/km)" %}</th>
-          <th>{% trans "Maximum Possible Amount (kr)" %}</th>
-          <th>{% trans "Started" %}</th>
-          <th>{% trans "Continues Until" %}</th>
-          <th>{% trans "Amount Earned (kr)" %}</th>
-          <th>&nbsp;</th>
-        </thead>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover">
+          <thead>
+            <th>{% trans "Sponsor" %}</th>
+            <th>{% trans "Rate(kr/km)" %}</th>
+            <th>{% trans "Maximum Possible Amount (kr)" %}</th>
+            <th>{% trans "Started" %}</th>
+            <th>{% trans "Continues Until" %}</th>
+            <th>{% trans "Amount Earned (kr)" %}</th>
+            <th></th>
+          </thead>
 
-        {% for sponsorship in sponsorships %}
-          {% if sponsorship.sponsor.is_public or own_page or sponsorship.sponsor == accessor %}
-            {% if sponsorship.is_active %}
-              <tr>
-                <td>{{ sponsorship.sponsor }}</td>
-                <td>{{ sponsorship.rate }}</td>
-                <td>{{ sponsorship.max_amount }}</td>
-                <td>{{ sponsorship.start_date }}</td>
-                <td>{{ sponsorship.end_date }}</td>
-                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                <td>{% include "sponsorship/_end_sponsorship_button.html" %}</td>
-              </tr>
+          {% for sponsorship in sponsorships %}
+            {% if sponsorship.sponsor.is_public or own_page or sponsorship.sponsor == accessor %}
+              {% if sponsorship.is_active %}
+                <tr>
+                  <td>{{ sponsorship.sponsor }}</td>
+                  <td>{{ sponsorship.rate }}</td>
+                  <td>{{ sponsorship.max_amount }}</td>
+                  <td>{{ sponsorship.start_date }}</td>
+                  <td>{{ sponsorship.end_date }}</td>
+                  <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                  <td>{% include "sponsorship/_end_sponsorship_button.html" %}</td>
+                </tr>
+              {% else %}
+                <tr style='opacity:0.6'>
+                  <td>{{ sponsorship.sponsor }}</td>
+                  <td>{{ sponsorship.rate }}</td>
+                  <td>{{ sponsorship.max_amount }}</td>
+                  <td>{{ sponsorship.start_date }}</td>
+                  <td>{{ sponsorship.end_date }}</td>
+                  <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                  <td></td>
+                </tr>
+              {% endif %}
             {% else %}
-              <tr style='opacity:0.6'>
-                <td>{{ sponsorship.sponsor }}</td>
-                <td>{{ sponsorship.rate }}</td>
-                <td>{{ sponsorship.max_amount }}</td>
-                <td>{{ sponsorship.start_date }}</td>
-                <td>{{ sponsorship.end_date }}</td>
-                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                <td></td>
-              </tr>
+              {% if sponsorship.is_active %}
+                <tr>
+                  <td>{% trans "Anonymous Sponsor" %}</td>
+                  <td>{{ sponsorship.rate }}</td>
+                  <td>{{ sponsorship.max_amount }}</td>
+                  <td>{{ sponsorship.start_date }}</td>
+                  <td>{{ sponsorship.end_date }}</td>
+                  <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                  <td></td>
+                </tr>
+              {% else %}
+                <tr style='opacity:0.6'>
+                  <td>{{ sponsorship.sponsor }}</td>
+                  <td>{{ sponsorship.rate }}</td>
+                  <td>{{ sponsorship.max_amount }}</td>
+                  <td>{{ sponsorship.start_date }}</td>
+                  <td>{{ sponsorship.end_date }}</td>
+                  <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
+                </tr>
+              {% endif %}
             {% endif %}
-          {% else %}
-            {% if sponsorship.is_active %}
-              <tr>
-                <td>{% trans "Anonymous Sponsor" %}</td>
-                <td>{{ sponsorship.rate }}</td>
-                <td>{{ sponsorship.max_amount }}</td>
-                <td>{{ sponsorship.start_date }}</td>
-                <td>{{ sponsorship.end_date }}</td>
-                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                <td></td>
-              </tr>
-            {% else %}
-              <tr style='opacity:0.6'>
-                <td>{{ sponsorship.sponsor }}</td>
-                <td>{{ sponsorship.rate }}</td>
-                <td>{{ sponsorship.max_amount }}</td>
-                <td>{{ sponsorship.start_date }}</td>
-                <td>{{ sponsorship.end_date }}</td>
-                <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-              </tr>
-            {% endif %}
+          {% empty %}
+            <tr>
+              <td colspan="7">
+                {% trans "Hmm, there don't seem to be any sponsorships here." %}
+              </td>
+            </tr>
+          {% endfor %}
+          {% if sponsorships %}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td align='right'>{% trans "Total Amount Earned:" %} </td>
+              <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
+              <td></td>
+            </tr>
           {% endif %}
-        {% empty %}
-          <tr>
-            <td colspan="7">
-              {% trans "Hmm, there don't seem to be any sponsorships here." %}
-            </td>
-          </tr>
-        {% endfor %}
-        {% if sponsorships %}
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td align='right'>{% trans "Total Amount Earned:" %} </td>
-            <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
-            <td></td>
-          </tr>
-        {% endif %}
-      </table>
+        </table>
+      </div>
       {% if own_page %}
         <!-- TODO skal så fungere med at man vælger - så person.id er optional -->
         <a class="btn btn-primary"
@@ -121,32 +123,34 @@
           {% blocktrans with username=person.username %}Challenges where {{ username }} is running{% endblocktrans %}
         {% endif %}
       </h2>
-      <table class="table table-hover">
-        <thead>
-          <th>{% trans "Sponsor" %}</th>
-          <th>{% trans "Amount (dkk)" %}</th>
-          <th>{% trans "End Date" %}</th>
-          <th>{% trans "The challenge" %}</th>
-          <th>{% trans "Status" %}</th>
-          <th>&nbsp;</th>
-        </thead>
-        {% for challenge in challenges_recieved %}
-          <tr>
-            <td>{{ challenge.sponsor }}</td>
-            <td>{{ challenge.amount|floatformat:2 }}</td>
-            <td>{{ challenge.end_date }}</td>
-            <td>{{ challenge.challenge_text }}</td>
-            <td>{{ challenge.get_status_display }}</td>
-            <td class="text-right">
-            {% include 'challenges/_feedback_challenge_button.html'%}
-            </td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td>{% trans "Hmm, there don't seem to be any challenges here." %}</td>
-          </tr>
-        {% endfor %}
-      </table>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover">
+          <thead>
+            <th>{% trans "Sponsor" %}</th>
+            <th>{% trans "Amount (dkk)" %}</th>
+            <th>{% trans "End Date" %}</th>
+            <th>{% trans "The challenge" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th></th>
+          </thead>
+          {% for challenge in challenges_recieved %}
+            <tr>
+              <td>{{ challenge.sponsor }}</td>
+              <td>{{ challenge.amount|floatformat:2 }}</td>
+              <td>{{ challenge.end_date }}</td>
+              <td>{{ challenge.challenge_text }}</td>
+              <td>{{ challenge.get_status_display }}</td>
+              <td class="text-right">
+              {% include 'challenges/_feedback_challenge_button.html'%}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="7">{% trans "Hmm, there don't seem to be any challenges here." %}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
       {% if own_page %}
         <a class="btn btn-primary"
            href="{% url 'challenges:challenge_runner' person.id %}">
