@@ -24,61 +24,66 @@
           {% blocktrans with username=person.username %}{{ username }} is sponsoring{% endblocktrans %}
         {% endif %}
       </h2>
-      <table class="table table-hover">
-        <thead>
-          <th>{% trans "Runner" %}</th>
-          <th>{% trans "Rate(kr/km)" %}</th>
-          <th>{% trans "Maximum Possible Amount (kr)" %}</th>
-          <th>{% trans "Started" %}</th>
-          <th>{% trans "Continues Until" %}</th>
-          <th>{% trans "Amount (DKK)" %}</th>
-          <th></th>
-        </thead>
-        {% for sponsorship in sponsorships_given %}
-          {% if sponsorship.is_active %}
+      <div class="table-responsive">
+        <table class="table table-sm table-hover">
+          <thead>
+            <th>{% trans "Runner" %}</th>
+            <th>{% trans "Rate(kr/km)" %}</th>
+            <th>{% trans "Maximum Possible Amount (kr)" %}</th>
+            <th>{% trans "Started" %}</th>
+            <th>{% trans "Continues Until" %}</th>
+            <th class="text-xs-right">{% trans "Amount (DKK)" %}</th>
+            <th></th>
+          </thead>
+          {% for sponsorship in sponsorships_given %}
+            {% if sponsorship.is_active %}
+              <tr>
+                  <td>{{ sponsorship.runner }}</td>
+                  <td>{{ sponsorship.rate }}</td>
+                  <td>{{ sponsorship.max_amount|floatformat:2 }}</td>
+                  <td>{{ sponsorship.start_date }}</td>
+                  <td>{{ sponsorship.end_date }}</td>
+                  <td class="text-xs-right">{{ sponsorship.total_amount|floatformat:2 }}</td>
+                  <td>
+  	          {% include "sponsorship/_end_sponsorship_button.html" %}
+                  </td>
+              </tr>
+            {% else %}
+              <tr style='opacity:0.6'>
+                  <td>{{ sponsorship.runner }}</td>
+                  <td>{{ sponsorship.rate }}</td>
+                  <td>{{ sponsorship.max_amount|floatformat:2 }}</td>
+                  <td>{{ sponsorship.start_date }}</td>
+                  <td>{{ sponsorship.end_date }}</td>
+                  <td class="text-xs-right">{{ sponsorship.total_amount|floatformat:2 }}</td>
+                  <td></td>
+              </tr>
+            {% endif %}
+          {% empty %}
             <tr>
-                <td>{{ sponsorship.runner }}</td>
-                <td>{{ sponsorship.rate }}</td>
-                <td>{{ sponsorship.max_amount|floatformat:2 }}</td>
-                <td>{{ sponsorship.start_date }}</td>
-                <td>{{ sponsorship.end_date }}</td>
-                <td>{{ sponsorship.total_amount|floatformat:2 }}</td>
-                <td>
-	{% include "sponsorship/_end_sponsorship_button.html" %}
+                <td colspan="7">
+                    {% trans "Hmm, there don't seem to be any sponsorships here." %}
                 </td>
             </tr>
-        {% else %}
-            <tr style='opacity:0.6'>
-                <td>{{ sponsorship.runner }}</td>
-                <td>{{ sponsorship.rate }}</td>
-                <td>{{ sponsorship.max_amount|floatformat:2 }}</td>
-                <td>{{ sponsorship.start_date }}</td>
-                <td>{{ sponsorship.end_date }}</td>
-                <td>{{ sponsorship.total_amount|floatformat:2 }}</td>
-                <td></td>
-            </tr>
-        {% endif %}
-    {% empty %}
-        <tr>
-            <td colspan="7">
-                {% trans "Hmm, there don't seem to be any sponsorships here." %}
-            </td>
-        </tr>
-    {% endfor %}
-    <!-- TODO skal testes med to brugere -->
-        <tr>
+          {% endfor %}
+          <!-- TODO skal testes med to brugere -->
+          <tr>
             <td colspan="5">{% trans "Total amount:" %}</td>
-            <td colspan="2">{{ total_amount | floatformat:2 }}</td>
-        </tr>
-        <tr>
+            <td class="text-xs-right">{{ total_amount | floatformat:2 }}</td>
+            <td></td>
+          </tr>
+          <tr>
             <td colspan="5">{% trans "Total amount donated:" %}</td>
-            <td colspan="2">{{ total_amount_donated | floatformat:2 }}</td>
-        </tr>
-        <tr>
+            <td class="text-xs-right">{{ total_amount_donated | floatformat:2 }}</td>
+            <td></td>
+          </tr>
+          <tr>
             <td colspan="5">{% trans "Total amount owed:" %}</td>
-            <td colspan="2">{{ total_amount_owed | floatformat:2 }}</td>
-        </tr>
-      </table>
+            <td class="text-xs-right">{{ total_amount_owed | floatformat:2 }}</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
       {% if own_page %}
         <!-- TODO skal også virke med optional person.id -->
         <a class="btn btn-primary"
@@ -108,31 +113,32 @@
         {% endif %}
       </h2>
 
-
-      <table class="table table-hover">
-        <thead>
-          <th>{% trans "Runner" %}</th>
-          <th>{% trans "Amount (dkk)" %}</th>
-          <th>{% trans "End Date" %}</th>
-          <th>{% trans "Challenge" %}</th>
-          <th>{% trans "Status" %}</th>
-          <th>&nbsp;</th>
-        </thead>
-        {% for challenge in challenges_given %}
-          <tr>
-            <td>{{ challenge.runner }}</td>
-            <td>{{ challenge.amount|floatformat:2 }}</td>
-            <td>{{ challenge.end_date }}</td>
-            <td>{{ challenge.challenge_text }}</td>
-            <td>{{ challenge.get_status_display }}</td>
-            <td class="text-right">
-              {% include 'challenges/_feedback_challenge_button.html'%}
-            </td>
-          </tr>
-        {% empty %}
-          <tr><td>{% trans "Hmm, there don't seem to be any challenges here." %}</td></tr>
-        {% endfor %}
-      </table>
+      <div class="table-responsive">
+        <table class="table table-sm table-hover">
+          <thead>
+            <th>{% trans "Runner" %}</th>
+            <th>{% trans "Amount (dkk)" %}</th>
+            <th>{% trans "End Date" %}</th>
+            <th>{% trans "Challenge" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>&nbsp;</th>
+          </thead>
+          {% for challenge in challenges_given %}
+            <tr>
+              <td>{{ challenge.runner }}</td>
+              <td>{{ challenge.amount|floatformat:2 }}</td>
+              <td>{{ challenge.end_date }}</td>
+              <td>{{ challenge.challenge_text }}</td>
+              <td>{{ challenge.get_status_display }}</td>
+              <td class="text-xs-right">
+                {% include 'challenges/_feedback_challenge_button.html'%}
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="7">{% trans "Hmm, there don't seem to be any challenges here." %}</td></tr>
+          {% endfor %}
+        </table>
+      </div>
       {% if own_page %}
         <!-- TODO skal også virke med optional person.id -->
         <a class="btn btn-primary"

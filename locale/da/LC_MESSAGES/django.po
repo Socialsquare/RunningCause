@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-29 09:30+0200\n"
-"PO-Revision-Date: 2016-07-29 09:31+0200\n"
+"PO-Revision-Date: 2016-07-30 00:52+0200\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -480,8 +480,8 @@ msgstr "Løb"
 
 #: RunningCause/templates/includes/_tabs_runs_raised_donated.html:22
 #: profile/templates/profile/overview.html:41
-msgid "Money Raised"
-msgstr "Penge optjent"
+msgid "Raised"
+msgstr "Optjent"
 
 #: RunningCause/templates/includes/_tabs_runs_raised_donated.html:28
 #: profile/templates/profile/overview.html:76
@@ -1579,19 +1579,19 @@ msgstr "Sats (kr/km)"
 #: profile/templates/profile/user_donated.html:31
 #: profile/templates/profile/user_raised.html:24
 msgid "Maximum Possible Amount (kr)"
-msgstr "Maksimalt muligt beløb (kr)"
+msgstr "Max muligt beløb (kr)"
 
 #: profile/templates/profile/user_donated.html:32
 #: profile/templates/profile/user_raised.html:25
 #: tools/templates/tools/overview.html:22
 msgid "Started"
-msgstr "Startet"
+msgstr "Start dato"
 
 #: profile/templates/profile/user_donated.html:33
 #: profile/templates/profile/user_raised.html:26
 #: tools/templates/tools/overview.html:23
 msgid "Continues Until"
-msgstr "Forsættes indtil"
+msgstr "Slut dato"
 
 #: profile/templates/profile/user_donated.html:34
 msgid "Amount (DKK)"
@@ -1733,7 +1733,7 @@ msgstr "Udfordringer hvor %(username)s løber"
 
 #: profile/templates/profile/user_raised.html:129
 msgid "The challenge"
-msgstr "Udfordringen"
+msgstr "Udfordring"
 
 #: profile/templates/profile/user_raised.html:153
 msgid ""

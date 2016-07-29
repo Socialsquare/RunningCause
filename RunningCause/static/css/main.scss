@@ -79,6 +79,12 @@ label {
 
 .table {
   font-size: 80%;
+  th {
+    white-space: nowrap;
+    &:not(:first-child) {
+      padding-left: $spacer / 3 * 2;
+    }
+  }
 }
 
 .icon {
@@ -92,4 +98,12 @@ label {
   .btn:not(:first-child) {
     margin-left: $spacer / 2;
   }
+}
+
+.m-b-trekvart {
+  margin-bottom: $spacer * 3 / 4;
+}
+
+.m-t-halv {
+  margin-top: $spacer / 2;
 }
