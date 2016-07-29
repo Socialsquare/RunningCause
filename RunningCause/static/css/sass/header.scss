@@ -8,6 +8,7 @@
 
   &-frontpage {
     margin-top: -.5rem;
+
     &::before {
       content: ' ';
       background-size: cover;
@@ -37,6 +38,9 @@
 }
 
 .navbar {
+  padding-left: 0;
+  padding-right: 0;
+
   &__logo {
     height: $line-height * $font-size-base * 2;
     max-height: 10vw;
@@ -50,10 +54,14 @@
 .navbar-toggler:focus {
   outline: 0;
 }
-
 @include media-breakpoint-down(md) {
-  .nav-item {
+  .navbar-toggleable-md {
     width: 100%;
+  }
+
+  .navbar .nav-item {
+    display: block;
+    float: none;
     margin-left: 0 !important;
   }
 }

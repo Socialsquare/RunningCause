@@ -14,17 +14,26 @@
   }
 
   &-distance, &-raised {
-    background-size: cover;
-    background-position: center center;
-    background-color: rgba($black, 0.4);
-    background-blend-mode: multiply;
+    background-color: rgba($black, .4);
+    position: relative;
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+      background-size: cover;
+      background-position: center center;
+      z-index: -1;
+    }
   }
 
-  &-distance {
+  &-distance::before {
     background-image: url('/static/img/card-distance.jpg');
   }
 
-  &-raised {
+  &-raised::before {
     background-image: url('/static/img/card-raised.jpg');
   }
 

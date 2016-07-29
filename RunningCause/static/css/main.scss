@@ -63,16 +63,7 @@
 @import "sass/cards";
 @import "sass/social";
 @import "sass/datepicker";
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 0.02em;
-}
-
-h1, h2, h3 {
-  letter-spacing: 0;
-}
+@import "sass/typography";
 
 label {
   margin-bottom: .3rem;
@@ -92,8 +83,9 @@ label {
 
 .icon {
   fill: currentColor;
-  width: 2rem;
-  height: 2rem;
+  width: 1em;
+  height: 1em;
+  padding-right: 1px;
 }
 
 .call-to-action {
