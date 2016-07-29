@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 
-# NPM install (does gulp scss and js)
-npm install
-
 # Django migrations
 ./manage.py migrate
