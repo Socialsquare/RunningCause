@@ -35,7 +35,7 @@
         <div class="card card-dark card-raised">
           <div class="card-block card-flex">
             <div>
-              <h2 class="m-t-1">
+              <h2 class="m-t-1 m-b-0">
                 <span class="card__big-title">
                 {% with total_raised=total.raised|floatformat:"0"|intcomma %}
                   {% blocktrans %}{{total_raised}}{% endblocktrans %}
@@ -65,7 +65,7 @@
           <div class="card-block card-flex">
             <div>
             {% with total_distance=total_distance|floatformat:"0"|intcomma %}
-              <h2 class="m-t-1">
+              <h2 class="m-t-1 m-b-0">
                 <span class="card__big-title">{{total_distance}}</span>
               </h2>
             {% endwith %}
