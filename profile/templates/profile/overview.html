@@ -15,6 +15,9 @@
     <h2 class="h4">
       {% trans "Runs" %}
     </h2>
+    <p>
+      {{ total_distance }} km
+    </p>
     {% if own_page %}
       <a class="btn btn-primary m-t-halv" href="{% url 'runs:input_run' %}">
         {% trans 'Add run' %}</a>
@@ -40,6 +43,9 @@
     <h2 class="h4">
       {% trans "Raised" %}
     </h2>
+    <p>
+      {{ amount_earned | floatformat:2 }} kr
+    </p>
     {% if own_page %}
       <a class="btn btn-primary m-t-halv"
          href="{% url 'sponsorship:request_sponsorship' %}">
@@ -75,6 +81,9 @@
     <h2 class="h4">
       {% trans "Donations" %}
     </h2>
+    <p>
+      {{ total_amount_donated | floatformat:2 }} kr
+    </p>
     {% if own_page %}
       <a class="btn btn-primary m-t-halv"
          href="{% url 'sponsorship:add_sponsorship' %}">

@@ -21,6 +21,8 @@ import cloudinary
 
 from .forms import UserProfileForm
 from .models import User
+from django.db.models import Sum
+
 # TODO: I wonder if there is a better way that makes the apps
 # more decoupled.
 from challenges.models import Challenge
@@ -39,10 +41,19 @@ def users_list(request):
 
 def overview(request, user_id=None):
     person = get_object_or_404(get_user_model(), id=user_id)
+    total_distance = person.runs.all().aggregate(x=Sum('distance'))['x'] or 0
+
     sponsorships = person.sponsorships_recieved.all()
     amount_earned = 0
     for sponsorship in sponsorships:
         amount_earned = amount_earned + sponsorship.total_amount
+
+    sponsorships_given = person.sponsorships_given.all()
+    total_amount = 0
+    total_amount_donated = 0
+    for sponsorship in sponsorships_given:
+        total_amount += sponsorship.total_amount
+        total_amount_donated += sponsorship.amount_paid
 
     challenges_recieved = person.challenges_recieved.all().order_by('end_date')
 
@@ -51,8 +62,10 @@ def overview(request, user_id=None):
         own_page = request.user == person
 
     context = {
+        'total_distance': total_distance,
         'sponsorships': sponsorships,
         'amount_earned': amount_earned,
+        'total_amount_donated': total_amount_donated,
         'challenges_recieved': challenges_recieved,
         'own_page': own_page,
         'person': person,
