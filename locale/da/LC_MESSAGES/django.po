@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Unknown\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-29 09:30+0200\n"
-"PO-Revision-Date: 2016-07-30 00:52+0200\n"
+"POT-Creation-Date: 2016-07-30 01:17+0200\n"
+"PO-Revision-Date: 2016-07-30 02:05+0200\n"
 "Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -542,12 +542,14 @@ msgid ""
 "\n"
 "          Follow <a href=\"https://www.instagram.com/masangarunners/"
 "\">@masangarunners</a> on instagram.\n"
+"          <span class=\"hidden-sm-up\"><br /></span>\n"
 "          Developed by <a href=\"http://socialsquare.dk\">Socialsquare</a>.\n"
 "        "
 msgstr ""
 "\n"
 "          Følg <a href=\"https://www.instagram.com/masangarunners/"
 "\">@masangarunners</a> på Instagram.\n"
+"<span class=\"hidden-sm-up\"><br /></span>\n"
 "          Udviklet af <a href=\"http://socialsquare.dk\">Socialsquare</a>.\n"
 "        "
 
@@ -626,15 +628,15 @@ msgstr ""
 "Du skal til at benytte din %(provider_name)s konto til at logge ind på\n"
 "%(site_name)s. Udfyld venligst denne formular som det sidste:"
 
-#: challenges/forms.py:12 profile/templates/profile/user_donated.html:29
-#: profile/templates/profile/user_donated.html:114 sponsorship/forms.py:10
+#: challenges/forms.py:12 profile/templates/profile/user_donated.html:30
+#: profile/templates/profile/user_donated.html:119 sponsorship/forms.py:10
 #: tools/templates/tools/overview.html:16
 #: tools/templates/tools/overview.html:72
 msgid "Runner"
 msgstr "Løber"
 
-#: challenges/forms.py:15 profile/templates/profile/user_raised.html:22
-#: profile/templates/profile/user_raised.html:126 sponsorship/forms.py:13
+#: challenges/forms.py:15 profile/templates/profile/user_raised.html:23
+#: profile/templates/profile/user_raised.html:129 sponsorship/forms.py:13
 #: tools/templates/tools/overview.html:15
 #: tools/templates/tools/overview.html:71
 msgid "Sponsor"
@@ -1571,50 +1573,50 @@ msgstr "Du sponsorerer"
 msgid "%(username)s is sponsoring"
 msgstr "%(username)s sponsorerer"
 
-#: profile/templates/profile/user_donated.html:30
-#: profile/templates/profile/user_raised.html:23
+#: profile/templates/profile/user_donated.html:31
+#: profile/templates/profile/user_raised.html:24
 msgid "Rate(kr/km)"
 msgstr "Sats (kr/km)"
 
-#: profile/templates/profile/user_donated.html:31
-#: profile/templates/profile/user_raised.html:24
+#: profile/templates/profile/user_donated.html:32
+#: profile/templates/profile/user_raised.html:25
 msgid "Maximum Possible Amount (kr)"
 msgstr "Max muligt beløb (kr)"
 
-#: profile/templates/profile/user_donated.html:32
-#: profile/templates/profile/user_raised.html:25
+#: profile/templates/profile/user_donated.html:33
+#: profile/templates/profile/user_raised.html:26
 #: tools/templates/tools/overview.html:22
 msgid "Started"
 msgstr "Start dato"
 
-#: profile/templates/profile/user_donated.html:33
-#: profile/templates/profile/user_raised.html:26
+#: profile/templates/profile/user_donated.html:34
+#: profile/templates/profile/user_raised.html:27
 #: tools/templates/tools/overview.html:23
 msgid "Continues Until"
 msgstr "Slut dato"
 
-#: profile/templates/profile/user_donated.html:34
+#: profile/templates/profile/user_donated.html:35
 msgid "Amount (DKK)"
 msgstr "Beløb (kr.)"
 
-#: profile/templates/profile/user_donated.html:64
-#: profile/templates/profile/user_raised.html:79
+#: profile/templates/profile/user_donated.html:65
+#: profile/templates/profile/user_raised.html:80
 msgid "Hmm, there don't seem to be any sponsorships here."
 msgstr "Hmm, det ser ikke ud til at der er nogle sponsorater her."
 
-#: profile/templates/profile/user_donated.html:70
+#: profile/templates/profile/user_donated.html:71
 msgid "Total amount:"
 msgstr "Totalt beløb:"
 
-#: profile/templates/profile/user_donated.html:74
+#: profile/templates/profile/user_donated.html:76
 msgid "Total amount donated:"
 msgstr "Totalt beløb doneret:"
 
-#: profile/templates/profile/user_donated.html:78
+#: profile/templates/profile/user_donated.html:81
 msgid "Total amount owed:"
 msgstr "Totalt beløb udestående:"
 
-#: profile/templates/profile/user_donated.html:86
+#: profile/templates/profile/user_donated.html:91
 msgid ""
 "\n"
 "              Sponsor a friend\n"
@@ -1623,7 +1625,7 @@ msgstr ""
 "\n"
 "Sponsér en ven"
 
-#: profile/templates/profile/user_donated.html:93
+#: profile/templates/profile/user_donated.html:98
 #, python-format
 msgid ""
 "\n"
@@ -1633,42 +1635,42 @@ msgstr ""
 "\n"
 "Spørg om et sponsorat fra %(username)s                 "
 
-#: profile/templates/profile/user_donated.html:105
+#: profile/templates/profile/user_donated.html:110
 msgid "Challenges where you are sponsoring"
 msgstr "Udfordringer hvor du sponsorerer"
 
-#: profile/templates/profile/user_donated.html:107
+#: profile/templates/profile/user_donated.html:112
 #, python-format
 msgid "Challenges where %(username)s is sponsoring"
 msgstr "Udfordringer hvor %(username)s sponsorerer"
 
-#: profile/templates/profile/user_donated.html:115
-#: profile/templates/profile/user_raised.html:127
+#: profile/templates/profile/user_donated.html:120
+#: profile/templates/profile/user_raised.html:130
 msgid "Amount (dkk)"
 msgstr "Beløb (dkk)"
 
-#: profile/templates/profile/user_donated.html:116
-#: profile/templates/profile/user_raised.html:128
+#: profile/templates/profile/user_donated.html:121
+#: profile/templates/profile/user_raised.html:131
 #: tools/templates/tools/overview.html:77
 msgid "End Date"
 msgstr "Slut dato"
 
-#: profile/templates/profile/user_donated.html:117
+#: profile/templates/profile/user_donated.html:122
 msgid "Challenge"
 msgstr "Udfordr"
 
-#: profile/templates/profile/user_donated.html:118
-#: profile/templates/profile/user_raised.html:130
+#: profile/templates/profile/user_donated.html:123
+#: profile/templates/profile/user_raised.html:133
 #: tools/templates/tools/overview.html:73
 msgid "Status"
 msgstr "Status"
 
-#: profile/templates/profile/user_donated.html:133
-#: profile/templates/profile/user_raised.html:146
+#: profile/templates/profile/user_donated.html:138
+#: profile/templates/profile/user_raised.html:149
 msgid "Hmm, there don't seem to be any challenges here."
 msgstr "Hmm, det ser ikke ud til at der er nogle udfordringer her."
 
-#: profile/templates/profile/user_donated.html:140
+#: profile/templates/profile/user_donated.html:146
 msgid ""
 "\n"
 "              Challenge a friend\n"
@@ -1677,7 +1679,7 @@ msgstr ""
 "\n"
 "Udfordr en ven"
 
-#: profile/templates/profile/user_donated.html:147
+#: profile/templates/profile/user_donated.html:153
 #, python-format
 msgid ""
 "\n"
@@ -1691,19 +1693,19 @@ msgstr ""
 msgid "Sponsorships Recieved"
 msgstr "Sponsorater modtaget"
 
-#: profile/templates/profile/user_raised.html:27
+#: profile/templates/profile/user_raised.html:28
 msgid "Amount Earned (kr)"
 msgstr "Beløb optjent (kr)"
 
-#: profile/templates/profile/user_raised.html:57
+#: profile/templates/profile/user_raised.html:58
 msgid "Anonymous Sponsor"
 msgstr "Anonym sponsor"
 
-#: profile/templates/profile/user_raised.html:89
+#: profile/templates/profile/user_raised.html:90
 msgid "Total Amount Earned:"
 msgstr "Totalt beløb optjent:"
 
-#: profile/templates/profile/user_raised.html:99
+#: profile/templates/profile/user_raised.html:101
 msgid ""
 "\n"
 "              Request sponsorship\n"
@@ -1712,7 +1714,7 @@ msgstr ""
 "\n"
 "Spørg om et sponsorat"
 
-#: profile/templates/profile/user_raised.html:106
+#: profile/templates/profile/user_raised.html:108
 #, python-format
 msgid ""
 "\n"
@@ -1722,20 +1724,20 @@ msgstr ""
 "\n"
 "Sponsér %(username)s"
 
-#: profile/templates/profile/user_raised.html:119
+#: profile/templates/profile/user_raised.html:121
 msgid "Challenges where you are running"
 msgstr "Udfordringer hvor du løber"
 
-#: profile/templates/profile/user_raised.html:121
+#: profile/templates/profile/user_raised.html:123
 #, python-format
 msgid "Challenges where %(username)s is running"
 msgstr "Udfordringer hvor %(username)s løber"
 
-#: profile/templates/profile/user_raised.html:129
+#: profile/templates/profile/user_raised.html:132
 msgid "The challenge"
 msgstr "Udfordring"
 
-#: profile/templates/profile/user_raised.html:153
+#: profile/templates/profile/user_raised.html:157
 msgid ""
 "\n"
 "              Request challenge\n"
@@ -1744,7 +1746,7 @@ msgstr ""
 "\n"
 "Spørg om en udfordring"
 
-#: profile/templates/profile/user_raised.html:160
+#: profile/templates/profile/user_raised.html:164
 #, python-format
 msgid ""
 "\n"
@@ -2187,7 +2189,8 @@ msgstr "Maksimalt beløb kan ikke være negativt"
 msgid "End date cannot be before start date."
 msgstr "Slut datoen kan ikke være før startdatoen."
 
-#: sponsorship/templates/sponsorship/_end_sponsorship_button.html:7
+#: sponsorship/templates/sponsorship/_end_sponsorship_td_button.html:7
+#: sponsorship/templates/sponsorship/_end_sponsorship_td_empty.html:7
 msgid "End Sponsorship"
 msgstr "Afslut sponsorat"
 

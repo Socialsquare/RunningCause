@@ -1,10 +1,12 @@
 {% load i18n %}
 {% if user.is_authenticated and sponsorship.is_active %}
     {% if user == sponsorship.sponsor or user == sponsorship.runner %}
+      <td>
         <a
             href="{% url 'sponsorship:end_sponsorship' sponsorship.id %}"
             class="btn btn-secondary">
             {% trans "End Sponsorship" %}
         </a>
+      </td>
     {% endif %}
 {% endif %}
