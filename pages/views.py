@@ -50,11 +50,13 @@ def frontpage(request):
     previous_3_months = generate_raised(today-datetime.timedelta(days=3*30), today)
 
     total_distance = Run.objects.aggregate(total_distance=Sum('distance'))['total_distance'] or 0
+    dk_to_masanga = total_distance / 7411
 
     context = {
         'total': total,
         'previous_12_months': previous_12_months,
         'previous_3_months': previous_3_months,
-        'total_distance': int(total_distance)
+        'total_distance': int(total_distance),
+        'dk_to_masanga': dk_to_masanga
     }
     return render(request, 'pages/frontpage.html', context=context)
