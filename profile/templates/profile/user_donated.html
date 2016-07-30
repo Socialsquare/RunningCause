@@ -33,7 +33,7 @@
             <th>{% trans "Started" %}</th>
             <th>{% trans "Continues Until" %}</th>
             <th class="text-xs-right">{% trans "Amount (DKK)" %}</th>
-            <th></th>
+            {% include "sponsorship/_end_sponsorship_th_empty.html" %}
           </thead>
           {% for sponsorship in sponsorships_given %}
             {% if sponsorship.is_active %}
@@ -44,9 +44,7 @@
                   <td>{{ sponsorship.start_date }}</td>
                   <td>{{ sponsorship.end_date }}</td>
                   <td class="text-xs-right">{{ sponsorship.total_amount|floatformat:2 }}</td>
-                  <td>
-  	          {% include "sponsorship/_end_sponsorship_button.html" %}
-                  </td>
+      	          {% include "sponsorship/_end_sponsorship_td_button.html" %}
               </tr>
             {% else %}
               <tr style='opacity:0.6'>
@@ -56,7 +54,7 @@
                   <td>{{ sponsorship.start_date }}</td>
                   <td>{{ sponsorship.end_date }}</td>
                   <td class="text-xs-right">{{ sponsorship.total_amount|floatformat:2 }}</td>
-                  <td></td>
+                  {% include "sponsorship/_end_sponsorship_td_empty.html" %}
               </tr>
             {% endif %}
           {% empty %}
@@ -70,17 +68,17 @@
           <tr>
             <td colspan="5">{% trans "Total amount:" %}</td>
             <td class="text-xs-right">{{ total_amount | floatformat:2 }}</td>
-            <td></td>
+            {% include "sponsorship/_end_sponsorship_td_empty.html" %}
           </tr>
           <tr>
             <td colspan="5">{% trans "Total amount donated:" %}</td>
             <td class="text-xs-right">{{ total_amount_donated | floatformat:2 }}</td>
-            <td></td>
+            {% include "sponsorship/_end_sponsorship_td_empty.html" %}
           </tr>
           <tr>
             <td colspan="5">{% trans "Total amount owed:" %}</td>
             <td class="text-xs-right">{{ total_amount_owed | floatformat:2 }}</td>
-            <td></td>
+            {% include "sponsorship/_end_sponsorship_td_empty.html" %}
           </tr>
         </table>
       </div>

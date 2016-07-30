@@ -26,7 +26,7 @@
             <th>{% trans "Started" %}</th>
             <th>{% trans "Continues Until" %}</th>
             <th>{% trans "Amount Earned (kr)" %}</th>
-            <th></th>
+            {% include "sponsorship/_end_sponsorship_th_empty.html" %}
           </thead>
 
           {% for sponsorship in sponsorships %}
@@ -39,7 +39,7 @@
                   <td>{{ sponsorship.start_date }}</td>
                   <td>{{ sponsorship.end_date }}</td>
                   <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                  <td>{% include "sponsorship/_end_sponsorship_button.html" %}</td>
+                  {% include "sponsorship/_end_sponsorship_td_button.html" %}
                 </tr>
               {% else %}
                 <tr style='opacity:0.6'>
@@ -49,7 +49,7 @@
                   <td>{{ sponsorship.start_date }}</td>
                   <td>{{ sponsorship.end_date }}</td>
                   <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                  <td></td>
+                  {% include "sponsorship/_end_sponsorship_td_empty.html" %}
                 </tr>
               {% endif %}
             {% else %}
@@ -61,7 +61,7 @@
                   <td>{{ sponsorship.start_date }}</td>
                   <td>{{ sponsorship.end_date }}</td>
                   <td>{{ sponsorship.total_amount|floatformat:-2|intcomma }}</td>
-                  <td></td>
+                  {% include "sponsorship/_end_sponsorship_td_empty.html" %}
                 </tr>
               {% else %}
                 <tr style='opacity:0.6'>
@@ -76,7 +76,7 @@
             {% endif %}
           {% empty %}
             <tr>
-              <td colspan="7">
+              <td colspan="6">
                 {% trans "Hmm, there don't seem to be any sponsorships here." %}
               </td>
             </tr>
@@ -89,7 +89,6 @@
               <td></td>
               <td align='right'>{% trans "Total Amount Earned:" %} </td>
               <td>{{ amount_earned|floatformat:-2|intcomma }}kr</td>
-              <td></td>
             </tr>
           {% endif %}
         </table>

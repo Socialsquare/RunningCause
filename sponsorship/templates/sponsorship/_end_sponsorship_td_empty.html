@@ -1,0 +1,6 @@
+{% load i18n %}
+{% if user.is_authenticated and sponsorship.is_active %}
+    {% if user == sponsorship.sponsor or user == sponsorship.runner %}
+        <td></td>
+    {% endif %}
+{% endif %}
