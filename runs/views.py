@@ -119,7 +119,7 @@ def register_runkeeper(request):
     -   If the user accesses this url with a runkeeper token, our job is much
         easier. Just access this token,
         use it to get all the workout data for the user, and use create new
-        run objects for each workout 
+        run objects for each workout
         that does not currently have a run object.
     """
 

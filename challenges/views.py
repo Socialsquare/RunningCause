@@ -212,7 +212,7 @@ class FeedbackChallenge(View):
                     email_template = 'challenges/emails/challenge_failure.html'
                     email_link = reverse('challenges:challenge_runner',
                                          kwargs={
-                                            'person_id': challenge.runner.id
+                                            'runner_id': challenge.runner.id
                                          })
 
                 absolute_link = request.build_absolute_uri(email_link)
