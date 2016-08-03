@@ -321,7 +321,6 @@ def preview_invitation_challenge(request, token=None):
                 email_subject = _('%(sponsor)s rejected to challenge you.') % {
                     'sponsor': challenge_req.sponsor.username
                 }
-                email_msg = loader.get_template(tmpl).render(ctx)
                 msg = _("You have rejected to challenge %(runner)s.") % {
                     'runner': challenge_req.runner.username
                 }
