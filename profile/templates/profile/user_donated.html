@@ -85,7 +85,7 @@
       {% if own_page %}
         <!-- TODO skal også virke med optional person.id -->
         <a class="btn btn-primary"
-           href="{% url 'sponsorship:request_sponsorship' person.id %}">
+           href="{% url 'sponsorship:add_sponsorship' %}">
             {% blocktrans with username=person.username %}
               Sponsor a friend
             {% endblocktrans %}
